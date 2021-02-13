@@ -1,0 +1,3 @@
+[submodule "hexo/themes/icarus"]
+	path = hexo/themes/icarus
+	url = https://github.com/developomp/hexo-theme-icarus.git

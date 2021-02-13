@@ -1,0 +1,27 @@
+{
+  "name": "developomp.com",
+  "version": "0.0.0",
+  "private": true,
+  "author": "developomp",
+  "hexo": {
+    "version": "5.3.0"
+  },
+  "dependencies": {
+    "bulma-stylus": "^0.8.0",
+    "hexo": "latest",
+    "hexo-component-inferno": "latest",
+    "hexo-generator-archive": "latest",
+    "hexo-generator-category": "latest",
+    "hexo-generator-feed": "latest",
+    "hexo-generator-index": "latest",
+    "hexo-generator-tag": "latest",
+    "hexo-renderer-ejs": "latest",
+    "hexo-renderer-inferno": "latest",
+    "hexo-renderer-marked": "latest",
+    "hexo-renderer-stylus": "latest",
+    "hexo-server": "latest",
+    "hexo-theme-icarus": "latest",
+    "inferno": "latest",
+    "inferno-create-element": "latest"
+  }
+}
