@@ -122,9 +122,6 @@ footer:
         Attribution:
             icon: fab fa-creative-commons-by
             url: 'https://creativecommons.org/licenses/by/4.0/'
-    ## Custom ##
-    email: 'developomp@gmail.com'
-    ## Custom ##
 # Article related configurations
 article:
     # Code highlight settings
