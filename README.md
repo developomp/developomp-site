@@ -1,4 +1,4 @@
-# [developomp.com](https://developomp.com)
+# <a href="https://developomp.com" target="_blank">developomp-site</a>
 
 Tools used:
 
@@ -11,9 +11,17 @@ Tools used:
 
 # Setup
 
-- Clone the repo
+Requires: [git](https://git-scm.com), [node](https://nodejs.org), [hexo](https://github.com/hexojs/hexo), [firebase](https://firebase.google.com)
+
+- Clone the repo with git modules
+  - `git clone --recurse-submodules https://github.com/developomp/developomp-site.git`
 - Install dependencies
-- Generate
+  - `cd developomp-site/hexo`
+  - `yarn` or `npm i`
+- Generate files
+  - `hexo generate`
+- (optional, requires firebase setup) deploy it to firebase
+  - `firebase deploy`
 
 # License
 
