@@ -15,6 +15,7 @@ Requires: [git](https://git-scm.com), [node](https://nodejs.org), [hexo](https:/
 
 - Clone the repo with git modules
   - `git clone --recurse-submodules https://github.com/developomp/developomp-site.git`
+  - to update: `git submodule foreach git pull origin master`
 - Install dependencies
   - `cd developomp-site/hexo`
   - `yarn` or `npm i`
