@@ -1,2 +1,0 @@
-- [rss2](/rss2.xml)
-- [atom](/atom.xml)

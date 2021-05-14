@@ -1,7 +1,23 @@
+# where I keep my notes
 _/
+
+# auto generated
 yarn.lock
 package-lock.json
-hexo/source/_drafts
+pages.json
+
+# dependencies
+.pnp/
+.pnp.js
+
+# testing
+coverage/
+
+# production
+build/
+
+# misc
+.DS_Store
 
 # unaltered
 # Created by https://www.toptal.com/developers/gitignore/api/firebase,node,hexo,git,visualstudiocode

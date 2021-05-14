@@ -1,0 +1,47 @@
+{
+	"extends": [
+		"plugin:react/recommended",
+		"plugin:json/recommended",
+		"prettier"
+	],
+	"settings": {
+		"node": {
+			"tryExtensions": [".js", ".jsx", ".json"]
+		},
+		"react": {
+			"version": "17.0"
+		}
+	},
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"sourceType": "module"
+	},
+	"plugins": ["react", "@typescript-eslint"],
+	"rules": {
+		"react/jsx-uses-vars": "error",
+		"react/no-unknown-property": [
+			"error",
+			{
+				"ignore": [
+					"class",
+					"onclick",
+					"onload",
+					"onsubmit",
+					"crossorigin"
+				]
+			}
+		],
+		"react/react-in-jsx-scope": ["off"],
+		"react/prop-types": ["off"],
+		"react/display-name": ["off"],
+		"react/jsx-key": ["off"],
+		"react/jsx-no-target-blank": [
+			"error",
+			{
+				"allowReferrer": true
+			}
+		]
+	}
+}
