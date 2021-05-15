@@ -11,7 +11,7 @@ Tools/Frameworks/Packages used:
 |                         [Typescript](https://github.com/microsoft/TypeScript) | Static typing for javascript                          |
 |                                                  [react](https://reactjs.org) | Front end framework                                   |
 |         [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) | [Fontawesome](https://fontawesome.com) icons in react |
-|                           [react-helmet](https://github.com/nfl/react-helmet) | HTML head management                                  |
+|           [react-helmet-async](https://github.com/staylor/react-helmet-async) | HTML head management                                  |
 |                              [dompurify](https://github.com/cure53/DOMPurify) | HTML sanitizer for markdown-to-html page generation   |
 |                   [gray-matter](https://github.com/jonschlinkert/gray-matter) | parsing markdown                                      |
 | [local-storage-fallback](https://github.com/ripeworks/local-storage-fallback) | storing theme choice                                  |
@@ -22,7 +22,6 @@ Tools/Frameworks/Packages used:
 |                              [prettier](https://github.com/prettier/prettier) | code formatter                                        |
 |                              [ts-node](https://github.com/TypeStrong/ts-node) | running markdown-to-html generator                    |
 |                                                     [jest](https://jestjs.io) | code testing                                          |
-|               [react-spinners](https://github.com/davidhu2000/react-spinners) | loading indicator                                     |
 
 # Setup
 
