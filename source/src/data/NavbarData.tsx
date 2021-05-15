@@ -15,9 +15,9 @@ export default [
 		icon: <FontAwesomeIcon icon={faHome} />,
 	},
 	{
-		title: "Archives",
-		path: "/archives",
-		icon: <FontAwesomeIcon icon={faArchive} />,
+		title: "Explore",
+		path: "/explore",
+		icon: <FontAwesomeIcon icon={faHiking} />,
 	},
 	{
 		title: "Categories",
@@ -30,9 +30,9 @@ export default [
 		icon: <FontAwesomeIcon icon={faHashtag} />,
 	},
 	{
-		title: "Explore",
-		path: "/explore",
-		icon: <FontAwesomeIcon icon={faHiking} />,
+		title: "Archives",
+		path: "/archives",
+		icon: <FontAwesomeIcon icon={faArchive} />,
 	},
 	{
 		title: "Portfolio",
