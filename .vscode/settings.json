@@ -1,0 +1,13 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+"editor.detectIndentation": false,
+"editor.insertSpaces": false,
+"cSpell.words": [
+	"Fontawesome",
+	"developomp",
+	"developomp's",
+	"dompurify"
+]
+}
