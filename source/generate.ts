@@ -25,9 +25,11 @@ function addFiles(filesPath: string) {
 
 	// not perfect. Some filenames might cause problem.
 	let stats = fs.lstatSync(filesPath) // checks if the path leads to a directory or a file
+
+	// don't use replaceAll
 	let urlPath = `/${path.relative(dirPath, filesPath)}` // path tha will be used for url
 		.replace(/\.[^/.]+$/, "") // remove .md file extension
-		.replaceAll(" ", "-") // replace space with a dash "-"
+		.replace(/ /g, "-") // replace space with a dash "-"
 
 	// if it's a directory, apply this function to every files/folders in it
 	// if it's a file, read and add it to pageList
