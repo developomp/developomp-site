@@ -18,7 +18,7 @@ export default {
 		medium: "14px",
 		large: 0,
 		x_large: 0,
-		screen_size1: "950px",
+		screen_size1: "1000px",
 	},
 	color: {
 		linkColor: "#3273dc",
