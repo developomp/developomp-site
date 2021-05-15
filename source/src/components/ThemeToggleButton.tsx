@@ -28,7 +28,7 @@ function Navbar() {
 						data-tip
 						data-for="theme"
 						className="right"
-						onClick={(_: any) =>
+						onClick={() =>
 							_theme.setTheme(
 								_theme.mode === "dark"
 									? { ..._theme, mode: "light" }

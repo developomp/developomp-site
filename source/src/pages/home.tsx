@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import theme from "styled-theming"
 import marked from "marked"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet-async"
 
 import pages from "../pages.json"
 
@@ -48,9 +48,9 @@ const StyledPostCard = styled.div`
 `
 
 function Home(props) {
-	let PostCards: Array<any> = []
+	const PostCards: Array<unknown> = []
 	let howMany = props.howMany
-	let isLimited = Boolean(howMany)
+	const isLimited = Boolean(howMany)
 
 	let h1Text = "All posts"
 	if (isLimited) {
@@ -60,7 +60,7 @@ function Home(props) {
 	for (const pagePath in pages) {
 		if (isLimited && howMany <= 0) continue
 
-		let post = pages[pagePath]
+		const post = pages[pagePath]
 		post.title = post.meta?.title ? post.meta.title : "Unknown title"
 		post.date = post.meta?.date ? post.meta.date : "Unknown date"
 		post.author = post.meta?.author ? post.meta.author : "Unknown author"

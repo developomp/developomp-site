@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { ThemeProvider, createGlobalStyle, css } from "styled-components"
+import { ThemeProvider, createGlobalStyle } from "styled-components"
+import { HelmetProvider } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { useState, useEffect } from "react"
 import theme from "styled-theming"
-import Loader from "react-spinners/HashLoader"
+import Spinner from "./components/Spinner"
 
 import theming from "./theming"
 
@@ -123,15 +124,6 @@ blockquote {
 }
 `
 
-// the loader is not compatible with styled-components so I'm converting it to string.
-// doing this gives intellisense and stuff in my IDE
-const LoaderStyle = css`
-	position: absolute;
-	top: 0%;
-	left: 50%;
-	transform: translate(-50%, 50%);
-`.toString()
-
 function App() {
 	const [usingTheme, _setTheme] = useState(() => {
 		const savedTheme = storage.getItem("theme")
@@ -145,12 +137,12 @@ function App() {
 	const [isLoading, setLoading] = useState(true)
 
 	// show loading screen until all fonts are loaded.
-	// Experimental feature. Not fully supported on all browsers (ehem IE ehem).
+	// Experimental feature. Not fully supported on all browsers (IE, I'm looking at you).
 	// https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet
 	useEffect(() => {
 		// checks if document.fonts.onloadingdone is supported on the browser
 		if (typeof document.fonts.onloadingdone != undefined) {
-			document.fonts.onloadingdone = (_: EventListener) => {
+			document.fonts.onloadingdone = () => {
 				setLoading(false)
 			}
 		} else {
@@ -159,53 +151,55 @@ function App() {
 	}, [])
 
 	return (
-		<ThemeProvider
-			theme={{
-				...usingTheme,
-				setTheme: ({ setTheme, ...theme }) => _setTheme(theme),
-			}}
-		>
-			<GlobalStyle />
-			<Router>
-				<Navbar />
-				<div id="content">
-					{isLoading ? (
-						<Loader
-							color={
-								usingTheme.mode == "light"
-									? theming.light.color1
-									: theming.dark.color1
-							}
-							css={LoaderStyle}
-							size={200}
-						/>
-					) : (
-						<Switch>
-							<Route
-								exact
-								path="/"
-								component={() => (
-									<Home howMany={4} title="Home" />
-								)}
+		<HelmetProvider>
+			<ThemeProvider
+				theme={{
+					...usingTheme,
+					// eslint-disable-next-line @typescript-eslint/no-unused-vars
+					setTheme: ({ setTheme, ...theme }) => _setTheme(theme), // make setTheme function available in other components
+				}}
+			>
+				<GlobalStyle />
+				<Router>
+					<Navbar />
+					<div id="content">
+						{isLoading ? (
+							<Spinner
+								size={200}
+								color={
+									usingTheme.mode == "light"
+										? theming.light.color1
+										: theming.dark.color1
+								}
 							/>
-							<Route
-								exact
-								path="/archives"
-								component={() => <Home title="Archives" />}
-							/>
-							<Route
-								exact
-								path="/portfolio"
-								component={Portfolio}
-							/>
-							<Route exact path="/404" component={NotFound} />
-							<Route exact path="/:path*" component={Page} />
-						</Switch>
-					)}
-				</div>
-				<Footer />
-			</Router>
-		</ThemeProvider>
+						) : (
+							<Switch>
+								<Route
+									exact
+									path="/"
+									component={() => (
+										<Home howMany={4} title="Home" />
+									)}
+								/>
+								<Route
+									exact
+									path="/archives"
+									component={() => <Home title="Archives" />}
+								/>
+								<Route
+									exact
+									path="/portfolio"
+									component={Portfolio}
+								/>
+								<Route exact path="/404" component={NotFound} />
+								<Route exact path="/:path*" component={Page} />
+							</Switch>
+						)}
+					</div>
+					<Footer />
+				</Router>
+			</ThemeProvider>
+		</HelmetProvider>
 	)
 }
 

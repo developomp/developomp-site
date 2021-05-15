@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import styled, { ThemeConsumer, css } from "styled-components"
+import styled from "styled-components"
 import theme from "styled-theming"
 
 const StyledSearchBoxContainer = styled.div`

@@ -1,5 +1,7 @@
 {
 	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/recommended",
 		"plugin:react/recommended",
 		"plugin:json/recommended",
 		"prettier"
@@ -12,6 +14,7 @@
 			"version": "17.0"
 		}
 	},
+	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaFeatures": {
 			"jsx": true
@@ -19,7 +22,16 @@
 		"sourceType": "module"
 	},
 	"plugins": ["react", "@typescript-eslint"],
+	"overrides": [
+		{
+			"files": ["*.ts", "*.tsx"],
+			"rules": {
+				"@typescript-eslint/explicit-module-boundary-types": ["off"]
+			}
+		}
+	],
 	"rules": {
+		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"react/jsx-uses-vars": "error",
 		"react/no-unknown-property": [
 			"error",

@@ -2,7 +2,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
 import theme from "styled-theming"
-import { HashRouter as Router, Link } from "react-router-dom"
 
 const StyledFooter = styled.footer`
 	display: flex;
@@ -51,14 +50,14 @@ function Footer() {
 				Copyright &copy; <strong>develo</strong>pomp
 			</div>
 
-			<Router className="icons">
+			<div className="icons">
 				<StyledLink
 					href="https://github.com/developomp/developomp-site"
 					target="_blank"
 				>
 					<FontAwesomeIcon icon={faGithub} />
 				</StyledLink>
-			</Router>
+			</div>
 		</StyledFooter>
 	)
 }

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import theme from "styled-theming"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet-async"
 
 const StyledNotFound = styled.div`
 	margin: auto;

@@ -1,13 +1,13 @@
 import marked from "marked"
 import NotFound from "./notfound"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet-async"
 
 import pages from "../pages.json"
 import { useParams } from "react-router-dom"
 
 function Page() {
 	const path = `/${useParams().path}`
-	let fetched = pages[path]
+	const fetched = pages[path]
 	if (!fetched) return <NotFound />
 
 	// to prevent wrapping. I don't want to touch prettier stuff

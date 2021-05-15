@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import styled, { css } from "styled-components"
 import NavbarData from "../data/NavbarData"
 import theme from "styled-theming"
