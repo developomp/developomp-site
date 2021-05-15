@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faAdjust } from "@fortawesome/free-solid-svg-icons"
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import styled, { ThemeConsumer } from "styled-components"
 import theme from "styled-theming"
 
@@ -36,7 +36,12 @@ function Navbar() {
 							)
 						}
 					>
-						<FontAwesomeIcon icon={faAdjust} />
+						{_theme.mode == "dark" && (
+							<FontAwesomeIcon icon={faSun} />
+						)}
+						{_theme.mode == "light" && (
+							<FontAwesomeIcon icon={faMoon} />
+						)}
 					</StyledThemeButton>
 					<ReactTooltip id="theme" type="dark" effect="solid">
 						<span>Change theme</span>
