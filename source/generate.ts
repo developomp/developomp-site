@@ -1,33 +1,40 @@
+/** generator.ts
+ * It reads markdown files and write its content and metadata to a json file that can be used by React.
+ * -   Files and directories names starting with a underscore (_ <- this thing), will be ignored
+ * -   Symbolic links are also be ignored as of the moment
+ * -   Filename-to-url encoder not perfect. Some filenames might cause problem (like files containing special characters)
+ */
+
 import fs from "fs" // read and write files
 import path from "path" // get relative path
 import matter from "gray-matter" // parse markdown metadata
-import createDOMPurify from "dompurify" // sanitize result html
-import { JSDOM } from "jsdom" // create empty window for fom purifier to work. Morea info here: https://github.com/cure53/DOMPurify
+// import createDOMPurify from "dompurify" // sanitize result html
+// import { JSDOM } from "jsdom" // create empty window for fom purifier to work. Morea info here: https://github.com/cure53/DOMPurify
 import toc from "markdown-toc" // table of contents generation
 
-const window = new JSDOM("").window
-const DOMPurify = createDOMPurify(window)
+// const window = new JSDOM("").window
+// const DOMPurify = createDOMPurify(window)
 
 const dirPath = "./markdown" // where it will look for markdown documents
 const outPath = "./src/pages.json" // path to the json database
 
 const removeExceptionArray = ["content", "meta"] // gray-matter creates unnecessary properties
 
-let pageList: any = {} // data that will be converted to JSON string
+const pageList = {} // data that will be converted to JSON string
 
 // big brain recursive function
 // only supports folders and files (no symbolic links)
 // does not scale well for large amount of folders and files
 function addFiles(filesPath: string) {
 	// ignore if file/directory name starts with a underscore
-	let fileOrFolderName = filesPath.substring(filesPath.lastIndexOf("/") + 1)
+	const fileOrFolderName = filesPath.substring(filesPath.lastIndexOf("/") + 1)
 	if (fileOrFolderName.startsWith("_")) return
 
 	// not perfect. Some filenames might cause problem.
-	let stats = fs.lstatSync(filesPath) // checks if the path leads to a directory or a file
+	const stats = fs.lstatSync(filesPath) // checks if the path leads to a directory or a file
 
 	// don't use replaceAll
-	let urlPath = `/${path.relative(dirPath, filesPath)}` // path tha will be used for url
+	const urlPath = `/${path.relative(dirPath, filesPath)}` // path tha will be used for url
 		.replace(/\.[^/.]+$/, "") // remove .md file extension
 		.replace(/ /g, "-") // replace space with a dash "-"
 
