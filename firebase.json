@@ -1,11 +1,14 @@
 {
 	"hosting": {
+		"target": "dev",
 		"cleanUrls": true,
-		"public": "hexo/public",
-		"ignore": [
-			"firebase.json",
-			"**/.*",
-			"**/node_modules/**"
-		]
+		"public": "source/build",
+		"rewrites": [
+			{
+				"source": "**",
+				"destination": "/index.html"
+			}
+		],
+		"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
 	}
 }
