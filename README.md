@@ -2,7 +2,7 @@
 
 Repository for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
 
-Tools/Frameworks/Packages used:
+Tools / Frameworks / Packages used:
 
 |                                                                          Name | Use                                                   |
 | ----------------------------------------------------------------------------: | :---------------------------------------------------- |
@@ -19,7 +19,7 @@ Tools/Frameworks/Packages used:
 |   [styled-components](https://github.com/styled-components/styled-components) | easier CSS styling                                    |
 |         [styled-theming](https://github.com/styled-components/styled-theming) | Theming                                               |
 |                                    [eslint](https://github.com/eslint/eslint) | code analysis                                         |
-|                              [prettier](https://github.com/prettier/prettier) | code formatter                                        |
+|                              [prettier](https://github.com/prettier/prettier) | code formatting                                       |
 |                              [ts-node](https://github.com/TypeStrong/ts-node) | running markdown-to-html generator                    |
 |                                                     [jest](https://jestjs.io) | code testing                                          |
 
@@ -28,24 +28,23 @@ Tools/Frameworks/Packages used:
 Requirement:
 
 -   [node](https://nodejs.org)
--   [yarn](https://github.com/yarnpkg/yarn) or [npm](https://github.com/npm/cli)\*
+-   [yarn](https://github.com/yarnpkg/yarn) ([npm](https://github.com/npm/cli) is **not** supported)
 -   optional:
     -   [git](https://git-scm.com)
     -   [vscode](https://code.visualstudio.com)
-        -   extensions (also optional but recommended):
-            -   [styled components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
-            -   [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-            -   [react](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets)
-            -   [eslint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-\*Usage of yarn is highly recommended over npm
+        -   extensions (also optional but highly recommended):
+            -   [styled components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) by Julien Poissonnier
+            -   [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by Prettier
+            -   [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) by dsznajder
+            -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) by Dirk Baeumer
+            -   [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) by Sergii Naumov
 
 Steps:
 
 -   Clone this repository
     -   `git clone https://github.com/developomp/developomp-site.git`
--   Or download compressed as zip
-    -   ![](./downloading.png)
+-   Or download as a zip file
+    -   ![download procedure](./downloading.png)
 -   open [`source`](./source) directory
     -   `cd source`
 -   Install dependencies (must be in `source` directory)
@@ -53,28 +52,15 @@ Steps:
 -   start local server in http://localhost:3000
     -   `yarn start`
 
-# How it works
-
-single page application
-react to build front end
-components
-sunning `yarn generate` converts markdown to html and in json with parsed meta
-by date, etc.
-Does not scale well but I won't have 10k posts any time soon
-few thousand so more than good enough
-
-generator underscore
-no symbolic links
-filename encoder not perfect. Some filenames might cause problem.
-
 # Contributing
 
 Please read the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file.
 
 # Special thanks
 
--   design inspirations from [Ruipeng Zhang](https://github.com/ppoffice)'s [icarus theme](https://github.com/ppoffice/hexo-theme-icarus) for [hexo](https://github.com/hexojs/hexo).
--   dark theme color from [discord](http://discord.com)
+-   [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
+-   [discord](http://discord.com) for dark theme color palette
+-   My friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
 
 # License
 
