@@ -38,7 +38,7 @@ jobs:
             - name: Apply target
               uses: w9jds/firebase-action@master
               with:
-                  args: target:apply hosting dev developomp-site-dev
+                  args: target:apply hosting dev developomp-site-test
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
             - name: Deploy to Firebase
