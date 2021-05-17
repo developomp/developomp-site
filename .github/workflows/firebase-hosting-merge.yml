@@ -11,8 +11,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - run: cd source # move into source directory
-            - run: yarn install && yarn build # install dependencies and build site
+            - run: cd source && yarn install && yarn build # install dependencies and build site
             - uses: FirebaseExtended/action-hosting-deploy@v0
               with:
                   repoToken: "${{ secrets.GITHUB_TOKEN }}"
