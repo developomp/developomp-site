@@ -125,14 +125,15 @@ blockquote {
 `
 
 function App() {
-	const [usingTheme, _setTheme] = useState(() => {
+	const [currentTheme, _setTheme] = useState(() => {
 		const savedTheme = storage.getItem("theme")
 		return savedTheme ? JSON.parse(savedTheme) : { mode: "dark" }
 	})
 
+	// save theme when theme is changed
 	useEffect(() => {
-		storage.setItem("theme", JSON.stringify(usingTheme))
-	}, [usingTheme])
+		storage.setItem("theme", JSON.stringify(currentTheme))
+	}, [currentTheme])
 
 	const [isLoading, setLoading] = useState(true)
 
@@ -154,7 +155,7 @@ function App() {
 		<HelmetProvider>
 			<ThemeProvider
 				theme={{
-					...usingTheme,
+					...currentTheme,
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
 					setTheme: ({ setTheme, ...theme }) => _setTheme(theme), // make setTheme function available in other components
 				}}
@@ -167,7 +168,7 @@ function App() {
 							<Spinner
 								size={200}
 								color={
-									usingTheme.mode == "light"
+									currentTheme.mode == "light"
 										? theming.light.color1
 										: theming.dark.color1
 								}
