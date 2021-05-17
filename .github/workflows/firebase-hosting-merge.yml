@@ -6,7 +6,6 @@ on:
 jobs:
     build_and_deploy:
         name: Build and Deploy
-        needs: build
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repo
