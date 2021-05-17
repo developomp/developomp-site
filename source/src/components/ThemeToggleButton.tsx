@@ -37,10 +37,10 @@ function Navbar() {
 						}
 					>
 						{_theme.mode == "dark" && (
-							<FontAwesomeIcon icon={faSun} />
+							<FontAwesomeIcon icon={faMoon} />
 						)}
 						{_theme.mode == "light" && (
-							<FontAwesomeIcon icon={faMoon} />
+							<FontAwesomeIcon icon={faSun} />
 						)}
 					</StyledThemeButton>
 					<ReactTooltip id="theme" type="dark" effect="solid">
