@@ -10,7 +10,7 @@ import { Link } from "react-router-dom"
 import SearchBox from "./SearchBox"
 import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
-import { faLanguage } from "@fortawesome/free-solid-svg-icons"
+import LanguageToggleButton from "./LanguageToggleButton"
 
 const StyledNav = styled.nav`
 	display: flex;
@@ -71,13 +71,7 @@ function Navbar() {
 			</StyledNavLinks>
 
 			<ThemeToggleButton />
-
-			<StyledALink data-tip data-for="language">
-				<FontAwesomeIcon icon={faLanguage} />
-			</StyledALink>
-			<ReactTooltip id="language" type="dark" effect="solid">
-				<span>Change to Korean/English</span>
-			</ReactTooltip>
+			<LanguageToggleButton />
 
 			<StyledALink
 				data-tip

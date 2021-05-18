@@ -44,7 +44,7 @@ function Navbar() {
 						)}
 					</StyledThemeButton>
 					<ReactTooltip id="theme" type="dark" effect="solid">
-						<span>Change theme</span>
+						<span>Using {_theme.mode} theme</span>
 					</ReactTooltip>
 				</>
 			)}
