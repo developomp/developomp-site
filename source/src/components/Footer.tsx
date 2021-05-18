@@ -47,7 +47,7 @@ function Footer() {
 	return (
 		<StyledFooter>
 			<div className="logo">
-				Copyright &copy; <strong>develo</strong>pomp
+				Copyright &copy; develo<strong>p</strong>omp
 			</div>
 
 			<div className="icons">
