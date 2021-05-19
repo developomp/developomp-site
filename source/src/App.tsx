@@ -5,7 +5,7 @@ import storage from "local-storage-fallback"
 import { useState, useEffect } from "react"
 import theme from "styled-theming"
 import Spinner from "./components/Spinner"
-
+import LanguageContext from "./LanguageContext"
 import theming from "./theming"
 
 import Navbar from "./components/Navbar"
@@ -125,16 +125,9 @@ blockquote {
 `
 
 function App() {
-	const [currentTheme, _setTheme] = useState(() => {
-		const savedTheme = storage.getItem("theme")
-		return savedTheme ? JSON.parse(savedTheme) : { mode: "dark" }
-	})
-
-	// save theme when theme is changed
-	useEffect(() => {
-		storage.setItem("theme", JSON.stringify(currentTheme))
-	}, [currentTheme])
-
+	/**
+	 *  Loading
+	 */
 	const [isLoading, setLoading] = useState(true)
 
 	// show loading screen until all fonts are loaded.
@@ -151,6 +144,42 @@ function App() {
 		}
 	}, [])
 
+	/**
+	 *  Theme
+	 */
+	const [currentTheme, _setTheme] = useState(() => {
+		const savedTheme = storage.getItem("theme")
+		return savedTheme ? JSON.parse(savedTheme) : { mode: "dark" }
+	})
+
+	// save theme when it is changed
+	useEffect(() => {
+		storage.setItem("theme", JSON.stringify(currentTheme))
+	}, [currentTheme])
+
+	/**
+	 *  Language
+	 */
+
+	const [currentLanguage, _setLanguage] = useState(
+		storage.getItem("lang") || "en" // get language from storage and set to "en" if not set already
+	)
+
+	// save language when it is changed
+	useEffect(() => {
+		storage.setItem("lang", currentLanguage)
+	}, [currentLanguage])
+
+	const languageState = {
+		language: currentLanguage,
+		toggleLanguage: () => {
+			// cycle through languages
+			let setLanguageTo = "en"
+			if (currentLanguage == "en") setLanguageTo = "kr"
+			_setLanguage(setLanguageTo)
+		},
+	}
+
 	return (
 		<HelmetProvider>
 			<ThemeProvider
@@ -160,45 +189,57 @@ function App() {
 					setTheme: ({ setTheme, ...theme }) => _setTheme(theme), // make setTheme function available in other components
 				}}
 			>
-				<GlobalStyle />
-				<Router>
-					<Navbar />
-					<div id="content">
-						{isLoading ? (
-							<Spinner
-								size={200}
-								color={
-									currentTheme.mode == "light"
-										? theming.light.color1
-										: theming.dark.color1
-								}
-							/>
-						) : (
-							<Switch>
-								<Route
-									exact
-									path="/"
-									component={() => (
-										<Home howMany={4} title="Home" />
-									)}
+				<LanguageContext.Provider value={languageState}>
+					<GlobalStyle />
+					<Router>
+						<Navbar />
+						<div id="content">
+							{isLoading ? (
+								<Spinner
+									size={200}
+									color={
+										currentTheme.mode == "light"
+											? theming.light.color1
+											: theming.dark.color1
+									}
 								/>
-								<Route
-									exact
-									path="/archives"
-									component={() => <Home title="Archives" />}
-								/>
-								<Route
-									exact
-									path="/portfolio"
-									component={Portfolio}
-								/>
-								<Route exact path="/404" component={NotFound} />
-								<Route exact path="/:path*" component={Page} />
-							</Switch>
-						)}
-					</div>
-					<Footer />
-				</Router>
+							) : (
+								<Switch>
+									<Route
+										exact
+										path="/"
+										component={() => (
+											<Home howMany={4} title="Home" />
+										)}
+									/>
+									<Route
+										exact
+										path="/archives"
+										component={() => (
+											<Home title="Archives" />
+										)}
+									/>
+									<Route
+										exact
+										path="/portfolio"
+										component={Portfolio}
+									/>
+									<Route
+										exact
+										path="/404"
+										component={NotFound}
+									/>
+									<Route
+										exact
+										path="/:path*"
+										component={Page}
+									/>
+								</Switch>
+							)}
+						</div>
+						<Footer />
+					</Router>
+				</LanguageContext.Provider>
 			</ThemeProvider>
 		</HelmetProvider>
 	)
