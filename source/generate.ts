@@ -1,4 +1,4 @@
-/** generator.ts
+/**
  * It reads markdown files and write its content and metadata to a json file that can be used by React.
  * -   Files and directories names starting with a underscore (_ <- this thing), will be ignored
  * -   Symbolic links are also be ignored as of the moment

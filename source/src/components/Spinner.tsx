@@ -1,5 +1,5 @@
-/** Spinner.tsx
- *  https://github.com/dmitrymorozoff/react-spinners-kit/tree/master/src/components/whisper
+/**
+ *  inspired by https://github.com/dmitrymorozoff/react-spinners-kit/tree/master/src/components/whisper
  */
 
 import styled, { keyframes } from "styled-components"
