@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
-import theme from "styled-theming"
 import ReactTooltip from "react-tooltip"
 import NavbarData from "../data/NavbarData"
 import theming from "../theming"
@@ -18,14 +17,16 @@ const StyledNav = styled.nav`
 	height: 2rem;
 	margin: 0;
 	padding: 1rem;
-	background-color: ${theme("mode", {
-		light: theming.light.backgroundColor0,
-		dark: theming.dark.backgroundColor0,
-	})};
-	color: ${theme("mode", {
-		light: theming.light.color0,
-		dark: theming.dark.color0,
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.backgroundColor0,
+			dark: theming.dark.backgroundColor0,
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color0,
+			dark: theming.dark.color0,
+		})};
 	box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 
 	.right {

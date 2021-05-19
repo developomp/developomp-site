@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
-import theme from "styled-theming"
+import theming from "../theming"
 
 const StyledFooter = styled.footer`
 	display: flex;
@@ -9,14 +9,16 @@ const StyledFooter = styled.footer`
 	margin-bottom: 1px; /* footer goes outside the page by 1 px for some reason */
 	padding: 50px 10px;
 	background-color: white;
-	background-color: ${theme("mode", {
-		light: "white",
-		dark: "black",
-	})};
-	color: ${theme("mode", {
-		light: "black",
-		dark: "white",
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "white",
+			dark: "black",
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "black",
+			dark: "white",
+		})};
 	* {
 		margin: 0;
 		padding: 0;
@@ -30,16 +32,18 @@ const StyledFooter = styled.footer`
 const StyledLink = styled.a`
 	width: 30px;
 	font-size: 2rem;
-	color: ${theme("mode", {
-		light: "lightgrey",
-		dark: "grey",
-	})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "lightgrey",
+			dark: "grey",
+		})};
 
 	&:hover {
-		color: ${theme("mode", {
-			light: "black",
-			dark: "white",
-		})};
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "black",
+				dark: "white",
+			})};
 	}
 `
 

@@ -1,15 +1,16 @@
 import styled from "styled-components"
-import theme from "styled-theming"
+import theming from "../theming"
 import { Helmet } from "react-helmet-async"
 
 const StyledNotFound = styled.div`
 	margin: auto;
 	margin-top: 2rem;
 	text-align: center;
-	color: ${theme("mode", {
-		light: "#111111",
-		dark: "#EEEEEE",
-	})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#111111",
+			dark: "#EEEEEE",
+		})};
 `
 
 const Styled404 = styled.h1`

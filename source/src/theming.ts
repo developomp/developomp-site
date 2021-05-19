@@ -3,10 +3,14 @@
  *	It makes changing values easier
  */
 
-import theme from "styled-theming"
 import { css } from "styled-components"
 
+function theme(currentTheme, values) {
+	return values[currentTheme]
+}
+
 export default {
+	theme: theme,
 	font: {
 		regular: "'Noto Sans KR', sans-serif",
 		code: "'Source Code Pro', monospace",
@@ -45,19 +49,22 @@ export default {
 			text-decoration: none;
 			margin: 0.1em;
 			transition: transform 0.1s linear;
-			color: ${theme("mode", {
-				light: "black",
-				dark: "#CFD0D0",
-			})};
-			background-color: ${theme("mode", {
-				light: "white",
-				dark: "#202225",
-			})};
-			&:hover {
-				background-color: ${theme("mode", {
-					light: "lightgrey",
-					dark: "#36393F",
+			color: ${(props) =>
+				theme(props.theme.currentTheme, {
+					light: "black",
+					dark: "#CFD0D0",
 				})};
+			background-color: ${(props) =>
+				theme(props.theme.currentTheme, {
+					light: "white",
+					dark: "#202225",
+				})};
+			&:hover {
+				background-color: ${(props) =>
+					theme(props.theme.currentTheme, {
+						light: "lightgrey",
+						dark: "#36393F",
+					})};
 			}
 		`,
 	},

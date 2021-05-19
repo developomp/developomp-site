@@ -1,7 +1,6 @@
 import { useState } from "react"
 import styled, { css } from "styled-components"
 import NavbarData from "../data/NavbarData"
-import theme from "styled-theming"
 import ReactTooltip from "react-tooltip"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -67,14 +66,16 @@ const SidebarNav = styled.nav<StateProps>`
 	z-index: 30;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-color: ${theme("mode", {
-		light: theming.light.backgroundColor0,
-		dark: theming.dark.backgroundColor0,
-	})};
-	color: ${theme("mode", {
-		light: theming.light.color0,
-		dark: theming.dark.color0,
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.backgroundColor0,
+			dark: theming.dark.backgroundColor0,
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color0,
+			dark: theming.dark.color0,
+		})};
 `
 
 const SidebarWrap = styled.div`

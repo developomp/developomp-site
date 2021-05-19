@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import theme from "styled-theming"
+import theming from "../theming"
 import marked from "marked"
 import { Helmet } from "react-helmet-async"
 
@@ -10,10 +10,11 @@ const StyledPostList = styled.div`
 	padding-top: 2rem;
 	margin: auto;
 	text-align: center;
-	color: ${theme("mode", {
-		light: "#111111",
-		dark: "#EEEEEE",
-	})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#111111",
+			dark: "#EEEEEE",
+		})};
 `
 
 const StyledH1 = styled.h1`
@@ -30,10 +31,11 @@ const StyledTitle = styled.h1`
 const StyledLink = styled(Link)`
 	text-decoration: none;
 
-	color: ${theme("mode", {
-		light: "black",
-		dark: "white",
-	})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "black",
+			dark: "white",
+		})};
 
 	&:hover {
 		text-decoration: underline;

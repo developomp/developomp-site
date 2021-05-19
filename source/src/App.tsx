@@ -3,7 +3,6 @@ import { ThemeProvider, createGlobalStyle } from "styled-components"
 import { HelmetProvider } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { useState, useEffect } from "react"
-import theme from "styled-theming"
 import Spinner from "./components/Spinner"
 import LanguageContext from "./LanguageContext"
 import theming from "./theming"
@@ -17,7 +16,7 @@ import NotFound from "./pages/notfound"
 import Portfolio from "./pages/portfolio"
 
 // Theme that will be used throughout the website
-const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle<{ theme: { currentTheme: string } }>`
 body {
 	overflow-x: hidden;
 	overflow-y: scroll;
@@ -28,14 +27,16 @@ html, body, #root {
 	margin: 0;
 	display: flex;
 	flex-flow: column;
-	background-color: ${theme("mode", {
-		light: theming.light.backgroundColor1,
-		dark: theming.dark.backgroundColor1,
-	})};
-	color: ${theme("mode", {
-		light: theming.light.color1,
-		dark: theming.dark.color1,
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.backgroundColor1,
+			dark: theming.dark.backgroundColor1,
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
 	font-size: ${theming.size.medium};
 	font-family: ${theming.font.regular};
 	-webkit-font-smoothing: antialiased;
@@ -93,10 +94,11 @@ blockquote {
 
 .card {
 	margin: auto;
-	background-color: ${theme("mode", {
-		light: "white",
-		dark: "#2F3136",
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "white",
+			dark: "#2F3136",
+		})};
 	padding: 2rem;
 	border-radius: 6px;
 	box-shadow: 0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);
@@ -147,14 +149,13 @@ function App() {
 	/**
 	 *  Theme
 	 */
-	const [currentTheme, _setTheme] = useState(() => {
-		const savedTheme = storage.getItem("theme")
-		return savedTheme ? JSON.parse(savedTheme) : { mode: "dark" }
-	})
+	const [currentTheme, _setTheme] = useState(
+		storage.getItem("theme") || "dark" // get theme from storage and set to "dark" mode if not set already
+	)
 
 	// save theme when it is changed
 	useEffect(() => {
-		storage.setItem("theme", JSON.stringify(currentTheme))
+		storage.setItem("theme", currentTheme)
 	}, [currentTheme])
 
 	/**
@@ -184,9 +185,9 @@ function App() {
 		<HelmetProvider>
 			<ThemeProvider
 				theme={{
-					...currentTheme,
+					currentTheme: currentTheme,
 					// eslint-disable-next-line @typescript-eslint/no-unused-vars
-					setTheme: ({ setTheme, ...theme }) => _setTheme(theme), // make setTheme function available in other components
+					setTheme: (setThemeTo) => _setTheme(setThemeTo), // make setTheme function available in other components
 				}}
 			>
 				<LanguageContext.Provider value={languageState}>
@@ -198,9 +199,9 @@ function App() {
 								<Spinner
 									size={200}
 									color={
-										currentTheme.mode == "light"
-											? theming.light.color1
-											: theming.dark.color1
+										currentTheme == "dark"
+											? theming.dark.color1
+											: theming.light.color1
 									}
 								/>
 							) : (

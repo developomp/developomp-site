@@ -1,26 +1,29 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
-import theme from "styled-theming"
+import theming from "../theming"
 
 const StyledSearchBoxContainer = styled.div`
 	display: flex;
 	justify-content: left;
 	align-items: center;
-	background-color: ${theme("mode", {
-		light: "white",
-		dark: "#202225",
-	})};
-	color: ${theme("mode", {
-		light: "black",
-		dark: "#CFD0D0",
-	})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "white",
+			dark: "#202225",
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "black",
+			dark: "#CFD0D0",
+		})};
 
 	&:hover {
-		background-color: ${theme("mode", {
-			light: "whitesmoke",
-			dark: "#36393F",
-		})};
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "whitesmoke",
+				dark: "#36393F",
+			})};
 	}
 `
 
