@@ -9,7 +9,6 @@ import theming from "../theming"
 
 const StyledThemeButton = styled.div`
 	${theming.styles.navbarButtonStyle}
-	transition: transform 0.2s linear;
 	${theme("mode", {
 		light: "",
 		dark: "transform: scaleX(-1);\

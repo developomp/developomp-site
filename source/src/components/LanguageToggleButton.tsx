@@ -8,7 +8,6 @@ import theming from "../theming"
 
 const StyledThemeButton = styled.div<{ language: string }>`
 	${theming.styles.navbarButtonStyle}
-	transition: transform 0.2s linear;
 	${(props) =>
 		props.language == "en"
 			? ""

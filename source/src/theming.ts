@@ -44,6 +44,7 @@ export default {
 			padding: 14px 16px;
 			text-decoration: none;
 			margin: 0.1em;
+			transition: transform 0.1s linear;
 			color: ${theme("mode", {
 				light: "black",
 				dark: "#CFD0D0",
