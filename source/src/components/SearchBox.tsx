@@ -12,7 +12,7 @@ export default class Navbar extends React.Component {
 		align-items: center;
 		background-color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
-				light: "white",
+				light: "whitesmoke",
 				dark: "#2F3136",
 			})};
 		color: ${(props) =>
@@ -24,7 +24,7 @@ export default class Navbar extends React.Component {
 		&:hover {
 			background-color: ${(props) =>
 				theming.theme(props.theme.currentTheme, {
-					light: "whitesmoke",
+					light: "#eeeeee",
 					dark: "#36393F",
 				})};
 		}
