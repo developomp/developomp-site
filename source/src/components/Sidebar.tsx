@@ -28,9 +28,7 @@ export default class Sidebar extends React.Component<
 	// for some reason this.setState only works if this is an arrow function
 	toggleSidebar = () => {
 		this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
-		document.body.style.overflow = this.state.isSidebarOpen
-			? "scroll"
-			: "hidden"
+		document.body.style.overflow = this.state.isSidebarOpen ? "" : "hidden"
 	}
 
 	CommonSidebarToggleButtonStyle = css`
