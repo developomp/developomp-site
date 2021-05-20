@@ -8,7 +8,17 @@ import {
 	faHiking,
 } from "@fortawesome/free-solid-svg-icons"
 
-export default [
+// item from sidebar data
+export type Item = {
+	path: string
+	subNav?: Array<Item>
+	icon: JSX.Element
+	title: string
+	iconOpened?: JSX.Element
+	iconClosed?: JSX.Element
+}
+
+const NavbarData: Array<Item> = [
 	{
 		title: "Home",
 		path: "/",
@@ -40,3 +50,5 @@ export default [
 		icon: <FontAwesomeIcon icon={faUserTie} />,
 	},
 ]
+
+export default NavbarData

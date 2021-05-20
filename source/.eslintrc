@@ -22,15 +22,8 @@
 		"sourceType": "module"
 	},
 	"plugins": ["react", "@typescript-eslint"],
-	"overrides": [
-		{
-			"files": ["*.ts", "*.tsx"],
-			"rules": {
-				"@typescript-eslint/explicit-module-boundary-types": ["off"]
-			}
-		}
-	],
 	"rules": {
+		"@typescript-eslint/no-empty-interface": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"react/jsx-uses-vars": "error",
 		"react/no-unknown-property": [
