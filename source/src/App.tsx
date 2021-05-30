@@ -11,10 +11,10 @@ import Spinner from "./components/Spinner"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
-import PostList from "./pages/postList"
-import Page from "./pages/page"
-import NotFound from "./pages/notfound"
-import Portfolio from "./pages/portfolio"
+import PostList from "./pages/PostList"
+import Page from "./pages/Page"
+import NotFound from "./pages/NotFound"
+import Portfolio from "./pages/Portfolio"
 
 // Theme that will be used throughout the website
 const GlobalStyle = createGlobalStyle<{ theme: { currentTheme: string } }>`

@@ -53,7 +53,7 @@ export default class Spinner extends React.Component<SpinnerProps> {
 		animation-timing-function: linear;
 		animation-iteration-count: infinite;
 
-		/* use for loops here? */
+		/* use a for loop here? */
 		&:nth-child(1) {
 			animation-delay: 200ms;
 		}

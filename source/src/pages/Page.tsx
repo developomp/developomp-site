@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet-async"
 
 import pages from "../pages.json"
 
-import NotFound from "./notfound"
+import NotFound from "./NotFound"
 
 export default class Page extends React.Component {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
