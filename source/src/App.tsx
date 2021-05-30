@@ -226,7 +226,7 @@ export default class App extends React.Component<AppProps, AppState> {
 										<NotFound />
 									</Route>
 
-									<Route exact path="/:path">
+									<Route exact path="/:path*">
 										{({ match }) => (
 											<Page key={match.params.path} />
 										)}

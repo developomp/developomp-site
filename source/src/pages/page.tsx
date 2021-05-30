@@ -13,7 +13,7 @@ export default class Page extends React.Component {
 	constructor(props) {
 		super(props)
 
-		const fetched = pages[location.pathname]
+		const fetched = pages[location.pathname.replace(/\/$/, "")] // remove a trailing slash
 		if (!fetched) return
 
 		fetched.content = fetched?.content ? fetched.content : "No content"
