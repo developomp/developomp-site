@@ -20,12 +20,11 @@ export default class PostList extends React.Component<HomeProps> {
 		padding-top: 2rem;
 		margin: auto;
 		text-align: center;
-		color: white;
-		/* color: ${(props) =>
+		color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: "#111111",
 				dark: "#EEEEEE",
-			})}; */
+			})};
 	`
 
 	StyledH1 = styled.h1`
