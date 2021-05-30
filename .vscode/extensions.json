@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"jpoissonnier.vscode-styled-components",
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"naumovs.color-highlight",
+		"streetsidesoftware.code-spell-checker",
+		"aaron-bond.better-comments"
+	]
+}

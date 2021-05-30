@@ -32,12 +32,7 @@ Requirement:
 -   optional:
     -   [git](https://git-scm.com)
     -   [vscode](https://code.visualstudio.com)
-        -   extensions (also optional but highly recommended):
-            -   [styled components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components) by Julien Poissonnier
-            -   [prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by Prettier
-            -   [ES7 React/Redux/GraphQL/React-Native snippets](https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets) by dsznajder
-            -   [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) by Dirk Baeumer
-            -   [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) by Sergii Naumov
+        -   [extensions](./.vscode/extensions.json) (also optional but highly recommended):
 
 Steps:
 
