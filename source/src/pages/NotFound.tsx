@@ -4,22 +4,22 @@ import { Helmet } from "react-helmet-async"
 
 import theming from "../theming"
 
+const StyledNotFound = styled.div`
+	margin: auto;
+	margin-top: 2rem;
+	text-align: center;
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#111111",
+			dark: "#EEEEEE",
+		})};
+`
+
+const Styled404 = styled.h1`
+	font-size: 3rem;
+`
+
 export default class NotFound extends React.Component {
-	StyledNotFound = styled.div`
-		margin: auto;
-		margin-top: 2rem;
-		text-align: center;
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "#111111",
-				dark: "#EEEEEE",
-			})};
-	`
-
-	Styled404 = styled.h1`
-		font-size: 3rem;
-	`
-
 	render() {
 		return (
 			<>
@@ -38,10 +38,10 @@ export default class NotFound extends React.Component {
 						content="Page does not exist"
 					/>
 				</Helmet>
-				<this.StyledNotFound className="card main-content">
-					<this.Styled404>404</this.Styled404>
+				<StyledNotFound className="card main-content">
+					<Styled404>404</Styled404>
 					the page you are looking for does not exist. :(
-				</this.StyledNotFound>
+				</StyledNotFound>
 			</>
 		)
 	}

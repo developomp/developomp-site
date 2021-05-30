@@ -7,6 +7,49 @@ import { Helmet } from "react-helmet-async"
 import theming from "../theming"
 import pages from "../pages.json"
 
+const StyledPostList = styled.div`
+	padding-top: 2rem;
+	margin: auto;
+	text-align: center;
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#111111",
+			dark: "#EEEEEE",
+		})};
+`
+
+const StyledH1 = styled.h1`
+	margin-bottom: 20px;
+	font-weight: 500;
+	margin: 0;
+`
+
+const StyledTitle = styled.h1`
+	font-size: 2rem;
+	font-style: bold;
+`
+
+const StyledLink = styled(Link)`
+	text-decoration: none;
+
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "black",
+			dark: "white",
+		})};
+
+	&:hover {
+		text-decoration: underline;
+	}
+`
+
+const StyledPostCard = styled.div`
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	text-align: left;
+	margin-bottom: 20px;
+	padding: 10px 20px;
+`
+
 interface HomeProps {
 	title: string
 	howMany?: number
@@ -15,49 +58,6 @@ interface HomeProps {
 export default class PostList extends React.Component<HomeProps> {
 	h1Text: string
 	PostCards: Array<unknown> = []
-
-	StyledPostList = styled.div`
-		padding-top: 2rem;
-		margin: auto;
-		text-align: center;
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "#111111",
-				dark: "#EEEEEE",
-			})};
-	`
-
-	StyledH1 = styled.h1`
-		margin-bottom: 20px;
-		font-weight: 500;
-		margin: 0;
-	`
-
-	StyledTitle = styled.h1`
-		font-size: 2rem;
-		font-style: bold;
-	`
-
-	StyledLink = styled(Link)`
-		text-decoration: none;
-
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "black",
-				dark: "white",
-			})};
-
-		&:hover {
-			text-decoration: underline;
-		}
-	`
-
-	StyledPostCard = styled.div`
-		box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-		text-align: left;
-		margin-bottom: 20px;
-		padding: 10px 20px;
-	`
 
 	constructor(props) {
 		super(props)
@@ -74,17 +74,14 @@ export default class PostList extends React.Component<HomeProps> {
 			const post = pages[pagePath]
 
 			this.PostCards.push(
-				<this.StyledPostCard
-					key={pagePath}
-					className="card main-content"
-				>
-					<this.StyledTitle>
-						<this.StyledLink to={pagePath}>
+				<StyledPostCard key={pagePath} className="card main-content">
+					<StyledTitle>
+						<StyledLink to={pagePath}>
 							{post.meta?.title
 								? post.meta.title
 								: "Unknown title"}
-						</this.StyledLink>
-					</this.StyledTitle>
+						</StyledLink>
+					</StyledTitle>
 					<small>
 						Published on{" "}
 						{post.meta?.date ? post.meta.date : "Unknown date"} by{" "}
@@ -103,11 +100,9 @@ export default class PostList extends React.Component<HomeProps> {
 						}}
 					></div>
 					<small>
-						<this.StyledLink to={pagePath}>
-							Read more
-						</this.StyledLink>
+						<StyledLink to={pagePath}>Read more</StyledLink>
 					</small>
-				</this.StyledPostCard>
+				</StyledPostCard>
 			)
 			howMany--
 		}
@@ -129,11 +124,11 @@ export default class PostList extends React.Component<HomeProps> {
 					<meta property="og:description" content="" />
 				</Helmet>
 
-				<this.StyledPostList>
-					<this.StyledH1>{this.h1Text}</this.StyledH1>
+				<StyledPostList>
+					<StyledH1>{this.h1Text}</StyledH1>
 					<br />
 					{this.PostCards}
-				</this.StyledPostList>
+				</StyledPostList>
 			</>
 		)
 	}

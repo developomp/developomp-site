@@ -6,24 +6,25 @@ import ReactTooltip from "react-tooltip"
 
 import theming from "../theming"
 
-export default class Navbar extends React.Component {
-	StyledThemeButton = styled.div`
-		${theming.styles.navbarButtonStyle}
-		${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "",
-				dark: "transform: scaleX(-1);\
+const StyledThemeButton = styled.div`
+	${theming.styles.navbarButtonStyle}
+	${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "",
+			dark: "transform: scaleX(-1);\
 			-moz-transform: scaleX(-1);\
 			-webkit-transform: scaleX(-1);\
 			-ms-transform: scaleX(-1);",
-			})};
-	`
+		})};
+`
+
+export default class Navbar extends React.Component {
 	render() {
 		return (
 			<ThemeConsumer>
 				{({ currentTheme, setTheme }) => (
 					<>
-						<this.StyledThemeButton
+						<StyledThemeButton
 							data-tip
 							data-for="theme"
 							className="right"
@@ -39,7 +40,7 @@ export default class Navbar extends React.Component {
 							{currentTheme == "light" && (
 								<FontAwesomeIcon icon={faSun} />
 							)}
-						</this.StyledThemeButton>
+						</StyledThemeButton>
 						<ReactTooltip id="theme" type="dark" effect="solid">
 							<span>Using {currentTheme} theme</span>
 						</ReactTooltip>

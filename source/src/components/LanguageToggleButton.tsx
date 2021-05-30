@@ -8,22 +8,22 @@ import theming from "../theming"
 
 import { LanguageContext } from "../LangaugeContext"
 
+const StyledThemeButton = styled.div<StyledThemeButtonProps>`
+	${theming.styles.navbarButtonStyle}
+	${(props) =>
+		props.language == "en"
+			? ""
+			: "transform: scaleX(-1);\
+			-moz-transform: scaleX(-1);\
+			-webkit-transform: scaleX(-1);\
+			-ms-transform: scaleX(-1);"};
+`
+
 interface StyledThemeButtonProps {
 	language: string
 }
 
 export default class LanguageToggleButton extends React.Component {
-	StyledThemeButton = styled.div<StyledThemeButtonProps>`
-		${theming.styles.navbarButtonStyle}
-		${(props) =>
-			props.language == "en"
-				? ""
-				: "transform: scaleX(-1);\
-			-moz-transform: scaleX(-1);\
-			-webkit-transform: scaleX(-1);\
-			-ms-transform: scaleX(-1);"};
-	`
-
 	languageName = (language) => {
 		let name = "English"
 		if (language == "kr") name = "Korean"
@@ -35,14 +35,14 @@ export default class LanguageToggleButton extends React.Component {
 			<LanguageContext.Consumer>
 				{({ language, toggleLanguage }) => (
 					<>
-						<this.StyledThemeButton
+						<StyledThemeButton
 							data-tip
 							data-for="language"
 							onClick={toggleLanguage}
 							language={language}
 						>
 							<FontAwesomeIcon icon={faLanguage} />
-						</this.StyledThemeButton>
+						</StyledThemeButton>
 						<ReactTooltip id="language" type="dark" effect="solid">
 							<span>
 								Using {this.languageName(language)} language

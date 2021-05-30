@@ -2,13 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
+const StyledPortfolio = styled.div``
+
+const StyledH1 = styled.h1`
+	font-size: 3rem;
+`
+
 export default class Portfolio extends React.Component {
-	StyledPortfolio = styled.div``
-
-	StyledH1 = styled.h1`
-		font-size: 3rem;
-	`
-
 	render() {
 		return (
 			<>
@@ -30,10 +30,10 @@ export default class Portfolio extends React.Component {
 						content="developomp's Portfolio"
 					/>
 				</Helmet>
-				<this.StyledPortfolio className="card main-content">
-					<this.StyledH1>Portfolio</this.StyledH1>
+				<StyledPortfolio className="card main-content">
+					<StyledH1>Portfolio</StyledH1>
 					My projects
-				</this.StyledPortfolio>
+				</StyledPortfolio>
 			</>
 		)
 	}
