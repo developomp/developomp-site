@@ -4,8 +4,9 @@ import { faLanguage } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
 
-import { LanguageContext } from "../App"
 import theming from "../theming"
+
+import { LanguageContext } from "../LangaugeContext"
 
 interface StyledThemeButtonProps {
 	language: string

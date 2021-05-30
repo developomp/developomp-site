@@ -2,7 +2,6 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import styled, { ThemeConsumer } from "styled-components"
-
 import ReactTooltip from "react-tooltip"
 
 import theming from "../theming"

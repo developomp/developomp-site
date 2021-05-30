@@ -1,7 +1,8 @@
 import React from "react"
 import styled from "styled-components"
-import theming from "../theming"
 import { Helmet } from "react-helmet-async"
+
+import theming from "../theming"
 
 export default class NotFound extends React.Component {
 	StyledNotFound = styled.div`

@@ -1,12 +1,12 @@
 import React from "react"
 import styled, { css } from "styled-components"
-import NavbarData, { Item } from "../data/NavbarData"
 import ReactTooltip from "react-tooltip"
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 
 import theming from "../theming"
+import NavbarData, { Item } from "../data/NavbarData"
+
 import SubMenu from "./SubMenu"
 
 interface SidebarProps {}

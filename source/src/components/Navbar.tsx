@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
-import NavbarData from "../data/NavbarData"
-import theming from "../theming"
-
 import { Link } from "react-router-dom"
+
+import theming from "../theming"
+import NavbarData from "../data/NavbarData"
+
 import SearchBox from "./SearchBox"
 import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
@@ -63,13 +64,11 @@ export default class Navbar extends React.Component {
 					/>
 				</Link>
 				<this.StyledNavLinks>
-					{NavbarData.map((item, index) => {
-						return (
-							<this.StyledLink key={index} to={item.path}>
-								{item.title}
-							</this.StyledLink>
-						)
-					})}
+					{NavbarData.map((item, index) => (
+						<this.StyledLink key={index} to={item.path}>
+							{item.title}
+						</this.StyledLink>
+					))}
 				</this.StyledNavLinks>
 
 				<ThemeToggleButton />

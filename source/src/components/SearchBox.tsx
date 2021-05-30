@@ -2,6 +2,7 @@ import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
+
 import theming from "../theming"
 
 export default class Navbar extends React.Component {

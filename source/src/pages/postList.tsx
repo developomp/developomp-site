@@ -1,18 +1,18 @@
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import theming from "../theming"
 import marked from "marked"
 import { Helmet } from "react-helmet-async"
 
+import theming from "../theming"
 import pages from "../pages.json"
 
 interface HomeProps {
-	title?: string
+	title: string
 	howMany?: number
 }
 
-export default class Home extends React.Component<HomeProps, { lol: boolean }> {
+export default class PostList extends React.Component<HomeProps> {
 	h1Text: string
 	PostCards: Array<unknown> = []
 
@@ -20,11 +20,12 @@ export default class Home extends React.Component<HomeProps, { lol: boolean }> {
 		padding-top: 2rem;
 		margin: auto;
 		text-align: center;
-		color: ${(props) =>
+		color: white;
+		/* color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: "#111111",
 				dark: "#EEEEEE",
-			})};
+			})}; */
 	`
 
 	StyledH1 = styled.h1`
@@ -61,20 +62,17 @@ export default class Home extends React.Component<HomeProps, { lol: boolean }> {
 
 	constructor(props) {
 		super(props)
-		let howMany = props.howMany
-		const isLimited = Boolean(howMany)
 
-		this.h1Text = isLimited ? "All posts" : `${howMany} recent posts`
+		let howMany = props.howMany | 0
+
+		const isLimited = howMany ? true : false
+
+		this.h1Text = isLimited ? `${howMany} recent posts` : "All posts"
 
 		for (const pagePath in pages) {
 			if (isLimited && howMany <= 0) continue
 
 			const post = pages[pagePath]
-			post.title = post.meta?.title ? post.meta.title : "Unknown title"
-			post.date = post.meta?.date ? post.meta.date : "Unknown date"
-			post.author = post.meta?.author
-				? post.meta.author
-				: "Unknown author"
 
 			this.PostCards.push(
 				<this.StyledPostCard
@@ -83,11 +81,17 @@ export default class Home extends React.Component<HomeProps, { lol: boolean }> {
 				>
 					<this.StyledTitle>
 						<this.StyledLink to={pagePath}>
-							{post.title}
+							{post.meta?.title
+								? post.meta.title
+								: "Unknown title"}
 						</this.StyledLink>
 					</this.StyledTitle>
 					<small>
-						Published on {post.date} by {post.author}
+						Published on{" "}
+						{post.meta?.date ? post.meta.date : "Unknown date"} by{" "}
+						{post.meta?.author
+							? post.meta.author
+							: "Unknown author"}
 					</small>
 					<hr />
 					<div

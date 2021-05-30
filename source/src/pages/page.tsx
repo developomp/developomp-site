@@ -1,9 +1,10 @@
 import React from "react"
 import marked from "marked"
-import NotFound from "./notfound"
 import { Helmet } from "react-helmet-async"
 
 import pages from "../pages.json"
+
+import NotFound from "./notfound"
 
 export default class Page extends React.Component {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,7 +13,7 @@ export default class Page extends React.Component {
 	constructor(props) {
 		super(props)
 
-		const fetched = pages[props.location.pathname]
+		const fetched = pages[location.pathname]
 		if (!fetched) return
 
 		fetched.content = fetched?.content ? fetched.content : "No content"

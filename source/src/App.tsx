@@ -1,16 +1,17 @@
-import React, { createContext } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import React from "react"
+import { Switch, Route } from "react-router-dom"
 import { ThemeProvider, createGlobalStyle } from "styled-components"
 import { HelmetProvider } from "react-helmet-async"
 import storage from "local-storage-fallback"
 
 import theming from "./theming"
+import { LanguageContext } from "./LangaugeContext"
 
 import Spinner from "./components/Spinner"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
-import Home from "./pages/home"
+import PostList from "./pages/postList"
 import Page from "./pages/page"
 import NotFound from "./pages/notfound"
 import Portfolio from "./pages/portfolio"
@@ -134,12 +135,6 @@ interface AppState {
 	currentLanguage: string
 }
 
-export const LanguageContext = createContext({
-	language: "",
-	// eslint-disable-next-line @typescript-eslint/no-empty-function
-	toggleLanguage: () => {},
-})
-
 export default class App extends React.Component<AppProps, AppState> {
 	constructor(props) {
 		super(props)
@@ -183,7 +178,6 @@ export default class App extends React.Component<AppProps, AppState> {
 				<ThemeProvider
 					theme={{
 						currentTheme: this.state.currentTheme,
-						// eslint-disable-next-line @typescript-eslint/no-unused-vars
 						setTheme: (setThemeTo) =>
 							this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
 					}}
@@ -203,50 +197,44 @@ export default class App extends React.Component<AppProps, AppState> {
 						}}
 					>
 						<GlobalStyle />
-						<Router>
-							<Navbar />
-							<div id="content">
-								{this.state.isLoading ? (
-									<Spinner size={200} />
-								) : (
-									<Switch>
-										<Route
-											exact
-											path="/"
-											component={() => (
-												<Home
-													howMany={4}
-													title="Home"
-												/>
-											)}
+						<Navbar />
+						<div id="content">
+							{this.state.isLoading ? (
+								<Spinner size={200} />
+							) : (
+								<Switch>
+									<Route exact path="/">
+										<PostList
+											key="home"
+											howMany={4}
+											title="Home"
 										/>
-										<Route
-											exact
-											path="/archives"
-											component={() => (
-												<Home title="Archives" />
-											)}
+									</Route>
+
+									<Route exact path="/archives">
+										<PostList
+											key="archives"
+											title="Archives"
 										/>
-										<Route
-											exact
-											path="/portfolio"
-											component={Portfolio}
-										/>
-										<Route
-											exact
-											path="/404"
-											component={NotFound}
-										/>
-										<Route
-											exact
-											path="/:path*"
-											component={Page}
-										/>
-									</Switch>
-								)}
-							</div>
-							<Footer />
-						</Router>
+									</Route>
+
+									<Route exact path="/portfolio">
+										<Portfolio />
+									</Route>
+
+									<Route exact path="/404">
+										<NotFound />
+									</Route>
+
+									<Route exact path="/:path">
+										{({ match }) => (
+											<Page key={match.params.path} />
+										)}
+									</Route>
+								</Switch>
+							)}
+						</div>
+						<Footer />
 					</LanguageContext.Provider>
 				</ThemeProvider>
 			</HelmetProvider>
