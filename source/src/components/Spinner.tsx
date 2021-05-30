@@ -10,9 +10,6 @@ interface BallInterface {
 	key: string
 	index: number
 }
-interface WrapperInterface {
-	size: number
-}
 
 interface SpinnerProps {
 	size: number
@@ -85,7 +82,7 @@ export default class Spinner extends React.Component<SpinnerProps> {
 		}
 	`
 
-	Wrapper = styled.div<WrapperInterface>`
+	Wrapper = styled.div`
 		margin: 5rem auto 0 auto;
 		width: 200px;
 		height: 200px;
@@ -114,6 +111,6 @@ export default class Spinner extends React.Component<SpinnerProps> {
 	}
 
 	render() {
-		return <this.Wrapper size={this.props.size}>{this.balls}</this.Wrapper>
+		return <this.Wrapper>{this.balls}</this.Wrapper>
 	}
 }
