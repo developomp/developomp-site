@@ -19,6 +19,8 @@ interface SpinnerProps {
 }
 
 export default class Spinner extends React.Component<SpinnerProps> {
+	balls: unknown[] = []
+
 	motion = keyframes`
 		from {
 			transform: scale(1, 1);
@@ -91,12 +93,12 @@ export default class Spinner extends React.Component<SpinnerProps> {
 		animation: ${this.spin} 10s infinite;
 	`
 
-	balls: unknown[] = []
 	constructor(props) {
 		super(props)
 
 		let keyValue = 0
 		const countBallsInLine = 3
+
 		for (let i = 0; i < countBallsInLine; i++) {
 			for (let j = 0; j < countBallsInLine; j++) {
 				this.balls.push(
