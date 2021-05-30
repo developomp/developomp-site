@@ -1,8 +1,9 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
-import { ThemeProvider, createGlobalStyle } from "styled-components"
+import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
 import { HelmetProvider } from "react-helmet-async"
 import storage from "local-storage-fallback"
+import { isIE } from "react-device-detect"
 
 import theming from "./theming"
 import { LanguageContext } from "./LangaugeContext"
@@ -127,6 +128,14 @@ blockquote {
 }
 `
 
+const StyledP = styled.p`
+	margin: auto;
+	font-size: 2rem;
+	margin-top: 2rem;
+	text-align: center;
+	font-family: ${theming.font.regular};
+`
+
 interface AppProps {}
 
 interface AppState {
@@ -173,71 +182,80 @@ export default class App extends React.Component<AppProps, AppState> {
 	}
 
 	render() {
-		return (
-			<HelmetProvider>
-				<ThemeProvider
-					theme={{
-						currentTheme: this.state.currentTheme,
-						setTheme: (setThemeTo) =>
-							this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
-					}}
-				>
-					<LanguageContext.Provider
-						value={{
-							language: this.state.currentLanguage,
-							toggleLanguage: () => {
-								// cycle through languages
-								let setLanguageTo = "en"
-								if (this.state.currentLanguage == "en")
-									setLanguageTo = "kr"
-								this.setState({
-									currentLanguage: setLanguageTo,
-								})
-							},
+		if (isIE)
+			return (
+				<>
+					<StyledP>
+						<b>Internet Explorer</b> is not supported.
+					</StyledP>
+				</>
+			)
+		else
+			return (
+				<HelmetProvider>
+					<ThemeProvider
+						theme={{
+							currentTheme: this.state.currentTheme,
+							setTheme: (setThemeTo) =>
+								this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
 						}}
 					>
-						<GlobalStyle />
-						<Navbar />
-						<div id="content">
-							{this.state.isLoading ? (
-								<Spinner size={200} />
-							) : (
-								<Switch>
-									<Route exact path="/">
-										<PostList
-											key="home"
-											howMany={4}
-											title="Home"
-										/>
-									</Route>
+						<LanguageContext.Provider
+							value={{
+								language: this.state.currentLanguage,
+								toggleLanguage: () => {
+									// cycle through languages
+									let setLanguageTo = "en"
+									if (this.state.currentLanguage == "en")
+										setLanguageTo = "kr"
+									this.setState({
+										currentLanguage: setLanguageTo,
+									})
+								},
+							}}
+						>
+							<GlobalStyle />
+							<Navbar />
+							<div id="content">
+								{this.state.isLoading ? (
+									<Spinner size={200} />
+								) : (
+									<Switch>
+										<Route exact path="/">
+											<PostList
+												key="home"
+												howMany={4}
+												title="Home"
+											/>
+										</Route>
 
-									<Route exact path="/archives">
-										<PostList
-											key="archives"
-											title="Archives"
-										/>
-									</Route>
+										<Route exact path="/archives">
+											<PostList
+												key="archives"
+												title="Archives"
+											/>
+										</Route>
 
-									<Route exact path="/portfolio">
-										<Portfolio />
-									</Route>
+										<Route exact path="/portfolio">
+											<Portfolio />
+										</Route>
 
-									<Route exact path="/404">
-										<NotFound />
-									</Route>
+										<Route exact path="/404">
+											<NotFound />
+										</Route>
 
-									<Route exact path="/:path*">
-										{({ match }) => (
-											<Page key={match.params.path} />
-										)}
-									</Route>
-								</Switch>
-							)}
-						</div>
-						<Footer />
-					</LanguageContext.Provider>
-				</ThemeProvider>
-			</HelmetProvider>
-		)
+										<Route exact path="/:path*">
+											{({ match }) => (
+												<Page key={match.params.path} />
+											)}
+										</Route>
+									</Switch>
+								)}
+							</div>
+							<Footer />
+						</LanguageContext.Provider>
+					</ThemeProvider>
+				</HelmetProvider>
+			)
 	}
 }

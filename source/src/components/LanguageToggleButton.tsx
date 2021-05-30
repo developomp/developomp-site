@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLanguage } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
+import { isMobile } from "react-device-detect"
 
 import theming from "../theming"
 
@@ -43,11 +44,17 @@ export default class LanguageToggleButton extends React.Component {
 						>
 							<FontAwesomeIcon icon={faLanguage} />
 						</StyledThemeButton>
-						<ReactTooltip id="language" type="dark" effect="solid">
-							<span>
-								Using {this.languageName(language)} language
-							</span>
-						</ReactTooltip>
+						{!isMobile && (
+							<ReactTooltip
+								id="language"
+								type="dark"
+								effect="solid"
+							>
+								<span>
+									Using {this.languageName(language)} language
+								</span>
+							</ReactTooltip>
+						)}
 					</>
 				)}
 			</LanguageContext.Consumer>

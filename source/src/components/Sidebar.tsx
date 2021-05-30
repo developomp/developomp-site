@@ -1,6 +1,7 @@
 import React from "react"
 import styled, { css } from "styled-components"
 import ReactTooltip from "react-tooltip"
+import { isMobile } from "react-device-detect"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 
@@ -112,9 +113,11 @@ export default class Sidebar extends React.Component<
 					onClick={this.toggleSidebar}
 				>
 					<FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
-					<ReactTooltip id="sidebar" type="dark" effect="solid">
-						<span>open sidebar</span>
-					</ReactTooltip>
+					{!isMobile && (
+						<ReactTooltip id="sidebar" type="dark" effect="solid">
+							<span>open sidebar</span>
+						</ReactTooltip>
+					)}
 				</StyledToggleSidebarButton>
 
 				<SidebarNav isSidebarOpen={this.state.isSidebarOpen}>

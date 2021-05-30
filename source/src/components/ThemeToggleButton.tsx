@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import styled, { ThemeConsumer } from "styled-components"
 import ReactTooltip from "react-tooltip"
+import { isMobile } from "react-device-detect"
 
 import theming from "../theming"
 
@@ -41,9 +42,11 @@ export default class Navbar extends React.Component {
 								<FontAwesomeIcon icon={faSun} />
 							)}
 						</StyledThemeButton>
-						<ReactTooltip id="theme" type="dark" effect="solid">
-							<span>Using {currentTheme} theme</span>
-						</ReactTooltip>
+						{!isMobile && (
+							<ReactTooltip id="theme" type="dark" effect="solid">
+								<span>Using {currentTheme} theme</span>
+							</ReactTooltip>
+						)}
 					</>
 				)}
 			</ThemeConsumer>

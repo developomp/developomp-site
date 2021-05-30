@@ -4,6 +4,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
 import { Link } from "react-router-dom"
+import { isMobile } from "react-device-detect"
 
 import theming from "../theming"
 import NavbarData from "../data/NavbarData"
@@ -83,9 +84,11 @@ export default class Navbar extends React.Component {
 				>
 					<FontAwesomeIcon icon={faGithub} />
 				</StyledALink>
-				<ReactTooltip id="github" type="dark" effect="solid">
-					<span>View source code</span>
-				</ReactTooltip>
+				{!isMobile && (
+					<ReactTooltip id="github" type="dark" effect="solid">
+						<span>View source code</span>
+					</ReactTooltip>
+				)}
 
 				<SearchBox />
 				<Sidebar />
