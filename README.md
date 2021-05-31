@@ -54,7 +54,7 @@ Please read the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file.
 # Special thanks
 
 -   [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
--   [discord](http://discord.com) for dark theme color palette
+-   [discord](http://discord.com) for dark theme color palette (before the [rebranding of May 2021](https://blog.discord.com/how-were-making-discord-more-welcoming-for-everyone-ee152f198c60))
 -   My friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
 
 # License
