@@ -12,7 +12,6 @@ import NavbarData from "../data/NavbarData"
 import SearchBox from "./SearchBox"
 import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
-import LanguageToggleButton from "./LanguageToggleButton"
 
 const StyledNav = styled.nav`
 	display: flex;
@@ -74,7 +73,6 @@ export default class Navbar extends React.Component {
 				</StyledNavLinks>
 
 				<ThemeToggleButton />
-				<LanguageToggleButton />
 
 				<StyledALink
 					data-tip

@@ -6,7 +6,6 @@ import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
 import theming from "./theming"
-import { LanguageContext } from "./LangaugeContext"
 
 import Spinner from "./components/Spinner"
 import Navbar from "./components/Navbar"
@@ -200,60 +199,45 @@ export default class App extends React.Component<AppProps, AppState> {
 								this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
 						}}
 					>
-						<LanguageContext.Provider
-							value={{
-								language: this.state.currentLanguage,
-								toggleLanguage: () => {
-									// cycle through languages
-									let setLanguageTo = "en"
-									if (this.state.currentLanguage == "en")
-										setLanguageTo = "kr"
-									this.setState({
-										currentLanguage: setLanguageTo,
-									})
-								},
-							}}
-						>
-							<GlobalStyle />
-							<Navbar />
-							<div id="content">
-								{this.state.isLoading ? (
-									<Spinner size={200} />
-								) : (
-									<Switch>
-										<Route exact path="/">
-											<PostList
-												key="home"
-												howMany={4}
-												title="Home"
-											/>
-										</Route>
+						<GlobalStyle />
+						<Navbar />
+						<div id="content">
+							{this.state.isLoading ? (
+								<Spinner size={200} />
+							) : (
+								<Switch>
+									<Route exact path="/">
+										<PostList
+											key="home"
+											howMany={4}
+											title="Home"
+										/>
+									</Route>
 
-										<Route exact path="/archives">
-											<PostList
-												key="archives"
-												title="Archives"
-											/>
-										</Route>
+									<Route exact path="/archives">
+										<PostList
+											key="archives"
+											title="Archives"
+										/>
+									</Route>
 
-										<Route exact path="/portfolio">
-											<Portfolio />
-										</Route>
+									<Route exact path="/portfolio">
+										<Portfolio />
+									</Route>
 
-										<Route exact path="/404">
-											<NotFound />
-										</Route>
+									<Route exact path="/404">
+										<NotFound />
+									</Route>
 
-										<Route exact path="/:path*">
-											{({ match }) => (
-												<Page key={match.params.path} />
-											)}
-										</Route>
-									</Switch>
-								)}
-							</div>
-							<Footer />
-						</LanguageContext.Provider>
+									<Route exact path="/:path*">
+										{({ match }) => (
+											<Page key={match.params.path} />
+										)}
+									</Route>
+								</Switch>
+							)}
+						</div>
+						<Footer />
 					</ThemeProvider>
 				</HelmetProvider>
 			)
