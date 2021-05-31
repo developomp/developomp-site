@@ -65,6 +65,7 @@ body::-webkit-scrollbar-thumb {
 	display:inline-block;
 	flex: 1 1 auto;
 	margin-bottom: 3rem;
+	margin-top: 3rem;
 }
 
 code {
