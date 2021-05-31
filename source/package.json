@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"description": "website source for https://developomp.com",
 	"author": "developomp <developomp@gmail.com>",
-	"homepage": ".",
+	"homepage": "/",
 	"repository": "https://github.com/developomp/developomp-site.git",
 	"bugs": {
 		"url": "https://github.com/developomp/developomp-site/issues"
