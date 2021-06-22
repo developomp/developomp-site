@@ -12,7 +12,6 @@ Tools / Frameworks / Packages used:
 |                                                  [react](https://reactjs.org) | Front end framework                                   |
 |         [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) | [Fontawesome](https://fontawesome.com) icons in react |
 |           [react-helmet-async](https://github.com/staylor/react-helmet-async) | HTML head management                                  |
-|                              [dompurify](https://github.com/cure53/DOMPurify) | HTML sanitizer for markdown-to-html page generation   |
 |                   [gray-matter](https://github.com/jonschlinkert/gray-matter) | parsing markdown                                      |
 | [local-storage-fallback](https://github.com/ripeworks/local-storage-fallback) | storing theme choice                                  |
 |                      [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                                              |
