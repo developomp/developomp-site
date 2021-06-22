@@ -1,6 +1,6 @@
 ---
 title: games
-date: Aug 16, 2020
+date: 2020-08-16
 ---
 
 -   [TicTacToe](/games/tictactoe)

@@ -1,6 +1,6 @@
 ---
 title: About
-date: April 20, 2021
+date: 2021-04-20
 ---
 
 About page
