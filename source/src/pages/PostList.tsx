@@ -87,7 +87,6 @@ export default class PostList extends React.Component<
 
 		for (const postPath in posts.posts) {
 			if (this.state.isLimited && howMany <= 0) continue
-			const data = await import(`../data/posts${postPath}.json`)
 
 			const post = posts.posts[postPath]
 
@@ -105,10 +104,7 @@ export default class PostList extends React.Component<
 					<div
 						className="link-color"
 						dangerouslySetInnerHTML={{
-							__html: marked(
-								data.content.split(" ").slice(0, 20).join(" ") +
-									"..."
-							),
+							__html: marked(post.preview),
 						}}
 					></div>
 					<small>

@@ -107,6 +107,11 @@ function recursiveParser(fileOrFolderPath: string) {
 
 		result.posts[urlPath] = parsedMarkdown.data
 
+		// preview
+		// might cut mid html tag
+		result.posts[urlPath].preview =
+			parsedMarkdown.content.split(" ").slice(0, 20).join(" ") + " ..."
+
 		// date
 		if (!result.posts[urlPath].date) {
 			throw Error(`Date does not exist in file: ${urlPath}`)
