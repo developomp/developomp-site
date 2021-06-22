@@ -1,7 +1,6 @@
 ---
 title: goals
-date: May 11, 2021
-author: developomp
+date: 2021-05-11
 ---
 
 -   skill

@@ -5,7 +5,7 @@ import marked from "marked"
 import { Helmet } from "react-helmet-async"
 
 import theming from "../theming"
-import pages from "../pages.json"
+import posts from "../data/posts.json"
 
 const StyledPostList = styled.div`
 	padding-top: 2rem;
@@ -50,62 +50,77 @@ const StyledPostCard = styled.div`
 	padding: 10px 20px;
 `
 
-interface HomeProps {
+interface PostListProps {
 	title: string
 	howMany?: number
 }
 
-export default class PostList extends React.Component<HomeProps> {
+interface PostListState {
+	howMany: number
+	isLimited: boolean
 	h1Text: string
-	PostCards: Array<unknown> = []
+	PostCards: Array<unknown>
+}
 
+export default class PostList extends React.Component<
+	PostListProps,
+	PostListState
+> {
 	constructor(props) {
 		super(props)
 
-		let howMany = props.howMany | 0
-
+		const howMany = props.howMany | 0
 		const isLimited = howMany ? true : false
+		const h1Text = isLimited ? `${howMany} recent posts` : "All posts"
 
-		this.h1Text = isLimited ? `${howMany} recent posts` : "All posts"
+		this.state = {
+			howMany: howMany,
+			isLimited: isLimited,
+			h1Text: h1Text,
+			PostCards: [],
+		}
+	}
 
-		for (const pagePath in pages) {
-			if (isLimited && howMany <= 0) continue
+	async componentDidMount() {
+		const PostCards: Array<unknown> = []
+		let howMany = this.state.howMany
 
-			const post = pages[pagePath]
+		for (const postPath in posts.posts) {
+			if (this.state.isLimited && howMany <= 0) continue
+			const data = await import(`../data/posts${postPath}.json`)
 
-			this.PostCards.push(
-				<StyledPostCard key={pagePath} className="card main-content">
+			const post = posts.posts[postPath]
+
+			PostCards.push(
+				<StyledPostCard key={postPath} className="card main-content">
 					<StyledTitle>
-						<StyledLink to={pagePath}>
-							{post.meta?.title
-								? post.meta.title
-								: "Unknown title"}
+						<StyledLink to={postPath}>
+							{post?.title ? post.title : "Unknown title"}
 						</StyledLink>
 					</StyledTitle>
 					<small>
-						Published on{" "}
-						{post.meta?.date ? post.meta.date : "Unknown date"} by{" "}
-						{post.meta?.author
-							? post.meta.author
-							: "Unknown author"}
+						Published on {post?.date ? post.date : "Unknown date"}
 					</small>
 					<hr />
 					<div
 						className="link-color"
 						dangerouslySetInnerHTML={{
 							__html: marked(
-								post.content.split(" ").slice(0, 20).join(" ") +
+								data.content.split(" ").slice(0, 20).join(" ") +
 									"..."
 							),
 						}}
 					></div>
 					<small>
-						<StyledLink to={pagePath}>Read more</StyledLink>
+						<StyledLink to={postPath}>Read more</StyledLink>
 					</small>
 				</StyledPostCard>
 			)
 			howMany--
 		}
+		this.setState({
+			PostCards: PostCards,
+		})
 	}
 
 	render() {
@@ -116,18 +131,16 @@ export default class PostList extends React.Component<HomeProps> {
 
 					<meta property="og:title" content={this.props.title} />
 					<meta property="og:type" content="website" />
-					<meta property="og:url" content="http://developomp.com" />
 					<meta
 						property="og:image"
-						content="http://developomp.com/icon/icon.svg"
+						content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
 					/>
-					<meta property="og:description" content="" />
 				</Helmet>
 
 				<StyledPostList>
-					<StyledH1>{this.h1Text}</StyledH1>
+					<StyledH1>{this.state.h1Text}</StyledH1>
 					<br />
-					{this.PostCards}
+					{this.state.PostCards}
 				</StyledPostList>
 			</>
 		)

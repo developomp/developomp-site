@@ -2,83 +2,107 @@ import React from "react"
 import marked from "marked"
 import { Helmet } from "react-helmet-async"
 
-import pages from "../pages.json"
+import posts from "../data/posts.json"
 
 import NotFound from "./NotFound"
+import Spinner from "../components/Spinner"
 
-export default class Page extends React.Component {
+interface PageProps {}
+
+interface PageState {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	fetched: any
+	fetchedPage: any
+	loading: boolean
+}
 
+export default class Page extends React.Component<PageProps, PageState> {
 	constructor(props) {
 		super(props)
+		this.state = {
+			fetchedPage: undefined,
+			loading: true,
+		}
+	}
 
-		const fetched = pages[location.pathname.replace(/\/$/, "")] // remove a trailing slash
-		if (!fetched) return
+	async componentDidMount() {
+		const url = location.pathname.replace(/\/$/, "")
+		const fetchedPage = posts.posts[url] // remove a trailing slash
 
-		fetched.content = fetched?.content ? fetched.content : "No content"
-		fetched.toc = fetched.meta?.toc ? fetched.meta.toc : undefined
-		fetched.title = fetched.meta?.title ? fetched.meta.title : "No title"
-		fetched.date = fetched.meta?.date ? fetched.meta.date : "Unknown date"
-		fetched.author = fetched.meta?.author
-			? fetched.meta.author
-			: "Unknown author"
+		if (!fetchedPage) {
+			this.setState({
+				loading: false,
+			})
+			return
+		}
 
-		this.fetched = fetched
+		const fetched_content = (await import(`../data/posts${url}.json`))
+			.content
+		fetchedPage.content = fetched_content ? fetched_content : "No content"
+		fetchedPage.toc = fetchedPage?.toc ? fetchedPage.toc : undefined
+		fetchedPage.title = fetchedPage?.title ? fetchedPage.title : "No title"
+		fetchedPage.date = fetchedPage?.date ? fetchedPage.date : "Unknown date"
+
+		this.setState({
+			fetchedPage: fetchedPage,
+			loading: false,
+		})
 	}
 
 	render() {
-		if (!this.fetched) return <NotFound />
+		if (this.state.loading) {
+			return <Spinner size={200} />
+		} else {
+			if (!this.state.fetchedPage) return <NotFound />
 
-		return (
-			<>
-				<Helmet>
-					<title>pomp | {this.fetched.title}</title>
+			return (
+				<>
+					<Helmet>
+						<title>pomp | {this.state.fetchedPage.title}</title>
 
-					<meta property="og:title" content="Page Not Found" />
-					<meta property="og:type" content="website" />
-					<meta property="og:url" content="http://developomp.com" />
-					<meta
-						property="og:image"
-						content="http://developomp.com/icon/icon.svg"
-					/>
-					<meta
-						property="og:description"
-						content="Page does not exist"
-					/>
-				</Helmet>
-
-				<div className="card main-content">
-					<h2>{this.fetched.title}</h2>
-					<small>
-						Published on {this.fetched.date} by{" "}
-						{this.fetched.author}
-					</small>
-					<hr />
-					{
-						this.fetched.toc && (
-							<>
-								<div className="card">
-									<strong>Table of Content:</strong>
-									<div
-										className="link-color"
-										dangerouslySetInnerHTML={{
-											__html: marked(this.fetched.toc),
-										}}
-									></div>
-								</div>
-								<hr />
-							</>
-						) // add toc if it exists
-					}
-					<div
-						className="link-color"
-						dangerouslySetInnerHTML={{
-							__html: marked(this.fetched.content),
-						}}
-					></div>
-				</div>
-			</>
-		)
+						<meta
+							property="og:title"
+							content={this.state.fetchedPage.title}
+						/>
+						<meta property="og:type" content="website" />
+						<meta
+							property="og:image"
+							content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
+						/>
+					</Helmet>
+					<div className="card main-content">
+						<h2>{this.state.fetchedPage.title}</h2>
+						<small>
+							Published on {this.state.fetchedPage.date} by
+							developomp
+						</small>
+						<hr />
+						{
+							this.state.fetchedPage.toc && (
+								<>
+									<div className="card">
+										<strong>Table of Content:</strong>
+										<div
+											className="link-color"
+											dangerouslySetInnerHTML={{
+												__html: marked(
+													this.state.fetchedPage.toc
+												),
+											}}
+										></div>
+									</div>
+									<hr />
+								</>
+							) // add toc if it exists
+						}
+						<div
+							className="link-color"
+							dangerouslySetInnerHTML={{
+								__html: marked(this.state.fetchedPage.content),
+							}}
+						></div>
+					</div>
+				</>
+			)
+		}
 	}
 }

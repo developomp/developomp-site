@@ -4,7 +4,8 @@ _/
 # auto generated files
 yarn.lock
 package-lock.json
-pages.json
+posts.json
+posts/
 
 # dependencies
 .pnp/

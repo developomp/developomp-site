@@ -1,6 +1,5 @@
 ---
 title: About
-author: developomp
 date: April 20, 2021
 ---
 
