@@ -1,3 +1,7 @@
+/** PostList.tsx
+ *  show posts in recent order
+ */
+
 import React from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
@@ -83,17 +87,28 @@ export default class PostList extends React.Component<
 
 	async componentDidMount() {
 		const PostCards: Array<unknown> = []
-		let howMany = this.state.howMany
+		const recentPosts = {}
 
-		for (const postPath in posts.posts) {
-			if (this.state.isLimited && howMany <= 0) continue
+		let postIndex = 0
+		for (const date in posts.date) {
+			if (postIndex == this.state.howMany) continue
 
-			const post = posts.posts[postPath]
+			const length = posts.date[date].length
+			for (let i = 0; i < length; i++) {
+				if (postIndex == this.state.howMany) continue
+				postIndex++
+				const url = posts.date[date][length - i - 1]
+				recentPosts[postIndex] = [url, posts.posts[url]]
+			}
+		}
+
+		for (const postIndex in recentPosts) {
+			const [url, post] = recentPosts[postIndex]
 
 			PostCards.push(
-				<StyledPostCard key={postPath} className="card main-content">
+				<StyledPostCard key={url} className="card main-content">
 					<StyledTitle>
-						<StyledLink to={postPath}>
+						<StyledLink to={`${process.env.PUBLIC_URL}${url}`}>
 							{post?.title ? post.title : "Unknown title"}
 						</StyledLink>
 					</StyledTitle>
@@ -108,12 +123,14 @@ export default class PostList extends React.Component<
 						}}
 					></div>
 					<small>
-						<StyledLink to={postPath}>Read more</StyledLink>
+						<StyledLink to={`${process.env.PUBLIC_URL}${url}`}>
+							Read more
+						</StyledLink>
 					</small>
 				</StyledPostCard>
 			)
-			howMany--
 		}
+
 		this.setState({
 			PostCards: PostCards,
 		})

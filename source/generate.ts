@@ -116,16 +116,21 @@ function recursiveParser(fileOrFolderPath: string) {
 		if (!result.posts[urlPath].date) {
 			throw Error(`Date does not exist in file: ${urlPath}`)
 		}
-		result.posts[urlPath].date = new Date(
-			parsedMarkdown.data.date
-		).toLocaleString("default", {
+		const postDate = new Date(parsedMarkdown.data.date)
+		result.posts[urlPath].date = postDate.toLocaleString("default", {
 			month: "short",
 			day: "numeric",
 			year: "numeric",
 		})
-		if (result.date[result.posts[urlPath].date])
-			result.date[result.posts[urlPath].date].push(urlPath)
-		else result.date[result.posts[urlPath].date] = [urlPath]
+
+		const YYYYMMDD = new Date(
+			postDate.getTime() - postDate.getTimezoneOffset() * 60 * 1000
+		)
+			.toISOString()
+			.split("T")[0]
+
+		if (result.date[YYYYMMDD]) result.date[YYYYMMDD].push(urlPath)
+		else result.date[YYYYMMDD] = [urlPath]
 
 		//tags
 		if (result.posts[urlPath].tags) {
@@ -163,6 +168,20 @@ if (fs.lstatSync(dirPath).isDirectory()) {
 } else {
 	throw Error("Initial path given does not lead to a directory")
 }
+
+let dateKeys: string[] = []
+for (const dateKey in result.date) {
+	dateKeys.push(dateKey)
+}
+
+dateKeys = dateKeys.sort()
+
+const resultDate = result.date
+result.date = {}
+
+dateKeys.forEach(
+	(sortedDateKey) => (result.date[sortedDateKey] = resultDate[sortedDateKey])
+)
 
 /** Step 3
  *  write to src/data/posts.json
