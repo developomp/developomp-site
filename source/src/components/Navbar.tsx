@@ -9,9 +9,9 @@ import { isMobile } from "react-device-detect"
 import theming from "../theming"
 import NavbarData from "../data/NavbarData"
 
-import SearchBox from "./SearchBox"
 import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const StyledNav = styled.nav`
 	position: absolute;
@@ -102,7 +102,19 @@ export default class Navbar extends React.Component {
 						</ReactTooltip>
 					)}
 
-					<SearchBox />
+					<StyledALink
+						data-tip
+						data-for="search"
+						href={`${process.env.PUBLIC_URL}/explore`}
+					>
+						<FontAwesomeIcon icon={faSearch} />
+					</StyledALink>
+					{!isMobile && (
+						<ReactTooltip id="search" type="dark" effect="solid">
+							<span>Search</span>
+						</ReactTooltip>
+					)}
+
 					<Sidebar />
 				</StyledContainer>
 			</StyledNav>
