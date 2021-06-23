@@ -12,6 +12,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
 import PostList from "./pages/PostList"
+import Explore from "./pages/Explore"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
 import Portfolio from "./pages/Portfolio"
@@ -224,11 +225,8 @@ export default class App extends React.Component<AppProps, AppState> {
 										/>
 									</Route>
 
-									<Route exact path="/archives">
-										<PostList
-											key="archives"
-											title="Archives"
-										/>
+									<Route exact path="/explore">
+										<Explore />
 									</Route>
 
 									<Route exact path="/portfolio">
