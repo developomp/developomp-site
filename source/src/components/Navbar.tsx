@@ -102,13 +102,13 @@ export default class Navbar extends React.Component {
 						</ReactTooltip>
 					)}
 
-					<StyledALink
+					<StyledLink
 						data-tip
 						data-for="search"
-						href={`${process.env.PUBLIC_URL}/explore`}
+						to={`${process.env.PUBLIC_URL}/explore`}
 					>
 						<FontAwesomeIcon icon={faSearch} />
-					</StyledALink>
+					</StyledLink>
 					{!isMobile && (
 						<ReactTooltip id="search" type="dark" effect="solid">
 							<span>Search</span>
