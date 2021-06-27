@@ -15,6 +15,8 @@ Tools / Frameworks / Packages used:
 |                   [gray-matter](https://github.com/jonschlinkert/gray-matter) | parsing markdown                                      |
 | [local-storage-fallback](https://github.com/ripeworks/local-storage-fallback) | storing theme choice                                  |
 |                      [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                                              |
+|            [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page                           |
+|                  [query-string](https://github.com/sindresorhus/query-string) | URL query parsing                                     |
 |   [styled-components](https://github.com/styled-components/styled-components) | easier CSS styling                                    |
 |         [styled-theming](https://github.com/styled-components/styled-theming) | Theming                                               |
 |                                    [eslint](https://github.com/eslint/eslint) | code analysis                                         |

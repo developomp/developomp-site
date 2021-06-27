@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faHome, faUserTie, faHiking } from "@fortawesome/free-solid-svg-icons"
+import { faHome, faUserTie } from "@fortawesome/free-solid-svg-icons"
 
 // item from sidebar data
 export type Item = {
@@ -16,11 +16,6 @@ const NavbarData: Array<Item> = [
 		title: "Home",
 		path: "/",
 		icon: <FontAwesomeIcon icon={faHome} />,
-	},
-	{
-		title: "Explore",
-		path: "/explore",
-		icon: <FontAwesomeIcon icon={faHiking} />,
 	},
 	{
 		title: "Portfolio",

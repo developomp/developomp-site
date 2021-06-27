@@ -11,7 +11,7 @@ import NavbarData from "../data/NavbarData"
 
 import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
+// import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const StyledNav = styled.nav`
 	position: absolute;
@@ -102,10 +102,10 @@ export default class Navbar extends React.Component {
 						</ReactTooltip>
 					)}
 
-					<StyledLink
+					{/* <StyledLink
 						data-tip
 						data-for="search"
-						to={`${process.env.PUBLIC_URL}/explore`}
+						to={`${process.env.PUBLIC_URL}/search`}
 					>
 						<FontAwesomeIcon icon={faSearch} />
 					</StyledLink>
@@ -113,7 +113,7 @@ export default class Navbar extends React.Component {
 						<ReactTooltip id="search" type="dark" effect="solid">
 							<span>Search</span>
 						</ReactTooltip>
-					)}
+					)} */}
 
 					<Sidebar />
 				</StyledContainer>

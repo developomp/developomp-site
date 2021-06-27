@@ -12,7 +12,7 @@ import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
 import PostList from "./pages/PostList"
-import Explore from "./pages/Explore"
+import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
 import Portfolio from "./pages/Portfolio"
@@ -225,8 +225,8 @@ export default class App extends React.Component<AppProps, AppState> {
 										/>
 									</Route>
 
-									<Route exact path="/explore">
-										<Explore />
+									<Route exact path="/search">
+										<Search />
 									</Route>
 
 									<Route exact path="/portfolio">
