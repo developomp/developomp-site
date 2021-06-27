@@ -12,8 +12,8 @@ jobs:
               uses: actions/checkout@master
             - uses: actions/cache@main
               with:
-                  path: "**/node_modules"
-                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+                  path: "source/node_modules"
+                  key: ${{ runner.os }}-modules-${{ hashFiles('source/yarn.lock') }}
             - name: Install Dependencies and Build
               run: cd source && yarn install && yarn build
             - name: Archive Production Artifact

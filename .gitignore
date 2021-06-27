@@ -2,8 +2,6 @@
 _/
 
 # auto generated files
-yarn.lock
-package-lock.json
 posts.json
 posts/
 
