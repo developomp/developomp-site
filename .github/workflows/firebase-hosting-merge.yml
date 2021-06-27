@@ -2,7 +2,7 @@ name: Deploy to Firebase Hosting on merge
 on:
     push:
         branches:
-            - dev
+            - master
 jobs:
     build:
         name: Build
@@ -10,6 +10,10 @@ jobs:
         steps:
             - name: Checkout Repo
               uses: actions/checkout@master
+            - uses: actions/cache@main
+              with:
+                  path: "**/node_modules"
+                  key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
             - name: Install Dependencies and Build
               run: cd source && yarn install && yarn build
             - name: Archive Production Artifact
@@ -35,15 +39,9 @@ jobs:
                   args: use developomp-site
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-            - name: Apply target
-              uses: w9jds/firebase-action@master
-              with:
-                  args: target:apply hosting test developomp-site-test
-              env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
             - name: Deploy to Firebase
               uses: w9jds/firebase-action@master
               with:
-                  args: deploy --only hosting:test
+                  args: deploy --only hosting
               env:
                   FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
