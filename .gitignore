@@ -1,11 +1,28 @@
+# where I keep my notes
 _/
+
+# auto generated files
 yarn.lock
 package-lock.json
-hexo/source/_drafts
+posts.json
+posts/
+
+# dependencies
+.pnp/
+.pnp.js
+
+# testing
+coverage/
+
+# production
+build/
+
+# misc
+.DS_Store
 
 # unaltered
-# Created by https://www.toptal.com/developers/gitignore/api/firebase,node,hexo,git,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,node,hexo,git,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/firebase,node,git,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=firebase,node,git,visualstudiocode
 
 ### Firebase ###
 .idea
@@ -30,11 +47,6 @@ hexo/source/_drafts
 *_BASE_*.txt
 *_LOCAL_*.txt
 *_REMOTE_*.txt
-
-### Hexo ###
-db.json
-public/
-.deploy_git/
 
 ### Node ###
 # Logs
@@ -92,6 +104,9 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+# Optional stylelint cache
+.stylelintcache
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -123,6 +138,14 @@ typings/
 .nuxt
 dist
 
+# Storybook build outputs
+.out
+.storybook-out
+storybook-static
+
+# rollup.js default build output
+dist/
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
@@ -147,10 +170,16 @@ dist
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
 
+# Temporary folders
+tmp/
+temp/
+
 ### VisualStudioCode ###
 .vscode/*
+!.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
+!.vscode/extensions.json
 *.code-workspace
 
 ### VisualStudioCode Patch ###
@@ -158,4 +187,4 @@ dist
 .history
 .ionide
 
-# End of https://www.toptal.com/developers/gitignore/api/firebase,node,hexo,git,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/firebase,node,git,visualstudiocode
