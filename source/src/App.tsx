@@ -102,6 +102,10 @@ blockquote {
 	padding-right: 1rem;
 	padding-bottom: 0.1rem;
 	padding-left: 1.5rem;
+
+	@media screen and (max-width: ${theming.size.screen_size1}) {
+		margin: 0.5rem;
+	}
 }
 
 .card {
@@ -116,9 +120,7 @@ blockquote {
 	box-shadow: 0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);
 
 	@media screen and (max-width: ${theming.size.screen_size1}) {
-		& {
-			width: 100%;
-		}
+		padding: 1rem;
 	}
 }
 
@@ -127,9 +129,9 @@ blockquote {
 	width: 50%;
 
 	@media screen and (max-width: ${theming.size.screen_size1}) {
-		& {
-			width: 70%;
-		}
+		width: auto;
+		margin: 1rem;
+		margin-top: 3rem;
 	}
 }
 
