@@ -1,7 +1,7 @@
 {
 	"hosting": [
 		{
-			"target": "test",
+			"target": "stable",
 			"cleanUrls": true,
 			"public": "source/build",
 			"rewrites": [
