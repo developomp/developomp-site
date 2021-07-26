@@ -70,7 +70,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 						/>
 					</Helmet>
 					<div className="card main-content">
-						<h2>{this.state.fetchedPage.title}</h2>
+						<h1>{this.state.fetchedPage.title}</h1>
 						<small>
 							Published on {this.state.fetchedPage.date} by
 							developomp
