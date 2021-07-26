@@ -26,6 +26,7 @@ const StyledNav = styled.nav`
 			light: theming.light.color0,
 			dark: theming.dark.color0,
 		})};
+	box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 `
 
 const StyledContainer = styled.div`
@@ -34,7 +35,6 @@ const StyledContainer = styled.div`
 	display: flex;
 	height: 2rem;
 	padding: 1rem;
-	box-shadow: 0 4px 10px rgb(0 0 0 / 5%);
 
 	/* 20px is for scrollbar */
 	@media only screen and (min-width: calc(${theming.size
