@@ -56,6 +56,14 @@ const StyledPostCard = styled.div`
 	padding: 1rem 2rem 2rem 2rem;
 `
 
+const StyledPostCardContent = styled.div`
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "grey",
+			dark: "darkgrey",
+		})};
+`
+
 interface PostListProps {
 	title: string
 	howMany?: number
@@ -128,12 +136,12 @@ export default class PostList extends React.Component<
 					</small>
 
 					<hr />
-					<div
+					<StyledPostCardContent
 						className="link-color"
 						dangerouslySetInnerHTML={{
 							__html: marked(post.preview),
 						}}
-					></div>
+					></StyledPostCardContent>
 					<small>
 						<StyledLink to={`${process.env.PUBLIC_URL}${url}`}>
 							<u>Read more</u>
