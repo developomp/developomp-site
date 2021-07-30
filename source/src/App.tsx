@@ -15,7 +15,6 @@ import PostList from "./pages/PostList"
 import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
-import Portfolio from "./pages/Portfolio"
 
 // Theme that will be used throughout the website
 const GlobalStyle = createGlobalStyle<{ theme: { currentTheme: string } }>`
@@ -220,19 +219,11 @@ export default class App extends React.Component<AppProps, AppState> {
 							) : (
 								<Switch>
 									<Route exact path="/">
-										<PostList
-											key="home"
-											howMany={4}
-											title="Home"
-										/>
+										<PostList howMany={4} title="Home" />
 									</Route>
 
 									<Route exact path="/search">
 										<Search />
-									</Route>
-
-									<Route exact path="/portfolio">
-										<Portfolio />
 									</Route>
 
 									<Route exact path="/404">
