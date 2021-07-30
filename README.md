@@ -1,37 +1,27 @@
 # developomp-site
 
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 Repository for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
 
 Tools / Frameworks / Packages used:
 
-|                                                                          Name | Use                                                   |
-| ----------------------------------------------------------------------------: | :---------------------------------------------------- |
-|                                                 [AWS](https://aws.amazon.com) | Domain register                                       |
-|                                       [Firebase](https://firebase.google.com) | Static site hosting                                   |
-|                         [Typescript](https://github.com/microsoft/TypeScript) | Static typing for javascript                          |
-|                                                  [react](https://reactjs.org) | Front end framework                                   |
-|         [react-fontawesome](https://github.com/FortAwesome/react-fontawesome) | [Fontawesome](https://fontawesome.com) icons in react |
-|           [react-helmet-async](https://github.com/staylor/react-helmet-async) | HTML head management                                  |
-|                   [gray-matter](https://github.com/jonschlinkert/gray-matter) | parsing markdown                                      |
-| [local-storage-fallback](https://github.com/ripeworks/local-storage-fallback) | storing theme choice                                  |
-|                      [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                                              |
-|            [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page                           |
-|                  [query-string](https://github.com/sindresorhus/query-string) | URL query parsing                                     |
-|   [styled-components](https://github.com/styled-components/styled-components) | easier CSS styling                                    |
-|         [styled-theming](https://github.com/styled-components/styled-theming) | Theming                                               |
-|                                    [eslint](https://github.com/eslint/eslint) | code analysis                                         |
-|                              [prettier](https://github.com/prettier/prettier) | code formatting                                       |
-|                              [ts-node](https://github.com/TypeStrong/ts-node) | running markdown-to-html generator                    |
-|                                                     [jest](https://jestjs.io) | code testing                                          |
+|                                                               Name | Use                         |
+| -----------------------------------------------------------------: | :-------------------------- |
+|                                      [AWS](https://aws.amazon.com) | Domain register             |
+|                            [Firebase](https://firebase.google.com) | Static site hosting         |
+|                                       [react](https://reactjs.org) | Front end framework         |
+|        [gray-matter](https://github.com/jonschlinkert/gray-matter) | Parsing markdown files      |
+|           [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                    |
+| [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page |
 
 # Setup
 
-Requirement:
+Requirements:
 
 -   [node](https://nodejs.org)
--   [yarn](https://github.com/yarnpkg/yarn) ([npm](https://github.com/npm/cli) is **not** supported)
+-   [yarn](https://github.com/yarnpkg/yarn)
 -   optional:
-    -   [git](https://git-scm.com)
     -   [vscode](https://code.visualstudio.com)
         -   [extensions](./.vscode/extensions.json) (also optional but highly recommended):
 
@@ -52,11 +42,22 @@ Steps:
 
 Please read the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file.
 
+# How it works
+
+The command `yarn start` does two things under the hood.
+
+First it executes the [generate.ts](./source/generate.ts) script to convert [markdown files](./source/markdown) to json files so it can be imported by react during runtime. The script also creates `map.js` file which is used to search posts without having to go through all of them each time. To just generate these files without starting the app, run `yarn generate` command in the [`source` directory](./source).
+
+Then it serves the app in http://localhost:3000 as normal just like any other react apps.
+
+The `yarn build` command will create files that can be served in the actual website.
+
 # Special thanks
 
 -   [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
+-   [Artem Golubin](https://github.com/rushter) for design inspiration ([his blog](https://rushter.com/blog))
 -   [discord](http://discord.com) for dark theme color palette (before the [rebranding of May 2021](https://blog.discord.com/how-were-making-discord-more-welcoming-for-everyone-ee152f198c60))
--   My friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
+-   My dear friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
 
 # License
 
