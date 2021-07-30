@@ -85,7 +85,7 @@ export default class PostList extends React.Component<
 
 		const howMany = props.howMany | 0
 		const isLimited = howMany ? true : false
-		const h1Text = isLimited ? `recent posts` : "All posts"
+		const h1Text = isLimited ? `Recent Posts` : "All Posts"
 
 		this.state = {
 			howMany: howMany,
