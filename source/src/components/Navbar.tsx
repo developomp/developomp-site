@@ -35,7 +35,7 @@ const StyledContainer = styled.div`
 	height: 2rem;
 	padding: 1rem;
 
-	/* 20px is for scrollbar */
+	/* account for 20px scrollbar width */
 	@media only screen and (min-width: calc(${theming.size
 			.screen_size2} + 20px)) {
 		width: calc(${theming.size.screen_size2} - 20px);
