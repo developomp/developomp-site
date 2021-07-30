@@ -9,7 +9,8 @@ import marked from "marked"
 import { Helmet } from "react-helmet-async"
 
 import theming from "../theming"
-import posts from "../data/posts.json"
+import posts from "../data/map.json"
+import Tag from "../components/Tag"
 
 const StyledPostList = styled.div`
 	padding-top: 2rem;
@@ -31,6 +32,7 @@ const StyledH1 = styled.h1`
 const StyledTitle = styled.h1`
 	font-size: 2rem;
 	font-style: bold;
+	margin-bottom: 1rem;
 `
 
 const StyledLink = styled(Link)`
@@ -51,7 +53,7 @@ const StyledPostCard = styled.div`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 	text-align: left;
 	margin-bottom: 20px;
-	padding: 10px 20px;
+	padding: 1rem 2rem 2rem 2rem;
 `
 
 interface PostListProps {
@@ -75,7 +77,7 @@ export default class PostList extends React.Component<
 
 		const howMany = props.howMany | 0
 		const isLimited = howMany ? true : false
-		const h1Text = isLimited ? `${howMany} recent posts` : "All posts"
+		const h1Text = isLimited ? `recent posts` : "All posts"
 
 		this.state = {
 			howMany: howMany,
@@ -109,12 +111,22 @@ export default class PostList extends React.Component<
 				<StyledPostCard key={url} className="card main-content">
 					<StyledTitle>
 						<StyledLink to={`${process.env.PUBLIC_URL}${url}`}>
-							{post?.title ? post.title : "Unknown title"}
+							{post?.title ? post.title : "No title"}
 						</StyledLink>
 					</StyledTitle>
 					<small>
+						<table>
+							{post.tags.map((tag) => {
+								return (
+									<td key={post.title + tag}>
+										<Tag text={tag} />
+									</td>
+								)
+							})}
+						</table>
 						Published on {post?.date ? post.date : "Unknown date"}
 					</small>
+
 					<hr />
 					<div
 						className="link-color"
@@ -124,7 +136,7 @@ export default class PostList extends React.Component<
 					></div>
 					<small>
 						<StyledLink to={`${process.env.PUBLIC_URL}${url}`}>
-							Read more
+							<u>Read more</u>
 						</StyledLink>
 					</small>
 				</StyledPostCard>

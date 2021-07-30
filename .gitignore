@@ -2,8 +2,8 @@
 _/
 
 # auto generated files
-posts.json
-posts/
+source/src/data/map.json
+source/src/data/content/
 
 # dependencies
 .pnp/

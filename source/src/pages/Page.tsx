@@ -1,17 +1,24 @@
 import React from "react"
 import marked from "marked"
 import { Helmet } from "react-helmet-async"
+import styled from "styled-components"
 
-import posts from "../data/posts.json"
+import posts from "../data/map.json"
 
+import Tag from "../components/Tag"
 import NotFound from "./NotFound"
 import Spinner from "../components/Spinner"
+
+const StyledTitle = styled.h1`
+	margin-bottom: 1rem;
+`
 
 interface PageProps {}
 
 interface PageState {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	fetchedPage: any
+	isUnsearchable: boolean
 	loading: boolean
 }
 
@@ -19,28 +26,48 @@ export default class Page extends React.Component<PageProps, PageState> {
 	constructor(props) {
 		super(props)
 		this.state = {
+			isUnsearchable: false,
 			fetchedPage: undefined,
 			loading: true,
 		}
 	}
 
 	async componentDidMount() {
-		const url = location.pathname.replace(/\/$/, "")
-		const fetchedPage = posts.posts[url] // remove a trailing slash
+		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
+		let _isUnsearchable = false
 
+		// fetch page
+		let fetchedPage = posts.posts[url]
 		if (!fetchedPage) {
-			this.setState({
-				loading: false,
-			})
-			return
+			fetchedPage = posts.unsearchable[url]
+			_isUnsearchable = true
+			this.setState({ isUnsearchable: true })
+			if (!fetchedPage) {
+				this.setState({
+					loading: false,
+				})
+				return
+			}
 		}
 
-		const fetched_content = (await import(`../data/posts${url}.json`))
-			.content
+		let fetched_content
+		if (_isUnsearchable) {
+			fetched_content = (
+				await import(`../data/content/unsearchable${url}.json`)
+			).content
+		} else {
+			fetched_content = (await import(`../data/content${url}.json`))
+				.content
+		}
+
 		fetchedPage.content = fetched_content ? fetched_content : "No content"
 		fetchedPage.toc = fetchedPage?.toc ? fetchedPage.toc : undefined
 		fetchedPage.title = fetchedPage?.title ? fetchedPage.title : "No title"
-		fetchedPage.date = fetchedPage?.date ? fetchedPage.date : "Unknown date"
+		if (!_isUnsearchable) {
+			fetchedPage.date = fetchedPage?.date
+				? fetchedPage.date
+				: "Unknown date"
+		}
 
 		this.setState({
 			fetchedPage: fetchedPage,
@@ -69,12 +96,39 @@ export default class Page extends React.Component<PageProps, PageState> {
 							content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
 						/>
 					</Helmet>
+
 					<div className="card main-content">
-						<h1>{this.state.fetchedPage.title}</h1>
+						<StyledTitle>
+							{this.state.fetchedPage.title}
+						</StyledTitle>
+						{/* Post tags */}
 						<small>
-							Published on {this.state.fetchedPage.date} by
-							developomp
+							<table>
+								{this.state.fetchedPage.tags ? (
+									this.state.fetchedPage.tags.map((tag) => {
+										return (
+											<td
+												key={
+													this.state.fetchedPage
+														.title + tag
+												}
+											>
+												<Tag text={tag} />
+											</td>
+										)
+									})
+								) : (
+									<></>
+								)}
+							</table>
+							{this.state.isUnsearchable ? (
+								<></>
+							) : (
+								<>Published on {this.state.fetchedPage.date}</>
+							)}
 						</small>
+
+						{/* Horizontal Separator */}
 						<hr />
 						{
 							this.state.fetchedPage.toc && (
