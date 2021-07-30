@@ -2,11 +2,11 @@
 title: About
 ---
 
--   about me
+-   About me
 
-    -   email: developomp@gmail.com
-    -   discord: developomp#0001 (snowflake: 501277805540147220)
-    -   [github profile](https://github.com/developomp)
-    -   me as a person
-    -   [goals](/goals)
+    -   Email: developomp@gmail.com
+    -   Discord: developomp#0001 (snowflake: 501277805540147220)
+    -   [Github profile](https://github.com/developomp)
     -   [Portfolio](/portfolio)
+    -   me as a person
+        -   [goals](/goals)
