@@ -44,13 +44,13 @@ Please read the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file.
 
 # How it works
 
-The command `yarn start` does two things under the hood.
+> Check the [`generator.ts`](./source/generate.ts) source code for more detailed information.
 
-First it executes the [generate.ts](./source/generate.ts) script to convert [markdown files](./source/markdown) to json files so it can be imported by react during runtime. The script also creates `map.js` file which is used to search posts without having to go through all of them each time. To just generate these files without starting the app, run `yarn generate` command in the [`source` directory](./source).
+The command `yarn start` does two things under the hood:
 
-Then it serves the app in http://localhost:3000 as normal just like any other react apps.
+1. it executes the [generate.ts](./source/generate.ts) script that converts [markdown files](./source/markdown) to json files so it can be imported by react during runtime. To perform the conversion without serving the app, run `yarn generate` command in the [`source` directory](./source).
 
-The `yarn build` command will create files that can be served in the actual website.
+2. it serves the app in http://localhost:3000 as normal just like any other react apps.
 
 # Special thanks
 
