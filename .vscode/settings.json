@@ -4,5 +4,11 @@
 	"editor.formatOnSave": true,
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
-	"cSpell.words": ["Fontawesome", "developomp", "developomp's", "dompurify"]
+	"cSpell.words": [
+		"Fontawesome",
+		"YYYYMMDD",
+		"developomp",
+		"developomp's",
+		"dompurify"
+	]
 }
