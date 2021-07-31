@@ -44,7 +44,8 @@ A post have title, post date, tags, and content.
 `code`<br />
 
 ```python
-print("code block")
+if __name__ == "__main__":
+	print("code block")
 ```
 
 ## Etc
