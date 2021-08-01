@@ -54,7 +54,7 @@ interface Map {
 			title: string
 			toc: string // in series home page and ≡ (3 horizontal line) button
 			length: number
-			order: string[]
+			order: string[] // url order
 			tags: string[]
 		}
 	}
@@ -79,6 +79,16 @@ const map: Map = {
 	series: {},
 	unsearchable: {},
 }
+
+interface SeriesMap {
+	// key: url
+	[key: string]: {
+		index: number
+		url: string
+	}[]
+}
+
+const seriesMap: SeriesMap = {}
 
 // converts file path to url
 function path2URL(pathToConvert: string): string {
@@ -382,9 +392,37 @@ function recursiveParseSeries(fileOrFolderPath: string) {
 		}
 
 		if (fileOrFolderName.startsWith("0")) {
-			console.log("new series")
-		} else {
 			map.series[urlPath] = { ...postData, order: [], length: 0 }
+		} else {
+			map.posts[urlPath] = postData
+			for (const key of Object.keys(map.series)) {
+				if (urlPath.slice(0, urlPath.lastIndexOf("/")).includes(key)) {
+					const index = parseInt(
+						fileOrFolderName.slice(
+							0,
+							fileOrFolderName.lastIndexOf("_")
+						)
+					)
+
+					if (isNaN(index)) {
+						throw Error(
+							`Invalid series index at: ${fileOrFolderPath}`
+						)
+					}
+
+					const itemToPush = {
+						index: index,
+						url: urlPath,
+					}
+
+					if (seriesMap[key]) {
+						seriesMap[key].push(itemToPush)
+					} else {
+						seriesMap[key] = [itemToPush]
+					}
+					break
+				}
+			}
 		}
 	}
 }
@@ -436,6 +474,24 @@ dateKeys.forEach((sortedDateKey) => {
 // fill meta data
 for (const tag in map.tags) {
 	map.meta.tags.push(tag)
+}
+
+// sort series post
+for (const seriesURL in seriesMap) {
+	seriesMap[seriesURL].sort((a, b) => {
+		if (a.index < b.index) {
+			return -1
+		}
+		if (a.index > b.index) {
+			return 1
+		}
+		return 0
+	})
+}
+
+for (const seriesURL in seriesMap) {
+	map.series[seriesURL].length = seriesMap[seriesURL].length
+	map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
 }
 
 // write to src/data/map.json

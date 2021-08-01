@@ -37,9 +37,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 		let _isUnsearchable = false
 
 		// fetch page
-		let fetchedPage = url.startsWith("/posts")
-			? posts.posts[url]
-			: posts.series[url]
+		let fetchedPage = posts.posts[url]
 		if (!fetchedPage) {
 			fetchedPage = posts.unsearchable[url]
 			_isUnsearchable = true

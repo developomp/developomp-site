@@ -72,22 +72,12 @@ export default class PostList extends React.Component<
 
 				postCount++
 				const url: string = posts.date[date][length - i - 1]
-				if (url.startsWith("/posts")) {
-					PostCards.push(
-						<PostCard
-							postData={{ url: url, ...posts.posts[url] }}
-						/>
-					)
-				} else {
-					PostCards.push(
-						<PostCard
-							postData={{
-								url: url,
-								...posts.series[url],
-							}}
-						/>
-					)
-				}
+				PostCards.push(
+					<PostCard
+						key={url}
+						postData={{ url: url, ...posts.posts[url] }}
+					/>
+				)
 			}
 		}
 
