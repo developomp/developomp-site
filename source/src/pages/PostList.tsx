@@ -71,10 +71,23 @@ export default class PostList extends React.Component<
 				if (postCount >= this.state.howMany) break
 
 				postCount++
-				const url = posts.date[date][length - i - 1]
-				PostCards.push(
-					<PostCard postData={{ url: url, ...posts.posts[url] }} />
-				)
+				const url: string = posts.date[date][length - i - 1]
+				if (url.startsWith("/posts")) {
+					PostCards.push(
+						<PostCard
+							postData={{ url: url, ...posts.posts[url] }}
+						/>
+					)
+				} else {
+					PostCards.push(
+						<PostCard
+							postData={{
+								url: url,
+								...posts.series[url],
+							}}
+						/>
+					)
+				}
 			}
 		}
 

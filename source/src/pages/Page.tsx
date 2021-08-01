@@ -37,7 +37,9 @@ export default class Page extends React.Component<PageProps, PageState> {
 		let _isUnsearchable = false
 
 		// fetch page
-		let fetchedPage = posts.posts[url]
+		let fetchedPage = url.startsWith("/posts")
+			? posts.posts[url]
+			: posts.series[url]
 		if (!fetchedPage) {
 			fetchedPage = posts.unsearchable[url]
 			_isUnsearchable = true
@@ -50,15 +52,9 @@ export default class Page extends React.Component<PageProps, PageState> {
 			}
 		}
 
-		let fetched_content
-		if (_isUnsearchable) {
-			fetched_content = (
-				await import(`../data/content/unsearchable${url}.json`)
-			).content
-		} else {
-			fetched_content = (await import(`../data/content${url}.json`))
-				.content
-		}
+		const fetched_content = _isUnsearchable
+			? (await import(`../data/content/unsearchable${url}.json`)).content
+			: (await import(`../data/content${url}.json`)).content
 
 		fetchedPage.content = fetched_content ? fetched_content : "No content"
 		fetchedPage.toc = fetchedPage?.toc ? fetchedPage.toc : undefined

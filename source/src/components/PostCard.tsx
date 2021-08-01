@@ -69,13 +69,17 @@ export default class PostCard extends React.Component<PostCardProps> {
 				</StyledTitle>
 				<small>
 					<table>
-						{this.props.postData.tags.map((tag) => {
-							return (
-								<td key={this.props.postData.title + tag}>
-									<Tag text={tag} />
-								</td>
-							)
-						})}
+						{this.props.postData.tags ? (
+							this.props.postData.tags.map((tag) => {
+								return (
+									<td key={this.props.postData.title + tag}>
+										<Tag text={tag} />
+									</td>
+								)
+							})
+						) : (
+							<></>
+						)}
 					</table>
 					Published on{" "}
 					{this.props.postData?.date
