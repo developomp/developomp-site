@@ -61,25 +61,21 @@ export default class PostList extends React.Component<
 
 	async componentDidMount() {
 		const PostCards: Array<unknown> = []
-		const recentPosts = {}
 
-		let postIndex = 0
+		let postCount = 0
 		for (const date in posts.date) {
-			if (postIndex == this.state.howMany) continue
+			if (postCount >= this.state.howMany) break
 
 			const length = posts.date[date].length
 			for (let i = 0; i < length; i++) {
-				if (postIndex == this.state.howMany) continue
-				postIndex++
+				if (postCount >= this.state.howMany) break
+
+				postCount++
 				const url = posts.date[date][length - i - 1]
-				recentPosts[postIndex] = [url, posts.posts[url]]
+				PostCards.push(
+					<PostCard postData={{ url: url, ...posts.posts[url] }} />
+				)
 			}
-		}
-
-		for (const postIndex in recentPosts) {
-			const [url, post] = recentPosts[postIndex]
-
-			PostCards.push(<PostCard postData={{ url: url, ...post }} />)
 		}
 
 		this.setState({
