@@ -1,16 +1,65 @@
 import React from "react"
 import marked from "marked"
 import { Helmet } from "react-helmet-async"
+import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import posts from "../data/map.json"
+import map from "../data/map.json"
 
 import Tag from "../components/Tag"
 import NotFound from "./NotFound"
 import Spinner from "../components/Spinner"
 
+import theming from "../theming"
+
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
+`
+
+const StyledNextPrevContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	size: 100%;
+`
+
+const StyledLink = styled(Link)`
+	${theming.styles.navbarButtonStyle}
+
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#EEEEEE",
+			dark: "#202225",
+		})};
+
+	height: 1rem;
+	width: 2rem;
+	margin-top: 2rem;
+
+	line-height: 1rem;
+	text-align: center;
+`
+
+const StyledDisabledLink = styled.div`
+	font-size: 1rem;
+	border-radius: 0.5rem;
+	float: left;
+	padding: 14px 16px;
+	text-decoration: none;
+	transition: transform 0.1s linear;
+	color: grey;
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#EEEEEE",
+			dark: "#202225",
+		})};
+
+	height: 1rem;
+	width: 2rem;
+	margin-top: 2rem;
+
+	line-height: 1rem;
+	text-align: center;
+	user-select: none;
 `
 
 interface PageProps {}
@@ -19,29 +68,93 @@ interface PageState {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	fetchedPage: any
 	isUnsearchable: boolean
+	isSeries: boolean
+	seriesData: {
+		seriesHome: string
+		prev: string | null
+		next: string | null
+	} | null
 	loading: boolean
+}
+
+interface NextPrevProps {
+	prevURL: string | null
+	nextURL: string | null
+}
+
+class NextPrev extends React.Component<NextPrevProps> {
+	render() {
+		return (
+			<StyledNextPrevContainer>
+				{this.props.prevURL ? (
+					<StyledLink to={this.props.prevURL}>prev</StyledLink>
+				) : (
+					<StyledDisabledLink>prev</StyledDisabledLink>
+				)}
+				{this.props.nextURL ? (
+					<StyledLink to={this.props.nextURL}>next</StyledLink>
+				) : (
+					<StyledDisabledLink>next</StyledDisabledLink>
+				)}
+			</StyledNextPrevContainer>
+		)
+	}
 }
 
 export default class Page extends React.Component<PageProps, PageState> {
 	constructor(props) {
 		super(props)
 		this.state = {
-			isUnsearchable: false,
 			fetchedPage: undefined,
+			isUnsearchable: false,
+			isSeries: false,
+			seriesData: null,
 			loading: true,
 		}
 	}
 
 	async componentDidMount() {
-		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
 		let _isUnsearchable = false
+		let _isSeries = false
+
+		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
+
+		if (url.startsWith("/series")) _isSeries = true
+
+		if (_isSeries) {
+			const seriesURL = url.slice(0, url.lastIndexOf("/"))
+			if (seriesURL in map.series) {
+				const _curr: number = map.series[seriesURL].order.indexOf(url)
+				let _prev: number | null = _curr - 1
+				let _next: number | null = _curr + 1
+
+				if (_prev < 0) _prev = null
+				if (_next > map.series[seriesURL].order.length - 1) _next = null
+
+				this.setState({
+					seriesData: {
+						seriesHome: seriesURL,
+						prev:
+							_prev != null
+								? map.series[seriesURL].order[_prev]
+								: null,
+						next:
+							_next != null
+								? map.series[seriesURL].order[_next]
+								: null,
+					},
+				})
+			}
+		}
 
 		// fetch page
-		let fetchedPage = posts.posts[url]
+		let fetchedPage = map.posts[url]
 		if (!fetchedPage) {
-			fetchedPage = posts.unsearchable[url]
+			fetchedPage = map.unsearchable[url]
+
 			_isUnsearchable = true
 			this.setState({ isUnsearchable: true })
+
 			if (!fetchedPage) {
 				this.setState({
 					loading: false,
@@ -64,6 +177,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 		}
 
 		this.setState({
+			isSeries: _isSeries,
 			fetchedPage: fetchedPage,
 			loading: false,
 		})
@@ -91,7 +205,20 @@ export default class Page extends React.Component<PageProps, PageState> {
 						/>
 					</Helmet>
 
-					<div className="card main-content">
+					<div
+						className="card main-content"
+						style={{
+							paddingTop: 0,
+						}}
+					>
+						{this.state.isSeries ? (
+							<NextPrev
+								prevURL={this.state.seriesData?.prev || null}
+								nextURL={this.state.seriesData?.next || null}
+							/>
+						) : (
+							<></>
+						)}
 						<StyledTitle>
 							{this.state.fetchedPage.title}
 						</StyledTitle>
@@ -121,7 +248,6 @@ export default class Page extends React.Component<PageProps, PageState> {
 								<>Published on {this.state.fetchedPage.date}</>
 							)}
 						</small>
-
 						{/* Horizontal Separator */}
 						<hr />
 						{
