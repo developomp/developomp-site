@@ -25,7 +25,6 @@ const StyledFooterContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 
-	margin-bottom: 1px; /* a hacky solution for footer going outside the page by 1px */
 	padding: 0 1rem 0 1rem;
 
 	height: 100px;
