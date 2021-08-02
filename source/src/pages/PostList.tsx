@@ -7,7 +7,7 @@ import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
 import theming from "../theming"
-import posts from "../data/map.json"
+import map from "../data/map.json"
 
 import PostCard from "../components/PostCard"
 
@@ -63,19 +63,19 @@ export default class PostList extends React.Component<
 		const PostCards: Array<unknown> = []
 
 		let postCount = 0
-		for (const date in posts.date) {
+		for (const date in map.date) {
 			if (postCount >= this.state.howMany) break
 
-			const length = posts.date[date].length
+			const length = map.date[date].length
 			for (let i = 0; i < length; i++) {
 				if (postCount >= this.state.howMany) break
 
 				postCount++
-				const url: string = posts.date[date][length - i - 1]
+				const url: string = map.date[date][length - i - 1]
 				PostCards.push(
 					<PostCard
 						key={url}
-						postData={{ url: url, ...posts.posts[url] }}
+						postData={{ url: url, ...map.posts[url] }}
 					/>
 				)
 			}
