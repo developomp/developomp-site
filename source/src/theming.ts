@@ -43,13 +43,12 @@ export default {
 	},
 	styles: {
 		navbarButtonStyle: css`
-			cursor: pointer;
-			font-size: 1em;
+			cursor: pointer; /* so it can be applies to divs too */
+			font-size: 1rem;
 			border-radius: 0.5rem;
 			float: left;
 			padding: 14px 16px;
 			text-decoration: none;
-			margin: 0.1em;
 			transition: transform 0.1s linear;
 			color: ${(props) =>
 				theme(props.theme.currentTheme, {

@@ -59,6 +59,7 @@ const StyledImg = styled.img`
 
 const StyledLink = styled(Link)`
 	${theming.styles.navbarButtonStyle}
+	margin: 0 0.2rem 0 0.2rem;
 `
 
 export default class Navbar extends React.Component {
