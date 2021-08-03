@@ -218,14 +218,14 @@ export default class Page extends React.Component<PageProps, PageState> {
 								nextURL={this.state.seriesData?.next || null}
 							/>
 						) : (
-							<></>
+							<br />
 						)}
 						<StyledTitle>
 							{this.state.fetchedPage.title}
 						</StyledTitle>
 						{/* Post tags */}
 						<small>
-							<TagList>
+							<TagList direction="left">
 								{this.state.fetchedPage.tags ? (
 									this.state.fetchedPage.tags.map((tag) => {
 										return (
@@ -252,9 +252,10 @@ export default class Page extends React.Component<PageProps, PageState> {
 						{/* Horizontal Separator */}
 						<hr />
 						{
+							// add toc if it exists
 							this.state.fetchedPage.toc && (
 								<>
-									<div className="card">
+									<div>
 										<strong>Table of Content:</strong>
 										<div
 											className="link-color"
@@ -267,7 +268,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 									</div>
 									<hr />
 								</>
-							) // add toc if it exists
+							)
 						}
 						<div
 							className="link-color"
