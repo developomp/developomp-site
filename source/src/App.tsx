@@ -72,6 +72,41 @@ code {
 	font-family: ${theming.font.code};
 }
 
+/* https://www.rgagnon.com/jsdetails/js-nice-effect-the-KBD-tag.html */
+kbd {
+	margin: 0px 0.1em;
+	padding: 0.1em 0.6em;
+	border-radius: 3px;
+	border: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "1px solid #CCCCCC",
+			dark: "1px solid #555555",
+		})};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#333333",
+			dark: "white",
+		})};
+	line-height: 1.4;
+	font-size: 10px;
+	display: inline-block;
+	box-shadow: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "0px 1px 0px rgba(0,0,0,0.2), inset 0px 0px 0px 2px white",
+			dark: "0px 1px 0px rgba(255,255,255,0.3), inset 0px 0px 0px 2px black",
+		})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#F7F7F7",
+			dark: "black",
+		})};
+	text-shadow: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "0 1px 0 white",
+			dark: "0 1px 0 black",
+		})};
+}
+
 .link-color a {
 	text-decoration: none;
 	color: ${theming.color.linkColor};
