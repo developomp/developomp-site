@@ -1,18 +1,25 @@
 import React from "react"
 import styled from "styled-components"
 
-const StyledTagList = styled.div`
+const StyledTagList = styled.div<{ direction: string }>`
 	display: flex;
 	flex-wrap: wrap;
 	row-gap: 0.5rem;
 	column-gap: 0.5rem;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: ${({ direction }) => direction};
 `
 
-export default class TagList extends React.Component {
+interface TagListProps {
+	direction?: string
+}
+
+export default class TagList extends React.Component<TagListProps> {
 	render() {
-		// eslint-disable-next-line react/prop-types
-		return <StyledTagList>{this.props.children}</StyledTagList>
+		return (
+			<StyledTagList direction={this.props.direction || "center"}>
+				{this.props.children}
+			</StyledTagList>
+		)
 	}
 }

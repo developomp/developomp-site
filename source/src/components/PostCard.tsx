@@ -70,7 +70,7 @@ export default class PostCard extends React.Component<PostCardProps> {
 					</StyledLink>
 				</StyledTitle>
 				<small>
-					<TagList>
+					<TagList direction="left">
 						{this.props.postData.tags ? (
 							this.props.postData.tags.map((tag) => {
 								return (
