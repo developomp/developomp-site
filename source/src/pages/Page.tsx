@@ -4,13 +4,14 @@ import { Helmet } from "react-helmet-async"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import map from "../data/map.json"
+import theming from "../theming"
 
 import Tag from "../components/Tag"
+import TagList from "../components/TagList"
 import NotFound from "./NotFound"
 import Spinner from "../components/Spinner"
 
-import theming from "../theming"
+import map from "../data/map.json"
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
@@ -224,7 +225,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 						</StyledTitle>
 						{/* Post tags */}
 						<small>
-							<table>
+							<TagList>
 								{this.state.fetchedPage.tags ? (
 									this.state.fetchedPage.tags.map((tag) => {
 										return (
@@ -241,7 +242,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 								) : (
 									<></>
 								)}
-							</table>
+							</TagList>
 							{this.state.isUnsearchable ? (
 								<></>
 							) : (

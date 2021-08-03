@@ -4,7 +4,9 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 import theming from "../theming"
+
 import Tag from "../components/Tag"
+import TagList from "../components/TagList"
 
 const StyledTitle = styled.h1`
 	font-size: 2rem;
@@ -68,19 +70,20 @@ export default class PostCard extends React.Component<PostCardProps> {
 					</StyledLink>
 				</StyledTitle>
 				<small>
-					<table>
+					<TagList>
 						{this.props.postData.tags ? (
 							this.props.postData.tags.map((tag) => {
 								return (
-									<td key={this.props.postData.title + tag}>
-										<Tag text={tag} />
-									</td>
+									<Tag
+										key={this.props.postData.title + tag}
+										text={tag}
+									/>
 								)
 							})
 						) : (
 							<></>
 						)}
-					</table>
+					</TagList>
 					Published on{" "}
 					{this.props.postData?.date
 						? this.props.postData.date

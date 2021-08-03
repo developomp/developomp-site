@@ -1,16 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { BrowserRouter, useLocation, useHistory } from "react-router-dom"
+import { useLocation, useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { DateRange } from "react-date-range"
-import queryString from "query-string"
+import queryString from "query-string" // parsing url query
+import elasticlunr from "elasticlunr" // search engine
+
+import map from "../data/map.json"
+import searchIndex from "../data/search.json"
+import theming from "../theming"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
 
-import theming from "../theming"
-import map from "../data/map.json"
 import Tag from "../components/Tag"
+import TagList from "../components/TagList"
+import PostCard from "../components/PostCard"
 
 const StyledSearch = styled.div`
 	text-align: center;
@@ -39,23 +44,18 @@ const StyledSearchControlContainer = styled.div`
 	}
 `
 
-const StyledSearchResult = styled.div``
-
-const StyledTagTable = styled.table`
-	margin: 0 auto 0 auto;
-`
-
+// todo: find ways to get rid of wrapper component
 export default function Search() {
-	return (
-		<BrowserRouter>
-			<_Search />
-		</BrowserRouter>
-	)
+	return <_Search />
 }
 
 // have to be in a separate component for tags to update when the urls change
-// todo: check if using keys will fix the issue
+// todo: check if using keys will allow me to use class components
 function _Search() {
+	const [index, setIndex] = useState({} as elasticlunr.Index<unknown>)
+
+	useEffect(() => setIndex(elasticlunr.Index.load(searchIndex as never)), [])
+
 	const _history = useHistory()
 	const _location = useLocation()
 
@@ -75,6 +75,10 @@ function _Search() {
 			key: "selection",
 		},
 	])
+
+	const [postCards, setPostCards] = useState<unknown[]>([])
+
+	const [searchInput, setSearchInput] = useState("")
 
 	return (
 		<>
@@ -128,19 +132,20 @@ function _Search() {
 					/>
 
 					<StyledSearchControlContainer>
-						<input type="text" />
+						<input
+							type="text"
+							onChange={(event) =>
+								setSearchInput(event.target.value)
+							}
+						/>
 						<br />
 						<br />
 						<small>
-							<StyledTagTable>
+							<TagList>
 								{query.tags?.map((tag) => {
-									return (
-										<td key={tag}>
-											<Tag text={tag} />
-										</td>
-									)
+									return <Tag key={tag} text={tag} />
 								})}
-							</StyledTagTable>
+							</TagList>
 						</small>
 						<br />
 						date from: {query.from}
@@ -176,10 +181,38 @@ function _Search() {
 						>
 							Search test 2
 						</button>
+						<br />
+						<button
+							onClick={() => {
+								try {
+									const _postCards: unknown[] = []
+									for (const res of index.search(
+										searchInput
+									)) {
+										if (map.posts[res.ref]) {
+											_postCards.push(
+												<PostCard
+													key={res.ref}
+													postData={{
+														url: res.ref,
+														...map.posts[res.ref],
+													}}
+												/>
+											)
+										}
+										setPostCards(_postCards)
+									}
+
+									// eslint-disable-next-line no-empty
+								} catch (err) {}
+							}}
+						>
+							Search
+						</button>
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
-				<StyledSearchResult>{map.meta.tags}</StyledSearchResult>
 			</StyledSearch>
+			{postCards}
 		</>
 	)
 }

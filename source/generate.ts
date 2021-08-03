@@ -8,6 +8,7 @@
 
 import fs from "fs" // read and write files
 import path from "path" // get relative path
+import elasticlunr from "elasticlunr" // search index generation
 import matter from "gray-matter" // parse markdown metadata
 import toc from "markdown-toc" // table of contents generation
 
@@ -68,6 +69,14 @@ interface Map {
 	}
 }
 
+interface SeriesMap {
+	// key: url
+	[key: string]: {
+		index: number
+		url: string
+	}[]
+}
+
 // searchable data that will be converted to JSON string
 const map: Map = {
 	date: {},
@@ -79,16 +88,12 @@ const map: Map = {
 	series: {},
 	unsearchable: {},
 }
-
-interface SeriesMap {
-	// key: url
-	[key: string]: {
-		index: number
-		url: string
-	}[]
-}
-
 const seriesMap: SeriesMap = {}
+const index = elasticlunr(function () {
+	this.addField("title" as never)
+	this.addField("body" as never)
+	this.setRef("url" as never)
+})
 
 // converts file path to url
 function path2URL(pathToConvert: string): string {
@@ -209,6 +214,11 @@ function recursiveParsePosts(fileOrFolderPath: string) {
 		}
 
 		map.posts[urlPath] = postData
+		index.addDoc({
+			title: parsedMarkdown.data.title,
+			body: parsedMarkdown.content,
+			url: urlPath,
+		})
 	}
 }
 
@@ -244,7 +254,12 @@ function recursiveParseUnsearchable(fileOrFolderPath: string) {
 			return
 		}
 
-		const urlPath = path2URL(fileOrFolderPath)
+		const _urlPath = path2URL(fileOrFolderPath)
+		const urlPath = _urlPath.slice(
+			_urlPath
+				.slice(1) // ignore the first slash
+				.indexOf("/") + 1
+		)
 
 		// parse markdown metadata
 		const parsedMarkdown = matter(fs.readFileSync(fileOrFolderPath, "utf8"))
@@ -254,7 +269,7 @@ function recursiveParseUnsearchable(fileOrFolderPath: string) {
 		}
 
 		// urlPath starts with a slash
-		const contentFilePath = `${contentDirectoryPath}${urlPath}.json`
+		const contentFilePath = `${contentDirectoryPath}/unsearchable${urlPath}.json`
 
 		// create directory to put json content files
 		fs.mkdirSync(
@@ -271,15 +286,15 @@ function recursiveParseUnsearchable(fileOrFolderPath: string) {
 		)
 
 		// Parse data that will be written to map.js
-		map.unsearchable[
-			urlPath.slice(
-				urlPath
-					.slice(1) // ignore the first slash
-					.indexOf("/") + 1
-			)
-		] = {
+		map.unsearchable[urlPath] = {
 			title: parsedMarkdown.data.title,
 		}
+
+		index.addDoc({
+			title: parsedMarkdown.data.title,
+			body: parsedMarkdown.content,
+			url: urlPath,
+		})
 	}
 }
 
@@ -395,6 +410,11 @@ function recursiveParseSeries(fileOrFolderPath: string) {
 			map.series[urlPath] = { ...postData, order: [], length: 0 }
 		} else {
 			map.posts[urlPath] = postData
+			index.addDoc({
+				title: parsedMarkdown.data.title,
+				body: parsedMarkdown.content,
+				url: urlPath,
+			})
 			for (const key of Object.keys(map.series)) {
 				if (urlPath.slice(0, urlPath.lastIndexOf("/")).includes(key)) {
 					const index = parseInt(
@@ -494,5 +514,5 @@ for (const seriesURL in seriesMap) {
 	map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
 }
 
-// write to src/data/map.json
 fs.writeFileSync(mapFilePath, JSON.stringify(map))
+fs.writeFileSync(outPath + "/search.json", JSON.stringify(index))

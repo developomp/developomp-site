@@ -6,7 +6,6 @@ import theming from "../theming"
 import { faTag } from "@fortawesome/free-solid-svg-icons"
 
 const StyledTag = styled.div`
-	display: table;
 	text-align: center;
 
 	padding: 0 0.8rem 0.1rem 0.8rem;

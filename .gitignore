@@ -3,6 +3,7 @@ _/
 
 # auto generated files
 source/src/data/map.json
+source/src/data/search.json
 source/src/data/content/
 
 # dependencies

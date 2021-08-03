@@ -15,6 +15,7 @@ Tools / Frameworks / Packages used:
 |        [gray-matter](https://github.com/jonschlinkert/gray-matter) | Parsing markdown files      |
 |           [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                    |
 | [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page |
+|          [elasticlunr](https://github.com/weixsong/elasticlunr.js) | Search engine               |
 
 # Setup
 
