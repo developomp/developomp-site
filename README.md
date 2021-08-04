@@ -12,10 +12,11 @@ Tools / Frameworks / Packages used:
 |                                      [AWS](https://aws.amazon.com) | Domain register             |
 |                            [Firebase](https://firebase.google.com) | Static site hosting         |
 |                                       [react](https://reactjs.org) | Front end framework         |
-|        [gray-matter](https://github.com/jonschlinkert/gray-matter) | Parsing markdown files      |
 |           [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                    |
 | [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page |
 |          [elasticlunr](https://github.com/weixsong/elasticlunr.js) | Search engine               |
+|        [gray-matter](https://github.com/jonschlinkert/gray-matter) | Markdown parsing            |
+|          [markdown-it](https://github.com/markdown-it/markdown-it) | Markdown rendering          |
 
 # Setup
 

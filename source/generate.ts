@@ -10,7 +10,11 @@ import fs from "fs" // read and write files
 import path from "path" // get relative path
 import elasticlunr from "elasticlunr" // search index generation
 import matter from "gray-matter" // parse markdown metadata
+import markdownIt from "markdown-it" // rendering markdown
+import hljs from "highlight.js" // code block highlighting
 import toc from "markdown-toc" // table of contents generation
+import tm from "markdown-it-texmath" // rendering mathematical expression
+import katex from "katex" // rendering mathematical expression
 
 const markdownPath = "./markdown" // where it will look for markdown documents
 const outPath = "./src/data" // path to the json database
@@ -95,6 +99,24 @@ const index = elasticlunr(function () {
 	this.setRef("url" as never)
 })
 
+const md = markdownIt({
+	highlight: function (str, lang) {
+		if (lang && hljs.getLanguage(lang)) {
+			try {
+				return hljs.highlight(str, { language: lang }).value
+				// eslint-disable-next-line no-empty
+			} catch (error) {}
+		}
+
+		return "" // use external default escaping
+	},
+	html: true,
+}).use(tm, {
+	engine: katex,
+	delimiters: "dollars",
+	katexOptions: { macros: { "\\RR": "\\mathbb{R}" } },
+})
+
 // converts file path to url
 function path2URL(pathToConvert: string): string {
 	return `/${path.relative(markdownPath, pathToConvert)}`
@@ -112,193 +134,51 @@ function path2FileOrFolderName(inputPath: string): string {
 	return inputPath.slice(inputPath.lastIndexOf("/") + 1)
 }
 
-// A recursive function that calls itself for every files and directories that it finds
-function recursiveParsePosts(fileOrFolderPath: string) {
-	// get string after the last slash character
-	const fileOrFolderName = path2FileOrFolderName(fileOrFolderPath)
+// gets the nth occurance of a pattern in string
+// returns -1 if nothing is found
+// https://stackoverflow.com/a/14482123/12979111
+function nthIndex(str: string, pat: string, n: number) {
+	let i = -1
 
-	// ignore if file or directory name starts with a underscore
-	if (fileOrFolderName.startsWith("_")) return
-
-	// get data about the given path
-	const stats = fs.lstatSync(fileOrFolderPath)
-
-	// if it's a directory, call this function to every files/directories in it
-	// if it's a file, parse it and then save it to file
-	if (stats.isDirectory()) {
-		fs.readdirSync(fileOrFolderPath).map((childPath) => {
-			recursiveParsePosts(`${fileOrFolderPath}/${childPath}`)
-		})
-	} else if (stats.isFile()) {
-		// skip if it is not a markdown file
-		if (!fileOrFolderName.endsWith(".md")) {
-			console.log(`Ignoring non markdown file at: ${fileOrFolderPath}`)
-			return
-		}
-
-		// path that will be used as site url
-		const urlPath = path2URL(fileOrFolderPath)
-
-		// parse markdown metadata
-		const parsedMarkdown = matter(fs.readFileSync(fileOrFolderPath, "utf8"))
-
-		if (!parsedMarkdown.data.title) {
-			throw Error(`Title is not defined in file: ${fileOrFolderPath}`)
-		}
-
-		if (!parsedMarkdown.data.date) {
-			throw Error(`Date is not defined in file: ${fileOrFolderPath}`)
-		}
-
-		// urlPath starts with a slash
-		const contentFilePath = `${contentDirectoryPath}${urlPath}.json`
-
-		// create directory to put json content files
-		fs.mkdirSync(
-			contentFilePath.slice(0, contentFilePath.lastIndexOf("/")),
-			{ recursive: true }
-		)
-
-		// write content to json file
-		fs.writeFileSync(
-			contentFilePath,
-			JSON.stringify({
-				content: parsedMarkdown.content.trim(),
-			})
-		)
-
-		// Parse data that will be written to map.js
-		const postData = {
-			title: parsedMarkdown.data.title,
-			preview: "",
-			date: "",
-			tags: [],
-			toc: toc(parsedMarkdown.content).content,
-		}
-
-		// content preview
-		// parsedMarkdown.excerpt is intentionally not used
-		// todo: fix potential improper closing of html tag
-		const slicedContent = parsedMarkdown.content.split(" ")
-		if (slicedContent.length > 19) {
-			postData.preview = slicedContent.slice(0, 19).join(" ") + " ..."
-		} else {
-			postData.preview = parsedMarkdown.content
-		}
-
-		// date
-		const postDate = new Date(parsedMarkdown.data.date)
-		postData.date = postDate.toLocaleString("default", {
-			month: "short",
-			day: "numeric",
-			year: "numeric",
-		})
-
-		const YYYY_MM_DD = postDate.toISOString().split("T")[0]
-		if (map.date[YYYY_MM_DD]) {
-			map.date[YYYY_MM_DD].push(urlPath)
-		} else {
-			map.date[YYYY_MM_DD] = [urlPath]
-		}
-
-		//tags
-		postData.tags = parsedMarkdown.data.tags
-		if (postData.tags) {
-			postData.tags.forEach((tag) => {
-				if (map.tags[tag]) {
-					map.tags[tag].push(urlPath)
-				} else {
-					map.tags[tag] = [urlPath]
-				}
-			})
-		}
-
-		map.posts[urlPath] = postData
-		index.addDoc({
-			title: parsedMarkdown.data.title,
-			body: parsedMarkdown.content,
-			url: urlPath,
-		})
+	while (n-- && i++ < str.length) {
+		i = str.indexOf(pat, i)
+		if (i < 0) break
 	}
+
+	return i
 }
 
-function recursiveParseUnsearchable(fileOrFolderPath: string) {
-	// get string after the last slash character
-	const fileOrFolderName = path2FileOrFolderName(fileOrFolderPath)
+function writeToJSON(JSONFilePath: string, dataToWrite: string) {
+	// create directory to put json content files
+	fs.mkdirSync(JSONFilePath.slice(0, JSONFilePath.lastIndexOf("/")), {
+		recursive: true,
+	})
 
-	// ignore if file or directory name starts with a underscore
-	if (fileOrFolderName.startsWith("_")) return
-
-	// illegal names
-	if (
-		fileOrFolderPath == "./markdown/unsearchable/posts" ||
-		fileOrFolderPath == "./markdown/unsearchable/series"
+	// write content to json file
+	fs.writeFileSync(
+		JSONFilePath,
+		JSON.stringify({
+			content: dataToWrite.trim(),
+		})
 	)
-		throw Error(
-			`Illegal name (posts/series) in path: "${fileOrFolderPath}".`
-		)
-
-	// get data about the given path
-	const stats = fs.lstatSync(fileOrFolderPath)
-
-	// if it's a directory, call this function to every files/directories in it
-	// if it's a file, parse it and then save it to file
-	if (stats.isDirectory()) {
-		fs.readdirSync(fileOrFolderPath).map((childPath) => {
-			recursiveParseUnsearchable(`${fileOrFolderPath}/${childPath}`)
-		})
-	} else if (stats.isFile()) {
-		// skip if it is not a markdown file
-		if (!fileOrFolderName.endsWith(".md")) {
-			console.log(`Ignoring non markdown file at: ${fileOrFolderPath}`)
-			return
-		}
-
-		const _urlPath = path2URL(fileOrFolderPath)
-		const urlPath = _urlPath.slice(
-			_urlPath
-				.slice(1) // ignore the first slash
-				.indexOf("/") + 1
-		)
-
-		// parse markdown metadata
-		const parsedMarkdown = matter(fs.readFileSync(fileOrFolderPath, "utf8"))
-
-		if (!parsedMarkdown.data.title) {
-			throw Error(`Title is not defined in file: ${fileOrFolderPath}`)
-		}
-
-		// urlPath starts with a slash
-		const contentFilePath = `${contentDirectoryPath}/unsearchable${urlPath}.json`
-
-		// create directory to put json content files
-		fs.mkdirSync(
-			contentFilePath.slice(0, contentFilePath.lastIndexOf("/")),
-			{ recursive: true }
-		)
-
-		// write content to json file
-		fs.writeFileSync(
-			contentFilePath,
-			JSON.stringify({
-				content: parsedMarkdown.content.trim(),
-			})
-		)
-
-		// Parse data that will be written to map.js
-		map.unsearchable[urlPath] = {
-			title: parsedMarkdown.data.title,
-		}
-
-		index.addDoc({
-			title: parsedMarkdown.data.title,
-			body: parsedMarkdown.content,
-			url: urlPath,
-		})
-	}
 }
 
-function recursiveParseSeries(fileOrFolderPath: string) {
+// A recursive function that calls itself for every files and directories that it finds
+function recursiveParse(
+	mode: "posts" | "series" | "unsearchable",
+	fileOrFolderPath: string
+) {
+	if (mode == "unsearchable") {
+		// illegal names
+		if (
+			fileOrFolderPath == "./markdown/unsearchable/posts" ||
+			fileOrFolderPath == "./markdown/unsearchable/series"
+		)
+			throw Error(
+				`Illegal name (posts/series) in path: "${fileOrFolderPath}".`
+			)
+	}
+
 	// get string after the last slash character
 	const fileOrFolderName = path2FileOrFolderName(fileOrFolderPath)
 
@@ -312,7 +192,7 @@ function recursiveParseSeries(fileOrFolderPath: string) {
 	// if it's a file, parse it and then save it to file
 	if (stats.isDirectory()) {
 		fs.readdirSync(fileOrFolderPath).map((childPath) => {
-			recursiveParseSeries(`${fileOrFolderPath}/${childPath}`)
+			recursiveParse(mode, `${fileOrFolderPath}/${childPath}`)
 		})
 	} else if (stats.isFile()) {
 		// skip if it is not a markdown file
@@ -321,126 +201,217 @@ function recursiveParseSeries(fileOrFolderPath: string) {
 			return
 		}
 
-		if (
-			!fileOrFolderName.includes("_") &&
-			!fileOrFolderName.startsWith("0")
-		)
-			throw Error(`Invalid series post file name at: ${fileOrFolderPath}`)
+		// read markdown file
+		const markdownRaw = fs.readFileSync(fileOrFolderPath, "utf8")
 
 		// parse markdown metadata
-		const parsedMarkdown = matter(fs.readFileSync(fileOrFolderPath, "utf8"))
+		const markdownData = matter(
+			markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)
+		).data
 
-		if (!parsedMarkdown.data.title) {
+		if (!markdownData.title)
 			throw Error(`Title is not defined in file: ${fileOrFolderPath}`)
-		}
 
-		if (!parsedMarkdown.data.date) {
-			throw Error(`Date is not defined in file: ${fileOrFolderPath}`)
-		}
+		markdownData.content =
+			md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) ||
+			""
 
-		// path that will be used as site url
-		let urlPath = path2URL(fileOrFolderPath)
-		urlPath = urlPath.slice(0, urlPath.lastIndexOf("_"))
-		urlPath = urlPath.replace(/\/$/, "") // remove trailing slash
+		if (mode == "posts") {
+			if (!markdownData.date) {
+				throw Error(`Date is not defined in file: ${fileOrFolderPath}`)
+			}
 
-		// urlPath starts with a slash
-		const contentFilePath = `${contentDirectoryPath}${urlPath}.json`
+			// path that will be used as site url (starts with a slash)
+			const urlPath = path2URL(fileOrFolderPath)
 
-		// create directory to put json content files
-		fs.mkdirSync(
-			contentFilePath.slice(0, contentFilePath.lastIndexOf("/")),
-			{ recursive: true }
-		)
+			writeToJSON(
+				`${contentDirectoryPath}${urlPath}.json`,
+				markdownData.content
+			)
 
-		// write content to json file
-		fs.writeFileSync(
-			contentFilePath,
-			JSON.stringify({
-				content: parsedMarkdown.content.trim(),
+			// Parse data that will be written to map.js
+			const postData = {
+				title: markdownData.title,
+				preview: "",
+				date: "",
+				tags: [],
+				toc: toc(markdownData.content).content,
+			}
+
+			// content preview
+			// parsedMarkdown.excerpt is intentionally not used
+			// todo: fix potential improper closing of html tag
+			const slicedContent = markdownData.content.split(" ")
+			if (slicedContent.length > 19) {
+				postData.preview = slicedContent.slice(0, 19).join(" ") + " ..."
+			} else {
+				postData.preview = markdownData.content
+			}
+
+			// date
+			const postDate = new Date(markdownData.date)
+			postData.date = postDate.toLocaleString("default", {
+				month: "short",
+				day: "numeric",
+				year: "numeric",
 			})
-		)
 
-		// Parse data that will be written to map.js
-		const postData = {
-			title: parsedMarkdown.data.title,
-			preview: "",
-			date: "",
-			tags: [],
-			toc: toc(parsedMarkdown.content).content,
-		}
+			const YYYY_MM_DD = postDate.toISOString().split("T")[0]
+			if (map.date[YYYY_MM_DD]) {
+				map.date[YYYY_MM_DD].push(urlPath)
+			} else {
+				map.date[YYYY_MM_DD] = [urlPath]
+			}
 
-		// content preview
-		// parsedMarkdown.excerpt is intentionally not used
-		// todo: fix potential improper closing of html tag
-		const slicedContent = parsedMarkdown.content.split(" ")
-		if (slicedContent.length > 19) {
-			postData.preview = slicedContent.slice(0, 19).join(" ") + " ..."
-		} else {
-			postData.preview = parsedMarkdown.content
-		}
+			//tags
+			postData.tags = markdownData.tags
+			if (postData.tags) {
+				postData.tags.forEach((tag) => {
+					if (map.tags[tag]) {
+						map.tags[tag].push(urlPath)
+					} else {
+						map.tags[tag] = [urlPath]
+					}
+				})
+			}
 
-		// date
-		const postDate = new Date(parsedMarkdown.data.date)
-		postData.date = postDate.toLocaleString("default", {
-			month: "short",
-			day: "numeric",
-			year: "numeric",
-		})
-
-		const YYYY_MM_DD = postDate.toISOString().split("T")[0]
-		if (map.date[YYYY_MM_DD]) {
-			map.date[YYYY_MM_DD].push(urlPath)
-		} else {
-			map.date[YYYY_MM_DD] = [urlPath]
-		}
-
-		//tags
-		postData.tags = parsedMarkdown.data.tags
-		if (postData.tags) {
-			postData.tags.forEach((tag) => {
-				if (map.tags[tag]) {
-					map.tags[tag].push(urlPath)
-				} else {
-					map.tags[tag] = [urlPath]
-				}
-			})
-		}
-
-		if (fileOrFolderName.startsWith("0")) {
-			map.series[urlPath] = { ...postData, order: [], length: 0 }
-		} else {
 			map.posts[urlPath] = postData
 			index.addDoc({
-				title: parsedMarkdown.data.title,
-				body: parsedMarkdown.content,
+				title: markdownData.title,
+				body: markdownData.content,
 				url: urlPath,
 			})
-			for (const key of Object.keys(map.series)) {
-				if (urlPath.slice(0, urlPath.lastIndexOf("/")).includes(key)) {
-					const index = parseInt(
-						fileOrFolderName.slice(
-							0,
-							fileOrFolderName.lastIndexOf("_")
-						)
-					)
+		} else if (mode == "unsearchable") {
+			// path that will be used as site url (starts with a slash)
+			const _urlPath = path2URL(fileOrFolderPath)
+			const urlPath = _urlPath.slice(
+				_urlPath
+					.slice(1) // ignore the first slash
+					.indexOf("/") + 1
+			)
 
-					if (isNaN(index)) {
-						throw Error(
-							`Invalid series index at: ${fileOrFolderPath}`
-						)
-					}
+			writeToJSON(
+				`${contentDirectoryPath}/unsearchable${urlPath}.json`,
+				markdownData.content
+			)
 
-					const itemToPush = {
-						index: index,
-						url: urlPath,
-					}
+			// Parse data that will be written to map.js
+			map.unsearchable[urlPath] = {
+				title: markdownData.title,
+			}
 
-					if (seriesMap[key]) {
-						seriesMap[key].push(itemToPush)
+			index.addDoc({
+				title: markdownData.title,
+				body: markdownData.content,
+				url: urlPath,
+			})
+		} else if (mode == "series") {
+			if (
+				!fileOrFolderName.includes("_") &&
+				!fileOrFolderName.startsWith("0")
+			)
+				throw Error(
+					`Invalid series post file name at: ${fileOrFolderPath}`
+				)
+
+			if (!markdownData.date) {
+				throw Error(`Date is not defined in file: ${fileOrFolderPath}`)
+			}
+
+			// path that will be used as site url (starts with a slash)
+			let urlPath = path2URL(fileOrFolderPath)
+			urlPath = urlPath.slice(0, urlPath.lastIndexOf("_"))
+			urlPath = urlPath.replace(/\/$/, "") // remove trailing slash
+
+			writeToJSON(
+				`${contentDirectoryPath}${urlPath}.json`,
+				markdownData.content
+			)
+
+			// Parse data that will be written to map.js
+			const postData = {
+				title: markdownData.title,
+				preview: "",
+				date: "",
+				tags: [],
+				toc: toc(markdownData.content).content,
+			}
+
+			// content preview
+			// parsedMarkdown.excerpt is intentionally not used
+			// todo: fix potential improper closing of html tag
+			const slicedContent = markdownData.content.split(" ")
+			if (slicedContent.length > 19) {
+				postData.preview = slicedContent.slice(0, 19).join(" ") + " ..."
+			} else {
+				postData.preview = markdownData.content
+			}
+
+			// date
+			const postDate = new Date(markdownData.date)
+			postData.date = postDate.toLocaleString("default", {
+				month: "short",
+				day: "numeric",
+				year: "numeric",
+			})
+
+			const YYYY_MM_DD = postDate.toISOString().split("T")[0]
+			if (map.date[YYYY_MM_DD]) {
+				map.date[YYYY_MM_DD].push(urlPath)
+			} else {
+				map.date[YYYY_MM_DD] = [urlPath]
+			}
+
+			//tags
+			postData.tags = markdownData.tags
+			if (postData.tags) {
+				postData.tags.forEach((tag) => {
+					if (map.tags[tag]) {
+						map.tags[tag].push(urlPath)
 					} else {
-						seriesMap[key] = [itemToPush]
+						map.tags[tag] = [urlPath]
 					}
-					break
+				})
+			}
+
+			if (fileOrFolderName.startsWith("0")) {
+				map.series[urlPath] = { ...postData, order: [], length: 0 }
+			} else {
+				map.posts[urlPath] = postData
+				index.addDoc({
+					title: markdownData.title,
+					body: markdownData.content,
+					url: urlPath,
+				})
+				for (const key of Object.keys(map.series)) {
+					if (
+						urlPath.slice(0, urlPath.lastIndexOf("/")).includes(key)
+					) {
+						const index = parseInt(
+							fileOrFolderName.slice(
+								0,
+								fileOrFolderName.lastIndexOf("_")
+							)
+						)
+
+						if (isNaN(index)) {
+							throw Error(
+								`Invalid series index at: ${fileOrFolderPath}`
+							)
+						}
+
+						const itemToPush = {
+							index: index,
+							url: urlPath,
+						}
+
+						if (seriesMap[key]) {
+							seriesMap[key].push(itemToPush)
+						} else {
+							seriesMap[key] = [itemToPush]
+						}
+						break
+					}
 				}
 			}
 		}
@@ -472,9 +443,9 @@ if (!fs.lstatSync(markdownPath + "/unsearchable").isDirectory())
 if (!fs.lstatSync(markdownPath + "/series").isDirectory())
 	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
-recursiveParsePosts(markdownPath + "/posts")
-recursiveParseUnsearchable(markdownPath + "/unsearchable")
-recursiveParseSeries(markdownPath + "/series")
+recursiveParse("posts", markdownPath + "/posts")
+recursiveParse("unsearchable", markdownPath + "/unsearchable")
+recursiveParse("series", markdownPath + "/series")
 
 // sort dates
 let dateKeys: string[] = []

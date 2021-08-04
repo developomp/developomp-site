@@ -5,6 +5,9 @@ import { HelmetProvider } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
+import "highlight.js/styles/github-dark-dimmed.css"
+import "katex/dist/katex.min.css"
+
 import theming from "./theming"
 
 import Spinner from "./components/Spinner"
@@ -70,6 +73,35 @@ body::-webkit-scrollbar-thumb {
 
 code {
 	font-family: ${theming.font.code};
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#eee",
+			dark: "#555",
+		})};
+    border-radius: 3px;
+    padding: 0 3px;
+}
+
+/* https://stackoverflow.com/a/48694906/12979111 */
+pre > code {
+    font-family: ${theming.font.code};
+	color: #adbac7;
+	background-color: #22272e;
+    border: 1px solid #ddd;
+    page-break-inside: avoid;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
 }
 
 /* https://www.rgagnon.com/jsdetails/js-nice-effect-the-KBD-tag.html */

@@ -41,11 +41,11 @@ A post have title, post date, tags, and content.
 
 ## Code
 
-`code`<br />
+Here's a `code`.
 
 ```python
 if __name__ == "__main__":
-	print("code block")
+	print("And here's a code block") # with comments!
 ```
 
 ## Etc
@@ -58,7 +58,7 @@ if __name__ == "__main__":
 _italic_<br />
 ~~strikethrough~~
 
-## HTML
+## Styling
 
 <p align="center">
 	centered paragraph
@@ -67,3 +67,7 @@ _italic_<br />
 ## Key
 
 <kbd>Ctrl</kbd>+<kbd>C</kbd>
+
+## Mathematical expression
+
+$e=mc^2$ is actually $e^2=(mc^2)^2 + (pc)^2$.
