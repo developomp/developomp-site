@@ -1,7 +1,7 @@
 import React from "react"
 import { Switch, Route } from "react-router-dom"
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
-import { HelmetProvider } from "react-helmet-async"
+import { HelmetProvider, Helmet } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
@@ -300,6 +300,33 @@ export default class App extends React.Component<AppProps, AppState> {
 								this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
 						}}
 					>
+						<Helmet>
+							<meta property="og:type" content="website" />
+							<meta name="theme-color" content="#000000" />
+
+							<meta
+								property="og:site_name"
+								content="developomp"
+							/>
+
+							<meta property="og:title" content="developomp" />
+
+							<meta
+								property="og:description"
+								content="developomp's blog"
+							/>
+
+							<meta
+								property="og:url"
+								content="https://developomp.com"
+							/>
+
+							<meta
+								property="og:image"
+								content="https://developomp.com/img/icon.png"
+							/>
+						</Helmet>
+
 						<GlobalStyle />
 						<Navbar />
 						<div id="content">
