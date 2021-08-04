@@ -20,11 +20,11 @@ A post have title, post date, tags, and content.
 
 ## Table
 
-| identifier | value |
-| :--------- | :---- |
-| one        | 1     |
-| two        | 2     |
-| three      | 3     |
+| align right | align center | align left |
+| ----------: | :----------: | :--------- |
+|         one |      A       | 1          |
+|         two |      B       | 2          |
+|       three |      C       | 3          |
 
 ## List
 
