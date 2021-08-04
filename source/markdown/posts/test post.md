@@ -5,10 +5,7 @@ tags:
     - test
 ---
 
-<!--
-comment
-todo: video, html tags, underline, toc, color (css), embed, md extension, latex, image, underline
--->
+<!-- comment -->
 
 This post exists to test various features such as markdown-to-html conversion.<br />
 A post have title, post date, tags, and content.
@@ -16,6 +13,10 @@ A post have title, post date, tags, and content.
 ## Image
 
 <img src="/icon/icon.svg" alt="developomp icon" width="100">
+
+## Video
+
+<div style="padding: 56.25% 0px 0px; position: relative;"><iframe src="https://www.youtube.com/embed/apLevp7QI8E?cc_load_policy=1&iv_load_policy=3&rel=0&start=24" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen scrolling="no"  style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%;"></iframe></div>
 
 ## Table
 
@@ -56,7 +57,8 @@ if __name__ == "__main__":
 
 **bold**<br />
 _italic_<br />
-~~strikethrough~~
+~~strikethrough~~<br />
+<u>underlined</u>
 
 ## Styling
 
