@@ -139,6 +139,28 @@ kbd {
 		})};
 }
 
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+table td, table th {
+	border: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "1px solid #ddd",
+			dark: "1px solid #777777",
+		})};
+	padding: 8px;
+}
+
+table tr:nth-child(even){
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#f2f2f2",
+			dark: "#21272E",
+		})};
+}
+
 .link-color a {
 	text-decoration: none;
 	color: ${theming.color.linkColor};
