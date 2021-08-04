@@ -68,7 +68,7 @@ _italic_<br />
 
 ## Key
 
-<kbd>Ctrl</kbd>+<kbd>C</kbd>
+Do you remember the first time you pressed <kbd>Ctrl</kbd>+<kbd>C</kbd> in terminal?
 
 ## Mathematical expression
 
