@@ -301,15 +301,12 @@ export default class App extends React.Component<AppProps, AppState> {
 						}}
 					>
 						<Helmet>
-							<meta property="og:type" content="website" />
-							<meta name="theme-color" content="#000000" />
-
 							<meta
 								property="og:site_name"
 								content="developomp"
 							/>
 
-							<meta property="og:title" content="developomp" />
+							<meta property="og:title" content="Home" />
 
 							<meta
 								property="og:description"
@@ -318,12 +315,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
 							<meta
 								property="og:url"
-								content="https://developomp.com"
-							/>
-
-							<meta
-								property="og:image"
-								content="https://developomp.com/img/icon.png"
+								content={process.env.PUBLIC_URL}
 							/>
 						</Helmet>
 

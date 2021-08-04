@@ -44,6 +44,24 @@ const StyledSearchControlContainer = styled.div`
 	}
 `
 
+function isDateInRange(
+	dateToCompare: string,
+	from: string,
+	to: string
+): boolean {
+	if (!dateToCompare) throw Error("No date to compare")
+
+	const isFrom = !!from
+	const isTo = !!to
+
+	if (!isFrom && !isTo) return true
+	if (!isFrom && isTo) return Date.parse(dateToCompare) < Date.parse(to)
+	if (!isTo && isFrom) return Date.parse(dateToCompare) > Date.parse(from)
+
+	const compareDate = Date.parse(dateToCompare)
+	return Date.parse(from) < compareDate && compareDate < Date.parse(to)
+}
+
 // todo: find ways to get rid of wrapper component
 export default function Search() {
 	return <_Search />
@@ -70,7 +88,7 @@ function _Search() {
 
 	const [dateRange, setDateRange] = useState([
 		{
-			startDate: new Date(),
+			startDate: new Date(0),
 			endDate: null,
 			key: "selection",
 		},
@@ -84,15 +102,6 @@ function _Search() {
 		<>
 			<Helmet>
 				<title>pomp | Search</title>
-
-				<meta property="og:title" content="Search" />
-				<meta property="og:type" content="website" />
-				<meta property="og:url" content={process.env.PUBLIC_URL} />
-				<meta
-					property="og:image"
-					content={process.env.PUBLIC_URL + "/icon/icon.svg"}
-				/>
-				<meta property="og:description" content="search" />
 			</Helmet>
 
 			<StyledSearch className="card main-content">
@@ -184,22 +193,48 @@ function _Search() {
 						<br />
 						<button
 							onClick={() => {
+								setDateRange([
+									{
+										startDate: new Date(0),
+										endDate: null,
+										key: "selection",
+									},
+								])
+							}}
+						>
+							clear date
+						</button>
+						<br />
+						<button
+							onClick={() => {
 								try {
 									const _postCards: unknown[] = []
 									for (const res of index.search(
 										searchInput
 									)) {
-										if (map.posts[res.ref]) {
+										const postData = map.posts[res.ref]
+										if (
+											// check if post data exists
+											postData &&
+											// check if date is within the range
+											isDateInRange(
+												postData.date,
+												query.from,
+												query.to
+											)
+										) {
 											_postCards.push(
 												<PostCard
 													key={res.ref}
 													postData={{
 														url: res.ref,
-														...map.posts[res.ref],
+														...postData,
 													}}
 												/>
 											)
 										}
+
+										// apply search result
 										setPostCards(_postCards)
 									}
 
