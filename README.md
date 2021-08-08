@@ -69,7 +69,7 @@ Check the [LICENSE](./LICENSE) file for more information.
 
 Font license:
 
-[Open Font License (OFL)](./LICENSE_OFL) ([Source](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL#5667e9e4)):
+[Open Font License (OFL)](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL#5667e9e4):
 
 -   [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) (monospaced code font)
 -   [Noto Sans KR](https://fonts.google.com/specimen/Noto+Sans+KR) (Korean and English font)
