@@ -39,7 +39,7 @@ const StyledPostCardContent = styled.div`
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "grey",
-			dark: "darkgrey",
+			dark: "lightgrey",
 		})};
 `
 

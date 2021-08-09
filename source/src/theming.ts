@@ -27,7 +27,7 @@ export default {
 		screen_size2: "1500px",
 	},
 	color: {
-		linkColor: "#3273dc",
+		linkColor: "#4592F7",
 	},
 	dark: {
 		backgroundColor0: "#202225",
