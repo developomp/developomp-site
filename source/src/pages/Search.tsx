@@ -202,7 +202,7 @@ function _Search() {
 								try {
 									const _postCards: unknown[] = []
 									for (const res of index.search(
-										query.query
+										searchInput
 									)) {
 										const postData = map.posts[res.ref]
 
