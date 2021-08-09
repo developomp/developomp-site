@@ -114,7 +114,7 @@ function _Search() {
 
 	const [postCards, setPostCards] = useState<unknown[]>([])
 
-	const [searchInput, setSearchInput] = useState("")
+	const [searchInput, setSearchInput] = useState(query.query)
 
 	return (
 		<>
@@ -165,12 +165,29 @@ function _Search() {
 					<StyledSearchControlContainer>
 						<StyledInput
 							type="text"
+							value={searchInput}
 							onChange={(event) =>
 								setSearchInput(event.target.value)
 							}
 						/>
 						<button
 							onClick={() => {
+								_history.push({
+									pathname: "/search",
+									search: queryString.stringify({
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
+										...(query.tags.length > 0 && {
+											tags: query.tags.join(","),
+										}),
+										query: searchInput,
+									}),
+								})
+
 								try {
 									const _postCards: unknown[] = []
 									for (const res of index.search(
@@ -205,22 +222,6 @@ function _Search() {
 									}
 									// eslint-disable-next-line no-empty
 								} catch (err) {}
-
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-										...(query.tags && {
-											tags: query.tags.join(","),
-										}),
-										query: searchInput,
-									}),
-								})
 							}}
 						>
 							Search
@@ -244,6 +245,9 @@ function _Search() {
 								_history.push({
 									pathname: "/search",
 									search: queryString.stringify({
+										...(query.query && {
+											query: query.query,
+										}),
 										...(query.from && {
 											from: query.from,
 										}),
@@ -263,6 +267,9 @@ function _Search() {
 								_history.push({
 									pathname: "/search",
 									search: queryString.stringify({
+										...(query.query && {
+											query: query.query,
+										}),
 										...(query.from && {
 											from: query.from,
 										}),
@@ -282,8 +289,10 @@ function _Search() {
 								_history.push({
 									pathname: "/search",
 									search: queryString.stringify({
-										query: query.query,
-										...(query.tags && {
+										...(query.query && {
+											query: query.query,
+										}),
+										...(query.tags.length > 0 && {
 											tags: query.tags.join(","),
 										}),
 									}),
