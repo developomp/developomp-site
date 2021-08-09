@@ -29,9 +29,10 @@ const StyledSearch = styled.div`
 
 const StyledSearchContainer = styled.div`
 	display: flex;
+	align-items: center;
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
-		display: block;
+		flex-direction: column-reverse;
 	}
 `
 
@@ -41,6 +42,15 @@ const StyledSearchControlContainer = styled.div`
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		margin-top: 2rem;
+	}
+`
+
+const StyledDateRange = styled(DateRange)`
+	width: 350px;
+	height: 350px;
+
+	@media screen and (max-width: ${theming.size.screen_size2}) {
+		margin-top: 1rem;
 	}
 `
 
@@ -108,7 +118,7 @@ function _Search() {
 				<h1>Search</h1>
 
 				<StyledSearchContainer>
-					<DateRange
+					<StyledDateRange
 						editableDateInputs={true}
 						moveRangeOnFirstSelection={false}
 						retainEndDateOnFirstSelection={true}
