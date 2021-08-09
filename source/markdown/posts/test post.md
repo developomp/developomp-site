@@ -14,6 +14,10 @@ A post have title, post date, tags, and content.
 
 Click this section in the table of contents and see how the url changes.
 
+## Link
+
+<a href="/search">Go to search</a>
+
 ## Image
 
 <img src="/icon/icon.svg" alt="developomp icon" width="100">
