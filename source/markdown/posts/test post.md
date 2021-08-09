@@ -10,10 +10,6 @@ tags:
 This post exists to test various features such as markdown-to-html conversion.<br />
 A post have title, post date, tags, and content.
 
-<h2 id="never-gonna-give-you-up">Custom Header ID</h2>
-
-Click this section in the table of contents and see how the url changes.
-
 ## Link
 
 <a href="/search">Go to search</a>
