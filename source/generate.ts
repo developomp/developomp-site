@@ -235,7 +235,7 @@ function recursiveParse(
 				preview: "",
 				date: "",
 				tags: [],
-				toc: toc(markdownData.content).content,
+				toc: toc(markdownRaw).content,
 			}
 
 			// content preview
