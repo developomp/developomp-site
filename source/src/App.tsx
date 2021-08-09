@@ -92,7 +92,7 @@ pre > code {
     font-family: ${theming.font.code};
 	color: #adbac7;
 	background-color: #22272e;
-    border: 1px solid #ddd;
+	border: 1px solid #555;
     page-break-inside: avoid;
     font-size: 15px;
     line-height: 1.6;
