@@ -54,6 +54,13 @@ const StyledDateRange = styled(DateRange)`
 	}
 `
 
+const StyledInput = styled.input`
+	width: 100%;
+	height: 2rem;
+
+	background-color: ${theming.dark.color0};
+`
+
 function isDateInRange(
 	dateToCompare: string,
 	from: string,
@@ -72,16 +79,16 @@ function isDateInRange(
 	return Date.parse(from) < compareDate && compareDate < Date.parse(to)
 }
 
-// todo: find ways to get rid of wrapper component
+// Search doesn't work on url change if component is not wrapped
+// todo: find ways to get rid of wrapper component and use class component
 export default function Search() {
 	return <_Search />
 }
 
-// have to be in a separate component for tags to update when the urls change
-// todo: check if using keys will allow me to use class components
 function _Search() {
 	const [index, setIndex] = useState({} as elasticlunr.Index<unknown>)
 
+	// load search index only once
 	useEffect(() => setIndex(elasticlunr.Index.load(searchIndex as never)), [])
 
 	const _history = useHistory()
@@ -94,11 +101,12 @@ function _Search() {
 		from: _query.from ? _query.from?.toString() : "",
 		to: _query.to ? _query.to?.toString() : "",
 		tags: _query.tags ? _query.tags.toString().split(",") : [],
+		query: _query.query ? _query.query.toString() : "",
 	}
 
 	const [dateRange, setDateRange] = useState([
 		{
-			startDate: new Date(0),
+			startDate: new Date(0), // default date
 			endDate: null,
 			key: "selection",
 		},
@@ -125,8 +133,12 @@ function _Search() {
 						ranges={dateRange}
 						onChange={(item) => {
 							const historyToPush = {
-								from: query.from,
-								to: query.to,
+								...(query.from && {
+									from: query.from,
+								}),
+								...(query.to && {
+									to: query.to,
+								}),
 								tags: query.tags.join(","),
 							}
 
@@ -151,12 +163,68 @@ function _Search() {
 					/>
 
 					<StyledSearchControlContainer>
-						<input
+						<StyledInput
 							type="text"
 							onChange={(event) =>
 								setSearchInput(event.target.value)
 							}
 						/>
+						<button
+							onClick={() => {
+								try {
+									const _postCards: unknown[] = []
+									for (const res of index.search(
+										query.query
+									)) {
+										const postData = map.posts[res.ref]
+
+										// if post data exists,
+										// date is within range,
+										// and if post include tags
+										if (
+											postData &&
+											isDateInRange(
+												postData.date,
+												query.from,
+												query.to
+											) &&
+											true
+										) {
+											_postCards.push(
+												<PostCard
+													key={res.ref}
+													postData={{
+														url: res.ref,
+														...postData,
+													}}
+												/>
+											)
+										}
+										// apply search result
+										setPostCards(_postCards)
+									}
+									// eslint-disable-next-line no-empty
+								} catch (err) {}
+
+								_history.push({
+									pathname: "/search",
+									search: queryString.stringify({
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
+										...(query.tags && {
+											tags: query.tags.join(","),
+										}),
+										query: searchInput,
+									}),
+								})
+							}}
+						>
+							Search
+						</button>
 						<br />
 						<br />
 						<small>
@@ -176,8 +244,12 @@ function _Search() {
 								_history.push({
 									pathname: "/search",
 									search: queryString.stringify({
-										from: query.from,
-										to: query.to,
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
 										tags: "include,!exclude",
 									}),
 								})
@@ -191,8 +263,12 @@ function _Search() {
 								_history.push({
 									pathname: "/search",
 									search: queryString.stringify({
-										from: query.from,
-										to: query.to,
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
 										tags: "include2,!exclude2",
 									}),
 								})
@@ -203,57 +279,20 @@ function _Search() {
 						<br />
 						<button
 							onClick={() => {
-								setDateRange([
-									{
-										startDate: new Date(0),
-										endDate: null,
-										key: "selection",
-									},
-								])
+								_history.push({
+									pathname: "/search",
+									search: queryString.stringify({
+										query: query.query,
+										...(query.tags && {
+											tags: query.tags.join(","),
+										}),
+									}),
+								})
 							}}
 						>
 							clear date
 						</button>
 						<br />
-						<button
-							onClick={() => {
-								try {
-									const _postCards: unknown[] = []
-									for (const res of index.search(
-										searchInput
-									)) {
-										const postData = map.posts[res.ref]
-										if (
-											// check if post data exists
-											postData &&
-											// check if date is within the range
-											isDateInRange(
-												postData.date,
-												query.from,
-												query.to
-											)
-										) {
-											_postCards.push(
-												<PostCard
-													key={res.ref}
-													postData={{
-														url: res.ref,
-														...postData,
-													}}
-												/>
-											)
-										}
-
-										// apply search result
-										setPostCards(_postCards)
-									}
-
-									// eslint-disable-next-line no-empty
-								} catch (err) {}
-							}}
-						>
-							Search
-						</button>
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
 			</StyledSearch>
