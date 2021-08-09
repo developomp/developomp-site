@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef } from "react"
 import styled from "styled-components"
 import { useLocation, useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
@@ -29,16 +29,16 @@ const StyledSearch = styled.div`
 
 const StyledSearchContainer = styled.div`
 	display: flex;
-	align-items: center;
+	align-items: flex-start;
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		flex-direction: column-reverse;
 	}
 `
 
-const StyledSearchControlContainer = styled.div`
+const StyledSearchControlContainer = styled.form`
 	width: 100%;
-	margin: 0 0 0 1rem;
+	margin-left: 1rem;
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		margin-top: 2rem;
@@ -87,9 +87,7 @@ export default function Search() {
 
 function _Search() {
 	const [index, setIndex] = useState({} as elasticlunr.Index<unknown>)
-
-	// load search index only once
-	useEffect(() => setIndex(elasticlunr.Index.load(searchIndex as never)), [])
+	const inputRef = useRef<HTMLInputElement>(null)
 
 	const _history = useHistory()
 	const _location = useLocation()
@@ -123,6 +121,64 @@ function _Search() {
 	const [postCards, setPostCards] = useState<unknown[]>([])
 
 	const [searchInput, setSearchInput] = useState(query.query)
+
+	function doSearch() {
+		if (inputRef.current) inputRef.current.blur()
+
+		_history.push({
+			pathname: "/search",
+			search: queryString.stringify({
+				...(query.from && {
+					from: query.from,
+				}),
+				...(query.to && {
+					to: query.to,
+				}),
+				...(query.tags.length > 0 && {
+					tags: query.tags.join(","),
+				}),
+				query: searchInput,
+			}),
+		})
+
+		try {
+			const _postCards: unknown[] = []
+			for (const res of index.search(searchInput)) {
+				const postData = map.posts[res.ref]
+
+				// if post data exists,
+				// date is within range,
+				// and if post include tags
+				if (
+					postData &&
+					isDateInRange(postData.date, query.from, query.to) &&
+					true
+				) {
+					_postCards.push(
+						<PostCard
+							key={res.ref}
+							postData={{
+								url: res.ref,
+								...postData,
+							}}
+						/>
+					)
+				}
+				// apply search result
+				setPostCards(_postCards)
+			}
+			// eslint-disable-next-line no-empty
+		} catch (err) {}
+	}
+
+	// load search index only once
+	useEffect(() => {
+		setIndex(elasticlunr.Index.load(searchIndex as never))
+	}, [])
+
+	useEffect(() => {
+		doSearch()
+	}, [dateRange])
 
 	return (
 		<>
@@ -173,70 +229,21 @@ function _Search() {
 						}}
 					/>
 
-					<StyledSearchControlContainer>
+					<StyledSearchControlContainer
+						onSubmit={(event) => {
+							event.preventDefault()
+							doSearch()
+						}}
+					>
 						<StyledInput
 							type="text"
+							ref={inputRef}
 							value={searchInput}
 							onChange={(event) =>
 								setSearchInput(event.target.value)
 							}
 						/>
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-										...(query.tags.length > 0 && {
-											tags: query.tags.join(","),
-										}),
-										query: searchInput,
-									}),
-								})
-
-								try {
-									const _postCards: unknown[] = []
-									for (const res of index.search(
-										searchInput
-									)) {
-										const postData = map.posts[res.ref]
-
-										// if post data exists,
-										// date is within range,
-										// and if post include tags
-										if (
-											postData &&
-											isDateInRange(
-												postData.date,
-												query.from,
-												query.to
-											) &&
-											true
-										) {
-											_postCards.push(
-												<PostCard
-													key={res.ref}
-													postData={{
-														url: res.ref,
-														...postData,
-													}}
-												/>
-											)
-										}
-										// apply search result
-										setPostCards(_postCards)
-									}
-									// eslint-disable-next-line no-empty
-								} catch (err) {}
-							}}
-						>
-							Search
-						</button>
+						<input type="submit" value="Search"></input>
 						<br />
 						<br />
 						<small>
@@ -251,7 +258,8 @@ function _Search() {
 						<br />
 						date to: {query.to}
 						<br />
-						<button
+						<input
+							type="submit"
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -269,11 +277,11 @@ function _Search() {
 									}),
 								})
 							}}
-						>
-							Search test 1
-						</button>
+							value="Search test 1"
+						/>
 						|
-						<button
+						<input
+							type="submit"
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -291,11 +299,11 @@ function _Search() {
 									}),
 								})
 							}}
-						>
-							Search test 2
-						</button>
+							value="Search test 2"
+						/>
 						<br />
-						<button
+						<input
+							type="submit"
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -311,9 +319,8 @@ function _Search() {
 
 								setDateRange(defaultDateRange)
 							}}
-						>
-							clear date
-						</button>
+							value="clear date"
+						/>
 						<br />
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
