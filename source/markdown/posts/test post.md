@@ -10,6 +10,10 @@ tags:
 This post exists to test various features such as markdown-to-html conversion.<br />
 A post have title, post date, tags, and content.
 
+<h2 id="never-gonna-give-you-up">Custom Header ID</h2>
+
+Click this section in the table of contents and see how the url changes.
+
 ## Image
 
 <img src="/icon/icon.svg" alt="developomp icon" width="100">
@@ -46,7 +50,7 @@ Here's a `code`.
 
 ```python
 if __name__ == "__main__":
-	print("And here's a code block") # with comments!
+	print("And here's a language-specific code block") # with comments!
 ```
 
 ## Etc
