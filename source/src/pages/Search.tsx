@@ -19,12 +19,6 @@ import PostCard from "../components/PostCard"
 
 const StyledSearch = styled.div`
 	text-align: center;
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.dark.color1,
-			dark: theming.dark.color1,
-		})};
 `
 
 const StyledSearchContainer = styled.div`
@@ -54,11 +48,31 @@ const StyledDateRange = styled(DateRange)`
 	}
 `
 
-const StyledInput = styled.input`
+const StyledSearchBar = styled.input`
 	width: 100%;
-	height: 2rem;
+	border-radius: 100px; /* arbitrarily large value */
+	height: 3rem;
+	padding: 0 0 0 1rem;
+	font-size: 1.25rem;
 
-	background-color: ${theming.dark.color0};
+	border: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "1px solid #ccc",
+			dark: "1px solid #555",
+		})};
+	outline: none;
+
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.dark.color1,
+			dark: theming.dark.backgroundColor1,
+		})};
+
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
 `
 
 function isDateInRange(
@@ -232,18 +246,18 @@ function _Search() {
 					<StyledSearchControlContainer
 						onSubmit={(event) => {
 							event.preventDefault()
-							doSearch()
+							if (searchInput) doSearch()
 						}}
 					>
-						<StyledInput
+						<StyledSearchBar
 							type="text"
 							ref={inputRef}
 							value={searchInput}
+							placeholder="Search"
 							onChange={(event) =>
 								setSearchInput(event.target.value)
 							}
 						/>
-						<input type="submit" value="Search"></input>
 						<br />
 						<br />
 						<small>
