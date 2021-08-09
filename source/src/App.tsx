@@ -178,13 +178,13 @@ blockquote {
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "rgba(0, 0, 0, 5%)",
-			dark: "rgba(255, 255, 255, 3%)",
+			dark: "rgba(255, 255, 255, 7%)",
 		})};
 		
 	border-left: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "0.4rem solid rgba(0, 0, 0, 10%)",
-			dark: "0.4rem solid rgba(255, 255, 255, 5%)",
+			dark: "0.4rem solid rgba(255, 255, 255, 30%)",
 		})};
 	padding-top: 0.1rem;
 	padding-right: 1rem;
