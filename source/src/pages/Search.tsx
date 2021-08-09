@@ -104,13 +104,21 @@ function _Search() {
 		query: _query.query ? _query.query.toString() : "",
 	}
 
-	const [dateRange, setDateRange] = useState([
+	const defaultDateRange = [
 		{
-			startDate: new Date(0), // default date
+			startDate: new Date(0),
 			endDate: null,
 			key: "selection",
 		},
-	])
+	]
+
+	const [dateRange, setDateRange] = useState<
+		Array<{
+			startDate: Date | null
+			endDate: Date | null
+			key?: string
+		}>
+	>(defaultDateRange)
 
 	const [postCards, setPostCards] = useState<unknown[]>([])
 
@@ -133,6 +141,9 @@ function _Search() {
 						ranges={dateRange}
 						onChange={(item) => {
 							const historyToPush = {
+								...(query.query && {
+									query: query.query,
+								}),
 								...(query.from && {
 									from: query.from,
 								}),
@@ -297,6 +308,8 @@ function _Search() {
 										}),
 									}),
 								})
+
+								setDateRange(defaultDateRange)
 							}}
 						>
 							clear date
