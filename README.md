@@ -7,16 +7,17 @@ Repository for my (developomp's) <a href="https://developomp.com" target="_blank
 
 Tools / Frameworks / Packages used:
 
-|                                                               Name | Use                         |
-| -----------------------------------------------------------------: | :-------------------------- |
-|                                      [AWS](https://aws.amazon.com) | Domain register             |
-|                            [Firebase](https://firebase.google.com) | Static site hosting         |
-|                                       [react](https://reactjs.org) | Front end framework         |
-|           [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                    |
-| [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page |
-|          [elasticlunr](https://github.com/weixsong/elasticlunr.js) | Search engine               |
-|        [gray-matter](https://github.com/jonschlinkert/gray-matter) | Markdown parsing            |
-|          [markdown-it](https://github.com/markdown-it/markdown-it) | Markdown rendering          |
+|                                                                      Name | Use                         |
+| ------------------------------------------------------------------------: | :-------------------------- |
+|                                             [AWS](https://aws.amazon.com) | Domain register             |
+|                                   [Firebase](https://firebase.google.com) | Static site hosting         |
+|                                              [react](https://reactjs.org) | Front end framework         |
+|                  [react-tooltip](https://github.com/wwayne/react-tooltip) | Tooltips                    |
+|        [react-date-range](https://github.com/hypeserver/react-date-range) | Date picker for search page |
+|                 [elasticlunr](https://github.com/weixsong/elasticlunr.js) | Search engine               |
+|               [gray-matter](https://github.com/jonschlinkert/gray-matter) | Markdown parsing            |
+|                 [markdown-it](https://github.com/markdown-it/markdown-it) | Markdown rendering          |
+| [read-time-estimate](https://github.com/pritishvaidya/read-time-estimate) | Post read time estimation   |
 
 # Setup
 

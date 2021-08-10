@@ -7,6 +7,12 @@ import theming from "../theming"
 
 import Tag from "../components/Tag"
 import TagList from "../components/TagList"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+	faBook,
+	faCalendar,
+	faHourglass,
+} from "@fortawesome/free-solid-svg-icons"
 
 const StyledTitle = styled.h1`
 	font-size: 2rem;
@@ -14,13 +20,21 @@ const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
 `
 
+const StyledMetaContainer = styled.small`
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#555",
+			dark: "lightgrey",
+		})};
+`
+
 const StyledLink = styled(Link)`
 	text-decoration: none;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: "black",
-			dark: "white",
+			light: theming.light.color1,
+			dark: theming.dark.color1,
 		})};
 
 	&:hover {
@@ -48,6 +62,8 @@ interface PostCardProps {
 		url: string
 		title: string | undefined
 		preview: string
+		readTime: string
+		wordCount: number
 		tags: string[]
 		date: string | undefined
 	}
@@ -69,7 +85,7 @@ export default class PostCard extends React.Component<PostCardProps> {
 							: "No title"}
 					</StyledLink>
 				</StyledTitle>
-				<small>
+				<StyledMetaContainer>
 					<TagList direction="left">
 						{this.props.postData.tags ? (
 							this.props.postData.tags.map((tag) => {
@@ -84,11 +100,21 @@ export default class PostCard extends React.Component<PostCardProps> {
 							<></>
 						)}
 					</TagList>
-					Published on{" "}
+					<FontAwesomeIcon icon={faCalendar} /> Published on{" "}
 					{this.props.postData?.date
 						? this.props.postData.date
 						: "Unknown date"}
-				</small>
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<FontAwesomeIcon icon={faHourglass} />{" "}
+					{this.props.postData?.readTime
+						? this.props.postData.readTime + " read"
+						: "unknown length"}
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<FontAwesomeIcon icon={faBook} />{" "}
+					{this.props.postData?.wordCount
+						? this.props.postData.wordCount + " words"
+						: "unknown words"}
+				</StyledMetaContainer>
 
 				<hr />
 				<StyledPostCardContent

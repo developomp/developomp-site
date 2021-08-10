@@ -12,6 +12,12 @@ import NotFound from "./NotFound"
 import Spinner from "../components/Spinner"
 
 import map from "../data/map.json"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+	faBook,
+	faCalendar,
+	faHourglass,
+} from "@fortawesome/free-solid-svg-icons"
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
@@ -246,7 +252,16 @@ export default class Page extends React.Component<PageProps, PageState> {
 							{this.state.isUnsearchable ? (
 								<></>
 							) : (
-								<>Published on {this.state.fetchedPage.date}</>
+								<>
+									<FontAwesomeIcon icon={faCalendar} />{" "}
+									Published on {this.state.fetchedPage.date}
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<FontAwesomeIcon icon={faHourglass} />{" "}
+									{this.state.fetchedPage.readTime} read
+									&nbsp;&nbsp;&nbsp;&nbsp;
+									<FontAwesomeIcon icon={faBook} />{" "}
+									{this.state.fetchedPage.wordCount} words
+								</>
 							)}
 						</small>
 						{/* Horizontal Separator */}

@@ -9,10 +9,11 @@
 import fs from "fs" // read and write files
 import path from "path" // get relative path
 import elasticlunr from "elasticlunr" // search index generation
+import readTimeEstimate from "read-time-estimate" // post read time estimation
 import matter from "gray-matter" // parse markdown metadata
+import toc from "markdown-toc" // table of contents generation
 import markdownIt from "markdown-it" // rendering markdown
 import hljs from "highlight.js" // code block highlighting
-import toc from "markdown-toc" // table of contents generation
 import tm from "markdown-it-texmath" // rendering mathematical expression
 import katex from "katex" // rendering mathematical expression
 
@@ -216,6 +217,15 @@ function recursiveParse(
 			md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) ||
 			""
 
+		// https://github.com/pritishvaidya/read-time-estimate
+		const { humanizedDuration, totalWords } = readTimeEstimate(
+			markdownData.content,
+			275,
+			12,
+			500,
+			["img", "Image"]
+		)
+
 		if (mode == "posts") {
 			if (!markdownData.date) {
 				throw Error(`Date is not defined in file: ${fileOrFolderPath}`)
@@ -234,6 +244,8 @@ function recursiveParse(
 				title: markdownData.title,
 				preview: "",
 				date: "",
+				readTime: humanizedDuration,
+				wordCount: totalWords,
 				tags: [],
 				toc: toc(markdownRaw).content,
 			}
@@ -333,6 +345,8 @@ function recursiveParse(
 				title: markdownData.title,
 				preview: "",
 				date: "",
+				readTime: humanizedDuration,
+				wordCount: totalWords,
 				tags: [],
 				toc: toc(markdownData.content).content,
 			}
