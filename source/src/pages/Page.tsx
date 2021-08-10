@@ -75,7 +75,10 @@ const StyledDisabledLink = styled.div`
 
 const StyledTocToggleButton = styled.button`
 	border: none;
+	text-align: left;
 	background-color: rgba(0, 0, 0, 0);
+	width: 100%;
+	padding: 0.5rem;
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "black",
@@ -297,7 +300,6 @@ export default class Page extends React.Component<PageProps, PageState> {
 
 						<hr />
 
-						<strong>Table of Content </strong>
 						<StyledTocToggleButton
 							onClick={() => {
 								this.setState({
@@ -305,6 +307,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 								})
 							}}
 						>
+							<strong>Table of Content </strong>
 							{this.state.isTocOpened ? (
 								<FontAwesomeIcon icon={faCaretUp} />
 							) : (
