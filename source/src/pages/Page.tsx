@@ -281,6 +281,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 									<></>
 								)}
 							</TagList>
+							<br />
 							{this.state.isUnsearchable ? (
 								<></>
 							) : (
