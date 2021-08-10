@@ -31,6 +31,7 @@ html, body, #root {
 	margin: 0;
 	display: flex;
 	flex-flow: column;
+	line-height: 1.5rem;
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: theming.light.backgroundColor1,
@@ -161,17 +162,13 @@ table tr:nth-child(even){
 		})};
 }
 
-.link-color a {
+.white-link a {
 	text-decoration: none;
 	color: ${theming.color.linkColor};
 
 	&:visited {
 		color: ${theming.color.linkColor};
 	}
-}
-
-p {
-	 line-height: 1.5rem;
 }
 
 blockquote {
@@ -344,7 +341,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
 									<Route exact path="/:path*">
 										{({ match }) => (
-											<Page key={match.params.path} />
+											<Page key={match?.params.path} />
 										)}
 									</Route>
 								</Switch>

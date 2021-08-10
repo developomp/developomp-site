@@ -1,8 +1,8 @@
 import React from "react"
-import marked from "marked"
 import { Helmet } from "react-helmet-async"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { HashLink } from "react-router-hash-link"
 import { Collapse } from "react-collapse"
 import storage from "local-storage-fallback"
 
@@ -91,6 +91,22 @@ const StyledCollapseContainer = styled.div`
 		transition: height 200ms ease-out;
 	}
 `
+
+function parseToc(json) {
+	console.log(json)
+
+	return (
+		<ol>
+			{json.map((elem) => (
+				<li key={elem.slug}>
+					<HashLink smooth to={location.pathname + "#" + elem.slug}>
+						{elem.content}
+					</HashLink>
+				</li>
+			))}
+		</ol>
+	)
+}
 
 interface PageProps {}
 
@@ -203,11 +219,15 @@ export default class Page extends React.Component<PageProps, PageState> {
 		}
 
 		const fetched_content = _isUnsearchable
-			? (await import(`../data/content/unsearchable${url}.json`)).content
-			: (await import(`../data/content${url}.json`)).content
+			? await import(`../data/content/unsearchable${url}.json`)
+			: await import(`../data/content${url}.json`)
 
-		fetchedPage.content = fetched_content ? fetched_content : "No content"
-		fetchedPage.toc = fetchedPage?.toc ? fetchedPage.toc : undefined
+		fetchedPage.content = fetched_content.content
+			? fetched_content.content
+			: "No content"
+		fetchedPage.toc = fetched_content.toc
+			? parseToc(fetched_content.toc)
+			: undefined
 		fetchedPage.title = fetchedPage?.title ? fetchedPage.title : "No title"
 		if (!_isUnsearchable) {
 			fetchedPage.date = fetchedPage?.date
@@ -301,47 +321,47 @@ export default class Page extends React.Component<PageProps, PageState> {
 
 						<hr />
 
-						<StyledTocToggleButton
-							onClick={() => {
-								this.setState({
-									isTocOpened: !this.state.isTocOpened,
-								})
-							}}
-						>
-							<strong>Table of Content </strong>
-							{this.state.isTocOpened ? (
-								<FontAwesomeIcon icon={faCaretUp} />
-							) : (
-								<FontAwesomeIcon icon={faCaretDown} />
-							)}
-						</StyledTocToggleButton>
 						{
 							// add table of contents if it exists
 							this.state.fetchedPage.toc && (
-								<StyledCollapseContainer>
-									<Collapse isOpened={this.state.isTocOpened}>
-										<div>
-											<div
-												className="link-color"
-												dangerouslySetInnerHTML={{
-													__html: marked(
-														this.state.fetchedPage
-															.toc
-													),
-												}}
-											></div>
-										</div>
-									</Collapse>
-								</StyledCollapseContainer>
+								<>
+									<StyledTocToggleButton
+										onClick={() => {
+											this.setState({
+												isTocOpened:
+													!this.state.isTocOpened,
+											})
+										}}
+									>
+										<strong>Table of Content </strong>
+										{this.state.isTocOpened ? (
+											<FontAwesomeIcon icon={faCaretUp} />
+										) : (
+											<FontAwesomeIcon
+												icon={faCaretDown}
+											/>
+										)}
+									</StyledTocToggleButton>
+									<StyledCollapseContainer>
+										<Collapse
+											isOpened={this.state.isTocOpened}
+										>
+											<div className="white-link">
+												{this.state.fetchedPage.toc}
+											</div>
+										</Collapse>
+									</StyledCollapseContainer>
+									<hr />
+								</>
 							)
 						}
-						<hr />
+
 						<div
-							className="link-color"
+							className="white-link"
 							dangerouslySetInnerHTML={{
-								__html: marked(this.state.fetchedPage.content),
+								__html: this.state.fetchedPage.content,
 							}}
-						></div>
+						/>
 					</div>
 				</>
 			)

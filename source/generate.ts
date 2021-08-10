@@ -14,7 +14,8 @@ import matter from "gray-matter" // parse markdown metadata
 import toc from "markdown-toc" // table of contents generation
 import markdownIt from "markdown-it" // rendering markdown
 import hljs from "highlight.js" // code block highlighting
-import tm from "markdown-it-texmath" // rendering mathematical expression
+import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
+import markdownItAnchor from "markdown-it-anchor" // markdown anchor
 import katex from "katex" // rendering mathematical expression
 
 const markdownPath = "./markdown" // where it will look for markdown documents
@@ -49,7 +50,6 @@ interface Map {
 			title: string
 			date: string
 			tags: string[]
-			toc: string
 			preview: string
 		}
 	}
@@ -58,7 +58,6 @@ interface Map {
 	series: {
 		[key: string]: {
 			title: string
-			toc: string // in series home page and ≡ (3 horizontal line) button
 			length: number
 			order: string[] // url order
 			tags: string[]
@@ -112,11 +111,13 @@ const md = markdownIt({
 		return "" // use external default escaping
 	},
 	html: true,
-}).use(tm, {
-	engine: katex,
-	delimiters: "dollars",
-	katexOptions: { macros: { "\\RR": "\\mathbb{R}" } },
 })
+	.use(markdownItTexMath, {
+		engine: katex,
+		delimiters: "dollars",
+		katexOptions: { macros: { "\\RR": "\\mathbb{R}" } },
+	})
+	.use(markdownItAnchor, {})
 
 // converts file path to url
 function path2URL(pathToConvert: string): string {
@@ -156,12 +157,7 @@ function writeToJSON(JSONFilePath: string, dataToWrite: string) {
 	})
 
 	// write content to json file
-	fs.writeFileSync(
-		JSONFilePath,
-		JSON.stringify({
-			content: dataToWrite.trim(),
-		})
-	)
+	fs.writeFileSync(JSONFilePath, dataToWrite)
 }
 
 // A recursive function that calls itself for every files and directories that it finds
@@ -236,7 +232,10 @@ function recursiveParse(
 
 			writeToJSON(
 				`${contentDirectoryPath}${urlPath}.json`,
-				markdownData.content
+				JSON.stringify({
+					content: markdownData.content,
+					toc: toc(markdownRaw).json,
+				})
 			)
 
 			// Parse data that will be written to map.js
@@ -247,7 +246,6 @@ function recursiveParse(
 				readTime: humanizedDuration,
 				wordCount: totalWords,
 				tags: [],
-				toc: toc(markdownRaw).content,
 			}
 
 			// content preview
@@ -304,7 +302,9 @@ function recursiveParse(
 
 			writeToJSON(
 				`${contentDirectoryPath}/unsearchable${urlPath}.json`,
-				markdownData.content
+				JSON.stringify({
+					content: markdownData.content,
+				})
 			)
 
 			// Parse data that will be written to map.js
@@ -337,7 +337,10 @@ function recursiveParse(
 
 			writeToJSON(
 				`${contentDirectoryPath}${urlPath}.json`,
-				markdownData.content
+				JSON.stringify({
+					content: markdownData.content,
+					toc: toc(markdownRaw).json,
+				})
 			)
 
 			// Parse data that will be written to map.js
@@ -348,7 +351,6 @@ function recursiveParse(
 				readTime: humanizedDuration,
 				wordCount: totalWords,
 				tags: [],
-				toc: toc(markdownData.content).content,
 			}
 
 			// content preview

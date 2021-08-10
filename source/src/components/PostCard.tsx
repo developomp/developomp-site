@@ -1,5 +1,4 @@
 import React from "react"
-import marked from "marked"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -118,9 +117,9 @@ export default class PostCard extends React.Component<PostCardProps> {
 
 				<hr />
 				<StyledPostCardContent
-					className="link-color"
+					className="white-link"
 					dangerouslySetInnerHTML={{
-						__html: marked(this.props.postData.preview),
+						__html: this.props.postData.preview,
 					}}
 				></StyledPostCardContent>
 				<small>
