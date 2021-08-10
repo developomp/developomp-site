@@ -3,6 +3,8 @@ import marked from "marked"
 import { Helmet } from "react-helmet-async"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
+import { Collapse } from "react-collapse"
+import storage from "local-storage-fallback"
 
 import theming from "../theming"
 
@@ -16,6 +18,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faBook,
 	faCalendar,
+	faCaretDown,
+	faCaretUp,
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
@@ -69,6 +73,22 @@ const StyledDisabledLink = styled.div`
 	user-select: none;
 `
 
+const StyledTocToggleButton = styled.button`
+	border: none;
+	background-color: rgba(0, 0, 0, 0);
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "black",
+			dark: "white",
+		})};
+`
+
+const StyledCollapseContainer = styled.div`
+	* {
+		transition: height 200ms ease-out;
+	}
+`
+
 interface PageProps {}
 
 interface PageState {
@@ -81,6 +101,7 @@ interface PageState {
 		prev: string | null
 		next: string | null
 	} | null
+	isTocOpened: boolean
 	loading: boolean
 }
 
@@ -111,12 +132,20 @@ class NextPrev extends React.Component<NextPrevProps> {
 export default class Page extends React.Component<PageProps, PageState> {
 	constructor(props) {
 		super(props)
+
 		this.state = {
 			fetchedPage: undefined,
 			isUnsearchable: false,
 			isSeries: false,
 			seriesData: null,
+			isTocOpened: storage.getItem("isTocOpened") == "true",
 			loading: true,
+		}
+	}
+
+	componentDidUpdate(_, prevState) {
+		if (this.state.isTocOpened !== prevState.isTocOpened) {
+			storage.setItem("isTocOpened", this.state.isTocOpened.toString())
 		}
 	}
 
@@ -265,26 +294,44 @@ export default class Page extends React.Component<PageProps, PageState> {
 							)}
 						</small>
 						{/* Horizontal Separator */}
+
 						<hr />
+
+						<strong>Table of Content </strong>
+						<StyledTocToggleButton
+							onClick={() => {
+								this.setState({
+									isTocOpened: !this.state.isTocOpened,
+								})
+							}}
+						>
+							{this.state.isTocOpened ? (
+								<FontAwesomeIcon icon={faCaretUp} />
+							) : (
+								<FontAwesomeIcon icon={faCaretDown} />
+							)}
+						</StyledTocToggleButton>
 						{
-							// add toc if it exists
+							// add table of contents if it exists
 							this.state.fetchedPage.toc && (
-								<>
-									<div>
-										<strong>Table of Content:</strong>
-										<div
-											className="link-color"
-											dangerouslySetInnerHTML={{
-												__html: marked(
-													this.state.fetchedPage.toc
-												),
-											}}
-										></div>
-									</div>
-									<hr />
-								</>
+								<StyledCollapseContainer>
+									<Collapse isOpened={this.state.isTocOpened}>
+										<div>
+											<div
+												className="link-color"
+												dangerouslySetInnerHTML={{
+													__html: marked(
+														this.state.fetchedPage
+															.toc
+													),
+												}}
+											></div>
+										</div>
+									</Collapse>
+								</StyledCollapseContainer>
 							)
 						}
+						<hr />
 						<div
 							className="link-color"
 							dangerouslySetInnerHTML={{
