@@ -93,11 +93,10 @@ const StyledCollapseContainer = styled.div`
 `
 
 function parseToc(json) {
-	console.log(json)
-
 	return (
 		<ol>
 			{json.map((elem) => (
+				// elem: content, i, lvl
 				<li key={elem.slug}>
 					<HashLink smooth to={location.pathname + "#" + elem.slug}>
 						{elem.content}
