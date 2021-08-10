@@ -137,6 +137,7 @@ function _Search() {
 	const [searchInput, setSearchInput] = useState(query.query)
 
 	function doSearch() {
+		// remove focus from search bar to prevent accidental multiple search
 		if (inputRef.current) inputRef.current.blur()
 
 		_history.push({
@@ -220,7 +221,9 @@ function _Search() {
 								...(query.to && {
 									to: query.to,
 								}),
-								tags: query.tags.join(","),
+								...(query.tags.length > 0 && {
+									tags: query.tags.join(","),
+								}),
 							}
 
 							// convert Date to YYYY-MM-DD string if it exists
@@ -262,9 +265,10 @@ function _Search() {
 						<br />
 						<small>
 							<TagList>
-								{query.tags?.map((tag) => {
-									return <Tag key={tag} text={tag} />
-								})}
+								{query.tags.length > 0 &&
+									query.tags.map((tag) => {
+										return <Tag key={tag} text={tag} />
+									})}
 							</TagList>
 						</small>
 						<br />
