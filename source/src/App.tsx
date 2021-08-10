@@ -205,7 +205,11 @@ blockquote {
 		})};
 	padding: 2rem;
 	border-radius: 6px;
-	box-shadow: 0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);
+	box-shadow: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);",
+			dark: "0 4px 10px rgb(0 0 0 / 30%), 0 0 1px rgb(0 0 0 / 30%);",
+		})};
 
 	@media screen and (max-width: ${theming.size.screen_size1}) {
 		padding: 1rem;
