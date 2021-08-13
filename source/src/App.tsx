@@ -9,8 +9,8 @@ import { HelmetProvider, Helmet } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
-import "highlight.js/styles/github-dark-dimmed.css"
-import "katex/dist/katex.min.css"
+import "highlight.js/styles/github-dark-dimmed.css" // code block styling
+import "katex/dist/katex.min.css" // latex mathematical expression
 
 import theming from "./theming"
 
@@ -242,7 +242,7 @@ const GlobalStyle = createGlobalStyle<{
 	theme: { currentTheme: string }
 }>`${globalStyle}`
 
-const StyledP = styled.p`
+const IENotSupported = styled.p`
 	margin: auto;
 	font-size: 2rem;
 	margin-top: 2rem;
@@ -299,9 +299,9 @@ export default class App extends React.Component<AppProps, AppState> {
 		if (isIE)
 			return (
 				<>
-					<StyledP>
+					<IENotSupported>
 						<b>Internet Explorer</b> is not supported.
-					</StyledP>
+					</IENotSupported>
 				</>
 			)
 		else
