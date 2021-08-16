@@ -96,6 +96,14 @@ const StyledCollapseContainer = styled.div`
 	}
 `
 
+const StyledMetaContainer = styled.div`
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "#555",
+			dark: "#CCC",
+		})};
+`
+
 function parseToc(json: TocElement[]) {
 	return (
 		<ol>
@@ -307,10 +315,8 @@ export default class Page extends React.Component<PageProps, PageState> {
 								)}
 							</TagList>
 							<br />
-							{this.state.isUnsearchable ? (
-								<></>
-							) : (
-								<>
+							{!this.state.isUnsearchable && (
+								<StyledMetaContainer>
 									<FontAwesomeIcon icon={faCalendar} />{" "}
 									Published on {this.state.fetchedPage.date}
 									&nbsp;&nbsp;&nbsp;&nbsp;
@@ -319,7 +325,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<FontAwesomeIcon icon={faBook} />{" "}
 									{this.state.fetchedPage.wordCount} words
-								</>
+								</StyledMetaContainer>
 							)}
 						</small>
 						{/* Horizontal Separator */}
