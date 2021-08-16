@@ -29,7 +29,22 @@ const StyledMetaContainer = styled.small`
 		})};
 `
 
-const StyledLink = styled(Link)`
+const StyledPostCard = styled.div`
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	text-align: left;
+	margin-bottom: 2rem;
+	padding: 0;
+
+	&:hover {
+		box-shadow: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "0 4px 10px rgb(0 0 0 / 25%)",
+				dark: "0 4px 10px rgb(255 255 255 / 20%)",
+			})};
+	}
+`
+
+const StyledPostCardContentContainer = styled(Link)`
 	text-decoration: none;
 
 	color: ${(props) =>
@@ -37,17 +52,6 @@ const StyledLink = styled(Link)`
 			light: theming.light.color1,
 			dark: theming.dark.color1,
 		})};
-
-	&:hover {
-		text-decoration: underline;
-	}
-`
-
-const StyledPostCard = styled.div`
-	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-	text-align: left;
-	margin-bottom: 20px;
-	padding: 1rem 2rem 2rem 2rem;
 `
 
 const StyledPostCardContent = styled.div`
@@ -72,60 +76,53 @@ export default class PostCard extends React.Component<PostCardProps> {
 				key={this.props.postData.url}
 				className="card main-content"
 			>
-				<StyledTitle>
-					<StyledLink
-						to={`${process.env.PUBLIC_URL}${this.props.postData.url}`}
-					>
-						{this.props.postData?.title
-							? this.props.postData.title
-							: "No title"}
-					</StyledLink>
-				</StyledTitle>
-				<StyledMetaContainer>
-					<TagList direction="left">
-						{this.props.postData.tags ? (
-							this.props.postData.tags.map((tag) => {
-								return (
-									<Tag
-										key={this.props.postData.title + tag}
-										text={tag}
-									/>
-								)
-							})
-						) : (
-							<></>
-						)}
-					</TagList>
-					<FontAwesomeIcon icon={faCalendar} /> Published on{" "}
-					{this.props.postData?.date
-						? this.props.postData.date
-						: "Unknown date"}
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<FontAwesomeIcon icon={faHourglass} />{" "}
-					{this.props.postData?.readTime
-						? this.props.postData.readTime + " read"
-						: "unknown length"}
-					&nbsp;&nbsp;&nbsp;&nbsp;
-					<FontAwesomeIcon icon={faBook} />{" "}
-					{this.props.postData?.wordCount
-						? this.props.postData.wordCount + " words"
-						: "unknown words"}
-				</StyledMetaContainer>
+				<StyledPostCardContentContainer
+					to={process.env.PUBLIC_URL + this.props.postData.url}
+				>
+					<StyledTitle>
+						{this.props.postData?.title || "No title"}
+					</StyledTitle>
 
-				<hr />
-				<StyledPostCardContent
-					className="white-link"
-					dangerouslySetInnerHTML={{
-						__html: this.props.postData.preview,
-					}}
-				></StyledPostCardContent>
-				<small>
-					<StyledLink
-						to={process.env.PUBLIC_URL + this.props.postData.url}
-					>
-						<u>Read more</u>
-					</StyledLink>
-				</small>
+					<StyledMetaContainer>
+						<TagList direction="left">
+							{this.props.postData.tags ? (
+								this.props.postData.tags.map((tag) => {
+									return (
+										<Tag
+											key={
+												this.props.postData.title + tag
+											}
+											text={tag}
+										/>
+									)
+								})
+							) : (
+								<></>
+							)}
+						</TagList>
+						<FontAwesomeIcon icon={faCalendar} /> Published on{" "}
+						{this.props.postData?.date || "Unknown date"}
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<FontAwesomeIcon icon={faHourglass} />{" "}
+						{this.props.postData?.readTime
+							? this.props.postData.readTime + " read"
+							: "unknown length"}
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<FontAwesomeIcon icon={faBook} />{" "}
+						{this.props.postData?.wordCount
+							? this.props.postData.wordCount + " words"
+							: "unknown words"}
+					</StyledMetaContainer>
+
+					<hr />
+
+					<StyledPostCardContent
+						className="white-link"
+						dangerouslySetInnerHTML={{
+							__html: this.props.postData.preview,
+						}}
+					/>
+				</StyledPostCardContentContainer>
 			</StyledPostCard>
 		)
 	}
