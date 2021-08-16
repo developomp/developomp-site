@@ -205,14 +205,15 @@ export default class Page extends React.Component<PageProps, PageState> {
 		}
 
 		// fetch page
+		const MapPost = map.posts[url]
 		const fetchedPage: FetchedPage = {
-			...map.posts[url],
+			...MapPost,
 			toc: undefined,
 			content: "",
 			tags: [] as string[],
 		}
 
-		if (!fetchedPage) {
+		if (!MapPost) {
 			_isUnsearchable = true
 			this.setState({ isUnsearchable: _isUnsearchable })
 
