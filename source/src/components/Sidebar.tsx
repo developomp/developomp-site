@@ -86,7 +86,7 @@ export default class Sidebar extends React.Component<
 	SidebarProps,
 	SidebarState
 > {
-	constructor(props) {
+	constructor(props: SidebarProps) {
 		super(props)
 		this.state = {
 			isSidebarOpen: false,

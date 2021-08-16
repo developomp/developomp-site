@@ -50,7 +50,7 @@ export default class SubMenu extends React.Component<
 	SubMenuProps,
 	SubMenuState
 > {
-	constructor(props) {
+	constructor(props: SubMenuProps) {
 		super(props)
 		this.state = {
 			isSubNavOpen: false,

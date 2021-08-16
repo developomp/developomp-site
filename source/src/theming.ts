@@ -6,7 +6,10 @@
 import { css } from "styled-components"
 
 // not declared in the export object so the export object can refer to it
-function theme(currentTheme, values) {
+function theme(
+	currentTheme: string,
+	values: { [key: string]: string | number }
+) {
 	return values[currentTheme]
 }
 

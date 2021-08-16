@@ -90,7 +90,7 @@ interface SpinnerProps {
 export default class Spinner extends React.Component<SpinnerProps> {
 	balls: unknown[] = []
 
-	constructor(props) {
+	constructor(props: SpinnerProps) {
 		super(props)
 
 		let keyValue = 0

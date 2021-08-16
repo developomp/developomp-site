@@ -9,6 +9,10 @@
 		"YYYYMMDD",
 		"developomp",
 		"developomp's",
-		"dompurify"
+		"dompurify",
+		"elasticlunr",
+		"hljs",
+		"katex",
+		"texmath"
 	]
 }

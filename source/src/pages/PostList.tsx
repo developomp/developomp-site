@@ -7,9 +7,12 @@ import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
 import theming from "../theming"
-import map from "../data/map.json"
+import _map from "../data/map.json"
 
 import PostCard from "../components/PostCard"
+import { Map } from "../types/typings"
+
+const map: Map = _map
 
 const StyledPostList = styled.div`
 	padding-top: 2rem;
@@ -44,10 +47,10 @@ export default class PostList extends React.Component<
 	PostListProps,
 	PostListState
 > {
-	constructor(props) {
+	constructor(props: PostListProps) {
 		super(props)
 
-		const howMany = props.howMany | 0
+		const howMany = props.howMany || 0
 		const isLimited = howMany ? true : false
 		const h1Text = isLimited ? `Recent Posts` : "All Posts"
 

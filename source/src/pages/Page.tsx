@@ -13,7 +13,7 @@ import TagList from "../components/TagList"
 import NotFound from "./NotFound"
 import Spinner from "../components/Spinner"
 
-import map from "../data/map.json"
+import _map from "../data/map.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faBook,
@@ -22,6 +22,10 @@ import {
 	faCaretUp,
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
+
+import { TocElement, FetchedPage, Map } from "../types/typings"
+
+const map: Map = _map
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
@@ -92,7 +96,7 @@ const StyledCollapseContainer = styled.div`
 	}
 `
 
-function parseToc(json) {
+function parseToc(json: TocElement[]) {
 	return (
 		<ol>
 			{json.map((elem) => (
@@ -110,8 +114,7 @@ function parseToc(json) {
 interface PageProps {}
 
 interface PageState {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	fetchedPage: any
+	fetchedPage?: FetchedPage
 	isUnsearchable: boolean
 	isSeries: boolean
 	seriesData: {
@@ -148,7 +151,7 @@ class NextPrev extends React.Component<NextPrevProps> {
 }
 
 export default class Page extends React.Component<PageProps, PageState> {
-	constructor(props) {
+	constructor(props: PageProps) {
 		super(props)
 
 		this.state = {
@@ -161,7 +164,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 		}
 	}
 
-	componentDidUpdate(_, prevState) {
+	componentDidUpdate(_: PageProps, prevState: PageState) {
 		if (this.state.isTocOpened !== prevState.isTocOpened) {
 			storage.setItem("isTocOpened", this.state.isTocOpened.toString())
 		}
@@ -202,17 +205,19 @@ export default class Page extends React.Component<PageProps, PageState> {
 		}
 
 		// fetch page
-		let fetchedPage = map.posts[url]
+		const fetchedPage: FetchedPage = {
+			...map.posts[url],
+			toc: undefined,
+			content: "",
+			tags: [] as string[],
+		}
+
 		if (!fetchedPage) {
-			fetchedPage = map.unsearchable[url]
-
 			_isUnsearchable = true
-			this.setState({ isUnsearchable: true })
+			this.setState({ isUnsearchable: _isUnsearchable })
 
-			if (!fetchedPage) {
-				this.setState({
-					loading: false,
-				})
+			if (!map.unsearchable[url]) {
+				this.setState({ loading: false })
 				return
 			}
 		}
@@ -289,7 +294,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 											<td
 												key={
 													this.state.fetchedPage
-														.title + tag
+														?.title + tag
 												}
 											>
 												<Tag text={tag} />

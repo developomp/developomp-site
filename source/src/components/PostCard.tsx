@@ -13,6 +13,8 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
+import { Post } from "../types/typings"
+
 const StyledTitle = styled.h1`
 	font-size: 2rem;
 	font-style: bold;
@@ -22,7 +24,7 @@ const StyledTitle = styled.h1`
 const StyledMetaContainer = styled.small`
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: "#555",
+			light: "#444",
 			dark: "lightgrey",
 		})};
 `
@@ -56,16 +58,11 @@ const StyledPostCardContent = styled.div`
 		})};
 `
 
+interface _PostDateBase extends Post {
+	url: string
+}
 interface PostCardProps {
-	postData: {
-		url: string
-		title: string | undefined
-		preview: string
-		readTime: string
-		wordCount: number
-		tags: string[]
-		date: string | undefined
-	}
+	postData: _PostDateBase
 }
 
 export default class PostCard extends React.Component<PostCardProps> {

@@ -259,7 +259,7 @@ interface AppState {
 }
 
 export default class App extends React.Component<AppProps, AppState> {
-	constructor(props) {
+	constructor(props: AppProps) {
 		super(props)
 		this.state = {
 			isLoading: true,
@@ -283,7 +283,7 @@ export default class App extends React.Component<AppProps, AppState> {
 		}
 	}
 
-	componentDidUpdate(_, prevState) {
+	componentDidUpdate(_: AppProps, prevState: AppState) {
 		if (this.state.currentTheme !== prevState.currentTheme) {
 			// save theme when it is changed
 			storage.setItem("theme", this.state.currentTheme)

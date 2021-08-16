@@ -11,8 +11,9 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"generate": "ts-node -O '{\"module\":\"commonjs\"}' ./generate.ts",
+		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate.ts",
 		"start": "yarn generate && react-scripts start",
+		"quick-start": "react-scripts start",
 		"build": "yarn generate && react-scripts build"
 	},
 	"dependencies": {
@@ -51,8 +52,12 @@
 		"web-vitals": "^2.1.0"
 	},
 	"devDependencies": {
+		"@types/katex": "^0.11.1",
+		"@types/markdown-it": "^12.2.0",
 		"@types/node": "^16.4.10",
 		"@types/react": "^17.0.15",
+		"@types/react-collapse": "^5.0.1",
+		"@types/react-date-range": "^1.1.7",
 		"@types/react-dom": "^17.0.9",
 		"@types/styled-components": "^5.1.11",
 		"@typescript-eslint/eslint-plugin": "^4.28.5",

@@ -2,11 +2,11 @@ import { useEffect, useState, useRef } from "react"
 import styled from "styled-components"
 import { useLocation, useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
-import { DateRange } from "react-date-range"
+import { DateRange, Range, OnDateRangeChangeProps } from "react-date-range"
 import queryString from "query-string" // parsing url query
 import elasticlunr from "elasticlunr" // search engine
 
-import map from "../data/map.json"
+import _map from "../data/map.json"
 import searchIndex from "../data/search.json"
 import theming from "../theming"
 
@@ -16,6 +16,10 @@ import "react-date-range/dist/theme/default.css"
 import Tag from "../components/Tag"
 import TagList from "../components/TagList"
 import PostCard from "../components/PostCard"
+
+import { Map } from "../types/typings"
+
+const map: Map = _map
 
 const StyledSearch = styled.div`
 	text-align: center;
@@ -119,21 +123,13 @@ function _Search() {
 	const defaultDateRange = [
 		{
 			startDate: new Date(0),
-			endDate: null,
+			endDate: undefined,
 			key: "selection",
 		},
 	]
 
-	const [dateRange, setDateRange] = useState<
-		Array<{
-			startDate: Date | null
-			endDate: Date | null
-			key?: string
-		}>
-	>(defaultDateRange)
-
+	const [dateRange, setDateRange] = useState<Array<Range>>(defaultDateRange)
 	const [postCards, setPostCards] = useState<unknown[]>([])
-
 	const [searchInput, setSearchInput] = useState(query.query)
 
 	function doSearch() {
@@ -210,7 +206,8 @@ function _Search() {
 						moveRangeOnFirstSelection={false}
 						retainEndDateOnFirstSelection={true}
 						ranges={dateRange}
-						onChange={(item) => {
+						// eslint-disable-next-line @typescript-eslint/no-explicit-any
+						onChange={(item: OnDateRangeChangeProps) => {
 							const historyToPush = {
 								...(query.query && {
 									query: query.query,
