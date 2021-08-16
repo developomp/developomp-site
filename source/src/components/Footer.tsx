@@ -33,10 +33,10 @@ const StyledFooterContainer = styled.div`
 	text-align: center;
 
 	max-width: ${theming.size.screen_size2};
+`
 
-	.logo {
-		color: gray;
-	}
+const CreatedBy = styled.div`
+	color: gray;
 `
 
 const StyledALink = styled.a`
@@ -62,7 +62,9 @@ export default class Footer extends React.Component {
 		return (
 			<StyledFooter>
 				<StyledFooterContainer>
-					<div className="logo">Copyright &copy; developomp</div>
+					<CreatedBy>
+						Created by <b>developomp</b>
+					</CreatedBy>
 
 					<StyledALink
 						href="https://github.com/developomp/developomp-site"
