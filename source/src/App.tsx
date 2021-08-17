@@ -89,8 +89,9 @@ const globalStyle = css`
 		background-color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: "#eee",
-				dark: "#555",
+				dark: "#444", // I hope no hardcore christian finds this code
 			})};
+		border: 1px solid #666; /* especially this */
 		border-radius: 3px;
 		padding: 0 3px;
 	}
