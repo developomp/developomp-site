@@ -1,6 +1,8 @@
 export interface TocElement {
 	slug: string
 	content: string
+	i: number
+	lvl: number
 }
 
 export interface Post {

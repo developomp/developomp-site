@@ -104,11 +104,11 @@ const StyledMetaContainer = styled.div`
 		})};
 `
 
-function parseToc(json: TocElement[]) {
+function parseToc(tocData: TocElement[]) {
 	return (
 		<ol>
-			{json.map((elem) => (
-				// elem: content, i, lvl
+			{tocData.map((elem) => (
+				// use elem.lvl
 				<li key={elem.slug}>
 					<HashLink smooth to={location.pathname + "#" + elem.slug}>
 						{elem.content}
