@@ -318,13 +318,20 @@ export default class Page extends React.Component<PageProps, PageState> {
 							{!this.state.isUnsearchable && (
 								<StyledMetaContainer>
 									<FontAwesomeIcon icon={faCalendar} />{" "}
-									Published on {this.state.fetchedPage.date}
+									{this.state.fetchedPage?.date ||
+										"Unknown date"}
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<FontAwesomeIcon icon={faHourglass} />{" "}
-									{this.state.fetchedPage.readTime} read
+									{this.state.fetchedPage?.readTime
+										? this.state.fetchedPage?.readTime +
+										  " read"
+										: "unknown length"}
 									&nbsp;&nbsp;&nbsp;&nbsp;
 									<FontAwesomeIcon icon={faBook} />{" "}
-									{this.state.fetchedPage.wordCount} words
+									{this.state.fetchedPage?.wordCount
+										? this.state.fetchedPage.wordCount +
+										  " words"
+										: "unknown words"}
 								</StyledMetaContainer>
 							)}
 						</small>
