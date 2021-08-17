@@ -256,133 +256,125 @@ export default class Page extends React.Component<PageProps, PageState> {
 	}
 
 	render() {
-		if (this.state.loading) {
-			return <Spinner size={200} />
-		} else {
-			if (!this.state.fetchedPage) return <NotFound />
+		if (this.state.loading) return <Spinner size={200} />
+		if (!this.state.fetchedPage) return <NotFound />
 
-			return (
-				<>
-					<Helmet>
-						<title>pomp | {this.state.fetchedPage.title}</title>
+		return (
+			<>
+				<Helmet>
+					<title>pomp | {this.state.fetchedPage.title}</title>
 
-						<meta
-							property="og:title"
-							content={this.state.fetchedPage.title}
+					<meta
+						property="og:title"
+						content={this.state.fetchedPage.title}
+					/>
+					<meta property="og:type" content="website" />
+					<meta
+						property="og:image"
+						content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
+					/>
+				</Helmet>
+
+				<div
+					className="card main-content"
+					style={{
+						paddingTop: 0,
+					}}
+				>
+					{this.state.isSeries ? (
+						<NextPrev
+							prevURL={this.state.seriesData?.prev || null}
+							nextURL={this.state.seriesData?.next || null}
 						/>
-						<meta property="og:type" content="website" />
-						<meta
-							property="og:image"
-							content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
-						/>
-					</Helmet>
+					) : (
+						<br />
+					)}
+					<StyledTitle>{this.state.fetchedPage.title}</StyledTitle>
+
+					{/* Post tags */}
+					<small>
+						<TagList direction="left">
+							{this.state.fetchedPage.tags ? (
+								this.state.fetchedPage.tags.map((tag) => {
+									return (
+										<td
+											key={
+												this.state.fetchedPage?.title +
+												tag
+											}
+										>
+											<Tag text={tag} />
+										</td>
+									)
+								})
+							) : (
+								<></>
+							)}
+						</TagList>
+
+						<br />
+
+						{!this.state.isUnsearchable && (
+							<StyledMetaContainer>
+								<FontAwesomeIcon icon={faCalendar} />{" "}
+								{this.state.fetchedPage?.date || "Unknown date"}
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<FontAwesomeIcon icon={faHourglass} />{" "}
+								{this.state.fetchedPage?.readTime
+									? this.state.fetchedPage?.readTime + " read"
+									: "unknown length"}
+								&nbsp;&nbsp;&nbsp;&nbsp;
+								<FontAwesomeIcon icon={faBook} />{" "}
+								{this.state.fetchedPage?.wordCount
+									? this.state.fetchedPage.wordCount +
+									  " words"
+									: "unknown words"}
+							</StyledMetaContainer>
+						)}
+					</small>
+
+					<hr />
+
+					{
+						// add table of contents if it exists
+						!!this.state.fetchedPage?.toc?.props.children
+							.length && (
+							<>
+								<StyledTocToggleButton
+									onClick={() => {
+										this.setState({
+											isTocOpened:
+												!this.state.isTocOpened,
+										})
+									}}
+								>
+									<strong>Table of Content </strong>
+									{this.state.isTocOpened ? (
+										<FontAwesomeIcon icon={faCaretUp} />
+									) : (
+										<FontAwesomeIcon icon={faCaretDown} />
+									)}
+								</StyledTocToggleButton>
+								<StyledCollapseContainer>
+									<Collapse isOpened={this.state.isTocOpened}>
+										<div className="white-link">
+											{this.state.fetchedPage.toc}
+										</div>
+									</Collapse>
+								</StyledCollapseContainer>
+								<hr />
+							</>
+						)
+					}
 
 					<div
-						className="card main-content"
-						style={{
-							paddingTop: 0,
+						className="white-link"
+						dangerouslySetInnerHTML={{
+							__html: this.state.fetchedPage.content,
 						}}
-					>
-						{this.state.isSeries ? (
-							<NextPrev
-								prevURL={this.state.seriesData?.prev || null}
-								nextURL={this.state.seriesData?.next || null}
-							/>
-						) : (
-							<br />
-						)}
-						<StyledTitle>
-							{this.state.fetchedPage.title}
-						</StyledTitle>
-						{/* Post tags */}
-						<small>
-							<TagList direction="left">
-								{this.state.fetchedPage.tags ? (
-									this.state.fetchedPage.tags.map((tag) => {
-										return (
-											<td
-												key={
-													this.state.fetchedPage
-														?.title + tag
-												}
-											>
-												<Tag text={tag} />
-											</td>
-										)
-									})
-								) : (
-									<></>
-								)}
-							</TagList>
-							<br />
-							{!this.state.isUnsearchable && (
-								<StyledMetaContainer>
-									<FontAwesomeIcon icon={faCalendar} />{" "}
-									{this.state.fetchedPage?.date ||
-										"Unknown date"}
-									&nbsp;&nbsp;&nbsp;&nbsp;
-									<FontAwesomeIcon icon={faHourglass} />{" "}
-									{this.state.fetchedPage?.readTime
-										? this.state.fetchedPage?.readTime +
-										  " read"
-										: "unknown length"}
-									&nbsp;&nbsp;&nbsp;&nbsp;
-									<FontAwesomeIcon icon={faBook} />{" "}
-									{this.state.fetchedPage?.wordCount
-										? this.state.fetchedPage.wordCount +
-										  " words"
-										: "unknown words"}
-								</StyledMetaContainer>
-							)}
-						</small>
-						{/* Horizontal Separator */}
-
-						<hr />
-
-						{
-							// add table of contents if it exists
-							this.state.fetchedPage.toc && (
-								<>
-									<StyledTocToggleButton
-										onClick={() => {
-											this.setState({
-												isTocOpened:
-													!this.state.isTocOpened,
-											})
-										}}
-									>
-										<strong>Table of Content </strong>
-										{this.state.isTocOpened ? (
-											<FontAwesomeIcon icon={faCaretUp} />
-										) : (
-											<FontAwesomeIcon
-												icon={faCaretDown}
-											/>
-										)}
-									</StyledTocToggleButton>
-									<StyledCollapseContainer>
-										<Collapse
-											isOpened={this.state.isTocOpened}
-										>
-											<div className="white-link">
-												{this.state.fetchedPage.toc}
-											</div>
-										</Collapse>
-									</StyledCollapseContainer>
-									<hr />
-								</>
-							)
-						}
-
-						<div
-							className="white-link"
-							dangerouslySetInnerHTML={{
-								__html: this.state.fetchedPage.content,
-							}}
-						/>
-					</div>
-				</>
-			)
-		}
+					/>
+				</div>
+			</>
+		)
 	}
 }
