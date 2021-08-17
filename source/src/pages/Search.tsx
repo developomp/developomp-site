@@ -40,6 +40,7 @@ const StyledSearchControlContainer = styled.form`
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		margin-top: 2rem;
+		margin-left: 0;
 	}
 `
 
@@ -56,15 +57,15 @@ const StyledSearchBar = styled.input`
 	width: 100%;
 	border-radius: 100px; /* arbitrarily large value */
 	height: 3rem;
-	padding: 0 0 0 1rem;
+	text-indent: 1rem;
 	font-size: 1.25rem;
+	outline: none;
 
 	border: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "1px solid #ccc",
 			dark: "1px solid #555",
 		})};
-	outline: none;
 
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
