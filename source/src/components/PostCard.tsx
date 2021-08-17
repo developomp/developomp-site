@@ -72,12 +72,12 @@ interface PostCardProps {
 export default class PostCard extends React.Component<PostCardProps> {
 	render() {
 		return (
-			<StyledPostCard
-				key={this.props.postData.url}
-				className="card main-content"
+			<StyledPostCardContentContainer
+				to={process.env.PUBLIC_URL + this.props.postData.url}
 			>
-				<StyledPostCardContentContainer
-					to={process.env.PUBLIC_URL + this.props.postData.url}
+				<StyledPostCard
+					key={this.props.postData.url}
+					className="card main-content"
 				>
 					<StyledTitle>
 						{this.props.postData?.title || "No title"}
@@ -122,8 +122,8 @@ export default class PostCard extends React.Component<PostCardProps> {
 							__html: this.props.postData.preview,
 						}}
 					/>
-				</StyledPostCardContentContainer>
-			</StyledPostCard>
+				</StyledPostCard>
+			</StyledPostCardContentContainer>
 		)
 	}
 }
