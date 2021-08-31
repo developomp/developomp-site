@@ -100,15 +100,18 @@ export default class PostCard extends React.Component<PostCardProps> {
 								<></>
 							)}
 						</TagList>
-						<FontAwesomeIcon icon={faCalendar} />{" "}
+						<FontAwesomeIcon icon={faCalendar} />
+						&nbsp;&nbsp;&nbsp;
 						{this.props.postData?.date || "Unknown date"}
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<FontAwesomeIcon icon={faHourglass} />{" "}
+						<FontAwesomeIcon icon={faHourglass} />
+						&nbsp;&nbsp;&nbsp;
 						{this.props.postData?.readTime
 							? this.props.postData.readTime + " read"
 							: "unknown length"}
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<FontAwesomeIcon icon={faBook} />{" "}
+						<FontAwesomeIcon icon={faBook} />
+						&nbsp;&nbsp;&nbsp;
 						{this.props.postData?.wordCount
 							? this.props.postData.wordCount + " words"
 							: "unknown words"}
