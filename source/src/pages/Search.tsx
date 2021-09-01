@@ -345,6 +345,27 @@ function _Search() {
 						>
 							Clear date
 						</button>
+						|
+						<button
+							onClick={() => {
+								_history.push({
+									pathname: "/search",
+									search: queryString.stringify({
+										...(query.query && {
+											query: query.query,
+										}),
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
+									}),
+								})
+							}}
+						>
+							Clear tags
+						</button>
 						<br />
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
