@@ -136,8 +136,8 @@ function _Search() {
 
 	function doSearch() {
 		// remove focus from search bar to prevent accidental multiple search
-		if (document.activeElement instanceof HTMLElement)
-			document.activeElement.blur()
+		// if (document.activeElement instanceof HTMLElement)
+		// 	document.activeElement.blur()
 
 		_history.push({
 			pathname: "/search",
@@ -193,6 +193,14 @@ function _Search() {
 	useEffect(() => {
 		doSearch()
 	}, [dateRange])
+
+	useEffect(() => {
+		const delayDebounceFn = setTimeout(() => {
+			doSearch()
+		}, 200)
+
+		return () => clearTimeout(delayDebounceFn)
+	}, [searchInput])
 
 	return (
 		<>
@@ -251,16 +259,20 @@ function _Search() {
 						}}
 					>
 						<StyledSearchBar
+							autoFocus
 							type="text"
 							ref={inputRef}
 							value={searchInput}
+							autoComplete="off"
 							placeholder="Search"
-							onChange={(event) =>
+							onChange={(event) => {
 								setSearchInput(event.target.value)
-							}
-							onKeyPress={(e) =>
-								e.key === "Enter" && searchInput && doSearch()
-							}
+							}}
+							onKeyPress={(event) => {
+								event.key === "Enter" &&
+									searchInput &&
+									doSearch()
+							}}
 						/>
 						<br />
 						<br />
