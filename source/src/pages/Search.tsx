@@ -106,7 +106,7 @@ export default function Search() {
 }
 
 function _Search() {
-	const [index, setIndex] = useState({} as elasticlunr.Index<unknown>)
+	const [index] = useState(elasticlunr.Index.load(searchIndex as never))
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const _history = useHistory()
@@ -135,10 +135,6 @@ function _Search() {
 	const [searchInput, setSearchInput] = useState(query.query)
 
 	function doSearch() {
-		// remove focus from search bar to prevent accidental multiple search
-		// if (document.activeElement instanceof HTMLElement)
-		// 	document.activeElement.blur()
-
 		_history.push({
 			pathname: "/search",
 			search: queryString.stringify({
@@ -182,13 +178,10 @@ function _Search() {
 				setPostCards(_postCards)
 			}
 			// eslint-disable-next-line no-empty
-		} catch (err) {}
+		} catch (err) {
+			console.error(err)
+		}
 	}
-
-	// load search index only once
-	useEffect(() => {
-		setIndex(elasticlunr.Index.load(searchIndex as never))
-	}, [])
 
 	useEffect(() => {
 		doSearch()
