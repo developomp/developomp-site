@@ -269,6 +269,28 @@ function _Search() {
 						/>
 						<br />
 						<br />
+						<button
+							onClick={() => {
+								_history.push({
+									pathname: "/search",
+									search: queryString.stringify({
+										...(query.query && {
+											query: query.query,
+										}),
+										...(query.from && {
+											from: query.from,
+										}),
+										...(query.to && {
+											to: query.to,
+										}),
+									}),
+								})
+							}}
+						>
+							Clear tags
+						</button>
+						<br />
+						<br />
 						<small>
 							<TagList>
 								{query.tags.length > 0 &&
@@ -303,7 +325,7 @@ function _Search() {
 						>
 							Search test 1
 						</button>
-						|
+						{" | "}
 						<button
 							onClick={() => {
 								_history.push({
@@ -344,27 +366,6 @@ function _Search() {
 							}}
 						>
 							Clear date
-						</button>
-						|
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.query && {
-											query: query.query,
-										}),
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-									}),
-								})
-							}}
-						>
-							Clear tags
 						</button>
 						<br />
 					</StyledSearchControlContainer>
