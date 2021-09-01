@@ -34,7 +34,7 @@ const StyledSearchContainer = styled.div`
 	}
 `
 
-const StyledSearchControlContainer = styled.form`
+const StyledSearchControlContainer = styled.div`
 	width: 100%;
 	margin-left: 1rem;
 
@@ -80,6 +80,7 @@ const StyledSearchBar = styled.input`
 		})};
 `
 
+// check if post date is withing the range
 function isDateInRange(
 	dateToCompare: string,
 	from: string,
@@ -135,7 +136,8 @@ function _Search() {
 
 	function doSearch() {
 		// remove focus from search bar to prevent accidental multiple search
-		if (inputRef.current) inputRef.current.blur()
+		if (document.activeElement instanceof HTMLElement)
+			document.activeElement.blur()
 
 		_history.push({
 			pathname: "/search",
@@ -207,7 +209,6 @@ function _Search() {
 						moveRangeOnFirstSelection={false}
 						retainEndDateOnFirstSelection={true}
 						ranges={dateRange}
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						onChange={(item: OnDateRangeChangeProps) => {
 							const historyToPush = {
 								...(query.query && {
@@ -247,7 +248,6 @@ function _Search() {
 					<StyledSearchControlContainer
 						onSubmit={(event) => {
 							event.preventDefault()
-							if (searchInput) doSearch()
 						}}
 					>
 						<StyledSearchBar
@@ -257,6 +257,9 @@ function _Search() {
 							placeholder="Search"
 							onChange={(event) =>
 								setSearchInput(event.target.value)
+							}
+							onKeyPress={(e) =>
+								e.key === "Enter" && searchInput && doSearch()
 							}
 						/>
 						<br />
@@ -274,8 +277,7 @@ function _Search() {
 						<br />
 						date to: {query.to}
 						<br />
-						<input
-							type="submit"
+						<button
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -293,11 +295,11 @@ function _Search() {
 									}),
 								})
 							}}
-							value="Search test 1"
-						/>
+						>
+							Search test 1
+						</button>
 						|
-						<input
-							type="submit"
+						<button
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -315,11 +317,11 @@ function _Search() {
 									}),
 								})
 							}}
-							value="Search test 2"
-						/>
+						>
+							Search test 2
+						</button>
 						<br />
-						<input
-							type="submit"
+						<button
 							onClick={() => {
 								_history.push({
 									pathname: "/search",
@@ -335,8 +337,9 @@ function _Search() {
 
 								setDateRange(defaultDateRange)
 							}}
-							value="clear date"
-						/>
+						>
+							Clear date
+						</button>
 						<br />
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
