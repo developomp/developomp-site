@@ -17,12 +17,13 @@ const StyledTag = styled.div`
 
 interface TagProps {
 	text: string
+	onClick?: (event: React.MouseEvent<never>) => void
 }
 
 export default class Tag extends React.Component<TagProps> {
 	render() {
 		return (
-			<StyledTag>
+			<StyledTag onClick={this.props.onClick || undefined}>
 				<FontAwesomeIcon icon={faTag} /> &nbsp;{this.props.text}
 			</StyledTag>
 		)

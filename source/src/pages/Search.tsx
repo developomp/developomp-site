@@ -1,25 +1,31 @@
 import { useEffect, useState, useRef } from "react"
-import styled from "styled-components"
+import styled, { ThemeConsumer } from "styled-components"
 import { useLocation, useHistory } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { DateRange, Range, OnDateRangeChangeProps } from "react-date-range"
+import Select from "react-select"
 import queryString from "query-string" // parsing url query
 import elasticlunr from "elasticlunr" // search engine
 
 import _map from "../data/map.json"
-import searchIndex from "../data/search.json"
+import searchData from "../data/search.json"
 import theming from "../theming"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
 
-import Tag from "../components/Tag"
-import TagList from "../components/TagList"
 import PostCard from "../components/PostCard"
 
 import { Map } from "../types/typings"
 
 const map: Map = _map
+
+const searchIndex = elasticlunr.Index.load(searchData as never)
+
+interface TagsData {
+	value: string
+	label: string
+}
 
 const StyledSearch = styled.div`
 	text-align: center;
@@ -80,6 +86,16 @@ const StyledSearchBar = styled.input`
 		})};
 `
 
+const StyledReactTagsContainer = styled.div`
+	width: 100%;
+`
+
+const options: TagsData[] = [
+	...map.meta.tags.map((elem) => {
+		return { value: elem, label: elem }
+	}),
+]
+
 // check if post date is withing the range
 function isDateInRange(
 	dateToCompare: string,
@@ -106,7 +122,6 @@ export default function Search() {
 }
 
 function _Search() {
-	const [index] = useState(elasticlunr.Index.load(searchIndex as never))
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const _history = useHistory()
@@ -133,6 +148,11 @@ function _Search() {
 	const [dateRange, setDateRange] = useState<Array<Range>>(defaultDateRange)
 	const [postCards, setPostCards] = useState<unknown[]>([])
 	const [searchInput, setSearchInput] = useState(query.query)
+	const [selectedTags, setSelectedOption] = useState<TagsData[] | null>(
+		query.tags.map((elem) => {
+			return { label: elem, value: elem }
+		})
+	)
 
 	function doSearch() {
 		_history.push({
@@ -153,7 +173,7 @@ function _Search() {
 
 		try {
 			const _postCards: unknown[] = []
-			for (const res of index.search(searchInput)) {
+			for (const res of searchIndex.search(searchInput)) {
 				const postData = map.posts[res.ref]
 
 				// if post data exists,
@@ -267,86 +287,104 @@ function _Search() {
 									doSearch()
 							}}
 						/>
-						<br />
-						<br />
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.query && {
-											query: query.query,
-										}),
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-									}),
-								})
-							}}
-						>
-							Clear tags
-						</button>
-						<br />
-						<br />
-						<small>
-							<TagList>
-								{query.tags.length > 0 &&
-									query.tags.map((tag) => {
-										return <Tag key={tag} text={tag} />
-									})}
-							</TagList>
-						</small>
+						<h3>Filters</h3>
+						<StyledReactTagsContainer>
+							<ThemeConsumer>
+								{(theme) => (
+									<Select
+										styles={{
+											option: (provided) => ({
+												...provided,
+												backgroundColor: theming
+													.theme(theme.currentTheme, {
+														light: theming.light
+															.backgroundColor1,
+														dark: theming.dark
+															.backgroundColor1,
+													})
+													.toString(),
+												color: theming
+													.theme(theme.currentTheme, {
+														light: theming.light
+															.color1,
+														dark: theming.dark
+															.color1,
+													})
+													.toString(),
+												padding: 10,
+											}),
+											control: (styles) => ({
+												...styles,
+												backgroundColor: theming
+													.theme(theme.currentTheme, {
+														light: theming.light
+															.backgroundColor1,
+														dark: theming.dark
+															.backgroundColor1,
+													})
+													.toString(),
+												border: theming.theme(
+													theme.currentTheme,
+													{
+														light: "1px solid #ccc",
+														dark: "1px solid #555",
+													}
+												),
+												outline: "none",
+											}),
+											singleValue: (provided, state) => {
+												const opacity = state.isDisabled
+													? 0.5
+													: 1
+												const transition =
+													"opacity 300ms"
+
+												return {
+													...provided,
+													opacity,
+													transition,
+												}
+											},
+										}}
+										defaultValue={selectedTags}
+										onChange={(newSelectedTags) => {
+											setSelectedOption(
+												newSelectedTags as TagsData[]
+											)
+
+											_history.push({
+												pathname: "/search",
+												search: queryString.stringify({
+													...(query.query && {
+														query: query.query,
+													}),
+													...(query.from && {
+														from: query.from,
+													}),
+													...(query.to && {
+														to: query.to,
+													}),
+													tags:
+														newSelectedTags
+															.map(
+																(elem) =>
+																	elem.value
+															)
+															.join(",") ||
+														undefined,
+												}),
+											})
+										}}
+										options={options}
+										isMulti
+									/>
+								)}
+							</ThemeConsumer>
+						</StyledReactTagsContainer>
 						<br />
 						date from: {query.from}
 						<br />
 						date to: {query.to}
-						<br />
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.query && {
-											query: query.query,
-										}),
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-										tags: "include,!exclude",
-									}),
-								})
-							}}
-						>
-							Search test 1
-						</button>
-						{" | "}
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.query && {
-											query: query.query,
-										}),
-										...(query.from && {
-											from: query.from,
-										}),
-										...(query.to && {
-											to: query.to,
-										}),
-										tags: "include2,!exclude2",
-									}),
-								})
-							}}
-						>
-							Search test 2
-						</button>
 						<br />
 						<button
 							onClick={() => {
