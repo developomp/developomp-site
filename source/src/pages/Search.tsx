@@ -170,6 +170,9 @@ function _Search() {
 		_history.push({
 			pathname: "/search",
 			search: queryString.stringify({
+				...(searchInput && {
+					query: searchInput,
+				}),
 				...(query.from && {
 					from: query.from,
 				}),
@@ -179,7 +182,6 @@ function _Search() {
 				...(query.tags.length > 0 && {
 					tags: query.tags.join(","),
 				}),
-				query: searchInput,
 			}),
 		})
 
