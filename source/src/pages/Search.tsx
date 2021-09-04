@@ -91,9 +91,7 @@ const StyledReactTagsContainer = styled.div`
 `
 
 const options: TagsData[] = [
-	...map.meta.tags.map((elem) => {
-		return { value: elem, label: elem }
-	}),
+	...map.meta.tags.map((elem) => ({ value: elem, label: elem })),
 ]
 
 // check if post date is withing the range
@@ -113,6 +111,22 @@ function isDateInRange(
 
 	const compareDate = Date.parse(dateToCompare)
 	return Date.parse(from) < compareDate && compareDate < Date.parse(to)
+}
+
+function isSelectedTagsInPost(
+	selectedTags: TagsData[] | null,
+	postTags: string[] | undefined
+) {
+	if (selectedTags == null) return true
+	if (selectedTags.length == 0) return true
+
+	if (postTags == undefined) return false
+
+	// if tag is empty or null
+	const tagValues = selectedTags.map((value) => value.value)
+	if (!postTags.every((val) => tagValues.includes(val))) return false
+
+	return true
 }
 
 // Search doesn't work on url change if component is not wrapped
@@ -145,13 +159,11 @@ function _Search() {
 		},
 	]
 
-	const [dateRange, setDateRange] = useState<Array<Range>>(defaultDateRange)
 	const [postCards, setPostCards] = useState<unknown[]>([])
+	const [dateRange, setDateRange] = useState<Array<Range>>(defaultDateRange)
 	const [searchInput, setSearchInput] = useState(query.query)
 	const [selectedTags, setSelectedOption] = useState<TagsData[] | null>(
-		query.tags.map((elem) => {
-			return { label: elem, value: elem }
-		})
+		query.tags.map((elem) => ({ label: elem, value: elem }))
 	)
 
 	function doSearch() {
@@ -176,13 +188,10 @@ function _Search() {
 			for (const res of searchIndex.search(searchInput)) {
 				const postData = map.posts[res.ref]
 
-				// if post data exists,
-				// date is within range,
-				// and if post include tags
 				if (
-					postData &&
-					isDateInRange(postData.date, query.from, query.to) &&
-					true
+					postData && // if post data exists
+					isDateInRange(postData.date, query.from, query.to) && // date is within range
+					isSelectedTagsInPost(selectedTags, postData.tags) // if post include tags
 				) {
 					_postCards.push(
 						<PostCard
@@ -194,9 +203,11 @@ function _Search() {
 						/>
 					)
 				}
-				// apply search result
-				setPostCards(_postCards)
 			}
+			// apply search result
+			setPostCards(_postCards)
+			// todo: set _postCards.length
+
 			// eslint-disable-next-line no-empty
 		} catch (err) {
 			console.error(err)
@@ -205,7 +216,7 @@ function _Search() {
 
 	useEffect(() => {
 		doSearch()
-	}, [dateRange])
+	}, [dateRange, selectedTags])
 
 	useEffect(() => {
 		const delayDebounceFn = setTimeout(() => {
@@ -287,64 +298,126 @@ function _Search() {
 									doSearch()
 							}}
 						/>
+						{postCards.length} results
 						<h3>Filters</h3>
 						<StyledReactTagsContainer>
 							<ThemeConsumer>
-								{(theme) => (
+								{(currentTheme) => (
 									<Select
+										theme={(theme) => ({
+											...theme,
+											colors: {
+												...theme.colors,
+												neutral0: theming
+													.theme(
+														currentTheme.currentTheme,
+														{
+															light: theming.light
+																.backgroundColor1,
+															dark: theming.dark
+																.backgroundColor1,
+														}
+													)
+													.toString(),
+												neutral5: "hsl(0, 0%, 20%)",
+												neutral10: "hsl(0, 0%, 30%)",
+												neutral20: "hsl(0, 0%, 40%)",
+												neutral30: "hsl(0, 0%, 50%)",
+												neutral40: "hsl(0, 0%, 60%)",
+												neutral50: "hsl(0, 0%, 70%)",
+												neutral60: "hsl(0, 0%, 80%)",
+												neutral70: "hsl(0, 0%, 90%)",
+												neutral80: "hsl(0, 0%, 95%)",
+												neutral90: "hsl(0, 0%, 100%)",
+												primary25: "hotpink",
+												primary: "black",
+											},
+										})}
 										styles={{
-											option: (provided) => ({
-												...provided,
+											option: (styles) => ({
+												...styles,
 												backgroundColor: theming
-													.theme(theme.currentTheme, {
-														light: theming.light
-															.backgroundColor1,
-														dark: theming.dark
-															.backgroundColor1,
-													})
+													.theme(
+														currentTheme.currentTheme,
+														{
+															light: theming.light
+																.backgroundColor1,
+															dark: theming.dark
+																.backgroundColor1,
+														}
+													)
 													.toString(),
 												color: theming
-													.theme(theme.currentTheme, {
-														light: theming.light
-															.color1,
-														dark: theming.dark
-															.color1,
-													})
+													.theme(
+														currentTheme.currentTheme,
+														{
+															light: theming.light
+																.color1,
+															dark: theming.dark
+																.color1,
+														}
+													)
 													.toString(),
+												cursor: "pointer",
 												padding: 10,
+												":hover": {
+													backgroundColor: theming
+														.theme(
+															currentTheme.currentTheme,
+															{
+																light: theming
+																	.light
+																	.backgroundColor0,
+																dark: theming
+																	.dark
+																	.backgroundColor0,
+															}
+														)
+														.toString(),
+												},
 											}),
 											control: (styles) => ({
 												...styles,
 												backgroundColor: theming
-													.theme(theme.currentTheme, {
-														light: theming.light
-															.backgroundColor1,
-														dark: theming.dark
-															.backgroundColor1,
-													})
+													.theme(
+														currentTheme.currentTheme,
+														{
+															light: theming.light
+																.backgroundColor1,
+															dark: theming.dark
+																.backgroundColor1,
+														}
+													)
 													.toString(),
 												border: theming.theme(
-													theme.currentTheme,
+													currentTheme.currentTheme,
 													{
 														light: "1px solid #ccc",
 														dark: "1px solid #555",
 													}
 												),
-												outline: "none",
 											}),
-											singleValue: (provided, state) => {
-												const opacity = state.isDisabled
-													? 0.5
-													: 1
-												const transition =
-													"opacity 300ms"
-
-												return {
-													...provided,
-													opacity,
-													transition,
-												}
-											},
+											multiValue: (styles) => ({
+												...styles,
+												color: "white",
+												backgroundColor:
+													theming.color.linkColor,
+												borderRadius: "5px",
+											}),
+											multiValueLabel: (styles) => ({
+												...styles,
+												marginLeft: "0.2rem",
+												marginRight: "0.2rem",
+											}),
+											multiValueRemove: (styles) => ({
+												...styles,
+												marginLeft: "0.2rem",
+												":hover": {
+													backgroundColor: "white",
+													color: theming.color
+														.linkColor,
+												},
+											}),
 										}}
 										defaultValue={selectedTags}
 										onChange={(newSelectedTags) => {
