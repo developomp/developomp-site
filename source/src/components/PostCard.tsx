@@ -15,17 +15,13 @@ import {
 
 import { Post } from "../types/typings"
 
-const StyledTitle = styled.h1`
-	font-size: 2rem;
-	font-style: bold;
-	margin-bottom: 1rem;
-`
+const StyledPostCardContainer = styled(Link)`
+	text-decoration: none;
 
-const StyledMetaContainer = styled.small`
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: "#555",
-			dark: "#CCC",
+			light: theming.light.color1,
+			dark: theming.dark.color1,
 		})};
 `
 
@@ -44,13 +40,17 @@ const StyledPostCard = styled.div`
 	}
 `
 
-const StyledPostCardContentContainer = styled(Link)`
-	text-decoration: none;
+const StyledTitle = styled.h1`
+	font-size: 2rem;
+	font-style: bold;
+	margin-bottom: 1rem;
+`
 
+const StyledMetaContainer = styled.small`
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
+			light: "#555",
+			dark: "#CCC",
 		})};
 `
 
@@ -72,7 +72,7 @@ interface PostCardProps {
 export default class PostCard extends React.Component<PostCardProps> {
 	render() {
 		return (
-			<StyledPostCardContentContainer
+			<StyledPostCardContainer
 				to={process.env.PUBLIC_URL + this.props.postData.url}
 			>
 				<StyledPostCard
@@ -126,7 +126,7 @@ export default class PostCard extends React.Component<PostCardProps> {
 						}}
 					/>
 				</StyledPostCard>
-			</StyledPostCardContentContainer>
+			</StyledPostCardContainer>
 		)
 	}
 }
