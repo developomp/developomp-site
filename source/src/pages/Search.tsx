@@ -300,7 +300,8 @@ function _Search() {
 									doSearch()
 							}}
 						/>
-						{postCards.length} results
+						{postCards.length}{" "}
+						{postCards.length > 1 ? "results" : "result"}
 						<h3>Filters</h3>
 						<StyledReactTagsContainer>
 							<ThemeConsumer>
