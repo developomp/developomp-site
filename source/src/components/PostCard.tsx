@@ -1,6 +1,5 @@
-import React from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 
 import theming from "../theming"
 
@@ -15,21 +14,17 @@ import {
 
 import { Post } from "../types/typings"
 
-const StyledPostCardContainer = styled(Link)`
-	text-decoration: none;
+const StyledPostCard = styled.div`
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	text-align: left;
+	margin-bottom: 2rem;
+	cursor: pointer;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: theming.light.color1,
 			dark: theming.dark.color1,
 		})};
-`
-
-const StyledPostCard = styled.div`
-	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-	text-align: left;
-	margin-bottom: 2rem;
-	padding: 0;
 
 	&:hover {
 		box-shadow: ${(props) =>
@@ -69,64 +64,61 @@ interface PostCardProps {
 	postData: _PostDateBase
 }
 
-export default class PostCard extends React.Component<PostCardProps> {
-	render() {
-		return (
-			<StyledPostCardContainer
-				to={process.env.PUBLIC_URL + this.props.postData.url}
-			>
-				<StyledPostCard
-					key={this.props.postData.url}
-					className="card main-content"
-				>
-					<StyledTitle>
-						{this.props.postData?.title || "No title"}
-					</StyledTitle>
+export default function PostCard(props: PostCardProps) {
+	const history = useHistory()
 
-					<StyledMetaContainer>
-						<TagList direction="left">
-							{this.props.postData.tags ? (
-								this.props.postData.tags.map((tag) => {
-									return (
-										<Tag
-											key={
-												this.props.postData.title + tag
-											}
-											text={tag}
-										/>
-									)
-								})
-							) : (
-								<></>
-							)}
-						</TagList>
-						<FontAwesomeIcon icon={faCalendar} />
-						&nbsp;&nbsp;&nbsp;
-						{this.props.postData?.date || "Unknown date"}
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<FontAwesomeIcon icon={faHourglass} />
-						&nbsp;&nbsp;&nbsp;
-						{this.props.postData?.readTime
-							? this.props.postData.readTime + " read"
-							: "unknown length"}
-						&nbsp;&nbsp;&nbsp;&nbsp;
-						<FontAwesomeIcon icon={faBook} />
-						&nbsp;&nbsp;&nbsp;
-						{this.props.postData?.wordCount
-							? this.props.postData.wordCount + " words"
-							: "unknown words"}
-					</StyledMetaContainer>
+	return (
+		<StyledPostCard
+			key={props.postData.url}
+			className="card main-content"
+			onClick={() => {
+				history.push({
+					pathname: process.env.PUBLIC_URL + props.postData.url,
+				})
+			}}
+		>
+			<StyledTitle>{props.postData?.title || "No title"}</StyledTitle>
 
-					<hr />
+			<StyledMetaContainer>
+				<TagList direction="left">
+					{props.postData.tags ? (
+						props.postData.tags.map((tag) => {
+							return (
+								<Tag
+									key={props.postData.title + tag}
+									text={tag}
+								/>
+							)
+						})
+					) : (
+						<></>
+					)}
+				</TagList>
+				<FontAwesomeIcon icon={faCalendar} />
+				&nbsp;&nbsp;&nbsp;
+				{props.postData?.date || "Unknown date"}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<FontAwesomeIcon icon={faHourglass} />
+				&nbsp;&nbsp;&nbsp;
+				{props.postData?.readTime
+					? props.postData.readTime + " read"
+					: "unknown length"}
+				&nbsp;&nbsp;&nbsp;&nbsp;
+				<FontAwesomeIcon icon={faBook} />
+				&nbsp;&nbsp;&nbsp;
+				{props.postData?.wordCount
+					? props.postData.wordCount + " words"
+					: "unknown words"}
+			</StyledMetaContainer>
 
-					<StyledPostCardContent
-						className="white-link"
-						dangerouslySetInnerHTML={{
-							__html: this.props.postData.preview,
-						}}
-					/>
-				</StyledPostCard>
-			</StyledPostCardContainer>
-		)
-	}
+			<hr />
+
+			<StyledPostCardContent
+				className="white-link"
+				dangerouslySetInnerHTML={{
+					__html: props.postData.preview,
+				}}
+			/>
+		</StyledPostCard>
+	)
 }
