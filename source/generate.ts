@@ -93,7 +93,7 @@ const map: Map = {
 	unsearchable: {},
 }
 const seriesMap: SeriesMap = {}
-const index = elasticlunr(function () {
+const elasticlunrIndex = elasticlunr(function () {
 	this.addField("title" as never)
 	this.addField("body" as never)
 	this.setRef("url" as never)
@@ -286,7 +286,7 @@ function recursiveParse(
 			}
 
 			map.posts[urlPath] = postData
-			index.addDoc({
+			elasticlunrIndex.addDoc({
 				title: markdownData.title,
 				body: markdownData.content,
 				url: urlPath,
@@ -312,7 +312,7 @@ function recursiveParse(
 				title: markdownData.title,
 			}
 
-			index.addDoc({
+			elasticlunrIndex.addDoc({
 				title: markdownData.title,
 				body: markdownData.content,
 				url: urlPath,
@@ -394,7 +394,7 @@ function recursiveParse(
 				map.series[urlPath] = { ...postData, order: [], length: 0 }
 			} else {
 				map.posts[urlPath] = postData
-				index.addDoc({
+				elasticlunrIndex.addDoc({
 					title: markdownData.title,
 					body: markdownData.content,
 					url: urlPath,
@@ -502,4 +502,4 @@ for (const seriesURL in seriesMap) {
 }
 
 fs.writeFileSync(mapFilePath, JSON.stringify(map))
-fs.writeFileSync(outPath + "/search.json", JSON.stringify(index))
+fs.writeFileSync(outPath + "/search.json", JSON.stringify(elasticlunrIndex))
