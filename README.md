@@ -1,17 +1,9 @@
 # developomp-site
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](./LICENSE)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-Repository for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
-
-Tools / Frameworks / Packages used:
-
-|                                    Name | Use                 |
-| --------------------------------------: | :------------------ |
-|           [AWS](https://aws.amazon.com) | Domain register     |
-| [Firebase](https://firebase.google.com) | Static site hosting |
-|            [react](https://reactjs.org) | Front end framework |
+Source code for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
 
 # Setup
 
@@ -21,20 +13,29 @@ Requirements:
 -   [yarn](https://github.com/yarnpkg/yarn)
 -   optional:
     -   [vscode](https://code.visualstudio.com)
-        -   [extensions](./.vscode/extensions.json) (also optional but highly recommended):
+        -   [extensions](./.vscode/extensions.json) (also optional but highly recommended)
 
 Steps:
 
 -   Clone this repository
-    -   `git clone https://github.com/developomp/developomp-site.git`
+
+    `git clone https://github.com/developomp/developomp-site.git`
+
 -   Or download as a zip file
-    -   ![download procedure](./downloading.png)
+
+    ![download procedure](./downloading.png)
+
 -   open [`source`](./source) directory
-    -   `cd source`
+
+    `cd source`
+
 -   Install dependencies (must be in `source` directory)
-    -   `yarn install`
+
+    `yarn install`
+
 -   start local server in http://localhost:3000
-    -   `yarn start`
+
+    `yarn start`
 
 # Contributing
 
@@ -42,13 +43,13 @@ Please read the [`CONTRIBUTING.md`](./CONTRIBUTING.md) file.
 
 # How it works
 
-> Check the [`generator.ts`](./source/generate.ts) source code for more detailed information.
+> Check the comments [`generator.ts`](./source/generate.ts) file for more detailed information.
 
-The command `yarn start` does two things under the hood:
+When you run the `yarn start` command, the project executes the [generate.ts](./source/generate.ts) script before starting the app. This script converts [markdown files](./source/markdown) to json files so it can be imported by react on the frontend.
 
-1. it executes the [generate.ts](./source/generate.ts) script that converts [markdown files](./source/markdown) to json files so it can be imported by react during runtime. To perform the conversion without serving the app, run `yarn generate` command in the [`source` directory](./source).
+To perform the conversion without starting the app, run `yarn generate` command.
 
-2. it serves the app in http://localhost:3000 as normal just like any other react apps.
+To start the app without generating json files, run `yarn quick-start` command.
 
 # Special thanks
 
