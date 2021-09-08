@@ -241,7 +241,11 @@ export default class Page extends React.Component<PageProps, PageState> {
 		fetchedPage.toc = fetched_content.toc
 			? parseToc(fetched_content.toc)
 			: undefined
-		fetchedPage.title = fetchedPage?.title ? fetchedPage.title : "No title"
+		fetchedPage.title = _isUnsearchable
+			? map.unsearchable[url].title
+			: fetchedPage?.title
+			? fetchedPage.title
+			: "No title"
 		if (!_isUnsearchable) {
 			fetchedPage.date = fetchedPage?.date
 				? fetchedPage.date
