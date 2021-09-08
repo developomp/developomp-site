@@ -13,9 +13,9 @@ import readTimeEstimate from "read-time-estimate" // post read time estimation
 import matter from "gray-matter" // parse markdown metadata
 import toc from "markdown-toc" // table of contents generation
 import markdownIt from "markdown-it" // rendering markdown
-import hljs from "highlight.js" // code block highlighting
 import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
 import markdownItAnchor from "markdown-it-anchor" // markdown anchor
+import hljs from "highlight.js" // code block highlighting
 import katex from "katex" // rendering mathematical expression
 
 const markdownPath = "./markdown" // where it will look for markdown documents
