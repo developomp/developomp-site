@@ -27,6 +27,13 @@ interface TagsData {
 	label: string
 }
 
+interface Query {
+	from: string
+	to: string
+	tags: string[]
+	query: string
+}
+
 const StyledSearch = styled.div`
 	text-align: center;
 `
@@ -90,6 +97,17 @@ const StyledReactTagsContainer = styled.div`
 	width: 100%;
 `
 
+const ClearDateButton = styled.button`
+	width: 100%;
+	line-height: 2.5rem;
+	border: none;
+	cursor: pointer;
+
+	background-color: tomato; /* 🍅 mmm tomato 🍅 */
+	color: white;
+	font-weight: bold;
+`
+
 const options: TagsData[] = [
 	...map.meta.tags.map((elem) => ({ value: elem, label: elem })),
 ]
@@ -130,12 +148,7 @@ function isSelectedTagsInPost(
 }
 
 // Search doesn't work on url change if component is not wrapped
-// todo: find ways to get rid of wrapper component and use class component
-export default function Search() {
-	return <_Search />
-}
-
-function _Search() {
+export default () => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
 	const _history = useHistory()
@@ -144,7 +157,7 @@ function _Search() {
 	// todo: handle duplicate/missing keys
 	const _query = queryString.parse(_location.search)
 
-	const query = {
+	const query: Query = {
 		from: _query.from ? _query.from?.toString() : "",
 		to: _query.to ? _query.to?.toString() : "",
 		tags: _query.tags ? _query.tags.toString().split(",") : [],
@@ -153,7 +166,7 @@ function _Search() {
 
 	const defaultDateRange = [
 		{
-			startDate: new Date(0),
+			startDate: undefined,
 			endDate: undefined,
 			key: "selection",
 		},
@@ -228,6 +241,58 @@ function _Search() {
 		return () => clearTimeout(delayDebounceFn)
 	}, [searchInput])
 
+	function clearDate() {
+		_history.push({
+			pathname: "/search",
+			search: queryString.stringify({
+				...(query.query && {
+					query: query.query,
+				}),
+				...(query.tags.length > 0 && {
+					tags: query.tags.join(","),
+				}),
+			}),
+		})
+
+		setDateRange(defaultDateRange)
+	}
+
+	function onDateRangeChange(item: OnDateRangeChangeProps) {
+		const historyToPush = {
+			...(query.query && {
+				query: query.query,
+			}),
+			...(query.from && {
+				from: query.from,
+			}),
+			...(query.to && {
+				to: query.to,
+			}),
+			...(query.tags.length > 0 && {
+				tags: query.tags.join(","),
+			}),
+		}
+		console.log(item)
+
+		// convert Date to YYYY-MM-DD string if it exists
+		if (item.selection.startDate != null)
+			historyToPush.from = item.selection.startDate
+				.toISOString()
+				.split("T")[0]
+
+		if (item.selection.endDate != null)
+			historyToPush.to = item.selection.endDate
+				.toISOString()
+				.split("T")[0]
+
+		_history.push({
+			pathname: "/search",
+			search: queryString.stringify(historyToPush),
+		})
+
+		setDateRange([item.selection])
+	}
+
 	return (
 		<>
 			<Helmet>
@@ -238,51 +303,21 @@ function _Search() {
 				<h1>Search</h1>
 
 				<StyledSearchContainer>
-					<StyledDateRange
-						editableDateInputs={true}
-						moveRangeOnFirstSelection={false}
-						retainEndDateOnFirstSelection={true}
-						ranges={dateRange}
-						onChange={(item: OnDateRangeChangeProps) => {
-							const historyToPush = {
-								...(query.query && {
-									query: query.query,
-								}),
-								...(query.from && {
-									from: query.from,
-								}),
-								...(query.to && {
-									to: query.to,
-								}),
-								...(query.tags.length > 0 && {
-									tags: query.tags.join(","),
-								}),
-							}
-
-							// convert Date to YYYY-MM-DD string if it exists
-							if (item.selection.startDate != null)
-								historyToPush.from = item.selection.startDate
-									.toISOString()
-									.split("T")[0]
-
-							if (item.selection.endDate != null)
-								historyToPush.to = item.selection.endDate
-									.toISOString()
-									.split("T")[0]
-
-							_history.push({
-								pathname: "/search",
-								search: queryString.stringify(historyToPush),
-							})
-
-							setDateRange([item.selection])
-						}}
-					/>
+					<div>
+						<ClearDateButton onClick={clearDate}>
+							Reset range
+						</ClearDateButton>
+						<StyledDateRange
+							editableDateInputs
+							retainEndDateOnFirstSelection
+							moveRangeOnFirstSelection={false}
+							ranges={dateRange}
+							onChange={onDateRangeChange}
+						/>
+					</div>
 
 					<StyledSearchControlContainer
-						onSubmit={(event) => {
-							event.preventDefault()
-						}}
+						onSubmit={(event) => event.preventDefault()}
 					>
 						<StyledSearchBar
 							autoFocus
@@ -291,9 +326,9 @@ function _Search() {
 							value={searchInput}
 							autoComplete="off"
 							placeholder="Search"
-							onChange={(event) => {
+							onChange={(event) =>
 								setSearchInput(event.target.value)
-							}}
+							}
 							onKeyPress={(event) => {
 								event.key === "Enter" &&
 									searchInput &&
@@ -302,190 +337,151 @@ function _Search() {
 						/>
 						{postCards.length}{" "}
 						{postCards.length > 1 ? "results" : "result"}
-						<h3>Filters</h3>
-						<StyledReactTagsContainer>
-							<ThemeConsumer>
-								{(currentTheme) => (
-									<Select
-										theme={(theme) => ({
-											...theme,
-											colors: {
-												...theme.colors,
-												neutral0: theming
-													.theme(
-														currentTheme.currentTheme,
-														{
-															light: theming.light
-																.backgroundColor1,
-															dark: theming.dark
-																.backgroundColor1,
-														}
-													)
-													.toString(),
-												neutral5: "hsl(0, 0%, 20%)",
-												neutral10: "hsl(0, 0%, 30%)",
-												neutral20: "hsl(0, 0%, 40%)",
-												neutral30: "hsl(0, 0%, 50%)",
-												neutral40: "hsl(0, 0%, 60%)",
-												neutral50: "hsl(0, 0%, 70%)",
-												neutral60: "hsl(0, 0%, 80%)",
-												neutral70: "hsl(0, 0%, 90%)",
-												neutral80: "hsl(0, 0%, 95%)",
-												neutral90: "hsl(0, 0%, 100%)",
-												primary25: "hotpink",
-												primary: "black",
-											},
-										})}
-										styles={{
-											option: (styles) => ({
-												...styles,
-												backgroundColor: theming
-													.theme(
-														currentTheme.currentTheme,
-														{
-															light: theming.light
-																.backgroundColor1,
-															dark: theming.dark
-																.backgroundColor1,
-														}
-													)
-													.toString(),
-												color: theming
-													.theme(
-														currentTheme.currentTheme,
-														{
-															light: theming.light
-																.color1,
-															dark: theming.dark
-																.color1,
-														}
-													)
-													.toString(),
-												cursor: "pointer",
-												padding: 10,
-												":hover": {
-													backgroundColor: theming
-														.theme(
-															currentTheme.currentTheme,
-															{
-																light: theming
-																	.light
-																	.backgroundColor0,
-																dark: theming
-																	.dark
-																	.backgroundColor0,
-															}
-														)
-														.toString(),
-												},
-											}),
-											control: (styles) => ({
-												...styles,
-												backgroundColor: theming
-													.theme(
-														currentTheme.currentTheme,
-														{
-															light: theming.light
-																.backgroundColor1,
-															dark: theming.dark
-																.backgroundColor1,
-														}
-													)
-													.toString(),
-												border: theming.theme(
-													currentTheme.currentTheme,
-													{
-														light: "1px solid #ccc",
-														dark: "1px solid #555",
-													}
-												),
-											}),
-											multiValue: (styles) => ({
-												...styles,
-												color: "white",
-												backgroundColor:
-													theming.color.linkColor,
-												borderRadius: "5px",
-											}),
-											multiValueLabel: (styles) => ({
-												...styles,
-												marginLeft: "0.2rem",
-												marginRight: "0.2rem",
-											}),
-											multiValueRemove: (styles) => ({
-												...styles,
-												marginLeft: "0.2rem",
-												":hover": {
-													backgroundColor: "white",
-													color: theming.color
-														.linkColor,
-												},
-											}),
-										}}
-										defaultValue={selectedTags}
-										onChange={(newSelectedTags) => {
-											setSelectedOption(
-												newSelectedTags as TagsData[]
-											)
-
-											_history.push({
-												pathname: "/search",
-												search: queryString.stringify({
-													...(query.query && {
-														query: query.query,
-													}),
-													...(query.from && {
-														from: query.from,
-													}),
-													...(query.to && {
-														to: query.to,
-													}),
-													tags:
-														newSelectedTags
-															.map(
-																(elem) =>
-																	elem.value
-															)
-															.join(",") ||
-														undefined,
-												}),
-											})
-										}}
-										options={options}
-										isMulti
-									/>
-								)}
-							</ThemeConsumer>
-						</StyledReactTagsContainer>
-						<br />
-						date from: {query.from}
-						<br />
-						date to: {query.to}
-						<br />
-						<button
-							onClick={() => {
-								_history.push({
-									pathname: "/search",
-									search: queryString.stringify({
-										...(query.query && {
-											query: query.query,
-										}),
-										...(query.tags.length > 0 && {
-											tags: query.tags.join(","),
-										}),
-									}),
-								})
-
-								setDateRange(defaultDateRange)
-							}}
-						>
-							Clear date
-						</button>
-						<br />
+						<h3>Tags</h3>
+						<TagSelect
+							query={query}
+							selectedTags={selectedTags}
+							setSelectedOption={setSelectedOption}
+						/>
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
 			</StyledSearch>
 			{postCards}
 		</>
+	)
+}
+
+interface TagSelectProps {
+	query: Query
+	selectedTags: TagsData[] | null
+	setSelectedOption: React.Dispatch<React.SetStateAction<TagsData[] | null>>
+}
+
+const TagSelect = (props: TagSelectProps) => {
+	const _history = useHistory()
+
+	return (
+		<StyledReactTagsContainer>
+			<ThemeConsumer>
+				{(currentTheme) => (
+					<Select
+						theme={(theme) => ({
+							...theme,
+							colors: {
+								...theme.colors,
+								neutral0: theming
+									.theme(currentTheme.currentTheme, {
+										light: theming.light.backgroundColor1,
+										dark: theming.dark.backgroundColor1,
+									})
+									.toString(),
+								neutral5: "hsl(0, 0%, 20%)",
+								neutral10: "hsl(0, 0%, 30%)",
+								neutral20: "hsl(0, 0%, 40%)",
+								neutral30: "hsl(0, 0%, 50%)",
+								neutral40: "hsl(0, 0%, 60%)",
+								neutral50: "hsl(0, 0%, 70%)",
+								neutral60: "hsl(0, 0%, 80%)",
+								neutral70: "hsl(0, 0%, 90%)",
+								neutral80: "hsl(0, 0%, 95%)",
+								neutral90: "hsl(0, 0%, 100%)",
+								primary25: "hotpink",
+								primary: "black",
+							},
+						})}
+						styles={{
+							option: (styles) => ({
+								...styles,
+								backgroundColor: theming
+									.theme(currentTheme.currentTheme, {
+										light: theming.light.backgroundColor1,
+										dark: theming.dark.backgroundColor1,
+									})
+									.toString(),
+								color: theming
+									.theme(currentTheme.currentTheme, {
+										light: theming.light.color1,
+										dark: theming.dark.color1,
+									})
+									.toString(),
+								cursor: "pointer",
+								padding: 10,
+								":hover": {
+									backgroundColor: theming
+										.theme(currentTheme.currentTheme, {
+											light: theming.light
+												.backgroundColor0,
+											dark: theming.dark.backgroundColor0,
+										})
+										.toString(),
+								},
+							}),
+							control: (styles) => ({
+								...styles,
+								backgroundColor: theming
+									.theme(currentTheme.currentTheme, {
+										light: theming.light.backgroundColor1,
+										dark: theming.dark.backgroundColor1,
+									})
+									.toString(),
+								border: theming.theme(
+									currentTheme.currentTheme,
+									{
+										light: "1px solid #ccc",
+										dark: "1px solid #555",
+									}
+								),
+							}),
+							multiValue: (styles) => ({
+								...styles,
+								color: "white",
+								backgroundColor: theming.color.linkColor,
+								borderRadius: "5px",
+							}),
+							multiValueLabel: (styles) => ({
+								...styles,
+								marginLeft: "0.2rem",
+								marginRight: "0.2rem",
+							}),
+							multiValueRemove: (styles) => ({
+								...styles,
+								marginLeft: "0.2rem",
+								":hover": {
+									backgroundColor: "white",
+									color: theming.color.linkColor,
+								},
+							}),
+						}}
+						defaultValue={props.selectedTags}
+						onChange={(newSelectedTags) => {
+							props.setSelectedOption(
+								newSelectedTags as TagsData[]
+							)
+
+							_history.push({
+								pathname: "/search",
+								search: queryString.stringify({
+									...(props.query.query && {
+										query: props.query.query,
+									}),
+									...(props.query.from && {
+										from: props.query.from,
+									}),
+									...(props.query.to && {
+										to: props.query.to,
+									}),
+									tags:
+										newSelectedTags
+											.map((elem) => elem.value)
+											.join(",") || undefined,
+								}),
+							})
+						}}
+						options={options}
+						isMulti
+					/>
+				)}
+			</ThemeConsumer>
+		</StyledReactTagsContainer>
 	)
 }
