@@ -11,7 +11,7 @@ import theming from "../theming"
 import Tag from "../components/Tag"
 import TagList from "../components/TagList"
 import NotFound from "./NotFound"
-import Spinner from "../components/Spinner"
+import Loading from "../components/Loading"
 
 import _map from "../data/map.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -260,7 +260,7 @@ export default class Page extends React.Component<PageProps, PageState> {
 	}
 
 	render() {
-		if (this.state.loading) return <Spinner size={200} />
+		if (this.state.loading) return <Loading />
 		if (!this.state.fetchedPage) return <NotFound />
 
 		return (

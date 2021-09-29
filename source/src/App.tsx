@@ -14,7 +14,7 @@ import "katex/dist/katex.min.css" // latex mathematical expression
 
 import theming from "./theming"
 
-import Spinner from "./components/Spinner"
+import Loading from "./components/Loading"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
@@ -245,10 +245,9 @@ const IENotSupported = styled.p`
 `
 
 const StyledContentContainer = styled.div`
-	display: inline-block;
 	flex: 1 1 auto;
 	margin-bottom: 3rem;
-	margin-top: 3rem;
+	margin-top: 5rem;
 `
 
 interface AppProps {}
@@ -299,71 +298,70 @@ export default class App extends React.Component<AppProps, AppState> {
 	render() {
 		if (isIE)
 			return (
-				<>
-					<IENotSupported>
-						<b>Internet Explorer</b> is not supported.
-					</IENotSupported>
-				</>
+				<IENotSupported>
+					Internet Explorer is <b>not supported.</b>
+				</IENotSupported>
 			)
-		else
-			return (
-				<HelmetProvider>
-					<ThemeProvider
-						theme={{
-							currentTheme: this.state.currentTheme,
-							setTheme: (setThemeTo) =>
-								this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
-						}}
-					>
-						<Helmet>
-							<meta
-								property="og:site_name"
-								content="developomp"
-							/>
 
-							<meta property="og:title" content="Home" />
+		return (
+			<HelmetProvider>
+				<ThemeProvider
+					theme={{
+						currentTheme: this.state.currentTheme,
+						setTheme: (setThemeTo) =>
+							this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
+					}}
+				>
+					<Helmet>
+						<meta property="og:site_name" content="developomp" />
 
-							<meta
-								property="og:description"
-								content="developomp's blog"
-							/>
+						<meta property="og:title" content="Home" />
 
-							<meta
-								property="og:url"
-								content={process.env.PUBLIC_URL}
-							/>
-						</Helmet>
+						<meta
+							property="og:description"
+							content="developomp's blog"
+						/>
 
-						<GlobalStyle />
-						<Navbar />
-						<StyledContentContainer>
-							{this.state.isLoading ? (
-								<Spinner size={200} />
-							) : (
-								<Switch>
-									<Route exact path="/">
-										<PostList howMany={4} title="Home" />
-									</Route>
+						<meta
+							property="og:url"
+							content={process.env.PUBLIC_URL}
+						/>
+					</Helmet>
 
-									<Route exact path="/search">
-										<Search />
-									</Route>
+					<GlobalStyle />
+					<Navbar />
+					<StyledContentContainer>
+						{this.state.isLoading ? (
+							<Loading />
+						) : (
+							<Switch>
+								<Route exact path="/">
+									<PostList howMany={4} title="Home" />
+								</Route>
 
-									<Route exact path="/404">
-										<NotFound />
-									</Route>
+								<Route exact path="/loading">
+									<Loading />
+								</Route>
 
-									<Route exact path="/:path*">
-										{({ match }) => (
-											<Page key={match?.params.path} />
-										)}
-									</Route>
-								</Switch>
-							)}
-						</StyledContentContainer>
-						<Footer />
-					</ThemeProvider>
-				</HelmetProvider>
-			)
+								<Route exact path="/search">
+									<Search />
+								</Route>
+
+								<Route exact path="/404">
+									<NotFound />
+								</Route>
+
+								<Route exact path="/:path*">
+									{({ match }) => (
+										<Page key={match?.params.path} />
+									)}
+								</Route>
+							</Switch>
+						)}
+					</StyledContentContainer>
+					<Footer />
+				</ThemeProvider>
+			</HelmetProvider>
+		)
 	}
 }
