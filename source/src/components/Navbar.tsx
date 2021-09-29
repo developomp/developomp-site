@@ -13,6 +13,8 @@ import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
 
 const StyledNav = styled.nav`
+	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
+	z-index: 9999;
 	position: fixed;
 	width: 100%;
 

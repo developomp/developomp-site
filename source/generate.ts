@@ -434,6 +434,10 @@ function recursiveParse(
 	}
 }
 
+/**
+ *  Actual logic starts here
+ */
+
 // Delete existing files
 
 try {
