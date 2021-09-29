@@ -10,10 +10,17 @@ jobs:
         steps:
             - name: Checkout Repo
               uses: actions/checkout@master
-            - uses: actions/cache@main
+            - name: Cache node modules
+              uses: actions/cache@v2
+              env:
+                  cache-name: cache-node-modules
               with:
                   path: "source/node_modules"
-                  key: ${{ runner.os }}-modules-${{ hashFiles('source/yarn.lock') }}
+                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('source/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-build-${{ env.cache-name }}-
+                      ${{ runner.os }}-build-
+                      ${{ runner.os }}-
             - name: Install Dependencies and Build
               run: cd source && yarn install && yarn build
             - name: Archive Production Artifact
