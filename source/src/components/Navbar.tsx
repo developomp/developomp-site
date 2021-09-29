@@ -13,8 +13,9 @@ import Sidebar from "./Sidebar"
 import ThemeToggleButton from "./ThemeToggleButton"
 
 const StyledNav = styled.nav`
-	position: absolute;
+	position: fixed;
 	width: 100%;
+
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: theming.light.backgroundColor0,
