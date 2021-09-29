@@ -5,7 +5,7 @@ title: About
 ## Me
 
 Name: Jimin Kim<br />
-Location: South Korea
+Location: South Korea<br />
 Age: 19
 
 ## Links
