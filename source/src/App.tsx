@@ -72,13 +72,6 @@ const globalStyle = css`
 		box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
 	}
 
-	#content {
-		display: inline-block;
-		flex: 1 1 auto;
-		margin-bottom: 3rem;
-		margin-top: 3rem;
-	}
-
 	code {
 		font-family: ${theming.font.code};
 		color: ${(props) =>
@@ -251,6 +244,13 @@ const IENotSupported = styled.p`
 	font-family: ${theming.font.regular};
 `
 
+const StyledContentContainer = styled.div`
+	display: inline-block;
+	flex: 1 1 auto;
+	margin-bottom: 3rem;
+	margin-top: 3rem;
+`
+
 interface AppProps {}
 
 interface AppState {
@@ -336,7 +336,7 @@ export default class App extends React.Component<AppProps, AppState> {
 
 						<GlobalStyle />
 						<Navbar />
-						<div id="content">
+						<StyledContentContainer>
 							{this.state.isLoading ? (
 								<Spinner size={200} />
 							) : (
@@ -360,7 +360,7 @@ export default class App extends React.Component<AppProps, AppState> {
 									</Route>
 								</Switch>
 							)}
-						</div>
+						</StyledContentContainer>
 						<Footer />
 					</ThemeProvider>
 				</HelmetProvider>
