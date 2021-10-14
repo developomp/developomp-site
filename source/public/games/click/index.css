@@ -1,53 +1,50 @@
-*, *::after, *::before {
-    box-sizing: border-box;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	user-select: none;
 }
 
 :root {
-    --main-color: white;
-    --background-color: black;
+	--main-color: white;
+	--background-color: black;
 }
 
 body {
-    margin: 0;
-    background-color: var(--background-color);
+	margin: 0;
+	background-color: var(--background-color);
 }
 
 .menu {
-    margin: 0 auto;
-    padding: 10px;
-    position: relative;
+	margin: 0 auto;
+	padding: 10px;
+	position: relative;
 }
 
 .clicker {
-    border-radius: 50%;
-    background-color: var(--main-color);
-    position: absolute;
+	border-radius: 50%;
+	background-color: var(--main-color);
+	position: absolute;
 }
 
 .winner.show {
-    display: flex;
+	display: flex;
 }
 
 #timer {
-    color: var(--main-color);
-    font-size: 5rem;
+	color: var(--main-color);
+	font-size: 5rem;
 }
 
 .gameArea {
-    border: 0;
-    margin: auto auto auto auto;
+	border: 0;
+	margin: auto auto auto auto;
 }
 
 .primer {
-    border: 0;
-    width: 10vw;
-    height: 10vw;
-    margin: auto auto auto auto;
-    background-color: var(--main-color);
+	border: 0;
+	width: 10vw;
+	height: 10vw;
+	margin: auto auto auto auto;
+	background-color: var(--main-color);
 }

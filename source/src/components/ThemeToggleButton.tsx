@@ -12,10 +12,7 @@ const StyledThemeButton = styled.div`
 	${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "",
-			dark: "transform: scaleX(-1);\
-			-moz-transform: scaleX(-1);\
-			-webkit-transform: scaleX(-1);\
-			-ms-transform: scaleX(-1);",
+			dark: "transform: scaleX(-1);",
 		})};
 `
 

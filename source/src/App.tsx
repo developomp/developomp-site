@@ -52,7 +52,6 @@ const globalStyle = css`
 		font-size: ${theming.size.medium};
 		font-family: ${theming.font.regular};
 		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
 		text-rendering: optimizeLegibility;
 	}
 
