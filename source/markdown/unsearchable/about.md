@@ -22,13 +22,13 @@ Age: 19
 
 ## Official online accounts
 
-| Platform  | ID                                                                     |
-| --------- | ---------------------------------------------------------------------- |
-| pinterest | @developomp                                                            |
-| naver     | developomp@naver.com                                                   |
-| google    | developomp@gmail.com                                                   |
-| discord   | developomp#0001 (501277805540147220)                                   |
-| proton    | developomp@protonmail.com                                              |
-| twitch    | [developomp](https://www.twitch.tv/developomp)                         |
-| twitter   | [@developomp](https://twitter.com/developomp)                          |
-| youtube   | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw) |
+| Platform  | ID                                                                                   |
+| --------- | ------------------------------------------------------------------------------------ |
+| pinterest | @developomp                                                                          |
+| naver     | developomp@naver.com                                                                 |
+| google    | developomp@gmail.com                                                                 |
+| discord   | developomp#0001 (501277805540147220)                                                 |
+| proton    | developomp@protonmail.com (not opened regularly. send email to Gmail to contact me.) |
+| twitch    | [developomp](https://www.twitch.tv/developomp)                                       |
+| twitter   | [@developomp](https://twitter.com/developomp)                                        |
+| youtube   | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw)               |
