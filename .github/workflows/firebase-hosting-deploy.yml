@@ -1,60 +1,57 @@
 name: Deploy to Firebase Hosting on merge
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
+
 jobs:
-    build:
-        name: Build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@master
-            - name: Cache node modules
-              uses: actions/cache@v2
-              env:
-                  cache-name: cache-node-modules
-              with:
-                  path: "source/node_modules"
-                  key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('source/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-build-${{ env.cache-name }}-
-                      ${{ runner.os }}-build-
-                      ${{ runner.os }}-
-            - name: Install Dependencies and Build
-              run: cd source && yarn install && yarn build
-            - name: Archive Production Artifact
-              uses: actions/upload-artifact@master
-              with:
-                  name: build
-                  path: source/build
-    deploy:
-        name: Deploy
-        needs: build
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@master
-            - name: Download Artifact
-              uses: actions/download-artifact@master
-              with:
-                  name: build
-                  path: source/build
-            - name: Set target
-              uses: w9jds/firebase-action@master
-              with:
-                  args: use developomp-site
-              env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-            - name: Apply target
-              uses: w9jds/firebase-action@master
-              with:
-                  args: target:apply hosting stable developomp-site
-              env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-            - name: Deploy to Firebase
-              uses: w9jds/firebase-action@master
-              with:
-                  args: deploy --only hosting:stable
-              env:
-                  FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          cache: yarn
+          cache-dependency-path: source/yarn.lock
+      - name: Build
+        run: cd source && yarn build
+      - name: Archive Production Artifact
+        uses: actions/upload-artifact@master
+        with:
+          name: build
+          path: source/build
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Download Artifact
+        uses: actions/download-artifact@master
+        with:
+          name: build
+          path: source/build
+      - name: Set target
+        uses: w9jds/firebase-action@master
+        with:
+          args: use developomp-site
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Apply target
+        uses: w9jds/firebase-action@master
+        with:
+          args: target:apply hosting stable developomp-site
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting:stable
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
