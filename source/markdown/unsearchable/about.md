@@ -32,3 +32,4 @@ Age: 19
 | twitch    | [developomp](https://www.twitch.tv/developomp)                                       |
 | twitter   | [@developomp](https://twitter.com/developomp)                                        |
 | youtube   | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw)               |
+| dev.to    | [developomp](https://dev.to/developomp)                                              |
