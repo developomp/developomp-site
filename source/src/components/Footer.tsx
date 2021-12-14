@@ -1,11 +1,14 @@
-import React from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import styled from "styled-components"
+
 import theming from "../theming"
 
 const StyledFooter = styled.footer`
 	display: flex;
+	height: 7.77rem; /* congratulation. You've found the lucky 777 */
+
+	align-items: center;
 	justify-content: center;
 
 	color: ${(props) =>
@@ -23,24 +26,18 @@ const StyledFooter = styled.footer`
 
 const StyledFooterContainer = styled.div`
 	display: flex;
+	padding: 0 1rem 0 1rem;
 	justify-content: space-between;
 
-	padding: 0 1rem 0 1rem;
-
-	height: 100px;
-	width: 100%;
-	line-height: 100px;
 	text-align: center;
+	color: gray;
 
+	width: 100%;
 	max-width: ${theming.size.screen_size2};
 `
 
-const CreatedBy = styled.div`
-	color: gray;
-`
-
-const StyledALink = styled.a`
-	font-size: 2rem;
+const StyledGithubLink = styled.a`
+	font-size: 2.5rem;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
@@ -57,23 +54,23 @@ const StyledALink = styled.a`
 	}
 `
 
-export default class Footer extends React.Component {
-	render() {
-		return (
-			<StyledFooter>
-				<StyledFooterContainer>
-					<CreatedBy>
-						Created by <b>developomp</b>
-					</CreatedBy>
+const Footer = () => {
+	return (
+		<StyledFooter>
+			<StyledFooterContainer>
+				<div>
+					Created by <b>developomp</b>
+				</div>
 
-					<StyledALink
-						href="https://github.com/developomp/developomp-site"
-						target="_blank"
-					>
-						<FontAwesomeIcon icon={faGithub} />
-					</StyledALink>
-				</StyledFooterContainer>
-			</StyledFooter>
-		)
-	}
+				<StyledGithubLink
+					href="https://github.com/developomp/developomp-site"
+					target="_blank"
+				>
+					<FontAwesomeIcon icon={faGithub} />
+				</StyledGithubLink>
+			</StyledFooterContainer>
+		</StyledFooter>
+	)
 }
+
+export default Footer
