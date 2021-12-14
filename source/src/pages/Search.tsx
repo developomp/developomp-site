@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
+
 import { useEffect, useState, useRef } from "react"
 import styled, { ThemeConsumer } from "styled-components"
-import { useLocation, useHistory } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
-import { DateRange, Range, OnDateRangeChangeProps } from "react-date-range"
+import { DateRange, Range } from "react-date-range"
 import Select from "react-select"
 import queryString from "query-string" // parsing url query
 import elasticlunr from "elasticlunr" // search engine
@@ -151,7 +153,9 @@ function isSelectedTagsInPost(
 export default () => {
 	const inputRef = useRef<HTMLInputElement>(null)
 
-	const _history = useHistory()
+	const navigate = useNavigate()
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [_, setSearchParams] = useSearchParams()
 	const _location = useLocation()
 
 	// todo: handle duplicate/missing keys
@@ -180,21 +184,19 @@ export default () => {
 	)
 
 	function doSearch() {
-		_history.push({
-			pathname: "/search",
-			search: queryString.stringify({
-				...(searchInput && {
-					query: searchInput,
-				}),
-				...(query.from && {
-					from: query.from,
-				}),
-				...(query.to && {
-					to: query.to,
-				}),
-				...(query.tags.length > 0 && {
-					tags: query.tags.join(","),
-				}),
+		navigate("/search")
+		setSearchParams({
+			...(searchInput && {
+				query: searchInput,
+			}),
+			...(query.from && {
+				from: query.from,
+			}),
+			...(query.to && {
+				to: query.to,
+			}),
+			...(query.tags.length > 0 && {
+				tags: query.tags.join(","),
 			}),
 		})
 
@@ -242,22 +244,19 @@ export default () => {
 	}, [searchInput])
 
 	function clearDate() {
-		_history.push({
-			pathname: "/search",
-			search: queryString.stringify({
-				...(query.query && {
-					query: query.query,
-				}),
-				...(query.tags.length > 0 && {
-					tags: query.tags.join(","),
-				}),
+		navigate("/search")
+		setSearchParams({
+			...(query.query && {
+				query: query.query,
+			}),
+			...(query.tags.length > 0 && {
+				tags: query.tags.join(","),
 			}),
 		})
-
 		setDateRange(defaultDateRange)
 	}
 
-	function onDateRangeChange(item: OnDateRangeChangeProps) {
+	function onDateRangeChange(item: { [key: string]: Range }) {
 		const historyToPush = {
 			...(query.query && {
 				query: query.query,
@@ -272,7 +271,6 @@ export default () => {
 				tags: query.tags.join(","),
 			}),
 		}
-		console.log(item)
 
 		// convert Date to YYYY-MM-DD string if it exists
 		if (item.selection.startDate != null)
@@ -285,11 +283,8 @@ export default () => {
 				.toISOString()
 				.split("T")[0]
 
-		_history.push({
-			pathname: "/search",
-			search: queryString.stringify(historyToPush),
-		})
-
+		navigate("/search")
+		setSearchParams(historyToPush)
 		setDateRange([item.selection])
 	}
 
@@ -357,8 +352,14 @@ interface TagSelectProps {
 	setSelectedOption: React.Dispatch<React.SetStateAction<TagsData[] | null>>
 }
 
-const TagSelect = (props: TagSelectProps) => {
-	const _history = useHistory()
+const TagSelect: React.FC<TagSelectProps> = ({
+	query,
+	selectedTags,
+	setSelectedOption,
+}) => {
+	const navigate = useNavigate()
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	const [_, setSearchParams] = useSearchParams()
 
 	return (
 		<StyledReactTagsContainer>
@@ -452,28 +453,29 @@ const TagSelect = (props: TagSelectProps) => {
 								},
 							}),
 						}}
-						defaultValue={props.selectedTags}
+						defaultValue={selectedTags}
 						onChange={(newSelectedTags) => {
-							props.setSelectedOption(
-								newSelectedTags as TagsData[]
-							)
+							setSelectedOption(newSelectedTags as TagsData[])
 
-							_history.push({
-								pathname: "/search",
-								search: queryString.stringify({
-									...(props.query.query && {
-										query: props.query.query,
-									}),
-									...(props.query.from && {
-										from: props.query.from,
-									}),
-									...(props.query.to && {
-										to: props.query.to,
-									}),
-									tags:
-										newSelectedTags
-											.map((elem) => elem.value)
-											.join(",") || undefined,
+							navigate("/search")
+
+							const tags =
+								newSelectedTags
+									.map((elem) => elem.value)
+									.join(",") || undefined
+
+							setSearchParams({
+								...(query.query && {
+									query: query.query,
+								}),
+								...(query.from && {
+									from: query.from,
+								}),
+								...(query.to && {
+									to: query.to,
+								}),
+								...(tags && {
+									tags: tags,
 								}),
 							})
 						}}

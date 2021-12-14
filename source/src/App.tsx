@@ -1,5 +1,5 @@
 import React from "react"
-import { Switch, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import styled, {
 	ThemeProvider,
 	createGlobalStyle,
@@ -333,29 +333,22 @@ export default class App extends React.Component<AppProps, AppState> {
 						{this.state.isLoading ? (
 							<Loading />
 						) : (
-							<Switch>
-								<Route exact path="/">
-									<PostList howMany={4} title="Home" />
-								</Route>
+							<Routes>
+								<Route
+									path="/"
+									element={
+										<PostList howMany={4} title="Home" />
+									}
+								/>
 
-								<Route exact path="/loading">
-									<Loading />
-								</Route>
+								<Route path="/loading" element={<Loading />} />
 
-								<Route exact path="/search">
-									<Search />
-								</Route>
+								<Route path="/search" element={<Search />} />
 
-								<Route exact path="/404">
-									<NotFound />
-								</Route>
+								<Route path="/404" element={<NotFound />} />
 
-								<Route exact path="/:path*">
-									{({ match }) => (
-										<Page key={match?.params.path} />
-									)}
-								</Route>
-							</Switch>
+								<Route path="/:path*" element={<Page />} />
+							</Routes>
 						)}
 					</StyledContentContainer>
 					<Footer />

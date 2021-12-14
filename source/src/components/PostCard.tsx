@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 import theming from "../theming"
 
@@ -65,16 +65,14 @@ interface PostCardProps {
 }
 
 export default function PostCard(props: PostCardProps) {
-	const history = useHistory()
+	const navigate = useNavigate()
 
 	return (
 		<StyledPostCard
 			key={props.postData.url}
 			className="card main-content"
 			onClick={() => {
-				history.push({
-					pathname: process.env.PUBLIC_URL + props.postData.url,
-				})
+				navigate(process.env.PUBLIC_URL + props.postData.url)
 			}}
 		>
 			<StyledTitle>{props.postData?.title || "No title"}</StyledTitle>
