@@ -337,7 +337,7 @@ export default class App extends React.Component<AppProps, AppState> {
 								<Route
 									path="/"
 									element={
-										<PostList howMany={4} title="Home" />
+										<PostList howMany={5} title="Home" />
 									}
 								/>
 
