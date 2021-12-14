@@ -6,7 +6,7 @@ title: About
 
 Name: Jimin Kim<br />
 Location: South Korea<br />
-Age: 19
+Year of Birth: 2002
 
 ## Links
 
@@ -22,14 +22,19 @@ Age: 19
 
 ## Official online accounts
 
-| Platform  | ID                                                                                   |
-| --------- | ------------------------------------------------------------------------------------ |
-| pinterest | @developomp                                                                          |
-| naver     | developomp@naver.com                                                                 |
-| google    | developomp@gmail.com                                                                 |
-| discord   | developomp#0001 (501277805540147220)                                                 |
-| proton    | developomp@protonmail.com (not opened regularly. send email to Gmail to contact me.) |
-| twitch    | [developomp](https://www.twitch.tv/developomp)                                       |
-| twitter   | [@developomp](https://twitter.com/developomp)                                        |
-| youtube   | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw)               |
-| dev.to    | [developomp](https://dev.to/developomp)                                              |
+Please do not send messages to these accounts. Use the contacts listed above instead.
+
+| Platform              | ID                                                                            |
+| --------------------- | ----------------------------------------------------------------------------- |
+| pinterest             | @developomp                                                                   |
+| naver                 | developomp@naver.com                                                          |
+| google                | developomp@gmail.com                                                          |
+| discord               | developomp#0001 (501277805540147220)                                          |
+| proton                | developomp@protonmail.com                                                     |
+| twitch                | [developomp](https://www.twitch.tv/developomp)                                |
+| twitter               | [@developomp](https://twitter.com/developomp)                                 |
+| youtube               | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw)        |
+| dev.to                | [developomp](https://dev.to/developomp)                                       |
+| Arch Linux wiki       | [developomp](https://wiki.archlinux.org/title/User:Developomp)                |
+| Arch Linux forum      | [developomp](https://bbs.archlinux.org/profile.php?id=136713) (require login) |
+| Arch Linux Repo (AUR) | [developomp](https://aur.archlinux.org/account/developomp) (require login)    |
