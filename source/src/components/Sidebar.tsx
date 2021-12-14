@@ -1,14 +1,15 @@
-import React from "react"
+import { useState } from "react"
 import styled, { css } from "styled-components"
 import ReactTooltip from "react-tooltip"
 import { isMobile } from "react-device-detect"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 
-import theming from "../theming"
-import NavbarData, { Item } from "../data/NavbarData"
-
 import SubMenu from "./SubMenu"
+
+import NavbarData, { Item } from "../data/NavbarData"
+import theming from "../theming"
 
 const CommonSidebarToggleButtonStyle = css`
 	${theming.styles.navbarButtonStyle}
@@ -33,7 +34,7 @@ const StyledToggleSidebarButton2 = styled.div`
 	font-size: 1.1rem;
 `
 
-const StyledOverlay = styled.div<SidebarState>`
+const StyledOverlay = styled.div<{ isSidebarOpen: boolean }>`
 	display: ${(props) => (props.isSidebarOpen ? "block" : "none")};
 	position: fixed;
 	top: 0;
@@ -49,7 +50,7 @@ const StyledOverlay = styled.div<SidebarState>`
 	}
 `
 
-const SidebarNav = styled.nav<SidebarState>`
+const SidebarNav = styled.nav<{ isSidebarOpen: boolean }>`
 	width: 250px;
 	height: 100vh;
 	display: flex;
@@ -77,63 +78,47 @@ const SidebarWrap = styled.div`
 	width: 100%;
 `
 
-interface SidebarProps {}
-interface SidebarState {
-	isSidebarOpen: boolean
-}
-
-export default class Sidebar extends React.Component<
-	SidebarProps,
-	SidebarState
-> {
-	constructor(props: SidebarProps) {
-		super(props)
-		this.state = {
-			isSidebarOpen: false,
-		}
-	}
+const Sidebar = () => {
+	const [isSidebarOpen, setSidebarOpen] = useState(false)
 
 	// for some reason this.setState only works if this is an arrow function
-	toggleSidebar = () => {
-		this.setState({ isSidebarOpen: !this.state.isSidebarOpen })
-		document.body.style.overflow = this.state.isSidebarOpen ? "" : "hidden"
+	const toggleSidebar = () => {
+		setSidebarOpen((prev) => !prev)
+		document.body.style.overflow = isSidebarOpen ? "" : "hidden"
 	}
 
-	render() {
-		return (
-			<>
-				<StyledOverlay
-					isSidebarOpen={this.state.isSidebarOpen}
-					onClick={this.toggleSidebar}
-				/>
+	return (
+		<>
+			<StyledOverlay
+				isSidebarOpen={isSidebarOpen}
+				onClick={toggleSidebar}
+			/>
 
-				<StyledToggleSidebarButton
-					data-tip
-					data-for="sidebar"
-					onClick={this.toggleSidebar}
-				>
-					<FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
-					{!isMobile && (
-						<ReactTooltip id="sidebar" type="dark" effect="solid">
-							<span>open sidebar</span>
-						</ReactTooltip>
-					)}
-				</StyledToggleSidebarButton>
+			<StyledToggleSidebarButton
+				data-tip
+				data-for="sidebar"
+				onClick={toggleSidebar}
+			>
+				<FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
+				{!isMobile && (
+					<ReactTooltip id="sidebar" type="dark" effect="solid">
+						<span>open sidebar</span>
+					</ReactTooltip>
+				)}
+			</StyledToggleSidebarButton>
 
-				<SidebarNav isSidebarOpen={this.state.isSidebarOpen}>
-					<SidebarWrap>
-						<StyledToggleSidebarButton2
-							onClick={this.toggleSidebar}
-						>
-							<FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>{" "}
-							Close
-						</StyledToggleSidebarButton2>
-						{NavbarData.map((item: Item, index) => {
-							return <SubMenu item={item} key={index} />
-						})}
-					</SidebarWrap>
-				</SidebarNav>
-			</>
-		)
-	}
+			<SidebarNav isSidebarOpen={isSidebarOpen}>
+				<SidebarWrap>
+					<StyledToggleSidebarButton2 onClick={toggleSidebar}>
+						<FontAwesomeIcon icon={faTimes}></FontAwesomeIcon> Close
+					</StyledToggleSidebarButton2>
+					{NavbarData.map((item: Item, index) => {
+						return <SubMenu item={item} key={index} />
+					})}
+				</SidebarWrap>
+			</SidebarNav>
+		</>
+	)
 }
+
+export default Sidebar

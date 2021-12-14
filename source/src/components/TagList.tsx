@@ -1,4 +1,4 @@
-import React from "react"
+import { ReactNode } from "react"
 import styled from "styled-components"
 
 const StyledTagList = styled.div<{ direction: string }>`
@@ -10,16 +10,17 @@ const StyledTagList = styled.div<{ direction: string }>`
 	justify-content: ${({ direction }) => direction};
 `
 
-interface TagListProps {
+interface Props {
 	direction?: string
+	children?: ReactNode | undefined
 }
 
-export default class TagList extends React.Component<TagListProps> {
-	render() {
-		return (
-			<StyledTagList direction={this.props.direction || "center"}>
-				{this.props.children}
-			</StyledTagList>
-		)
-	}
+const TagList = (props: Props) => {
+	return (
+		<StyledTagList direction={props.direction || "center"}>
+			{props.children}
+		</StyledTagList>
+	)
 }
+
+export default TagList

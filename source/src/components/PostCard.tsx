@@ -1,10 +1,8 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-import theming from "../theming"
+import { Post } from "../types/typings"
 
-import Tag from "../components/Tag"
-import TagList from "../components/TagList"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faBook,
@@ -12,7 +10,10 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { Post } from "../types/typings"
+import Tag from "../components/Tag"
+import TagList from "../components/TagList"
+
+import theming from "../theming"
 
 const StyledPostCard = styled.div`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
@@ -60,11 +61,12 @@ const StyledPostCardContent = styled.div`
 interface _PostDateBase extends Post {
 	url: string
 }
-interface PostCardProps {
+
+interface Props {
 	postData: _PostDateBase
 }
 
-export default function PostCard(props: PostCardProps) {
+const PostCard = (props: Props) => {
 	const navigate = useNavigate()
 
 	return (
@@ -120,3 +122,5 @@ export default function PostCard(props: PostCardProps) {
 		</StyledPostCard>
 	)
 }
+
+export default PostCard

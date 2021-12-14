@@ -1,9 +1,9 @@
-import React from "react"
+import styled, { ThemeConsumer } from "styled-components"
+import { isMobile } from "react-device-detect"
+import ReactTooltip from "react-tooltip"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
-import styled, { ThemeConsumer } from "styled-components"
-import ReactTooltip from "react-tooltip"
-import { isMobile } from "react-device-detect"
 
 import theming from "../theming"
 
@@ -16,37 +16,35 @@ const StyledThemeButton = styled.div`
 		})};
 `
 
-export default class Navbar extends React.Component {
-	render() {
-		return (
-			<ThemeConsumer>
-				{({ currentTheme, setTheme }) => (
-					<>
-						<StyledThemeButton
-							data-tip
-							data-for="theme"
-							className="right"
-							onClick={() =>
-								setTheme(
-									currentTheme === "dark" ? "light" : "dark"
-								)
-							}
-						>
-							{currentTheme == "dark" && (
-								<FontAwesomeIcon icon={faMoon} />
-							)}
-							{currentTheme == "light" && (
-								<FontAwesomeIcon icon={faSun} />
-							)}
-						</StyledThemeButton>
-						{!isMobile && (
-							<ReactTooltip id="theme" type="dark" effect="solid">
-								<span>Using {currentTheme} theme</span>
-							</ReactTooltip>
+const Navbar = () => {
+	return (
+		<ThemeConsumer>
+			{({ currentTheme, setTheme }) => (
+				<>
+					<StyledThemeButton
+						data-tip
+						data-for="theme"
+						className="right"
+						onClick={() =>
+							setTheme(currentTheme === "dark" ? "light" : "dark")
+						}
+					>
+						{currentTheme == "dark" && (
+							<FontAwesomeIcon icon={faMoon} />
 						)}
-					</>
-				)}
-			</ThemeConsumer>
-		)
-	}
+						{currentTheme == "light" && (
+							<FontAwesomeIcon icon={faSun} />
+						)}
+					</StyledThemeButton>
+					{!isMobile && (
+						<ReactTooltip id="theme" type="dark" effect="solid">
+							<span>Using {currentTheme} theme</span>
+						</ReactTooltip>
+					)}
+				</>
+			)}
+		</ThemeConsumer>
+	)
 }
+
+export default Navbar

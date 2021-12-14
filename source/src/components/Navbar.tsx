@@ -1,16 +1,16 @@
-import React from "react"
+import styled from "styled-components"
+import { Link } from "react-router-dom"
+import ReactTooltip from "react-tooltip"
+import { isMobile } from "react-device-detect"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
-import styled from "styled-components"
-import ReactTooltip from "react-tooltip"
-import { Link } from "react-router-dom"
-import { isMobile } from "react-device-detect"
+
+import ThemeToggleButton from "./ThemeToggleButton"
+import Sidebar from "./Sidebar"
 
 import theming from "../theming"
 import NavbarData from "../data/NavbarData"
-
-import Sidebar from "./Sidebar"
-import ThemeToggleButton from "./ThemeToggleButton"
 
 const StyledNav = styled.nav`
 	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
@@ -65,44 +65,44 @@ const StyledLink = styled(Link)`
 	margin: 0 0.2rem 0 0.2rem;
 `
 
-export default class Navbar extends React.Component {
-	render() {
-		return (
-			<StyledNav>
-				<StyledContainer>
-					<Link to="/">
-						<StyledImg
-							src={
-								process.env.PUBLIC_URL + "/icon/icon_circle.svg"
-							}
-						/>
-					</Link>
-					<StyledNavLinks>
-						{NavbarData.map((item, index) => (
-							<StyledLink key={index} to={item.path}>
-								{item.title}
-							</StyledLink>
-						))}
-					</StyledNavLinks>
+const Navbar = () => {
+	return (
+		<StyledNav>
+			<StyledContainer>
+				<Link to="/">
+					<StyledImg
+						src={process.env.PUBLIC_URL + "/icon/icon_circle.svg"}
+					/>
+				</Link>
 
-					<ThemeToggleButton />
+				<StyledNavLinks>
+					{NavbarData.map((item, index) => (
+						<StyledLink key={index} to={item.path}>
+							{item.title}
+						</StyledLink>
+					))}
+				</StyledNavLinks>
 
-					<StyledLink
-						data-tip
-						data-for="search"
-						to={`${process.env.PUBLIC_URL}/search`}
-					>
-						<FontAwesomeIcon icon={faSearch} />
-					</StyledLink>
-					{!isMobile && (
-						<ReactTooltip id="search" type="dark" effect="solid">
-							<span>Search</span>
-						</ReactTooltip>
-					)}
+				<ThemeToggleButton />
 
-					<Sidebar />
-				</StyledContainer>
-			</StyledNav>
-		)
-	}
+				<StyledLink
+					data-tip
+					data-for="search"
+					to={`${process.env.PUBLIC_URL}/search`}
+				>
+					<FontAwesomeIcon icon={faSearch} />
+				</StyledLink>
+
+				{!isMobile && (
+					<ReactTooltip id="search" type="dark" effect="solid">
+						<span>Search</span>
+					</ReactTooltip>
+				)}
+
+				<Sidebar />
+			</StyledContainer>
+		</StyledNav>
+	)
 }
+
+export default Navbar
