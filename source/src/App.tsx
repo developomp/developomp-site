@@ -5,7 +5,7 @@ import styled, {
 	createGlobalStyle,
 	css,
 } from "styled-components"
-import { HelmetProvider, Helmet } from "react-helmet-async"
+import { Helmet } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
@@ -303,57 +303,47 @@ export default class App extends React.Component<AppProps, AppState> {
 			)
 
 		return (
-			<HelmetProvider>
-				<ThemeProvider
-					theme={{
-						currentTheme: this.state.currentTheme,
-						setTheme: (setThemeTo) =>
-							this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
-					}}
-				>
-					<Helmet>
-						<meta property="og:site_name" content="developomp" />
+			<ThemeProvider
+				theme={{
+					currentTheme: this.state.currentTheme,
+					setTheme: (setThemeTo) =>
+						this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
+				}}
+			>
+				<Helmet>
+					<meta property="og:site_name" content="developomp" />
 
-						<meta property="og:title" content="Home" />
+					<meta property="og:title" content="Home" />
 
-						<meta
-							property="og:description"
-							content="developomp's blog"
-						/>
+					<meta
+						property="og:description"
+						content="developomp's blog"
+					/>
 
-						<meta
-							property="og:url"
-							content={process.env.PUBLIC_URL}
-						/>
-					</Helmet>
+					<meta property="og:url" content={process.env.PUBLIC_URL} />
+				</Helmet>
 
-					<GlobalStyle />
-					<Navbar />
-					<StyledContentContainer>
-						{this.state.isLoading ? (
-							<Loading />
-						) : (
-							<Routes>
-								<Route
-									path="/"
-									element={
-										<PostList howMany={5} title="Home" />
-									}
-								/>
+				<GlobalStyle />
 
-								<Route path="/loading" element={<Loading />} />
-
-								<Route path="/search" element={<Search />} />
-
-								<Route path="/404" element={<NotFound />} />
-
-								<Route path="/:path*" element={<Page />} />
-							</Routes>
-						)}
-					</StyledContentContainer>
-					<Footer />
-				</ThemeProvider>
-			</HelmetProvider>
+				<Navbar />
+				<StyledContentContainer>
+					{this.state.isLoading ? (
+						<Loading />
+					) : (
+						<Routes>
+							<Route
+								path="/"
+								element={<PostList howMany={5} title="Home" />}
+							/>
+							<Route path="/loading" element={<Loading />} />
+							<Route path="/search" element={<Search />} />
+							<Route path="/404" element={<NotFound />} />
+							<Route path="/:path*" element={<Page />} />
+						</Routes>
+					)}
+				</StyledContentContainer>
+				<Footer />
+			</ThemeProvider>
 		)
 	}
 }

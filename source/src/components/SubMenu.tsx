@@ -65,7 +65,7 @@ const SubMenu = (props: Props) => {
 						? props.item.iconOpened
 						: props.item.subNav
 						? props.item.iconClosed
-						: null}
+						: undefined}
 				</div>
 			</SidebarLink>
 

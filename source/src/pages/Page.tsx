@@ -1,19 +1,13 @@
-import React from "react"
+import { useState } from "react"
 import { Helmet } from "react-helmet-async"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import styled from "styled-components"
 import { HashLink } from "react-router-hash-link"
 import { Collapse } from "react-collapse"
 import storage from "local-storage-fallback"
 
-import theming from "../theming"
+import { TocElement, FetchedPage, Map } from "../types/typings"
 
-import Tag from "../components/Tag"
-import TagList from "../components/TagList"
-import NotFound from "./NotFound"
-import Loading from "../components/Loading"
-
-import _map from "../data/map.json"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
 	faBook,
@@ -23,7 +17,15 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { TocElement, FetchedPage, Map } from "../types/typings"
+import Tag from "../components/Tag"
+import TagList from "../components/TagList"
+import NotFound from "./NotFound"
+import Loading from "../components/Loading"
+
+import theming from "../theming"
+
+import _map from "../data/map.json"
+import { useEffect } from "react"
 
 const map: Map = _map
 
@@ -119,95 +121,127 @@ function parseToc(tocData: TocElement[]) {
 	)
 }
 
-interface PageProps {}
-
-interface PageState {
-	fetchedPage?: FetchedPage
-	isUnsearchable: boolean
-	isSeries: boolean
-	seriesData: {
-		seriesHome: string
-		prev: string | null
-		next: string | null
-	} | null
-	isTocOpened: boolean
-	loading: boolean
+const NextPrevButton = (props: { prevURL?: string; nextURL?: string }) => {
+	return (
+		<StyledNextPrevContainer>
+			{props.prevURL ? (
+				<StyledLink to={props.prevURL}>prev</StyledLink>
+			) : (
+				<StyledDisabledLink>prev</StyledDisabledLink>
+			)}
+			{props.nextURL ? (
+				<StyledLink to={props.nextURL}>next</StyledLink>
+			) : (
+				<StyledDisabledLink>next</StyledDisabledLink>
+			)}
+		</StyledNextPrevContainer>
+	)
 }
 
-interface NextPrevProps {
-	prevURL: string | null
-	nextURL: string | null
+const PostMeta = (props: { fetchedPage: FetchedPage }) => {
+	return (
+		<StyledMetaContainer>
+			<FontAwesomeIcon icon={faCalendar} />
+			&nbsp;&nbsp;&nbsp;
+			{props.fetchedPage.date || "Unknown date"}
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<FontAwesomeIcon icon={faHourglass} />
+			&nbsp;&nbsp;&nbsp;
+			{props.fetchedPage.readTime
+				? props.fetchedPage.readTime + " read"
+				: "unknown length"}
+			&nbsp;&nbsp;&nbsp;&nbsp;
+			<FontAwesomeIcon icon={faBook} />
+			&nbsp;&nbsp;&nbsp;
+			{props.fetchedPage.wordCount
+				? props.fetchedPage.wordCount + " words"
+				: "unknown words"}
+		</StyledMetaContainer>
+	)
 }
 
-class NextPrev extends React.Component<NextPrevProps> {
-	render() {
-		return (
-			<StyledNextPrevContainer>
-				{this.props.prevURL ? (
-					<StyledLink to={this.props.prevURL}>prev</StyledLink>
+const PageTOC = (props: { fetchedPage: FetchedPage }) => {
+	const [isTocOpened, setIsTocOpened] = useState(
+		storage.getItem("isTocOpened") == "true"
+	)
+
+	useEffect(() => {
+		storage.setItem("isTocOpened", isTocOpened.toString())
+	}, [isTocOpened])
+
+	return (
+		<>
+			<StyledTocToggleButton
+				onClick={() => {
+					setIsTocOpened((prev) => !prev)
+				}}
+			>
+				<strong>Table of Content </strong>
+				{isTocOpened ? (
+					<FontAwesomeIcon icon={faCaretUp} />
 				) : (
-					<StyledDisabledLink>prev</StyledDisabledLink>
+					<FontAwesomeIcon icon={faCaretDown} />
 				)}
-				{this.props.nextURL ? (
-					<StyledLink to={this.props.nextURL}>next</StyledLink>
-				) : (
-					<StyledDisabledLink>next</StyledDisabledLink>
-				)}
-			</StyledNextPrevContainer>
-		)
-	}
+			</StyledTocToggleButton>
+			<StyledCollapseContainer>
+				<Collapse isOpened={isTocOpened}>
+					<div className="white-link">{props.fetchedPage.toc}</div>
+				</Collapse>
+			</StyledCollapseContainer>
+			<hr />
+		</>
+	)
 }
 
-export default class Page extends React.Component<PageProps, PageState> {
-	constructor(props: PageProps) {
-		super(props)
+interface SeriesData {
+	seriesHome: string
+	prev?: string
+	next?: string
+}
 
-		this.state = {
-			fetchedPage: undefined,
-			isUnsearchable: false,
-			isSeries: false,
-			seriesData: null,
-			isTocOpened: storage.getItem("isTocOpened") == "true",
-			loading: true,
-		}
+const Page = () => {
+	const [fetchedPage, setFetchPage] = useState<FetchedPage | undefined>(
+		undefined
+	)
+	const [isPageUnsearchable, setIsPageUnsearchable] = useState(false)
+	const [isSeries, setIsSeries] = useState(false)
+	const [seriesData, setSeriesData] = useState<SeriesData | undefined>(
+		undefined
+	)
+	const [isLoading, setIsLoading] = useState(true)
+	const location = useLocation()
+
+	const fetchContent = async (
+		isContentUnsearchable: boolean,
+		url: string
+	) => {
+		return isContentUnsearchable
+			? await import(`../data/content/unsearchable${url}.json`)
+			: await import(`../data/content${url}.json`)
 	}
 
-	componentDidUpdate(_: PageProps, prevState: PageState) {
-		if (this.state.isTocOpened !== prevState.isTocOpened) {
-			storage.setItem("isTocOpened", this.state.isTocOpened.toString())
-		}
-	}
-
-	async componentDidMount() {
-		let _isUnsearchable = false
+	useEffect(() => {
 		let _isSeries = false
-
 		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
-
 		if (url.startsWith("/series")) _isSeries = true
 
 		if (_isSeries) {
 			const seriesURL = url.slice(0, url.lastIndexOf("/"))
 			if (seriesURL in map.series) {
 				const _curr: number = map.series[seriesURL].order.indexOf(url)
-				let _prev: number | null = _curr - 1
-				let _next: number | null = _curr + 1
+				const _prev = _curr - 1
+				const _next = _curr + 1
 
-				if (_prev < 0) _prev = null
-				if (_next > map.series[seriesURL].order.length - 1) _next = null
-
-				this.setState({
-					seriesData: {
-						seriesHome: seriesURL,
-						prev:
-							_prev != null
-								? map.series[seriesURL].order[_prev]
-								: null,
-						next:
-							_next != null
-								? map.series[seriesURL].order[_next]
-								: null,
-					},
+				setSeriesData({
+					seriesHome: seriesURL,
+					prev:
+						_prev >= 0
+							? map.series[seriesURL].order[_prev]
+							: undefined,
+					next:
+						_next < map.series[seriesURL].order.length
+							? map.series[seriesURL].order[_next]
+							: undefined,
 				})
 			}
 		}
@@ -221,167 +255,109 @@ export default class Page extends React.Component<PageProps, PageState> {
 			tags: [] as string[],
 		}
 
+		let _isUnsearchable = false
 		if (!MapPost) {
 			_isUnsearchable = true
-			this.setState({ isUnsearchable: _isUnsearchable })
+			setIsPageUnsearchable(_isUnsearchable)
 
 			if (!map.unsearchable[url]) {
-				this.setState({ loading: false })
+				setIsLoading(false)
 				return
 			}
 		}
 
-		const fetched_content = _isUnsearchable
-			? await import(`../data/content/unsearchable${url}.json`)
-			: await import(`../data/content${url}.json`)
+		fetchContent(_isUnsearchable, url).then((fetched_content) => {
+			fetchedPage.content = fetched_content.content
+				? fetched_content.content
+				: "No content"
+			fetchedPage.toc = fetched_content.toc
+				? parseToc(fetched_content.toc)
+				: undefined
+			fetchedPage.title = _isUnsearchable
+				? map.unsearchable[url].title
+				: fetchedPage?.title
+				? fetchedPage.title
+				: "No title"
 
-		fetchedPage.content = fetched_content.content
-			? fetched_content.content
-			: "No content"
-		fetchedPage.toc = fetched_content.toc
-			? parseToc(fetched_content.toc)
-			: undefined
-		fetchedPage.title = _isUnsearchable
-			? map.unsearchable[url].title
-			: fetchedPage?.title
-			? fetchedPage.title
-			: "No title"
-		if (!_isUnsearchable) {
-			fetchedPage.date = fetchedPage?.date
-				? fetchedPage.date
-				: "Unknown date"
-		}
+			if (!_isUnsearchable) {
+				fetchedPage.date = fetchedPage?.date
+					? fetchedPage.date
+					: "Unknown date"
+			}
 
-		this.setState({
-			isSeries: _isSeries,
-			fetchedPage: fetchedPage,
-			loading: false,
+			setIsSeries(_isSeries)
+			setFetchPage(fetchedPage)
+			setIsLoading(false)
 		})
-	}
+	}, [location])
 
-	render() {
-		if (this.state.loading) return <Loading />
-		if (!this.state.fetchedPage) return <NotFound />
+	if (isLoading) return <Loading />
 
-		return (
-			<>
-				<Helmet>
-					<title>pomp | {this.state.fetchedPage.title}</title>
+	if (!fetchedPage) return <NotFound />
 
-					<meta
-						property="og:title"
-						content={this.state.fetchedPage.title}
+	return (
+		<>
+			<Helmet>
+				<title>pomp | {fetchedPage.title}</title>
+
+				<meta property="og:title" content={fetchedPage.title} />
+				<meta property="og:type" content="website" />
+				<meta
+					property="og:image"
+					content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
+				/>
+			</Helmet>
+
+			<div className="card main-content" style={{ paddingTop: 0 }}>
+				{isSeries ? (
+					<NextPrevButton
+						prevURL={seriesData?.prev}
+						nextURL={seriesData?.next}
 					/>
-					<meta property="og:type" content="website" />
-					<meta
-						property="og:image"
-						content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
-					/>
-				</Helmet>
+				) : (
+					<br />
+				)}
+				<StyledTitle>{fetchedPage.title}</StyledTitle>
 
-				<div
-					className="card main-content"
-					style={{
-						paddingTop: 0,
-					}}
-				>
-					{this.state.isSeries ? (
-						<NextPrev
-							prevURL={this.state.seriesData?.prev || null}
-							nextURL={this.state.seriesData?.next || null}
-						/>
-					) : (
-						<br />
-					)}
-					<StyledTitle>{this.state.fetchedPage.title}</StyledTitle>
-
+				<small>
 					{/* Post tags */}
-					<small>
+					{!!fetchedPage.tags.length && (
 						<TagList direction="left">
-							{this.state.fetchedPage.tags ? (
-								this.state.fetchedPage.tags.map((tag) => {
-									return (
-										<td
-											key={
-												this.state.fetchedPage?.title +
-												tag
-											}
-										>
-											<Tag text={tag} />
-										</td>
-									)
-								})
-							) : (
-								<></>
-							)}
+							{fetchedPage.tags.map((tag) => {
+								return (
+									<td key={fetchedPage?.title + tag}>
+										<Tag text={tag} />
+									</td>
+								)
+							})}
 						</TagList>
+					)}
 
-						<br />
+					<br />
 
-						{!this.state.isUnsearchable && (
-							<StyledMetaContainer>
-								<FontAwesomeIcon icon={faCalendar} />
-								&nbsp;&nbsp;&nbsp;
-								{this.state.fetchedPage?.date || "Unknown date"}
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<FontAwesomeIcon icon={faHourglass} />
-								&nbsp;&nbsp;&nbsp;
-								{this.state.fetchedPage?.readTime
-									? this.state.fetchedPage?.readTime + " read"
-									: "unknown length"}
-								&nbsp;&nbsp;&nbsp;&nbsp;
-								<FontAwesomeIcon icon={faBook} />
-								&nbsp;&nbsp;&nbsp;
-								{this.state.fetchedPage?.wordCount
-									? this.state.fetchedPage.wordCount +
-									  " words"
-									: "unknown words"}
-							</StyledMetaContainer>
-						)}
-					</small>
+					{/* Post metadata */}
+					{!isPageUnsearchable && (
+						<PostMeta fetchedPage={fetchedPage} />
+					)}
+				</small>
 
-					<hr />
+				<hr />
 
-					{
-						// add table of contents if it exists
-						!!this.state.fetchedPage?.toc?.props.children
-							.length && (
-							<>
-								<StyledTocToggleButton
-									onClick={() => {
-										this.setState({
-											isTocOpened:
-												!this.state.isTocOpened,
-										})
-									}}
-								>
-									<strong>Table of Content </strong>
-									{this.state.isTocOpened ? (
-										<FontAwesomeIcon icon={faCaretUp} />
-									) : (
-										<FontAwesomeIcon icon={faCaretDown} />
-									)}
-								</StyledTocToggleButton>
-								<StyledCollapseContainer>
-									<Collapse isOpened={this.state.isTocOpened}>
-										<div className="white-link">
-											{this.state.fetchedPage.toc}
-										</div>
-									</Collapse>
-								</StyledCollapseContainer>
-								<hr />
-							</>
-						)
-					}
+				{/* add table of contents if it exists */}
+				{!!fetchedPage.toc?.props.children.length && (
+					<PageTOC fetchedPage={fetchedPage} />
+				)}
 
-					<div
-						className="white-link"
-						dangerouslySetInnerHTML={{
-							__html: this.state.fetchedPage.content,
-						}}
-					/>
-				</div>
-			</>
-		)
-	}
+				{/* page content */}
+				<div
+					className="white-link"
+					dangerouslySetInnerHTML={{
+						__html: fetchedPage.content,
+					}}
+				/>
+			</div>
+		</>
+	)
 }
+
+export default Page

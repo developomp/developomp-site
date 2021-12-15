@@ -133,16 +133,11 @@ function isDateInRange(
 	return Date.parse(from) < compareDate && compareDate < Date.parse(to)
 }
 
-function isSelectedTagsInPost(
-	selectedTags: TagsData[] | null,
-	postTags: string[] | undefined
-) {
-	if (selectedTags == null) return true
-	if (selectedTags.length == 0) return true
+function isSelectedTagsInPost(selectedTags?: TagsData[], postTags?: string[]) {
+	if (!selectedTags || selectedTags.length <= 0) return true
+	if (!postTags || postTags.length <= 0) return false
 
-	if (postTags == undefined) return false
-
-	// if tag is empty or null
+	// if tag is empty or undefined
 	const tagValues = selectedTags.map((value) => value.value)
 	if (!postTags.every((val) => tagValues.includes(val))) return false
 
@@ -150,8 +145,8 @@ function isSelectedTagsInPost(
 }
 
 // Search doesn't work on url change if component is not wrapped
-export default () => {
-	const inputRef = useRef<HTMLInputElement>(null)
+const Search = () => {
+	const inputRef = useRef<HTMLInputElement | null>(null)
 
 	const navigate = useNavigate()
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -179,7 +174,7 @@ export default () => {
 	const [postCards, setPostCards] = useState<unknown[]>([])
 	const [dateRange, setDateRange] = useState<Array<Range>>(defaultDateRange)
 	const [searchInput, setSearchInput] = useState(query.query)
-	const [selectedTags, setSelectedOption] = useState<TagsData[] | null>(
+	const [selectedTags, setSelectedOption] = useState<TagsData[] | undefined>(
 		query.tags.map((elem) => ({ label: elem, value: elem }))
 	)
 
@@ -273,12 +268,12 @@ export default () => {
 		}
 
 		// convert Date to YYYY-MM-DD string if it exists
-		if (item.selection.startDate != null)
+		if (item.selection.startDate)
 			historyToPush.from = item.selection.startDate
 				.toISOString()
 				.split("T")[0]
 
-		if (item.selection.endDate != null)
+		if (item.selection.endDate)
 			historyToPush.to = item.selection.endDate
 				.toISOString()
 				.split("T")[0]
@@ -348,8 +343,10 @@ export default () => {
 
 interface TagSelectProps {
 	query: Query
-	selectedTags: TagsData[] | null
-	setSelectedOption: React.Dispatch<React.SetStateAction<TagsData[] | null>>
+	selectedTags?: TagsData[]
+	setSelectedOption: React.Dispatch<
+		React.SetStateAction<TagsData[] | undefined>
+	>
 }
 
 const TagSelect: React.FC<TagSelectProps> = ({
@@ -487,3 +484,5 @@ const TagSelect: React.FC<TagSelectProps> = ({
 		</StyledReactTagsContainer>
 	)
 }
+
+export default Search
