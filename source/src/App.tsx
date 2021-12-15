@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import styled, {
 	ThemeProvider,
@@ -249,25 +249,13 @@ const StyledContentContainer = styled.div`
 	margin-top: 5rem;
 `
 
-interface AppProps {}
+const App = () => {
+	const [isLoading, setIsLoading] = useState(true)
+	const [currentTheme, setCurrentTheme] = useState(
+		storage.getItem("theme") || "dark" // get theme from storage and set to "dark" mode if not set already
+	)
 
-interface AppState {
-	isLoading: boolean
-	currentTheme: string
-	currentLanguage: string
-}
-
-export default class App extends React.Component<AppProps, AppState> {
-	constructor(props: AppProps) {
-		super(props)
-		this.state = {
-			isLoading: true,
-			currentTheme: storage.getItem("theme") || "dark", // get theme from storage and set to "dark" mode if not set already
-			currentLanguage: storage.getItem("lang") || "en", // get language from storage and set to "en" if not set already
-		}
-	}
-
-	componentDidMount() {
+	useEffect(() => {
 		// show loading screen until all fonts are loaded.
 		// Experimental feature. Not fully supported on all browsers (IE, I'm looking at you).
 		// https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet
@@ -275,75 +263,63 @@ export default class App extends React.Component<AppProps, AppState> {
 		// checks if document.fonts.onloadingdone is supported on the browser
 		if (typeof document.fonts.onloadingdone != undefined) {
 			document.fonts.onloadingdone = () => {
-				this.setState({ isLoading: false })
+				setIsLoading(false)
 			}
 		} else {
-			this.setState({ isLoading: false })
+			setIsLoading(false)
 		}
-	}
+	}, [])
 
-	componentDidUpdate(_: AppProps, prevState: AppState) {
-		if (this.state.currentTheme !== prevState.currentTheme) {
-			// save theme when it is changed
-			storage.setItem("theme", this.state.currentTheme)
-		}
+	useEffect(() => {
+		// save theme when it is changed
+		storage.setItem("theme", currentTheme)
+	}, [currentTheme])
 
-		if (this.state.currentLanguage !== prevState.currentLanguage) {
-			// save language when it is changed
-			storage.setItem("lang", this.state.currentLanguage)
-		}
-	}
-
-	render() {
-		if (isIE)
-			return (
-				<IENotSupported>
-					Internet Explorer is <b>not supported.</b>
-				</IENotSupported>
-			)
-
+	if (isIE)
 		return (
-			<ThemeProvider
-				theme={{
-					currentTheme: this.state.currentTheme,
-					setTheme: (setThemeTo) =>
-						this.setState({ currentTheme: setThemeTo }), // make setTheme function available in other components
-				}}
-			>
-				<Helmet>
-					<meta property="og:site_name" content="developomp" />
-
-					<meta property="og:title" content="Home" />
-
-					<meta
-						property="og:description"
-						content="developomp's blog"
-					/>
-
-					<meta property="og:url" content={process.env.PUBLIC_URL} />
-				</Helmet>
-
-				<GlobalStyle />
-
-				<Navbar />
-				<StyledContentContainer>
-					{this.state.isLoading ? (
-						<Loading />
-					) : (
-						<Routes>
-							<Route
-								path="/"
-								element={<PostList howMany={5} title="Home" />}
-							/>
-							<Route path="/loading" element={<Loading />} />
-							<Route path="/search" element={<Search />} />
-							<Route path="/404" element={<NotFound />} />
-							<Route path="/:path*" element={<Page />} />
-						</Routes>
-					)}
-				</StyledContentContainer>
-				<Footer />
-			</ThemeProvider>
+			<IENotSupported>
+				Internet Explorer is <b>not supported.</b>
+			</IENotSupported>
 		)
-	}
+
+	return (
+		<ThemeProvider
+			theme={{
+				currentTheme: currentTheme,
+				setTheme: (setThemeTo) => {
+					setCurrentTheme(setThemeTo)
+				},
+			}}
+		>
+			<Helmet>
+				<meta property="og:site_name" content="developomp" />
+				<meta property="og:title" content="Home" />
+				<meta property="og:description" content="developomp's blog" />
+				<meta property="og:url" content={process.env.PUBLIC_URL} />
+			</Helmet>
+
+			<GlobalStyle />
+
+			<Navbar />
+			<StyledContentContainer>
+				{isLoading ? (
+					<Loading />
+				) : (
+					<Routes>
+						<Route
+							path="/"
+							element={<PostList howMany={5} title="Home" />}
+						/>
+						<Route path="/loading" element={<Loading />} />
+						<Route path="/search" element={<Search />} />
+						<Route path="/404" element={<NotFound />} />
+						<Route path="/:path*" element={<Page />} />
+					</Routes>
+				)}
+			</StyledContentContainer>
+			<Footer />
+		</ThemeProvider>
+	)
 }
+
+export default App
