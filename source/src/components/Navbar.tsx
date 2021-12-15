@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
@@ -65,6 +66,41 @@ const StyledLink = styled(Link)`
 	margin: 0 0.2rem 0 0.2rem;
 `
 
+const StyledReadProgress = styled.div`
+	height: 2px;
+
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
+`
+
+const ReadProgress = () => {
+	const [scroll, setScroll] = useState(0)
+
+	useEffect(() => {
+		const st = "scrollTop"
+		const sh = "scrollHeight"
+		const scrollHandler = () => {
+			const h = document.documentElement
+			const b = document.body
+
+			setScroll(
+				((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
+			)
+		}
+
+		window.addEventListener("scroll", scrollHandler)
+
+		return () => {
+			window.removeEventListener("scroll", scrollHandler)
+		}
+	}, [])
+
+	return <StyledReadProgress style={{ width: `${scroll}%` }} />
+}
+
 const Navbar = () => {
 	return (
 		<StyledNav>
@@ -101,6 +137,7 @@ const Navbar = () => {
 
 				<Sidebar />
 			</StyledContainer>
+			<ReadProgress />
 		</StyledNav>
 	)
 }
