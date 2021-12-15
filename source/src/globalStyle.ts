@@ -2,36 +2,7 @@ import { css } from "styled-components"
 
 import theming from "./theming"
 
-export const globalStyle = css`
-	body {
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
-
-	html,
-	body,
-	#root {
-		min-height: 100vh;
-		margin: 0;
-		display: flex;
-		flex-flow: column;
-		line-height: 1.5rem;
-		background-color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: theming.light.backgroundColor1,
-				dark: theming.dark.backgroundColor1,
-			})};
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: theming.light.color1,
-				dark: theming.dark.color1,
-			})};
-		font-size: ${theming.size.medium};
-		font-family: ${theming.font.regular};
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeLegibility;
-	}
-
+const scrollbarCSS = css`
 	body::-webkit-scrollbar {
 		width: ${theming.size.x_small};
 	}
@@ -47,7 +18,9 @@ export const globalStyle = css`
 		background: rgba(0, 0, 0, 0.1);
 		box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
 	}
+`
 
+const codeCSS = css`
 	code {
 		font-family: ${theming.font.code};
 		color: ${(props) =>
@@ -81,7 +54,9 @@ export const globalStyle = css`
 		display: block;
 		word-wrap: break-word;
 	}
+`
 
+const kbdCSS = css`
 	/* https://www.rgagnon.com/jsdetails/js-nice-effect-the-KBD-tag.html */
 	kbd {
 		margin: 0px 0.1em;
@@ -116,7 +91,9 @@ export const globalStyle = css`
 				dark: "0 1px 0 black",
 			})};
 	}
+`
 
+const tableCSS = css`
 	table {
 		border-collapse: collapse;
 		width: 100%;
@@ -139,16 +116,9 @@ export const globalStyle = css`
 				dark: "#21272E",
 			})};
 	}
+`
 
-	.white-link a {
-		text-decoration: none;
-		color: ${theming.color.linkColor};
-
-		&:visited {
-			color: ${theming.color.linkColor};
-		}
-	}
-
+const blockquoteCSS = css`
 	blockquote {
 		background-color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
@@ -168,6 +138,56 @@ export const globalStyle = css`
 
 		@media screen and (max-width: ${theming.size.screen_size1}) {
 			margin: 0.5rem;
+		}
+	}
+`
+
+export const globalStyle = css`
+	${scrollbarCSS}
+
+	${codeCSS}
+
+	${kbdCSS}
+
+	${tableCSS}
+
+	${blockquoteCSS}
+
+	body {
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+
+	html,
+	body,
+	#root {
+		min-height: 100vh;
+		margin: 0;
+		display: flex;
+		flex-flow: column;
+		line-height: 1.5rem;
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.backgroundColor1,
+				dark: theming.dark.backgroundColor1,
+			})};
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.color1,
+				dark: theming.dark.color1,
+			})};
+		font-size: ${theming.size.medium};
+		font-family: ${theming.font.regular};
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+	}
+
+	.white-link a {
+		text-decoration: none;
+		color: ${theming.color.linkColor};
+
+		&:visited {
+			color: ${theming.color.linkColor};
 		}
 	}
 
