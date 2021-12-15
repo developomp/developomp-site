@@ -1,9 +1,9 @@
 /**
- * Read markdown files and write their content and metadata to json files which can then be imported by React.
- * -   File and directory names starting with an underscore (_) get ignored.
+ * @file Read markdown files and write their content and metadata to json files which can then be imported by React.
+ * -   File and directory names starting with an underscore (_) are ignored.
  * -   Symbolic links are not supported.
- * -   The Filename-to-URL encoder is not perfect. Some non-URL-friendly filenames might cause problems.
- * - series must start with a number followed by an underscore
+ * -   The filename-to-URL converter isn't perfect. Some non-URL-friendly filenames might cause problems.
+ * -   series must start with a number followed by an underscore
  */
 
 import fs from "fs" // read and write files
