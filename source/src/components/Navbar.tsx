@@ -86,6 +86,7 @@ const ReadProgress = () => {
 			const h = document.documentElement
 			const b = document.body
 
+			// https://stackoverflow.com/a/8028584/12979111
 			setScroll(
 				((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
 			)
