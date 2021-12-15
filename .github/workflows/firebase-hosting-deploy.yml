@@ -6,6 +6,7 @@ on:
 
 jobs:
     build:
+        if: ${{ github.repository_owner == 'developomp' }}
         name: Build
         runs-on: ubuntu-latest
         steps:
@@ -26,6 +27,7 @@ jobs:
                   path: source/build
 
     deploy:
+        if: ${{ github.repository_owner == 'developomp' }}
         name: Deploy
         needs: build
         runs-on: ubuntu-latest
