@@ -48,8 +48,7 @@
 		"react-select": "^5.2.1",
 		"react-tooltip": "^4.2.21",
 		"read-time-estimate": "^0.0.3",
-		"styled-components": "^5.3.3",
-		"web-vitals": "^2.1.2"
+		"styled-components": "^5.3.3"
 	},
 	"devDependencies": {
 		"@types/elasticlunr": "^0.9.4",
