@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
-import styled, { ThemeProvider, createGlobalStyle } from "styled-components"
+import styled, { ThemeProvider } from "styled-components"
 import { Helmet } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
-import "highlight.js/styles/github-dark-dimmed.css" // code block styling
-import "katex/dist/katex.min.css" // latex mathematical expression
-
-import theming from "./theming"
+import { ThemeType } from "./types/styled-comonents"
 
 import Loading from "./components/Loading"
 import Navbar from "./components/Navbar"
@@ -18,14 +15,13 @@ import PostList from "./pages/PostList"
 import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
-import { globalStyle } from "./globalStyle"
+
+import theming from "./styles/theming"
+import GlobalStyle from "./styles/globalStyle"
 
 // Theme that will be used throughout the website
 // wrapping it using css because prettier extension does not work well with styled-components
 // https://github.com/styled-components/vscode-styled-components/issues/175
-const GlobalStyle = createGlobalStyle<{
-	theme: { currentTheme: string }
-}>`${globalStyle}`
 
 const IENotSupported = styled.p`
 	margin: auto;
@@ -43,8 +39,8 @@ const StyledContentContainer = styled.div`
 
 const App = () => {
 	const [isLoading, setIsLoading] = useState(true)
-	const [currentTheme, setCurrentTheme] = useState(
-		storage.getItem("theme") || "dark" // get theme from storage and set to "dark" mode if not set already
+	const [currentTheme, setCurrentTheme] = useState<ThemeType>(
+		(storage.getItem("theme") || "dark") as ThemeType // get theme from storage and set to "dark" mode if not set already
 	)
 
 	useEffect(() => {
@@ -78,7 +74,7 @@ const App = () => {
 		<ThemeProvider
 			theme={{
 				currentTheme: currentTheme,
-				setTheme: (setThemeTo) => {
+				setTheme(setThemeTo) {
 					setCurrentTheme(setThemeTo)
 				},
 			}}
@@ -105,7 +101,7 @@ const App = () => {
 						<Route path="/loading" element={<Loading />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/404" element={<NotFound />} />
-						<Route path="/:path*" element={<Page />} />
+						<Route path="/*" element={<Page />} />
 					</Routes>
 				)}
 			</StyledContentContainer>

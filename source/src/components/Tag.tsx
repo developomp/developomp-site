@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { faTag } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 const StyledTag = styled.div`
 	text-align: center;

@@ -4,7 +4,7 @@
 
 import styled from "styled-components"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 const StyledContainer = styled.div`
 	display: flex;

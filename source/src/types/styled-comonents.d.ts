@@ -1,8 +1,10 @@
 import "styled-components"
 
+export type ThemeType = "dark" | "light"
+
 declare module "styled-components" {
 	export interface DefaultTheme {
-		currentTheme: string
-		setTheme(setThemeTo: string): void
+		currentTheme: ThemeType
+		setTheme(setThemeTo: ThemeType): void
 	}
 }

@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 const StyledNotFound = styled.div`
 	text-align: center;

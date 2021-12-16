@@ -10,7 +10,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons"
 import ThemeToggleButton from "./ThemeToggleButton"
 import Sidebar from "./Sidebar"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 import NavbarData from "../data/NavbarData"
 
 const StyledNav = styled.nav`

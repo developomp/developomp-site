@@ -1,4 +1,10 @@
-import { css } from "styled-components"
+import { createGlobalStyle, css } from "styled-components"
+
+import "highlight.js/styles/base16/solarized-light.css"
+import "highlight.js/styles/atom-one-dark-reasonable.css"
+
+// this doesn't seem to be needed but Imma leave it anyway
+// import "katex/dist/katex.min.css"
 
 import theming from "./theming"
 
@@ -21,7 +27,7 @@ const scrollbarCSS = css`
 `
 
 const codeCSS = css`
-	code {
+	:not(pre) > code {
 		font-family: ${theming.font.code};
 		color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
@@ -33,7 +39,11 @@ const codeCSS = css`
 				light: "#eee",
 				dark: "#444", // I hope no hardcore christian finds this code
 			})};
-		border: 1px solid #666; /* especially this */
+		border: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "1px solid #BBB",
+				dark: "1px solid #666", // especially this
+			})};
 		border-radius: 3px;
 		padding: 0 3px;
 	}
@@ -41,18 +51,21 @@ const codeCSS = css`
 	/* https://stackoverflow.com/a/48694906/12979111 */
 	pre > code {
 		font-family: ${theming.font.code};
-		color: #adbac7;
-		background-color: #22272e;
-		border: 1px solid #555;
-		page-break-inside: avoid;
-		font-size: 15px;
-		line-height: 1.6;
-		margin-bottom: 1.6em;
-		max-width: 100%;
-		overflow: auto;
+		border: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "1px solid #BBB",
+				dark: "1px solid #555",
+			})};
 		padding: 1em 1.5em;
+		overflow: auto;
 		display: block;
 		word-wrap: break-word;
+		page-break-inside: avoid;
+
+		/* improve code readability */
+
+		font-size: 1.08rem;
+		line-height: 1.6;
 	}
 `
 
@@ -142,7 +155,7 @@ const blockquoteCSS = css`
 	}
 `
 
-export const globalStyle = css`
+const globalStyle = css`
 	${scrollbarCSS}
 
 	${codeCSS}
@@ -225,4 +238,8 @@ export const globalStyle = css`
 	* {
 		transition: color 0.1s linear;
 	}
+`
+
+export default createGlobalStyle`
+	${globalStyle}
 `

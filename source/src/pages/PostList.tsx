@@ -6,7 +6,7 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 import _map from "../data/map.json"
 
 import PostCard from "../components/PostCard"

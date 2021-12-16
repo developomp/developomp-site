@@ -22,7 +22,7 @@ import TagList from "../components/TagList"
 import NotFound from "./NotFound"
 import Loading from "../components/Loading"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 import _map from "../data/map.json"
 import { useEffect } from "react"

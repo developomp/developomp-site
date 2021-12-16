@@ -13,7 +13,7 @@ import {
 import Tag from "../components/Tag"
 import TagList from "../components/TagList"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 const StyledPostCard = styled.div`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);

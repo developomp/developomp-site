@@ -11,7 +11,7 @@ import elasticlunr from "elasticlunr" // search engine
 
 import _map from "../data/map.json"
 import searchData from "../data/search.json"
-import theming from "../theming"
+import theming from "../styles/theming"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"

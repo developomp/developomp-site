@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-import theming from "../theming"
+import theming from "../styles/theming"
 
 const StyledFooter = styled.footer`
 	display: flex;
