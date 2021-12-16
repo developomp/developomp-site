@@ -3,8 +3,7 @@ import { createGlobalStyle, css } from "styled-components"
 import codeblockLightCSS from "./codeblock-light"
 import codeblockDarkCSS from "./codeblock-dark"
 
-// this doesn't seem to be needed but Imma leave it anyway
-// import "katex/dist/katex.min.css"
+import "katex/dist/katex.min.css"
 
 import theming from "./theming"
 
@@ -166,16 +165,61 @@ const blockquoteCSS = css`
 	}
 `
 
+const whiteLinkCSS = css`
+	.white-link a {
+		text-decoration: none;
+		color: ${theming.color.linkColor};
+
+		&:visited {
+			color: ${theming.color.linkColor};
+		}
+	}
+`
+
+const cardCSS = css`
+	.card {
+		margin: auto;
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "white",
+				dark: "#2F3136",
+			})};
+		padding: 2rem;
+		border-radius: 6px;
+		box-shadow: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);",
+				dark: "0 4px 10px rgb(0 0 0 / 30%), 0 0 1px rgb(0 0 0 / 30%);",
+			})};
+
+		@media screen and (max-width: ${theming.size.screen_size1}) {
+			padding: 1rem;
+		}
+	}
+`
+
+const mainContentCSS = css`
+	.main-content {
+		margin-top: 3rem;
+		width: 50%;
+
+		@media screen and (max-width: ${theming.size.screen_size1}) {
+			width: auto;
+			margin: 1rem;
+			margin-top: 3rem;
+		}
+	}
+`
+
 const globalStyle = css`
 	${scrollbarCSS}
-
 	${codeCSS}
-
 	${kbdCSS}
-
 	${tableCSS}
-
 	${blockquoteCSS}
+	${whiteLinkCSS}
+	${cardCSS}
+	${mainContentCSS}
 
 	body {
 		overflow-x: hidden;
@@ -204,46 +248,6 @@ const globalStyle = css`
 		font-family: ${theming.font.regular};
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
-	}
-
-	.white-link a {
-		text-decoration: none;
-		color: ${theming.color.linkColor};
-
-		&:visited {
-			color: ${theming.color.linkColor};
-		}
-	}
-
-	.card {
-		margin: auto;
-		background-color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "white",
-				dark: "#2F3136",
-			})};
-		padding: 2rem;
-		border-radius: 6px;
-		box-shadow: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%);",
-				dark: "0 4px 10px rgb(0 0 0 / 30%), 0 0 1px rgb(0 0 0 / 30%);",
-			})};
-
-		@media screen and (max-width: ${theming.size.screen_size1}) {
-			padding: 1rem;
-		}
-	}
-
-	.main-content {
-		margin-top: 3rem;
-		width: 50%;
-
-		@media screen and (max-width: ${theming.size.screen_size1}) {
-			width: auto;
-			margin: 1rem;
-			margin-top: 3rem;
-		}
 	}
 
 	* {
