@@ -17,6 +17,7 @@ import markdownItTexMath from "markdown-it-texmath" // rendering mathematical ex
 import markdownItAnchor from "markdown-it-anchor" // markdown anchor
 import hljs from "highlight.js" // code block highlighting
 import katex from "katex" // rendering mathematical expression
+import { JSDOM } from "jsdom" // HTML DOM parsing
 
 const markdownPath = "./markdown" // where it will look for markdown documents
 const outPath = "./src/data" // path to the json database
@@ -100,6 +101,7 @@ const elasticlunrIndex = elasticlunr(function () {
 })
 
 const md = markdownIt({
+	// https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
 	highlight: function (str, lang) {
 		if (lang && hljs.getLanguage(lang)) {
 			try {
@@ -209,9 +211,17 @@ function recursiveParse(
 		if (!markdownData.title)
 			throw Error(`Title is not defined in file: ${fileOrFolderPath}`)
 
-		markdownData.content =
+		const dom = new JSDOM(
 			md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) ||
-			""
+				""
+		)
+
+		// add .hljs to all block codes
+		dom.window.document.querySelectorAll("pre > code").forEach((item) => {
+			item.classList.add("hljs")
+		})
+
+		markdownData.content = dom.window.document.documentElement.innerHTML
 
 		// https://github.com/pritishvaidya/read-time-estimate
 		const { humanizedDuration, totalWords } = readTimeEstimate(

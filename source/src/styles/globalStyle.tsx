@@ -1,7 +1,7 @@
 import { createGlobalStyle, css } from "styled-components"
 
-import "highlight.js/styles/base16/solarized-light.css"
-import "highlight.js/styles/atom-one-dark-reasonable.css"
+import codeblockLightCSS from "./codeblock-light"
+import codeblockDarkCSS from "./codeblock-dark"
 
 // this doesn't seem to be needed but Imma leave it anyway
 // import "katex/dist/katex.min.css"
@@ -27,6 +27,17 @@ const scrollbarCSS = css`
 `
 
 const codeCSS = css`
+	${(props) => {
+		switch (props.theme.currentTheme) {
+			case "dark":
+				return codeblockDarkCSS
+			case "light":
+				return codeblockLightCSS
+			default:
+				return codeblockDarkCSS
+		}
+	}}
+
 	:not(pre) > code {
 		font-family: ${theming.font.code};
 		color: ${(props) =>
