@@ -17,5 +17,5 @@
 		"noEmit": true,
 		"jsx": "react-jsx"
 	},
-	"include": ["src/**/*", "types/**/*", "generate.ts"]
+	"include": ["src/**/*", "types/**/*", "generate/**/*"]
 }

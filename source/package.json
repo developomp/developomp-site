@@ -11,7 +11,7 @@
 	"private": true,
 	"license": "MIT",
 	"scripts": {
-		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate.ts",
+		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate",
 		"start": "yarn generate && react-scripts start",
 		"quick-start": "react-scripts start",
 		"build": "yarn generate && react-scripts build"

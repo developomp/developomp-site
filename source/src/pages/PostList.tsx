@@ -1,15 +1,17 @@
-/** PostList.tsx
- *  show posts in recent order
+/**
+ * PostList.tsx
+ * show posts in recent order
  */
 
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
+import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
-
-import theming from "../styles/theming"
-import _map from "../data/map.json"
+import styled from "styled-components"
 
 import PostCard from "../components/PostCard"
+
+import _map from "../data/map.json"
+import theming from "../styles/theming"
+
 import { Map } from "../types/typings"
 
 const map: Map = _map
@@ -31,16 +33,17 @@ interface Props {
 
 const PostList = (props: Props) => {
 	const howMany = props.howMany || 0
-	const [postCards, setPostCards] = useState([] as unknown[])
+	const [postCards, setPostCards] = useState<JSX.Element[]>([])
 
 	useEffect(() => {
 		let postCount = 0
-		const _postCards = [] as unknown[]
+		const _postCards = [] as JSX.Element[]
 
 		for (const date in map.date) {
 			if (postCount >= howMany) break
 
 			const length = map.date[date].length
+
 			for (let i = 0; i < length; i++) {
 				if (postCount >= howMany) break
 
