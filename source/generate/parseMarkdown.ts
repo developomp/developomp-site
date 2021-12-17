@@ -1,6 +1,7 @@
 import markdownIt from "markdown-it" // rendering markdown
 import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
 import markdownItAnchor from "markdown-it-anchor" // markdown anchor
+import markdownItTaskCheckbox from "markdown-it-task-checkbox"
 import hljs from "highlight.js" // code block highlighting
 import katex from "katex" // rendering mathematical expression
 import { nthIndex } from "./util"
@@ -19,6 +20,7 @@ const md = markdownIt({
 	},
 	html: true,
 })
+	.use(markdownItTaskCheckbox)
 	.use(markdownItTexMath, {
 		engine: katex,
 		delimiters: "dollars",

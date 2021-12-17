@@ -70,6 +70,7 @@
 		"eslint-plugin-json": "^3.1.0",
 		"eslint-plugin-react": "^7.27.1",
 		"jsdom": "^19.0.0",
+		"markdown-it-task-checkbox": "^1.0.6",
 		"prettier": "^2.5.1",
 		"ts-node": "^10.4.0",
 		"tslint-config-prettier": "^1.18.0",
