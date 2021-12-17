@@ -1,31 +1,22 @@
 import { useState } from "react"
 import { Helmet } from "react-helmet-async"
-import { Link, useLocation } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import { HashLink } from "react-router-hash-link"
-import { Collapse } from "react-collapse"
-import storage from "local-storage-fallback"
 
-import { TocElement, FetchedPage, Map } from "../types/typings"
+import { TocElement, FetchedPage, Map } from "../../types/typings"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-	faBook,
-	faCalendar,
-	faCaretDown,
-	faCaretUp,
-	faHourglass,
-} from "@fortawesome/free-solid-svg-icons"
+import MainContent from "../../components/MainContent"
+import Loading from "../../components/Loading"
+import TagList from "../../components/TagList"
+import Tag from "../../components/Tag"
+import NotFound from "../NotFound"
 
-import MainContent from "../components/MainContent"
-import Loading from "../components/Loading"
-import TagList from "../components/TagList"
-import Tag from "../components/Tag"
-import NotFound from "./NotFound"
+import NextPrevButtons from "./NextPrevButtons"
+import Meta from "./Meta"
+import Toc from "./Toc"
 
-import theming from "../styles/theming"
-
-import _map from "../data/map.json"
+import _map from "../../data/map.json"
 import { useEffect } from "react"
 
 const map: Map = _map
@@ -36,79 +27,6 @@ const StyledPage = styled(MainContent)`
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
-`
-
-const StyledNextPrevContainer = styled.div`
-	display: flex;
-	justify-content: space-between;
-	size: 100%;
-`
-
-const StyledLink = styled(Link)`
-	${theming.styles.navbarButtonStyle}
-
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#EEEEEE",
-			dark: "#202225",
-		})};
-
-	height: 1rem;
-	width: 2rem;
-	margin-top: 2rem;
-
-	line-height: 1rem;
-	text-align: center;
-`
-
-const StyledDisabledLink = styled.div`
-	font-size: 1rem;
-	border-radius: 0.5rem;
-	float: left;
-	padding: 14px 16px;
-	text-decoration: none;
-	transition: transform 0.1s linear;
-	color: grey;
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#EEEEEE",
-			dark: "#202225",
-		})};
-
-	height: 1rem;
-	width: 2rem;
-	margin-top: 2rem;
-
-	line-height: 1rem;
-	text-align: center;
-	user-select: none;
-`
-
-const StyledTocToggleButton = styled.button`
-	border: none;
-	text-align: left;
-	background-color: rgba(0, 0, 0, 0);
-	width: 100%;
-	padding: 0.5rem;
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "black",
-			dark: "white",
-		})};
-`
-
-const StyledCollapseContainer = styled.div`
-	* {
-		transition: height 200ms ease-out;
-	}
-`
-
-const StyledMetaContainer = styled.div`
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#555",
-			dark: "#CCC",
-		})};
 `
 
 function parseToc(tocData: TocElement[]) {
@@ -123,78 +41,6 @@ function parseToc(tocData: TocElement[]) {
 				</li>
 			))}
 		</ol>
-	)
-}
-
-const NextPrevButton = (props: { prevURL?: string; nextURL?: string }) => {
-	return (
-		<StyledNextPrevContainer>
-			{props.prevURL ? (
-				<StyledLink to={props.prevURL}>prev</StyledLink>
-			) : (
-				<StyledDisabledLink>prev</StyledDisabledLink>
-			)}
-			{props.nextURL ? (
-				<StyledLink to={props.nextURL}>next</StyledLink>
-			) : (
-				<StyledDisabledLink>next</StyledDisabledLink>
-			)}
-		</StyledNextPrevContainer>
-	)
-}
-
-const PostMeta = (props: { fetchedPage: FetchedPage }) => {
-	return (
-		<StyledMetaContainer>
-			<FontAwesomeIcon icon={faCalendar} />
-			&nbsp;&nbsp;&nbsp;
-			{props.fetchedPage.date || "Unknown date"}
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<FontAwesomeIcon icon={faHourglass} />
-			&nbsp;&nbsp;&nbsp;
-			{props.fetchedPage.readTime
-				? props.fetchedPage.readTime + " read"
-				: "unknown length"}
-			&nbsp;&nbsp;&nbsp;&nbsp;
-			<FontAwesomeIcon icon={faBook} />
-			&nbsp;&nbsp;&nbsp;
-			{props.fetchedPage.wordCount
-				? props.fetchedPage.wordCount + " words"
-				: "unknown words"}
-		</StyledMetaContainer>
-	)
-}
-
-const PageTOC = (props: { fetchedPage: FetchedPage }) => {
-	const [isTocOpened, setIsTocOpened] = useState(
-		storage.getItem("isTocOpened") == "true"
-	)
-
-	useEffect(() => {
-		storage.setItem("isTocOpened", isTocOpened.toString())
-	}, [isTocOpened])
-
-	return (
-		<>
-			<StyledTocToggleButton
-				onClick={() => {
-					setIsTocOpened((prev) => !prev)
-				}}
-			>
-				<strong>Table of Content </strong>
-				{isTocOpened ? (
-					<FontAwesomeIcon icon={faCaretUp} />
-				) : (
-					<FontAwesomeIcon icon={faCaretDown} />
-				)}
-			</StyledTocToggleButton>
-			<StyledCollapseContainer>
-				<Collapse isOpened={isTocOpened}>
-					<div className="white-link">{props.fetchedPage.toc}</div>
-				</Collapse>
-			</StyledCollapseContainer>
-			<hr />
-		</>
 	)
 }
 
@@ -221,8 +67,8 @@ const Page = () => {
 		url: string
 	) => {
 		return isContentUnsearchable
-			? await import(`../data/content/unsearchable${url}.json`)
-			: await import(`../data/content${url}.json`)
+			? await import(`../../data/content/unsearchable${url}.json`)
+			: await import(`../../data/content${url}.json`)
 	}
 
 	useEffect(() => {
@@ -315,7 +161,7 @@ const Page = () => {
 
 			<StyledPage>
 				{isSeries ? (
-					<NextPrevButton
+					<NextPrevButtons
 						prevURL={seriesData?.prev}
 						nextURL={seriesData?.next}
 					/>
@@ -341,16 +187,14 @@ const Page = () => {
 					<br />
 
 					{/* Post metadata */}
-					{!isPageUnsearchable && (
-						<PostMeta fetchedPage={fetchedPage} />
-					)}
+					{!isPageUnsearchable && <Meta fetchedPage={fetchedPage} />}
 				</small>
 
 				<hr />
 
 				{/* add table of contents if it exists */}
 				{!!fetchedPage.toc?.props.children.length && (
-					<PageTOC fetchedPage={fetchedPage} />
+					<Toc fetchedPage={fetchedPage} />
 				)}
 
 				{/* page content */}
