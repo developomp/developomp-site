@@ -17,10 +17,11 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import Tag from "../components/Tag"
-import TagList from "../components/TagList"
-import NotFound from "./NotFound"
+import MainContent from "../components/MainContent"
 import Loading from "../components/Loading"
+import TagList from "../components/TagList"
+import Tag from "../components/Tag"
+import NotFound from "./NotFound"
 
 import theming from "../styles/theming"
 
@@ -28,6 +29,10 @@ import _map from "../data/map.json"
 import { useEffect } from "react"
 
 const map: Map = _map
+
+const StyledPage = styled(MainContent)`
+	padding-top: 0;
+`
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
@@ -308,7 +313,7 @@ const Page = () => {
 				/>
 			</Helmet>
 
-			<div className="card main-content" style={{ paddingTop: 0 }}>
+			<StyledPage>
 				{isSeries ? (
 					<NextPrevButton
 						prevURL={seriesData?.prev}
@@ -355,7 +360,7 @@ const Page = () => {
 						__html: fetchedPage.content,
 					}}
 				/>
-			</div>
+			</StyledPage>
 		</>
 	)
 }

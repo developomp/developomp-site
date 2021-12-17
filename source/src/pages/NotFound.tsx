@@ -1,9 +1,11 @@
 import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
+import MainContent from "../components/MainContent"
+
 import theming from "../styles/theming"
 
-const StyledNotFound = styled.div`
+const StyledNotFound = styled(MainContent)`
 	text-align: center;
 
 	color: ${(props) =>
@@ -33,7 +35,7 @@ const NotFound = () => {
 				<meta property="og:description" content="Page does not exist" />
 			</Helmet>
 
-			<StyledNotFound className="card main-content">
+			<StyledNotFound>
 				<Styled404>404</Styled404>
 				<br />
 				Page was not found :(

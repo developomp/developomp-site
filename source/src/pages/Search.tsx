@@ -13,12 +13,13 @@ import _map from "../data/map.json"
 import searchData from "../data/search.json"
 import theming from "../styles/theming"
 
-import "react-date-range/dist/styles.css"
-import "react-date-range/dist/theme/default.css"
-
 import PostCard from "../components/PostCard"
+import MainContent from "../components/MainContent"
 
 import { Map } from "../types/typings"
+
+import "react-date-range/dist/styles.css"
+import "react-date-range/dist/theme/default.css"
 
 const map: Map = _map
 
@@ -36,7 +37,7 @@ interface Query {
 	query: string
 }
 
-const StyledSearch = styled.div`
+const StyledSearch = styled(MainContent)`
 	text-align: center;
 `
 
@@ -289,7 +290,7 @@ const Search = () => {
 				<title>pomp | Search</title>
 			</Helmet>
 
-			<StyledSearch className="card main-content">
+			<StyledSearch>
 				<h1>Search</h1>
 
 				<StyledSearchContainer>

@@ -4,9 +4,11 @@
 
 import styled from "styled-components"
 
+import MainContent from "./MainContent"
+
 import theming from "../styles/theming"
 
-const StyledContainer = styled.div`
+const StyledContainer = styled(MainContent)`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -93,7 +95,7 @@ const StyledSVG = styled.svg`
 
 const Spinner = () => {
 	return (
-		<StyledContainer className="card main-content">
+		<StyledContainer>
 			<StyledSVG
 				width="37"
 				height="48"

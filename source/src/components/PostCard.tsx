@@ -10,12 +10,13 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import Tag from "../components/Tag"
-import TagList from "../components/TagList"
+import Tag from "./Tag"
+import TagList from "./TagList"
+import MainContent from "./MainContent"
 
 import theming from "../styles/theming"
 
-const StyledPostCard = styled.div`
+const StyledPostCard = styled(MainContent)`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 	text-align: left;
 	margin-bottom: 2rem;
@@ -72,7 +73,6 @@ const PostCard = (props: Props) => {
 	return (
 		<StyledPostCard
 			key={props.postData.url}
-			className="card main-content"
 			onClick={() => {
 				navigate(process.env.PUBLIC_URL + props.postData.url)
 			}}
