@@ -12,6 +12,7 @@ const map: Map = _map
 
 const StyledReactTagsContainer = styled.div`
 	width: 100%;
+	margin-top: 1.5rem;
 `
 
 export interface TagsData {
@@ -43,6 +44,7 @@ const TagSelect = (props: TagSelectProps) => {
 			<ThemeConsumer>
 				{(currentTheme) => (
 					<Select
+						placeholder="Select tags..."
 						theme={(theme) => ({
 							...theme,
 							colors: {

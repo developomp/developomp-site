@@ -39,9 +39,18 @@ const StyledSearch = styled(MainContent)`
 	text-align: center;
 `
 
+const DateRangeControl = styled.div`
+	width: 350px;
+
+	@media screen and (max-width: ${theming.size.screen_size2}) {
+		margin-top: 2rem;
+	}
+`
+
 const ClearDateButton = styled.button`
 	width: 100%;
-	line-height: 2.5rem;
+	height: 2.5rem;
+
 	border: none;
 	cursor: pointer;
 
@@ -50,12 +59,18 @@ const ClearDateButton = styled.button`
 	font-weight: bold;
 `
 
+const StyledDateRange = styled(DateRange)`
+	width: 100%;
+	height: 350px;
+`
+
 const StyledSearchContainer = styled.div`
 	display: flex;
 	align-items: flex-start;
 
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		flex-direction: column-reverse;
+		align-items: center;
 	}
 `
 
@@ -66,15 +81,6 @@ const StyledSearchControlContainer = styled.div`
 	@media screen and (max-width: ${theming.size.screen_size2}) {
 		margin-top: 2rem;
 		margin-left: 0;
-	}
-`
-
-const StyledDateRange = styled(DateRange)`
-	width: 350px;
-	height: 350px;
-
-	@media screen and (max-width: ${theming.size.screen_size2}) {
-		margin-top: 1rem;
 	}
 `
 
@@ -257,7 +263,7 @@ const Search = () => {
 				<h1>Search</h1>
 
 				<StyledSearchContainer>
-					<div>
+					<DateRangeControl>
 						<ClearDateButton onClick={clearDate}>
 							Reset range
 						</ClearDateButton>
@@ -268,7 +274,7 @@ const Search = () => {
 							ranges={dateRange}
 							onChange={onDateRangeChange}
 						/>
-					</div>
+					</DateRangeControl>
 
 					<StyledSearchControlContainer
 						onSubmit={(event) => event.preventDefault()}
@@ -291,7 +297,6 @@ const Search = () => {
 						/>
 						{postCards.length}{" "}
 						{postCards.length > 1 ? "results" : "result"}
-						<h3>Tags</h3>
 						<TagSelect
 							query={query}
 							selectedTags={selectedTags}
