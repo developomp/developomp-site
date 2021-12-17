@@ -1,22 +1,25 @@
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState, useRef } from "react"
-import styled, { ThemeConsumer } from "styled-components"
+import styled from "styled-components"
 import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { DateRange, Range } from "react-date-range"
-import Select from "react-select"
+
 import queryString from "query-string" // parsing url query
 import elasticlunr from "elasticlunr" // search engine
 
-import _map from "../data/map.json"
-import searchData from "../data/search.json"
-import theming from "../styles/theming"
+import _map from "../../data/map.json"
+import searchData from "../../data/search.json"
+import theming from "../../styles/theming"
 
-import PostCard from "../components/PostCard"
-import MainContent from "../components/MainContent"
+import PostCard from "../../components/PostCard"
+import MainContent from "../../components/MainContent"
 
-import { Map } from "../types/typings"
+import SearchBar from "./SearchBar"
+import TagSelect, { TagsData } from "./TagSelect"
+
+import { Map } from "../../types/typings"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
@@ -25,12 +28,7 @@ const map: Map = _map
 
 const searchIndex = elasticlunr.Index.load(searchData as never)
 
-interface TagsData {
-	value: string
-	label: string
-}
-
-interface Query {
+export interface Query {
 	from: string
 	to: string
 	tags: string[]
@@ -39,6 +37,17 @@ interface Query {
 
 const StyledSearch = styled(MainContent)`
 	text-align: center;
+`
+
+const ClearDateButton = styled.button`
+	width: 100%;
+	line-height: 2.5rem;
+	border: none;
+	cursor: pointer;
+
+	background-color: tomato; /* 🍅 mmm tomato 🍅 */
+	color: white;
+	font-weight: bold;
 `
 
 const StyledSearchContainer = styled.div`
@@ -68,52 +77,6 @@ const StyledDateRange = styled(DateRange)`
 		margin-top: 1rem;
 	}
 `
-
-const StyledSearchBar = styled.input`
-	width: 100%;
-	border-radius: 100px; /* arbitrarily large value */
-	height: 3rem;
-	text-indent: 1rem;
-	font-size: 1.25rem;
-	outline: none;
-
-	border: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "1px solid #ccc",
-			dark: "1px solid #555",
-		})};
-
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.dark.color1,
-			dark: theming.dark.backgroundColor1,
-		})};
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
-`
-
-const StyledReactTagsContainer = styled.div`
-	width: 100%;
-`
-
-const ClearDateButton = styled.button`
-	width: 100%;
-	line-height: 2.5rem;
-	border: none;
-	cursor: pointer;
-
-	background-color: tomato; /* 🍅 mmm tomato 🍅 */
-	color: white;
-	font-weight: bold;
-`
-
-const options: TagsData[] = [
-	...map.meta.tags.map((elem) => ({ value: elem, label: elem })),
-]
 
 // check if post date is withing the range
 function isDateInRange(
@@ -310,7 +273,7 @@ const Search = () => {
 					<StyledSearchControlContainer
 						onSubmit={(event) => event.preventDefault()}
 					>
-						<StyledSearchBar
+						<SearchBar
 							autoFocus
 							type="text"
 							ref={inputRef}
@@ -339,150 +302,6 @@ const Search = () => {
 			</StyledSearch>
 			{postCards}
 		</>
-	)
-}
-
-interface TagSelectProps {
-	query: Query
-	selectedTags?: TagsData[]
-	setSelectedOption: React.Dispatch<
-		React.SetStateAction<TagsData[] | undefined>
-	>
-}
-
-const TagSelect: React.FC<TagSelectProps> = ({
-	query,
-	selectedTags,
-	setSelectedOption,
-}) => {
-	const navigate = useNavigate()
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [_, setSearchParams] = useSearchParams()
-
-	return (
-		<StyledReactTagsContainer>
-			<ThemeConsumer>
-				{(currentTheme) => (
-					<Select
-						theme={(theme) => ({
-							...theme,
-							colors: {
-								...theme.colors,
-								neutral0: theming
-									.theme(currentTheme.currentTheme, {
-										light: theming.light.backgroundColor1,
-										dark: theming.dark.backgroundColor1,
-									})
-									.toString(),
-								neutral5: "hsl(0, 0%, 20%)",
-								neutral10: "hsl(0, 0%, 30%)",
-								neutral20: "hsl(0, 0%, 40%)",
-								neutral30: "hsl(0, 0%, 50%)",
-								neutral40: "hsl(0, 0%, 60%)",
-								neutral50: "hsl(0, 0%, 70%)",
-								neutral60: "hsl(0, 0%, 80%)",
-								neutral70: "hsl(0, 0%, 90%)",
-								neutral80: "hsl(0, 0%, 95%)",
-								neutral90: "hsl(0, 0%, 100%)",
-								primary25: "hotpink",
-								primary: "black",
-							},
-						})}
-						styles={{
-							option: (styles) => ({
-								...styles,
-								backgroundColor: theming
-									.theme(currentTheme.currentTheme, {
-										light: theming.light.backgroundColor1,
-										dark: theming.dark.backgroundColor1,
-									})
-									.toString(),
-								color: theming
-									.theme(currentTheme.currentTheme, {
-										light: theming.light.color1,
-										dark: theming.dark.color1,
-									})
-									.toString(),
-								cursor: "pointer",
-								padding: 10,
-								":hover": {
-									backgroundColor: theming
-										.theme(currentTheme.currentTheme, {
-											light: theming.light
-												.backgroundColor0,
-											dark: theming.dark.backgroundColor0,
-										})
-										.toString(),
-								},
-							}),
-							control: (styles) => ({
-								...styles,
-								backgroundColor: theming
-									.theme(currentTheme.currentTheme, {
-										light: theming.light.backgroundColor1,
-										dark: theming.dark.backgroundColor1,
-									})
-									.toString(),
-								border: theming.theme(
-									currentTheme.currentTheme,
-									{
-										light: "1px solid #ccc",
-										dark: "1px solid #555",
-									}
-								),
-							}),
-							multiValue: (styles) => ({
-								...styles,
-								color: "white",
-								backgroundColor: theming.color.linkColor,
-								borderRadius: "5px",
-							}),
-							multiValueLabel: (styles) => ({
-								...styles,
-								marginLeft: "0.2rem",
-								marginRight: "0.2rem",
-							}),
-							multiValueRemove: (styles) => ({
-								...styles,
-								marginLeft: "0.2rem",
-								":hover": {
-									backgroundColor: "white",
-									color: theming.color.linkColor,
-								},
-							}),
-						}}
-						defaultValue={selectedTags}
-						onChange={(newSelectedTags) => {
-							setSelectedOption(newSelectedTags as TagsData[])
-
-							navigate("/search")
-
-							const tags =
-								newSelectedTags
-									.map((elem) => elem.value)
-									.join(",") || undefined
-
-							setSearchParams({
-								...(query.query && {
-									query: query.query,
-								}),
-								...(query.from && {
-									from: query.from,
-								}),
-								...(query.to && {
-									to: query.to,
-								}),
-								...(tags && {
-									tags: tags,
-								}),
-							})
-						}}
-						options={options}
-						isMulti
-					/>
-				)}
-			</ThemeConsumer>
-		</StyledReactTagsContainer>
 	)
 }
 
