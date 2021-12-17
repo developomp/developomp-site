@@ -1,4 +1,4 @@
-import React from "react"
+import { MouseEvent } from "react"
 import styled from "styled-components"
 
 import { faTag } from "@fortawesome/free-solid-svg-icons"
@@ -18,7 +18,7 @@ const StyledTag = styled.div`
 
 interface Props {
 	text: string
-	onClick?: (event: React.MouseEvent<never>) => void
+	onClick?: (event: MouseEvent<never>) => void
 }
 
 const Tag = (props: Props) => {
