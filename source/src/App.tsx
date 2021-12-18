@@ -5,7 +5,7 @@ import { Helmet } from "react-helmet-async"
 import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
 
-import { ThemeType } from "./types/styled-comonents"
+import { ThemeType } from "../types/styled-components"
 
 import Loading from "./components/Loading"
 import Navbar from "./components/Navbar"

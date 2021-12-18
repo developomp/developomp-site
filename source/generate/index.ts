@@ -6,12 +6,13 @@
  * -   series must start with a number followed by an underscore
  */
 
-import fs from "fs" // read and write files
+import fs from "fs"
 
-import { Map, SeriesMap } from "./types"
 import { recursiveParse } from "./recursiveParse"
 import { contentDirectoryPath, mapFilePath, markdownPath } from "./config"
 import { saveIndex } from "./searchIndex"
+
+import { Map, ParseMode, SeriesMap } from "../types/typing"
 
 // searchable data that will be converted to JSON string
 export const map: Map = {
@@ -53,9 +54,9 @@ if (!fs.lstatSync(markdownPath + "/unsearchable").isDirectory())
 if (!fs.lstatSync(markdownPath + "/series").isDirectory())
 	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
-recursiveParse("posts", markdownPath + "/posts")
-recursiveParse("unsearchable", markdownPath + "/unsearchable")
-recursiveParse("series", markdownPath + "/series")
+recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
+recursiveParse(ParseMode.UNSEARCHABLE, markdownPath + "/unsearchable")
+recursiveParse(ParseMode.SERIES, markdownPath + "/series")
 
 // sort dates
 let dateKeys: string[] = []

@@ -6,7 +6,7 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { FetchedPage } from "../../types/typings"
+import { FetchedPage } from "../../../types/typing"
 import theming from "../../styles/theming"
 
 const StyledMetaContainer = styled.div`

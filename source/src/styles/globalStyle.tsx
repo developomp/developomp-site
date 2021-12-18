@@ -96,7 +96,7 @@ const kbdCSS = css`
 				dark: "white",
 			})};
 		line-height: 1.4;
-		font-size: 10px;
+		font-size: 13.5px;
 		display: inline-block;
 		box-shadow: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
@@ -107,11 +107,6 @@ const kbdCSS = css`
 			theming.theme(props.theme.currentTheme, {
 				light: "#F7F7F7",
 				dark: "black",
-			})};
-		text-shadow: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "0 1px 0 white",
-				dark: "0 1px 0 black",
 			})};
 	}
 `
@@ -165,14 +160,15 @@ const blockquoteCSS = css`
 	}
 `
 
-const whiteLinkCSS = css`
-	.white-link a {
-		text-decoration: none;
-		color: ${theming.color.linkColor};
+const headerCSS = css`
+	/* intentionally left out h1 */
 
-		&:visited {
-			color: ${theming.color.linkColor};
-		}
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin-top: 2.5rem;
 	}
 `
 
@@ -182,7 +178,7 @@ const globalStyle = css`
 	${kbdCSS}
 	${tableCSS}
 	${blockquoteCSS}
-	${whiteLinkCSS}
+	${headerCSS}
 
 	body {
 		overflow-x: hidden;

@@ -19,7 +19,7 @@ import MainContent from "../../components/MainContent"
 import SearchBar from "./SearchBar"
 import TagSelect, { TagsData } from "./TagSelect"
 
-import { Map } from "../../types/typings"
+import { Map } from "../../../types/typing"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"

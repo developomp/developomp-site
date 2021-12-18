@@ -28,7 +28,7 @@ const md = markdownIt({
 	})
 	.use(markdownItAnchor, {})
 
-export function parseMarkdown(markdownRaw: string): string {
+export default function parseMarkdown(markdownRaw: string): string {
 	return (
 		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
 	)

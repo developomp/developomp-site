@@ -3,7 +3,12 @@ import { relative } from "path"
 
 import { markdownPath } from "./config"
 
-// converts file path to url
+/**
+ * converts file path to url path that will be used in the url (starts with a slash)
+ *
+ * @param {string} pathToConvert
+ * @returns {string}
+ */
 export function path2URL(pathToConvert: string): string {
 	return `/${relative(markdownPath, pathToConvert)}`
 		.replace(/\.[^/.]+$/, "") // remove the file extension

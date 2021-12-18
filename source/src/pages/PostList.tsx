@@ -12,7 +12,7 @@ import PostCard from "../components/PostCard"
 import _map from "../data/map.json"
 import theming from "../styles/theming"
 
-import { Map } from "../types/typings"
+import { Map } from "../../types/typing"
 
 const map: Map = _map
 

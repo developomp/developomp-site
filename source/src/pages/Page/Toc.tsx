@@ -8,7 +8,7 @@ import styled from "styled-components"
 
 import theming from "../../styles/theming"
 
-import { FetchedPage } from "../../types/typings"
+import { FetchedPage } from "../../../types/typing"
 
 const StyledTocToggleButton = styled.button`
 	border: none;

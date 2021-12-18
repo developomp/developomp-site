@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 import { HashLink } from "react-router-hash-link"
 
-import { TocElement, FetchedPage, Map } from "../../types/typings"
+import { TocElement, FetchedPage, Map } from "../../../types/typing"
 
 import MainContent from "../../components/MainContent"
 import Loading from "../../components/Loading"

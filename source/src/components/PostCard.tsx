@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-import { Post } from "../types/typings"
+import { PostData } from "../../types/typing"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -40,6 +40,7 @@ const StyledPostCard = styled(MainContent)`
 const StyledTitle = styled.h1`
 	font-size: 2rem;
 	font-style: bold;
+	margin: 0;
 	margin-bottom: 1rem;
 `
 
@@ -51,15 +52,7 @@ const StyledMetaContainer = styled.small`
 		})};
 `
 
-const StyledPostCardContent = styled.div`
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "grey",
-			dark: "lightgrey",
-		})};
-`
-
-interface _PostDateBase extends Post {
+interface _PostDateBase extends PostData {
 	url: string
 }
 
@@ -72,16 +65,17 @@ const PostCard = (props: Props) => {
 
 	return (
 		<StyledPostCard
-			key={props.postData.url}
-			onClick={() => {
+			onClick={() =>
 				navigate(process.env.PUBLIC_URL + props.postData.url)
-			}}
+			}
 		>
 			<StyledTitle>{props.postData?.title || "No title"}</StyledTitle>
 
+			<br />
+
 			<StyledMetaContainer>
 				<TagList direction="left">
-					{props.postData.tags ? (
+					{props.postData.tags &&
 						props.postData.tags.map((tag) => {
 							return (
 								<Tag
@@ -89,11 +83,9 @@ const PostCard = (props: Props) => {
 									text={tag}
 								/>
 							)
-						})
-					) : (
-						<></>
-					)}
+						})}
 				</TagList>
+				<hr />
 				<FontAwesomeIcon icon={faCalendar} />
 				&nbsp;&nbsp;&nbsp;
 				{props.postData?.date || "Unknown date"}
@@ -110,15 +102,6 @@ const PostCard = (props: Props) => {
 					? props.postData.wordCount + " words"
 					: "unknown words"}
 			</StyledMetaContainer>
-
-			<hr />
-
-			<StyledPostCardContent
-				className="white-link"
-				dangerouslySetInnerHTML={{
-					__html: props.postData.preview,
-				}}
-			/>
 		</StyledPostCard>
 	)
 }

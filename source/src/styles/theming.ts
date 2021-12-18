@@ -23,7 +23,7 @@ export default {
 		x2_small: "3px",
 		x_small: "8px",
 		small: 0,
-		medium: "14px",
+		medium: "1rem",
 		large: 0,
 		x_large: 0,
 		screen_size1: "1000px",

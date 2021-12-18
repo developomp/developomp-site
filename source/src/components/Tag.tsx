@@ -1,7 +1,7 @@
 import { MouseEvent } from "react"
 import styled from "styled-components"
 
-import { faTag } from "@fortawesome/free-solid-svg-icons"
+import { faHashtag } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import theming from "../styles/theming"
@@ -24,7 +24,7 @@ interface Props {
 const Tag = (props: Props) => {
 	return (
 		<StyledTag onClick={props.onClick || undefined}>
-			<FontAwesomeIcon icon={faTag} /> &nbsp;{props.text}
+			<FontAwesomeIcon icon={faHashtag} /> &nbsp;{props.text}
 		</StyledTag>
 	)
 }

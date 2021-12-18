@@ -5,7 +5,7 @@ import Select from "react-select"
 import theming from "../../styles/theming"
 
 import { Query } from "."
-import { Map } from "../../types/typings"
+import { Map } from "../../../types/typing"
 import _map from "../../data/map.json"
 
 const map: Map = _map
