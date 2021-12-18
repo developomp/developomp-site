@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons"
+
 import theming from "../../styles/theming"
 
 const StyledNextPrevContainer = styled.div`
@@ -53,14 +56,22 @@ const NextPrevButtons = (props: { prevURL?: string; nextURL?: string }) => {
 	return (
 		<StyledNextPrevContainer>
 			{props.prevURL ? (
-				<StyledLink to={props.prevURL}>prev</StyledLink>
+				<StyledLink to={props.prevURL}>
+					<FontAwesomeIcon icon={faArrowLeft} />
+				</StyledLink>
 			) : (
-				<StyledDisabledLink>prev</StyledDisabledLink>
+				<StyledDisabledLink>
+					<FontAwesomeIcon icon={faArrowLeft} />
+				</StyledDisabledLink>
 			)}
 			{props.nextURL ? (
-				<StyledLink to={props.nextURL}>next</StyledLink>
+				<StyledLink to={props.nextURL}>
+					<FontAwesomeIcon icon={faArrowRight} />
+				</StyledLink>
 			) : (
-				<StyledDisabledLink>next</StyledDisabledLink>
+				<StyledDisabledLink>
+					<FontAwesomeIcon icon={faArrowRight} />
+				</StyledDisabledLink>
 			)}
 		</StyledNextPrevContainer>
 	)
