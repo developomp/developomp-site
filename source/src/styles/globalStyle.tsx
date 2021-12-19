@@ -193,6 +193,14 @@ const markCSS = css`
 	}
 `
 
+const katexCSS = css`
+	// prevent overflowing on small displays
+	.katex-html {
+		overflow-x: scroll;
+		padding: 0.5rem;
+	}
+`
+
 // Theme that will be used throughout the website
 // wrapping it using css because prettier extension does not work well with styled-components
 // https://github.com/styled-components/vscode-styled-components/issues/175
@@ -204,6 +212,7 @@ const globalStyle = css`
 	${blockquoteCSS}
 	${headerCSS}
 	${markCSS}
+	${katexCSS}
 
 	body {
 		overflow-x: hidden;
