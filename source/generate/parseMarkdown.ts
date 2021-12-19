@@ -1,9 +1,16 @@
 import markdownIt from "markdown-it" // rendering markdown
 import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
 import markdownItAnchor from "markdown-it-anchor" // markdown anchor
-import markdownItTaskCheckbox from "markdown-it-task-checkbox"
-import hljs from "highlight.js" // code block highlighting
+import markdownItTaskCheckbox from "markdown-it-task-checkbox" // a TODO list checkboxes
+import markDownItMark from "markdown-it-mark" // text highlighting
+import markdownItSub from "markdown-it-sub" // markdown subscript
+import markdownItSup from "markdown-it-sup" // markdown superscript
+import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
+import hljs from "highlight.js" // code block syntax highlighting
+
 import katex from "katex" // rendering mathematical expression
+import "katex/contrib/mhchem" // chemical formula
+
 import { nthIndex } from "./util"
 
 const md = markdownIt({
@@ -20,13 +27,16 @@ const md = markdownIt({
 	},
 	html: true,
 })
-	.use(markdownItTaskCheckbox)
 	.use(markdownItTexMath, {
 		engine: katex,
 		delimiters: "dollars",
-		katexOptions: { macros: { "\\RR": "\\mathbb{R}" } },
 	})
+	.use(markdownItTaskCheckbox)
 	.use(markdownItAnchor, {})
+	.use(markDownItMark)
+	.use(markdownItSub)
+	.use(markdownItSup)
+	.use(highlightLines)
 
 export default function parseMarkdown(markdownRaw: string): string {
 	return (

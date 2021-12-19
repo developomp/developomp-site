@@ -71,11 +71,16 @@ const codeCSS = css`
 		display: block;
 		word-wrap: break-word;
 		page-break-inside: avoid;
-
-		/* improve code readability */
-
-		font-size: 1.08rem;
 		line-height: 1.6;
+		border-radius: 0.5rem;
+	}
+
+	.highlighted-line {
+		background-color: #14161a;
+		display: block;
+		width: 100%;
+		margin: 0 -1rem;
+		padding: 0 1rem;
 	}
 `
 
@@ -143,7 +148,6 @@ const blockquoteCSS = css`
 				light: "rgba(0, 0, 0, 5%)",
 				dark: "rgba(255, 255, 255, 7%)",
 			})};
-
 		border-left: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: "0.4rem solid rgba(0, 0, 0, 10%)",
@@ -172,6 +176,21 @@ const headerCSS = css`
 	}
 `
 
+const markCSS = css`
+	mark {
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "rgba(255, 255, 0, 75%)",
+				dark: "rgba(255, 255, 0, 50%)",
+			})};
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "black",
+				dark: "white",
+			})};
+	}
+`
+
 const globalStyle = css`
 	${scrollbarCSS}
 	${codeCSS}
@@ -179,6 +198,7 @@ const globalStyle = css`
 	${tableCSS}
 	${blockquoteCSS}
 	${headerCSS}
+	${markCSS}
 
 	body {
 		overflow-x: hidden;

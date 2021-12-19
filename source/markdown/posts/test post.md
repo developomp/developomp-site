@@ -54,9 +54,22 @@ A post have title, post date, tags, and content.
 
 Here's a `code`.
 
-```python
-if __name__ == "__main__":
-	print("And here's a language-specific code block") # with comments!
+```python {10,15,17-18}
+print("And here's a language-specific code block")
+# with comments and line highlighting!
+
+x = 256
+y = 256
+
+print(x is y) # True. id(x) is indeed equal to id(y)
+
+z = 257
+w = 257
+
+print(z is w) # False. id(z) is not equal to id(w)
+
+# Apparently python does this to save memory.
+# All integers between -5 and 256 share the same id.
 ```
 
 ## Etc
@@ -68,7 +81,10 @@ if __name__ == "__main__":
 **bold**<br />
 _italic_<br />
 ~~strikethrough~~<br />
-<u>underlined</u>
+<u>underlined</u><br />
+==marked==<br />
+this is a ^superscript^ (soon^TM^)<br />
+and this is a ~subscript~ (H~2~O)
 
 ## Styling
 
@@ -76,10 +92,26 @@ _italic_<br />
 	centered paragraph
 </p>
 
+<p style="color:rgb(255,0,0)">
+	RED
+</p>
+
 ## Key
 
 Do you remember the first time you pressed <kbd>Ctrl</kbd>+<kbd>C</kbd> in terminal?
 
-## Mathematical expression
+## TeX
+
+[$KaTeX$](https://katex.org/docs/supported.html) syntax is supported.
+
+using [mhchem](https://mhchem.github.io/MathJax-mhchem) for chemical formula.
+
+### Inline
 
 $e=mc^2$ is actually $e^2=(mc^2)^2 + (pc)^2$.
+
+### Block
+
+$$
+	\ce{6 CO2 + 6 H2O <=>[{photosynthesis}][{respiration}] C6H12O6 + 6 O2}
+$$
