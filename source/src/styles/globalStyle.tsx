@@ -67,7 +67,6 @@ const codeCSS = css`
 				dark: "1px solid #555",
 			})};
 		line-height: 1.6;
-		border-radius: 0.5rem;
 		padding: 0;
 		display: flex;
 	}
