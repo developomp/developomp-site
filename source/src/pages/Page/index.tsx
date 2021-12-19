@@ -2,9 +2,8 @@ import { useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
-import { HashLink } from "react-router-hash-link"
 
-import { TocElement, FetchedPage, Map } from "../../../types/typing"
+import { FetchedPage, Map } from "../../../types/typing"
 
 import MainContent from "../../components/MainContent"
 import Loading from "../../components/Loading"
@@ -28,21 +27,6 @@ const StyledPage = styled(MainContent)`
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
 `
-
-function parseToc(tocData: TocElement[]) {
-	return (
-		<ol>
-			{tocData.map((elem) => (
-				// use elem.lvl
-				<li key={elem.slug}>
-					<HashLink smooth to={location.pathname + "#" + elem.slug}>
-						{elem.content}
-					</HashLink>
-				</li>
-			))}
-		</ol>
-	)
-}
 
 interface SeriesData {
 	seriesHome: string
@@ -118,23 +102,14 @@ const Page = () => {
 		}
 
 		fetchContent(_isUnsearchable, url).then((fetched_content) => {
-			fetchedPage.content = fetched_content.content
-				? fetched_content.content
-				: "No content"
+			fetchedPage.content = fetched_content.content || "No content"
 			fetchedPage.toc = fetched_content.toc
-				? parseToc(fetched_content.toc)
-				: undefined
 			fetchedPage.title = _isUnsearchable
 				? map.unsearchable[url].title
-				: fetchedPage?.title
-				? fetchedPage.title
-				: "No title"
+				: fetchedPage?.title || "No title"
 
-			if (!_isUnsearchable) {
-				fetchedPage.date = fetchedPage?.date
-					? fetchedPage.date
-					: "Unknown date"
-			}
+			if (!_isUnsearchable)
+				fetchedPage.date = fetchedPage?.date || "Unknown date"
 
 			setIsSeries(_isSeries)
 			setFetchPage(fetchedPage)
@@ -193,9 +168,7 @@ const Page = () => {
 				<hr />
 
 				{/* add table of contents if it exists */}
-				{!!fetchedPage.toc?.props.children.length && (
-					<Toc fetchedPage={fetchedPage} />
-				)}
+				<Toc data={fetchedPage.toc} />
 
 				{/* page content */}
 				<div

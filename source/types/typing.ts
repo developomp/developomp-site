@@ -4,13 +4,6 @@ export enum ParseMode {
 	UNSEARCHABLE,
 }
 
-export interface TocElement {
-	slug: string
-	content: string
-	i: number
-	lvl: number
-}
-
 export interface Base {}
 
 export interface PostData {
@@ -37,7 +30,7 @@ export interface FetchedPage {
 	readTime: string
 	wordCount: number
 	tags: string[]
-	toc?: JSX.Element
+	toc?: string
 	content: string
 }
 

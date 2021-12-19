@@ -7,6 +7,7 @@ import markdownItSub from "markdown-it-sub" // markdown subscript
 import markdownItSup from "markdown-it-sup" // markdown superscript
 import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
 
+import toc from "markdown-toc" // table of contents generation
 import hljs from "highlight.js" // code block syntax highlighting
 import katex from "katex" // rendering mathematical expression
 import "katex/contrib/mhchem" // chemical formula
@@ -46,4 +47,8 @@ export default function parseMarkdown(markdownRaw: string): string {
 	return (
 		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
 	)
+}
+
+export function generateToc(markdownRaw: string): string {
+	return md.render(toc(markdownRaw).content)
 }

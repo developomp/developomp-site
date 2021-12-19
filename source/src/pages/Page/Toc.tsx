@@ -8,9 +8,8 @@ import styled from "styled-components"
 
 import theming from "../../styles/theming"
 
-import { FetchedPage } from "../../../types/typing"
-
 const StyledTocToggleButton = styled.button`
+	cursor: pointer;
 	border: none;
 	text-align: left;
 	background-color: rgba(0, 0, 0, 0);
@@ -29,7 +28,7 @@ const StyledCollapseContainer = styled.div`
 	}
 `
 
-const Toc = (props: { fetchedPage: FetchedPage }) => {
+const Toc = (props: { data?: string }) => {
 	const [isTocOpened, setIsTocOpened] = useState(
 		storage.getItem("isTocOpened") == "true"
 	)
@@ -37,6 +36,8 @@ const Toc = (props: { fetchedPage: FetchedPage }) => {
 	useEffect(() => {
 		storage.setItem("isTocOpened", isTocOpened.toString())
 	}, [isTocOpened])
+
+	if (!props.data) return <></>
 
 	return (
 		<>
@@ -54,7 +55,7 @@ const Toc = (props: { fetchedPage: FetchedPage }) => {
 			</StyledTocToggleButton>
 			<StyledCollapseContainer>
 				<Collapse isOpened={isTocOpened}>
-					<div>{props.fetchedPage.toc}</div>
+					<div dangerouslySetInnerHTML={{ __html: props.data }} />
 				</Collapse>
 			</StyledCollapseContainer>
 			<hr />

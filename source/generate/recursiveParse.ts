@@ -1,11 +1,10 @@
 import fs from "fs"
 import readTimeEstimate from "read-time-estimate" // post read time estimation
 import matter from "gray-matter" // parse markdown metadata
-import toc from "markdown-toc" // table of contents generation
 import { JSDOM } from "jsdom" // HTML DOM parsing
 
 import { nthIndex, path2FileOrFolderName, path2URL, writeToJSON } from "./util"
-import parseMarkdown from "./parseMarkdown"
+import parseMarkdown, { generateToc } from "./parseMarkdown"
 
 import { contentDirectoryPath } from "./config"
 import { addDocument } from "./searchIndex"
@@ -186,7 +185,7 @@ function parsePost(data: DataToPass): void {
 		`${contentDirectoryPath}${urlPath}.json`,
 		JSON.stringify({
 			content: markdownData.content,
-			toc: toc(markdownRaw).json,
+			toc: generateToc(markdownRaw),
 		})
 	)
 }
@@ -294,7 +293,7 @@ function parseSeries(data: DataToPass): void {
 		`${contentDirectoryPath}${urlPath}.json`,
 		JSON.stringify({
 			content: markdownData.content,
-			toc: toc(markdownRaw).json,
+			toc: generateToc(markdownRaw),
 		})
 	)
 }
