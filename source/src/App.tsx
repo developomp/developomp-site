@@ -19,10 +19,6 @@ import NotFound from "./pages/NotFound"
 import theming from "./styles/theming"
 import GlobalStyle from "./styles/globalStyle"
 
-// Theme that will be used throughout the website
-// wrapping it using css because prettier extension does not work well with styled-components
-// https://github.com/styled-components/vscode-styled-components/issues/175
-
 const IENotSupported = styled.p`
 	margin: auto;
 	font-size: 2rem;

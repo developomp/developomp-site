@@ -6,8 +6,8 @@ import markDownItMark from "markdown-it-mark" // text highlighting
 import markdownItSub from "markdown-it-sub" // markdown subscript
 import markdownItSup from "markdown-it-sup" // markdown superscript
 import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
-import hljs from "highlight.js" // code block syntax highlighting
 
+import hljs from "highlight.js" // code block syntax highlighting
 import katex from "katex" // rendering mathematical expression
 import "katex/contrib/mhchem" // chemical formula
 
@@ -31,8 +31,12 @@ const md = markdownIt({
 		engine: katex,
 		delimiters: "dollars",
 	})
+	.use(markdownItAnchor, {
+		permalink: true,
+		permalinkBefore: true,
+		permalinkSymbol: "#",
+	})
 	.use(markdownItTaskCheckbox)
-	.use(markdownItAnchor, {})
 	.use(markDownItMark)
 	.use(markdownItSub)
 	.use(markdownItSup)

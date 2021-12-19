@@ -194,6 +194,9 @@ const markCSS = css`
 	}
 `
 
+// Theme that will be used throughout the website
+// wrapping it using css because prettier extension does not work well with styled-components
+// https://github.com/styled-components/vscode-styled-components/issues/175
 const globalStyle = css`
 	${scrollbarCSS}
 	${codeCSS}
@@ -230,6 +233,15 @@ const globalStyle = css`
 		font-family: ${theming.font.regular};
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
+	}
+
+	a {
+		text-decoration: none;
+		color: ${theming.color.linkColor};
+
+		&:visited {
+			color: ${theming.color.linkColor};
+		}
 	}
 
 	* {

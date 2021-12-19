@@ -45,16 +45,16 @@ const Toc = (props: { fetchedPage: FetchedPage }) => {
 					setIsTocOpened((prev) => !prev)
 				}}
 			>
-				<strong>Table of Content </strong>
-				{isTocOpened ? (
-					<FontAwesomeIcon icon={faCaretUp} />
-				) : (
-					<FontAwesomeIcon icon={faCaretDown} />
-				)}
+				<strong>
+					Table of Contents{" "}
+					<FontAwesomeIcon
+						icon={isTocOpened ? faCaretUp : faCaretDown}
+					/>
+				</strong>
 			</StyledTocToggleButton>
 			<StyledCollapseContainer>
 				<Collapse isOpened={isTocOpened}>
-					<div className="white-link">{props.fetchedPage.toc}</div>
+					<div>{props.fetchedPage.toc}</div>
 				</Collapse>
 			</StyledCollapseContainer>
 			<hr />

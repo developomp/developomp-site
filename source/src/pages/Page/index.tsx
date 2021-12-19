@@ -199,7 +199,6 @@ const Page = () => {
 
 				{/* page content */}
 				<div
-					className="white-link"
 					dangerouslySetInnerHTML={{
 						__html: fetchedPage.content,
 					}}
