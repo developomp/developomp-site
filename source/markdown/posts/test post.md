@@ -54,7 +54,7 @@ A post have title, post date, tags, and content.
 
 Here's a `code`.
 
-```python {10,15,17-18}
+```python {7,12,14-15}
 print("And here's a language-specific code block")
 # with comments and line highlighting!
 
@@ -68,7 +68,7 @@ w = 257
 
 print(z is w) # False. id(z) is not equal to id(w)
 
-# Apparently python does this to save memory.
+# Apparently python does this to save memory usage.
 # All integers between -5 and 256 share the same id.
 ```
 
