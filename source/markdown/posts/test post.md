@@ -50,6 +50,10 @@ A post have title, post date, tags, and content.
     1. [ ] Ordered list task sub-item (unchecked)
     2. [x] Ordered list task sub-item (checked)
 
+## Footnote
+
+css only causes pain[^css_bad] and python is overrated[^python_is_overrated].
+
 ## Code
 
 Here's a `code`.
@@ -115,3 +119,6 @@ $e=mc^2$ is actually $e^2=(mc^2)^2 + (pc)^2$.
 $$
 	\ce{6 CO2 + 6 H2O <=>[{photosynthesis}][{respiration}] C6H12O6 + 6 O2}
 $$
+
+[^css_bad]: Based on my experience building this website, Dec 2021.
+[^python_is_overrated]: Based on my infinite wisdom, Dec 2021.

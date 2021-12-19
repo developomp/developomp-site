@@ -5,6 +5,8 @@ import markdownItTaskCheckbox from "markdown-it-task-checkbox" // a TODO list ch
 import markDownItMark from "markdown-it-mark" // text highlighting
 import markdownItSub from "markdown-it-sub" // markdown subscript
 import markdownItSup from "markdown-it-sup" // markdown superscript
+import markdownItFootnote from "markdown-it-footnote" // markdown footnote
+
 import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
 
 import toc from "markdown-toc" // table of contents generation
@@ -42,6 +44,7 @@ const md = markdownIt({
 	.use(markdownItSub)
 	.use(markdownItSup)
 	.use(highlightLines)
+	.use(markdownItFootnote)
 
 export default function parseMarkdown(markdownRaw: string): string {
 	return (
