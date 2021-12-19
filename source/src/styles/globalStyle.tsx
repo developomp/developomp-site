@@ -238,10 +238,6 @@ const globalStyle = css`
 	a {
 		text-decoration: none;
 		color: ${theming.color.linkColor};
-
-		&:visited {
-			color: ${theming.color.linkColor};
-		}
 	}
 
 	* {
