@@ -66,17 +66,20 @@ const codeCSS = css`
 				light: "1px solid #BBB",
 				dark: "1px solid #555",
 			})};
-		padding: 1em 1.5em;
-		overflow: auto;
-		display: block;
-		word-wrap: break-word;
-		page-break-inside: avoid;
 		line-height: 1.6;
 		border-radius: 0.5rem;
+		padding: 0;
+		display: flex;
 	}
 
+	/* // todo: fix highlight not working properly when scrolled horizontally // */
 	.highlighted-line {
-		background-color: #14161a;
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "#dddddd",
+				dark: "#14161a",
+			})};
+
 		display: block;
 		width: 100%;
 		margin: 0 -1rem;
