@@ -5,9 +5,9 @@ import theming from "../../styles/theming"
 const StyledSearchBar = styled.input`
 	width: 100%;
 	border-radius: 100px; /* arbitrarily large value */
-	height: 3rem;
-	text-indent: 1rem;
-	font-size: 1.25rem;
+	height: 2.5rem;
+	text-align: center;
+	font-size: 1.2rem;
 	outline: none;
 
 	border: ${(props) =>
