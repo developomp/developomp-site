@@ -1,12 +1,10 @@
 import styled, { ThemeConsumer } from "styled-components"
-import { useNavigate, useSearchParams } from "react-router-dom"
 import Select from "react-select"
 
 import theming from "../../styles/theming"
 
-import { Query } from "."
-import { Map } from "../../../types/typing"
 import _map from "../../data/map.json"
+import { Map } from "../../../types/typing"
 
 const map: Map = _map
 
@@ -20,24 +18,18 @@ export interface TagsData {
 	label: string
 }
 
-const options: TagsData[] = [
-	...map.meta.tags.map((elem) => ({ value: elem, label: elem })),
-]
+const options: TagsData[] = map.meta.tags.map((elem) => ({
+	value: elem,
+	label: elem,
+}))
 
 interface TagSelectProps {
-	query: Query
-	selectedTags?: TagsData[]
-	setSelectedOption: React.Dispatch<
-		React.SetStateAction<TagsData[] | undefined>
-	>
+	defaultValue: TagsData[]
+	onChange(newValue: unknown): void
 }
 
 const TagSelect = (props: TagSelectProps) => {
-	const { query, selectedTags, setSelectedOption } = props
-
-	const navigate = useNavigate()
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	const [_, setSearchParams] = useSearchParams()
+	const { onChange, defaultValue: selectedTags } = props
 
 	return (
 		<StyledReactTagsContainer>
@@ -133,31 +125,7 @@ const TagSelect = (props: TagSelectProps) => {
 							}),
 						}}
 						defaultValue={selectedTags}
-						onChange={(newSelectedTags) => {
-							setSelectedOption(newSelectedTags as TagsData[])
-
-							navigate("/search")
-
-							const tags =
-								newSelectedTags
-									.map((elem) => elem.value)
-									.join(",") || undefined
-
-							setSearchParams({
-								...(query.query && {
-									query: query.query,
-								}),
-								...(query.from && {
-									from: query.from,
-								}),
-								...(query.to && {
-									to: query.to,
-								}),
-								...(tags && {
-									tags: tags,
-								}),
-							})
-						}}
+						onChange={onChange}
 						options={options}
 						isMulti
 					/>
