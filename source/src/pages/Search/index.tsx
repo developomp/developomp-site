@@ -143,6 +143,8 @@ const Search = () => {
 
 	// update URL when data changes
 	useEffect(() => {
+		if (!initialized) return
+
 		let date_from
 		let date_to
 
