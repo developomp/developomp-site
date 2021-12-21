@@ -192,7 +192,7 @@ const markCSS = css`
 const katexCSS = css`
 	// prevent overflowing on small displays
 	.katex-html {
-		overflow-x: scroll;
+		overflow: auto;
 		padding: 0.5rem;
 	}
 `
