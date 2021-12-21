@@ -10,7 +10,6 @@ export const mainContentCSS = css`
 	@media screen and (max-width: ${theming.size.screen_size1}) {
 		width: auto;
 		margin: 1rem;
-		margin-top: 3rem;
 	}
 `
 
