@@ -93,7 +93,7 @@ const StyledSVG = styled.svg`
 	}
 `
 
-const Spinner = () => {
+const Loading = () => {
 	return (
 		<StyledContainer>
 			<StyledSVG
@@ -142,4 +142,4 @@ const Spinner = () => {
 	)
 }
 
-export default Spinner
+export default Loading
