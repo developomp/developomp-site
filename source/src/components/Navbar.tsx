@@ -16,7 +16,7 @@ import NavbarData from "../data/NavbarData"
 const StyledNav = styled.nav`
 	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
 	z-index: 9999;
-	position: fixed;
+	max-height: 4rem;
 	width: 100%;
 
 	background-color: ${(props) =>

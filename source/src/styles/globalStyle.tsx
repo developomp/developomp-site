@@ -209,15 +209,11 @@ const globalStyle = css`
 	${headerCSS}
 	${markCSS}
 	${katexCSS}
-
-	body {
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
-
+	
 	html,
 	body,
 	#root {
+		overflow: hidden;
 		min-height: 100vh;
 		margin: 0;
 		display: flex;
@@ -237,6 +233,14 @@ const globalStyle = css`
 		font-family: ${theming.font.regular};
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
+	}
+
+	#root {
+		display: grid;
+		grid-template-rows: 4rem / auto;
+
+		height: 100vh;
+		width: 100vw;
 	}
 
 	a {

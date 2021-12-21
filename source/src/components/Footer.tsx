@@ -7,7 +7,10 @@ import theming from "../styles/theming"
 
 const StyledFooter = styled.footer`
 	display: flex;
-	height: 7.77rem; /* congratulation. You've found the lucky 777 */
+
+	// congratulation. You've found the lucky 7s
+	min-height: 7.77rem;
+	max-height: 7.77rem;
 
 	align-items: center;
 	justify-content: center;

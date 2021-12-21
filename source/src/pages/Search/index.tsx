@@ -46,6 +46,7 @@ const defaultDateRange = [
 
 const StyledSearch = styled(MainContent)`
 	text-align: center;
+	margin-bottom: 2rem;
 `
 
 const StyledSearchContainer = styled.div`
@@ -277,6 +278,7 @@ const Search = () => {
 					</StyledSearchControlContainer>
 				</StyledSearchContainer>
 			</StyledSearch>
+
 			{postCards}
 		</>
 	)

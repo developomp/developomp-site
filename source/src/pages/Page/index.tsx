@@ -20,10 +20,6 @@ import { useEffect } from "react"
 
 const map: Map = _map
 
-const StyledPage = styled(MainContent)`
-	padding-top: 0;
-`
-
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
 `
@@ -134,7 +130,7 @@ const Page = () => {
 				/>
 			</Helmet>
 
-			<StyledPage>
+			<MainContent>
 				{isSeries ? (
 					<NextPrevButtons
 						prevURL={seriesData?.prev}
@@ -176,7 +172,7 @@ const Page = () => {
 						__html: fetchedPage.content,
 					}}
 				/>
-			</StyledPage>
+			</MainContent>
 		</>
 	)
 }
