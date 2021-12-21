@@ -66,9 +66,6 @@ const codeCSS = css`
 				light: "1px solid #BBB",
 				dark: "1px solid #555",
 			})};
-		line-height: 1.6;
-		padding: 0;
-		display: flex;
 	}
 
 	/* // todo: fix highlight not working properly when scrolled horizontally // */
@@ -80,7 +77,6 @@ const codeCSS = css`
 			})};
 
 		display: block;
-		width: 100%;
 		margin: 0 -1rem;
 		padding: 0 1rem;
 	}
@@ -246,6 +242,11 @@ const globalStyle = css`
 	a {
 		text-decoration: none;
 		color: ${theming.color.linkColor};
+	}
+
+	hr {
+		border: 0;
+		border-bottom: 1px solid;
 	}
 
 	* {
