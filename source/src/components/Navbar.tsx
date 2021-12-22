@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
@@ -15,7 +16,7 @@ import NavbarData from "../data/NavbarData"
 const StyledNav = styled.nav`
 	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
 	z-index: 9999;
-	max-height: 4rem;
+	position: fixed;
 	width: 100%;
 
 	background-color: ${(props) =>
@@ -65,6 +66,42 @@ const StyledLink = styled(Link)`
 	margin: 0 0.2rem 0 0.2rem;
 `
 
+const StyledReadProgress = styled.div`
+	height: 2px;
+
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
+`
+
+const ReadProgress = () => {
+	const [scroll, setScroll] = useState(0)
+
+	useEffect(() => {
+		const st = "scrollTop"
+		const sh = "scrollHeight"
+		const scrollHandler = () => {
+			const h = document.documentElement
+			const b = document.body
+
+			// https://stackoverflow.com/a/8028584/12979111
+			setScroll(
+				((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
+			)
+		}
+
+		window.addEventListener("scroll", scrollHandler)
+
+		return () => {
+			window.removeEventListener("scroll", scrollHandler)
+		}
+	}, [])
+
+	return <StyledReadProgress style={{ width: `${scroll}%` }} />
+}
+
 const Navbar = () => {
 	return (
 		<StyledNav>
@@ -101,6 +138,7 @@ const Navbar = () => {
 
 				<Sidebar />
 			</StyledContainer>
+			<ReadProgress />
 		</StyledNav>
 	)
 }

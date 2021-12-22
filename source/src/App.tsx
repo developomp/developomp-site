@@ -27,20 +27,10 @@ const IENotSupported = styled.p`
 	font-family: ${theming.font.regular};
 `
 
-const StyledScrollableArea = styled.div`
-	height: calc(100vh - 4rem);
-
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-
-	overflow-y: scroll;
-	overflow-x: hidden;
-`
-
-const StyedContentContainer = styled.div`
-	margin-top: 3rem;
+const StyledContentContainer = styled.div`
+	flex: 1 1 auto;
 	margin-bottom: 3rem;
+	margin-top: 5rem;
 `
 
 const App = () => {
@@ -91,28 +81,27 @@ const App = () => {
 				<meta property="og:description" content="developomp's blog" />
 				<meta property="og:url" content={process.env.PUBLIC_URL} />
 			</Helmet>
+
 			<GlobalStyle />
 
 			<Navbar />
-			<StyledScrollableArea>
-				<StyedContentContainer>
-					{isLoading ? (
-						<Loading />
-					) : (
-						<Routes>
-							<Route
-								path="/"
-								element={<PostList howMany={5} title="Home" />}
-							/>
-							<Route path="/loading" element={<Loading />} />
-							<Route path="/search" element={<Search />} />
-							<Route path="/404" element={<NotFound />} />
-							<Route path="/*" element={<Page />} />
-						</Routes>
-					)}
-				</StyedContentContainer>
-				<Footer />
-			</StyledScrollableArea>
+			<StyledContentContainer>
+				{isLoading ? (
+					<Loading />
+				) : (
+					<Routes>
+						<Route
+							path="/"
+							element={<PostList howMany={5} title="Home" />}
+						/>
+						<Route path="/loading" element={<Loading />} />
+						<Route path="/search" element={<Search />} />
+						<Route path="/404" element={<NotFound />} />
+						<Route path="/*" element={<Page />} />
+					</Routes>
+				)}
+			</StyledContentContainer>
+			<Footer />
 		</ThemeProvider>
 	)
 }
