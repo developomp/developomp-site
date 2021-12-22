@@ -1,15 +1,5 @@
 {
-	"name": "developomp-site",
-	"version": "1.0.0",
-	"description": "website source for https://developomp.com",
-	"author": "developomp <developomp@gmail.com>",
-	"homepage": "/",
-	"repository": "https://github.com/developomp/developomp-site.git",
-	"bugs": {
-		"url": "https://github.com/developomp/developomp-site/issues"
-	},
 	"private": true,
-	"license": "MIT",
 	"scripts": {
 		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate",
 		"start": "yarn generate && react-scripts start",
