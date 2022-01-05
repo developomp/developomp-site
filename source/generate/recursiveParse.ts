@@ -1,10 +1,8 @@
 import fs from "fs"
 import readTimeEstimate from "read-time-estimate" // post read time estimation
-import matter from "gray-matter" // parse markdown metadata
-import { JSDOM } from "jsdom" // HTML DOM parsing
 
-import { nthIndex, path2FileOrFolderName, path2URL, writeToJSON } from "./util"
-import parseMarkdown, { generateToc } from "./parseMarkdown"
+import { path2FileOrFolderName, path2URL, writeToJSON } from "./util"
+import { generateToc, parseFrontMatter } from "./parseMarkdown"
 
 import { contentDirectoryPath } from "./config"
 import { addDocument } from "./searchIndex"
@@ -91,6 +89,10 @@ function parseFile(mode: ParseMode, path: string, fileName: string): void {
 
 		case ParseMode.UNSEARCHABLE:
 			parseUnsearchable(dataToPass)
+			break
+
+		case ParseMode.PORTFOLIO:
+			parsePortfolio(dataToPass)
 			break
 	}
 }
@@ -333,36 +335,6 @@ function parseUnsearchable(data: DataToPass): void {
 	)
 }
 
-/**
- * parse the front matter if it exists
- *
- * @param {string} markdownRaw
- * @param {string} path
- * @param {ParseMode} mode
- */
-function parseFrontMatter(
-	markdownRaw: string,
-	path: string,
-	mode: ParseMode
-): MarkdownData {
-	// todo: accurately calculate start and end of front matter
-	const result = matter(
-		markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)
-	).data
-
-	if (!result.title) throw Error(`Title is not defined in file: ${path}`)
-
-	if (mode != ParseMode.UNSEARCHABLE && !result.date)
-		throw Error(`Date is not defined in file: ${path}`)
-
-	const dom = new JSDOM(parseMarkdown(markdownRaw))
-
-	// add .hljs class to all block codes
-	dom.window.document.querySelectorAll("pre > code").forEach((item) => {
-		item.classList.add("hljs")
-	})
-
-	result.content = dom.window.document.documentElement.innerHTML
-
-	return result as MarkdownData
+function parsePortfolio(data: DataToPass): void {
+	console.log("portfolio file:", data.path)
 }

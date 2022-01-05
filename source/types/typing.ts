@@ -42,6 +42,7 @@ export enum ParseMode {
 	POSTS,
 	SERIES,
 	UNSEARCHABLE,
+	PORTFOLIO,
 }
 
 export interface MarkdownData {
