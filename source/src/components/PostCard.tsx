@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 
-import { PostData } from "../../types/typing"
+import { PostData } from "../../types/types"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {

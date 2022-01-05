@@ -8,7 +8,7 @@ import { contentDirectoryPath } from "./config"
 import { addDocument } from "./searchIndex"
 import { map, seriesMap } from "."
 
-import { MarkdownData, ParseMode, PostData } from "../types/typing"
+import { MarkdownData, ParseMode, PostData } from "../types/types"
 
 /**
  * Data that's passed from {@link parseFile} to other function

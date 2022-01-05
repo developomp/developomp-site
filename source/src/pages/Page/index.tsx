@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
-import { FetchedPage, Map } from "../../../types/typing"
+import { FetchedPage, Map } from "../../../types/types"
 
 import MainContent from "../../components/MainContent"
 import Loading from "../../components/Loading"

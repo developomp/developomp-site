@@ -14,7 +14,7 @@ import { saveIndex } from "./searchIndex"
 import postProcess from "./postProcess"
 import clean from "./clean"
 
-import { Map, ParseMode, SeriesMap, PortfolioData } from "../types/typing"
+import { Map, ParseMode, SeriesMap, PortfolioData } from "../types/types"
 
 export const map: Map = {
 	date: {},

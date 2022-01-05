@@ -20,7 +20,7 @@ import SearchBar from "./SearchBar"
 import TagSelect, { TagsData } from "./TagSelect"
 import { ClearDateButton, DateRangeControl, StyledDateRange } from "./DateRange"
 
-import { Map } from "../../../types/typing"
+import { Map } from "../../../types/types"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
