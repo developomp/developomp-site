@@ -8,9 +8,11 @@
 
 import fs from "fs"
 
-import { contentDirectoryPath, mapFilePath, markdownPath } from "./config"
+import { mapFilePath, markdownPath } from "./config"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
+import postProcess from "./postProcess"
+import clean from "./clean"
 
 import { Map, ParseMode, SeriesMap, PortfolioData } from "../types/typing"
 
@@ -34,15 +36,7 @@ export const portfolioData: PortfolioData = {
  * Delete previously generated files
  */
 
-try {
-	fs.rmSync(contentDirectoryPath, { recursive: true })
-	// eslint-disable-next-line no-empty
-} catch (err) {}
-
-try {
-	fs.unlinkSync(mapFilePath)
-	// eslint-disable-next-line no-empty
-} catch (err) {}
+clean()
 
 /**
  * Checking
@@ -72,35 +66,7 @@ recursiveParse(ParseMode.SERIES, markdownPath + "/series")
  * Post-process
  */
 
-// sort date
-
-const TmpDate = map.date
-map.date = {}
-Object.keys(map.date)
-	.sort()
-	.forEach((sortedDateKey) => {
-		map.date[sortedDateKey] = TmpDate[sortedDateKey]
-	})
-
-// fill meta data
-
-map.meta.tags = Object.keys(map.tags)
-
-// sort series post
-
-for (const seriesURL in seriesMap) {
-	seriesMap[seriesURL].sort((a, b) => {
-		if (a.index < b.index) return -1
-		if (a.index > b.index) return 1
-
-		return 0
-	})
-}
-
-for (const seriesURL in seriesMap) {
-	map.series[seriesURL].length = seriesMap[seriesURL].length
-	map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
-}
+postProcess()
 
 /**
  * Save results
