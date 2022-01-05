@@ -13,12 +13,11 @@ import { map, seriesMap } from "."
 import { MarkdownData, ParseMode, PostData } from "../types/typing"
 
 /**
- *
+ * Data that's passed from {@link parseFile} to other function
  */
 interface DataToPass {
 	path: string
 	urlPath: string
-	fileOrFolderName: string
 	markdownRaw: string
 	markdownData: MarkdownData
 	humanizedDuration: string
@@ -51,22 +50,19 @@ export function recursiveParse(mode: ParseMode, path: string): void {
 	}
 }
 
-function parseFile(
-	mode: ParseMode,
-	path: string,
-	fileOrFolderName: string
-): void {
+function parseFile(mode: ParseMode, path: string, fileName: string): void {
 	// stop if it is not a markdown file
-	if (!fileOrFolderName.endsWith(".md")) {
+	if (!fileName.endsWith(".md")) {
 		console.log(`Ignoring non markdown file at: ${path}`)
 		return
 	}
 
-	// raw markdown text
+	/**
+	 * Parse markdown
+	 */
+
 	const markdownRaw = fs.readFileSync(path, "utf8")
 	const markdownData: MarkdownData = parseFrontMatter(markdownRaw, path, mode)
-
-	// https://github.com/pritishvaidya/read-time-estimate
 	const { humanizedDuration, totalWords } = readTimeEstimate(
 		markdownData.content,
 		275,
@@ -78,7 +74,6 @@ function parseFile(
 	const dataToPass: DataToPass = {
 		path,
 		urlPath: path2URL(path),
-		fileOrFolderName,
 		markdownRaw,
 		markdownData,
 		humanizedDuration,
@@ -86,30 +81,17 @@ function parseFile(
 	}
 
 	switch (mode) {
-		case ParseMode.POSTS: {
+		case ParseMode.POSTS:
 			parsePost(dataToPass)
 			break
-		}
 
-		case ParseMode.UNSEARCHABLE: {
-			dataToPass.urlPath = dataToPass.urlPath.slice(
-				dataToPass.urlPath
-					.slice(1) // ignore the first slash
-					.indexOf("/") + 1
-			)
-
-			parseUnsearchable(dataToPass)
-			break
-		}
-
-		case ParseMode.SERIES: {
-			let urlPath = dataToPass.urlPath
-			urlPath = urlPath.slice(0, urlPath.lastIndexOf("_"))
-			dataToPass.urlPath = urlPath.replace(/\/$/, "") // remove trailing slash
-
+		case ParseMode.SERIES:
 			parseSeries(dataToPass)
 			break
-		}
+
+		case ParseMode.UNSEARCHABLE:
+			parseUnsearchable(dataToPass)
+			break
 	}
 }
 
@@ -185,17 +167,40 @@ function parsePost(data: DataToPass): void {
 function parseSeries(data: DataToPass): void {
 	const {
 		path,
-		urlPath,
-		fileOrFolderName,
+		urlPath: _urlPath,
 		markdownRaw,
 		markdownData,
 		humanizedDuration,
 		totalWords,
 	} = data
 
-	if (!fileOrFolderName.includes("_") && !fileOrFolderName.startsWith("0"))
-		throw Error(`Invalid series post file name at: ${path}`)
+	// last part of the url without the slash
+	let lastPath = _urlPath.slice(_urlPath.lastIndexOf("/") + 1)
+	if (!lastPath.includes("_") && !lastPath.startsWith("0"))
+		throw Error(`Invalid series file name at: ${path}`)
 
+	// if file is a series descriptor or not (not = regular series post)
+	const isFileDescriptor = lastPath.startsWith("0") && !lastPath.includes("_")
+
+	// series post url
+	if (isFileDescriptor) {
+		lastPath = ""
+	} else {
+		lastPath = lastPath
+			.slice(lastPath.indexOf("_") + 1) // get string after the series index
+			.replace(/\/$/, "") // remove trailing slash
+	}
+
+	// get url until right before the lastPath
+	const urlUntilLastPath = _urlPath.slice(0, _urlPath.lastIndexOf("/") + 1)
+
+	// remove trailing slash if it's a regular series post
+	const urlPath =
+		(isFileDescriptor
+			? urlUntilLastPath.replace(/\/$/, "")
+			: urlUntilLastPath) + lastPath
+
+	// todo: separate interface for series descriptor (no word count and read time)
 	const postData: PostData = {
 		title: markdownData.title,
 		date: "",
@@ -237,8 +242,12 @@ function parseSeries(data: DataToPass): void {
 		})
 	}
 
+	/**
+	 *
+	 */
+
 	// series markdown starting with 0 is a series descriptor
-	if (fileOrFolderName.startsWith("0")) {
+	if (isFileDescriptor) {
 		map.series[urlPath] = {
 			...postData,
 			order: [],
@@ -253,10 +262,14 @@ function parseSeries(data: DataToPass): void {
 
 		map.posts[urlPath] = postData
 
+		// put series post in appropriate series
 		for (const key of Object.keys(map.series)) {
-			if (urlPath.slice(0, urlPath.lastIndexOf("/")).includes(key)) {
+			if (urlPath.includes(key)) {
 				const index = parseInt(
-					fileOrFolderName.slice(0, fileOrFolderName.lastIndexOf("_"))
+					_urlPath.slice(
+						_urlPath.lastIndexOf("/") + 1,
+						_urlPath.lastIndexOf("_")
+					)
 				)
 
 				if (isNaN(index))
@@ -272,13 +285,14 @@ function parseSeries(data: DataToPass): void {
 				} else {
 					seriesMap[key] = [itemToPush]
 				}
+
 				break
 			}
 		}
 	}
 
 	/**
-	 *
+	 * Save content
 	 */
 
 	writeToJSON(
@@ -291,7 +305,10 @@ function parseSeries(data: DataToPass): void {
 }
 
 function parseUnsearchable(data: DataToPass): void {
-	const { urlPath, markdownData } = data
+	const { urlPath: _urlPath, markdownData } = data
+
+	// convert path like /XXX/YYY/ZZZ to /YYY/ZZZ
+	const urlPath = _urlPath.slice(_urlPath.slice(1).indexOf("/") + 1)
 
 	addDocument({
 		title: markdownData.title,
@@ -303,6 +320,10 @@ function parseUnsearchable(data: DataToPass): void {
 	map.unsearchable[urlPath] = {
 		title: markdownData.title,
 	}
+
+	/**
+	 * Save content
+	 */
 
 	writeToJSON(
 		`${contentDirectoryPath}/unsearchable${urlPath}.json`,

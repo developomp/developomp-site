@@ -1,22 +1,29 @@
 import { map, seriesMap } from "."
 
 export default function postProcess() {
-	// sort date
+	/**
+	 * Sort date
+	 */
 
 	const TmpDate = map.date
 	map.date = {}
-	Object.keys(map.date)
+	Object.keys(TmpDate)
 		.sort()
 		.forEach((sortedDateKey) => {
 			map.date[sortedDateKey] = TmpDate[sortedDateKey]
 		})
 
-	// fill meta data
+	/**
+	 * Fill meta data
+	 */
 
 	map.meta.tags = Object.keys(map.tags)
 
-	// sort series post
+	/**
+	 * Parse Series
+	 */
 
+	// sort series map
 	for (const seriesURL in seriesMap) {
 		seriesMap[seriesURL].sort((a, b) => {
 			if (a.index < b.index) return -1
@@ -26,6 +33,7 @@ export default function postProcess() {
 		})
 	}
 
+	// series length and order
 	for (const seriesURL in seriesMap) {
 		map.series[seriesURL].length = seriesMap[seriesURL].length
 		map.series[seriesURL].order = seriesMap[seriesURL].map(
