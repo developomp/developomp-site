@@ -33,11 +33,6 @@ export interface Map {
  * General
  */
 
-export interface Badge {
-	icon: string
-	text: string
-}
-
 export enum ParseMode {
 	POSTS,
 	SERIES,
@@ -47,9 +42,7 @@ export enum ParseMode {
 
 export interface MarkdownData {
 	content: string
-	date: string
-	title: string
-	tags: string[]
+	[key: string]: unknown
 }
 
 export interface PostData {
@@ -99,8 +92,13 @@ export interface SeriesEntry {
  */
 
 export interface PortfolioData {
+	// rendered markdown html
 	overview: string
-	projects: PortfolioProject[]
+
+	// key: url
+	projects: {
+		[key: string]: PortfolioProject
+	}
 }
 
 export interface PortfolioOverview {
@@ -110,15 +108,9 @@ export interface PortfolioOverview {
 }
 
 export interface PortfolioProject {
-	// shown in card
-
 	name: string
 	image: string // url to the image
 	overview: string
-	badges: Badge[]
+	badges: string[] // array of valid simpleIcons slug
 	repo: string // url of the git repository
-
-	// page content
-
-	description: string // html render of markdown description
 }

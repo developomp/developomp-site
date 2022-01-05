@@ -8,7 +8,7 @@
 
 import fs from "fs"
 
-import { mapFilePath, markdownPath } from "./config"
+import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
 import postProcess from "./postProcess"
@@ -29,7 +29,7 @@ export const map: Map = {
 export const seriesMap: SeriesMap = {}
 export const portfolioData: PortfolioData = {
 	overview: "",
-	projects: [],
+	projects: {},
 }
 
 /**
@@ -74,4 +74,5 @@ postProcess()
  */
 
 fs.writeFileSync(mapFilePath, JSON.stringify(map))
+fs.writeFileSync(portfolioFilePath, JSON.stringify(portfolioData))
 saveIndex()

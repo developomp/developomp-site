@@ -42,12 +42,12 @@ export function nthIndex(str: string, pat: string, n: number) {
 	return i
 }
 
-export function writeToJSON(JSONFilePath: string, dataToWrite: string) {
-	// create directory to put json content files
-	fs.mkdirSync(JSONFilePath.slice(0, JSONFilePath.lastIndexOf("/")), {
+export function writeToFile(filePath: string, dataToWrite: string) {
+	// create directory to put the files
+	fs.mkdirSync(filePath.slice(0, filePath.lastIndexOf("/")), {
 		recursive: true,
 	})
 
-	// write content to json file
-	fs.writeFileSync(JSONFilePath, dataToWrite)
+	// write content to the file
+	fs.writeFileSync(filePath, dataToWrite)
 }

@@ -1,14 +1,15 @@
 import fs from "fs"
+import simpleIcons from "simple-icons" // badge icons
 import readTimeEstimate from "read-time-estimate" // post read time estimation
 
-import { path2FileOrFolderName, path2URL, writeToJSON } from "./util"
+import { path2FileOrFolderName, path2URL, writeToFile } from "./util"
 import { generateToc, parseFrontMatter } from "./parseMarkdown"
 
-import { contentDirectoryPath } from "./config"
+import { contentDirectoryPath, iconsDirectoryPath } from "./config"
 import { addDocument } from "./searchIndex"
-import { map, seriesMap } from "."
+import { map, portfolioData, seriesMap } from "."
 
-import { MarkdownData, ParseMode, PostData } from "../types/types"
+import { ParseMode, PortfolioProject, PostData } from "../types/types"
 
 /**
  * Data that's passed from {@link parseFile} to other function
@@ -17,7 +18,10 @@ interface DataToPass {
 	path: string
 	urlPath: string
 	markdownRaw: string
-	markdownData: MarkdownData
+	markdownData: {
+		content: string
+		[key: string]: unknown
+	}
 	humanizedDuration: string
 	totalWords: number
 }
@@ -60,7 +64,7 @@ function parseFile(mode: ParseMode, path: string, fileName: string): void {
 	 */
 
 	const markdownRaw = fs.readFileSync(path, "utf8")
-	const markdownData: MarkdownData = parseFrontMatter(markdownRaw, path, mode)
+	const markdownData = parseFrontMatter(markdownRaw, path, mode)
 	const { humanizedDuration, totalWords } = readTimeEstimate(
 		markdownData.content,
 		275,
@@ -107,7 +111,7 @@ function parsePost(data: DataToPass): void {
 	} = data
 
 	const postData: PostData = {
-		title: markdownData.title,
+		title: markdownData.title as string,
 		date: "",
 		readTime: humanizedDuration,
 		wordCount: totalWords,
@@ -118,7 +122,7 @@ function parsePost(data: DataToPass): void {
 	 * Dates
 	 */
 
-	const postDate = new Date(markdownData.date)
+	const postDate = new Date(markdownData.date as string)
 	postData.date = postDate.toLocaleString("default", {
 		month: "short",
 		day: "numeric",
@@ -136,7 +140,7 @@ function parsePost(data: DataToPass): void {
 	 * Tags
 	 */
 
-	postData.tags = markdownData.tags
+	postData.tags = markdownData.tags as string[]
 	if (postData.tags) {
 		postData.tags.forEach((tag) => {
 			if (map.tags[tag]) {
@@ -157,7 +161,7 @@ function parsePost(data: DataToPass): void {
 		body: markdownData.content,
 		url: urlPath,
 	})
-	writeToJSON(
+	writeToFile(
 		`${contentDirectoryPath}${urlPath}.json`,
 		JSON.stringify({
 			content: markdownData.content,
@@ -204,7 +208,7 @@ function parseSeries(data: DataToPass): void {
 
 	// todo: separate interface for series descriptor (no word count and read time)
 	const postData: PostData = {
-		title: markdownData.title,
+		title: markdownData.title as string,
 		date: "",
 		readTime: humanizedDuration,
 		wordCount: totalWords,
@@ -215,7 +219,7 @@ function parseSeries(data: DataToPass): void {
 	 * Date
 	 */
 
-	const postDate = new Date(markdownData.date)
+	const postDate = new Date(markdownData.date as string)
 	postData.date = postDate.toLocaleString("default", {
 		month: "short",
 		day: "numeric",
@@ -233,7 +237,7 @@ function parseSeries(data: DataToPass): void {
 	 * Tags
 	 */
 
-	postData.tags = markdownData.tags
+	postData.tags = markdownData.tags as string[]
 	if (postData.tags) {
 		postData.tags.forEach((tag) => {
 			if (map.tags[tag]) {
@@ -297,7 +301,7 @@ function parseSeries(data: DataToPass): void {
 	 * Save content
 	 */
 
-	writeToJSON(
+	writeToFile(
 		`${contentDirectoryPath}${urlPath}.json`,
 		JSON.stringify({
 			content: markdownData.content,
@@ -320,14 +324,14 @@ function parseUnsearchable(data: DataToPass): void {
 
 	// Parse data that will be written to map.js
 	map.unsearchable[urlPath] = {
-		title: markdownData.title,
+		title: markdownData.title as string,
 	}
 
 	/**
 	 * Save content
 	 */
 
-	writeToJSON(
+	writeToFile(
 		`${contentDirectoryPath}/unsearchable${urlPath}.json`,
 		JSON.stringify({
 			content: markdownData.content,
@@ -336,5 +340,47 @@ function parseUnsearchable(data: DataToPass): void {
 }
 
 function parsePortfolio(data: DataToPass): void {
-	console.log("portfolio file:", data.path)
+	const { urlPath, markdownData } = data
+
+	const lastPath = urlPath.slice(urlPath.lastIndexOf("/") + 1)
+
+	// check if the file is a portfolio overview or a project
+	if (lastPath == "0") {
+		portfolioData.overview = markdownData.content
+	} else {
+		// todo: generate svg in post process
+		// todo: add badges to portfolio meta (for searchable and for svg)
+
+		;(markdownData.badges as string[]).forEach((slug) => {
+			const icon = simpleIcons.Get(slug)
+
+			// save svg icon
+			writeToFile(
+				`${iconsDirectoryPath}/${icon.slug}.json`,
+				JSON.stringify({
+					svg: icon.svg,
+					hex: icon.hex,
+					title: icon.title,
+				})
+			)
+		})
+
+		// todo: simple-icons
+		const project: PortfolioProject = {
+			name: markdownData.name as string,
+			image: markdownData.image as string,
+			overview: markdownData.overview as string,
+			badges: markdownData.badges as string[],
+			repo: markdownData.repo as string,
+		}
+
+		portfolioData.projects[urlPath] = project
+
+		writeToFile(
+			`${contentDirectoryPath}${urlPath}.json`,
+			JSON.stringify({
+				content: markdownData.content,
+			})
+		)
+	}
 }

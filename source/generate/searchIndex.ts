@@ -5,7 +5,7 @@
 import fs from "fs"
 import elasticlunr from "elasticlunr"
 
-import { outPath } from "./config"
+import { searchIndexFilePath } from "./config"
 
 const elasticlunrIndex = elasticlunr(function () {
 	this.addField("title" as never)
@@ -18,5 +18,5 @@ export function addDocument(doc: unknown) {
 }
 
 export function saveIndex() {
-	fs.writeFileSync(outPath + "/search.json", JSON.stringify(elasticlunrIndex))
+	fs.writeFileSync(searchIndexFilePath, JSON.stringify(elasticlunrIndex))
 }
