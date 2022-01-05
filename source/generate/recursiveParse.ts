@@ -12,12 +12,6 @@ import { map, seriesMap } from "."
 
 import { MarkdownData, ParseMode, PostData } from "../types/typing"
 
-// path that should not be checked when parsing in unsearchable mode
-const illegalPaths = [
-	"./markdown/unsearchable/posts",
-	"./markdown/unsearchable/series",
-]
-
 interface DataToPass {
 	path: string
 	urlPath: string
@@ -37,13 +31,6 @@ interface DataToPass {
  * @returns {void}
  */
 export function recursiveParse(mode: ParseMode, path: string): void {
-	// don't parse specific directories when parsing unsearchable content
-	if (mode == ParseMode.UNSEARCHABLE) {
-		if (illegalPaths.includes(path)) {
-			throw Error(`Illegal name (posts/series) in path: "${path}".`)
-		}
-	}
-
 	const fileOrFolderName = path2FileOrFolderName(path)
 	if (fileOrFolderName.startsWith("_")) return
 
