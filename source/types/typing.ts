@@ -1,39 +1,3 @@
-export enum ParseMode {
-	POSTS,
-	SERIES,
-	UNSEARCHABLE,
-}
-
-export interface Base {}
-
-export interface PostData {
-	title: string
-	date: string
-	readTime: string
-	wordCount: number
-	tags?: string[]
-}
-
-export interface Series {
-	title: string
-	date: string
-	readTime: string
-	wordCount: number
-	order: string[]
-	length: number
-	tags?: string[]
-}
-
-export interface FetchedPage {
-	title: string
-	date: string
-	readTime: string
-	wordCount: number
-	tags: string[]
-	toc?: string
-	content: string
-}
-
 export interface Map {
 	// key: YYYY-MM-DD
 	// value: url
@@ -65,14 +29,14 @@ export interface Map {
 	unsearchable: { [key: string]: { title: string } }
 }
 
-export interface SeriesEntry {
-	index: number
-	url: string
-}
+/**
+ * General
+ */
 
-export interface SeriesMap {
-	// key: url
-	[key: string]: SeriesEntry[]
+export enum ParseMode {
+	POSTS,
+	SERIES,
+	UNSEARCHABLE,
 }
 
 export interface MarkdownData {
@@ -80,4 +44,65 @@ export interface MarkdownData {
 	date: string
 	title: string
 	tags: string[]
+}
+
+export interface PostData {
+	title: string
+	date: string
+	readTime: string
+	wordCount: number
+	tags?: string[]
+}
+
+export interface FetchedPage {
+	title: string
+	date: string
+	readTime: string
+	wordCount: number
+	tags: string[]
+	toc?: string
+	content: string
+}
+
+/**
+ * Series
+ */
+
+export interface Series {
+	title: string
+	date: string
+	readTime: string
+	wordCount: number
+	order: string[]
+	length: number
+	tags?: string[]
+}
+
+export interface SeriesMap {
+	// key: url
+	[key: string]: SeriesEntry[]
+}
+
+export interface SeriesEntry {
+	index: number
+	url: string
+}
+
+/**
+ * Portfolio
+ */
+
+export interface PortfolioData {
+	overview: string
+	projects: PortfolioProject[]
+}
+
+export interface PortfolioOverview {
+	// link to my github
+	github: string
+	description: string
+}
+
+export interface PortfolioProject {
+	name: string
 }
