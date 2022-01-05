@@ -8,13 +8,12 @@
 
 import fs from "fs"
 
-import { recursiveParse } from "./recursiveParse"
 import { contentDirectoryPath, mapFilePath, markdownPath } from "./config"
+import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
 
-import { Map, ParseMode, SeriesMap } from "../types/typing"
+import { Map, ParseMode, SeriesMap, PortfolioData } from "../types/typing"
 
-// searchable data that will be converted to JSON string
 export const map: Map = {
 	date: {},
 	tags: {},
@@ -26,9 +25,13 @@ export const map: Map = {
 	unsearchable: {},
 }
 export const seriesMap: SeriesMap = {}
+export const portfolioData: PortfolioData = {
+	overview: "",
+	projects: [],
+}
 
 /**
- * Delete existing files
+ * Delete previously generated files
  */
 
 try {
@@ -41,7 +44,10 @@ try {
 	// eslint-disable-next-line no-empty
 } catch (err) {}
 
-// check if it's a directory and start recursive parse function
+/**
+ * Checking
+ */
+
 if (!fs.lstatSync(markdownPath).isDirectory())
 	throw Error("Invalid markdown path")
 
@@ -54,39 +60,39 @@ if (!fs.lstatSync(markdownPath + "/unsearchable").isDirectory())
 if (!fs.lstatSync(markdownPath + "/series").isDirectory())
 	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
+/**
+ * Parse
+ */
+
 recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
 recursiveParse(ParseMode.UNSEARCHABLE, markdownPath + "/unsearchable")
 recursiveParse(ParseMode.SERIES, markdownPath + "/series")
 
-// sort dates
-let dateKeys: string[] = []
-for (const dateKey in map.date) {
-	dateKeys.push(dateKey)
-}
+/**
+ * Post-process
+ */
 
-dateKeys = dateKeys.sort()
+// sort date
 
 const TmpDate = map.date
 map.date = {}
-
-dateKeys.forEach((sortedDateKey) => {
-	map.date[sortedDateKey] = TmpDate[sortedDateKey]
-})
+Object.keys(map.date)
+	.sort()
+	.forEach((sortedDateKey) => {
+		map.date[sortedDateKey] = TmpDate[sortedDateKey]
+	})
 
 // fill meta data
-for (const tag in map.tags) {
-	map.meta.tags.push(tag)
-}
+
+map.meta.tags = Object.keys(map.tags)
 
 // sort series post
+
 for (const seriesURL in seriesMap) {
 	seriesMap[seriesURL].sort((a, b) => {
-		if (a.index < b.index) {
-			return -1
-		}
-		if (a.index > b.index) {
-			return 1
-		}
+		if (a.index < b.index) return -1
+		if (a.index > b.index) return 1
+
 		return 0
 	})
 }
@@ -95,6 +101,10 @@ for (const seriesURL in seriesMap) {
 	map.series[seriesURL].length = seriesMap[seriesURL].length
 	map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
 }
+
+/**
+ * Save results
+ */
 
 fs.writeFileSync(mapFilePath, JSON.stringify(map))
 saveIndex()

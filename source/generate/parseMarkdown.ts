@@ -48,6 +48,7 @@ const md = markdownIt({
 
 export default function parseMarkdown(markdownRaw: string): string {
 	return (
+		// todo: accurately calculate start and end of front matter
 		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
 	)
 }

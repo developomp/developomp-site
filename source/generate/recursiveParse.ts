@@ -12,6 +12,9 @@ import { map, seriesMap } from "."
 
 import { MarkdownData, ParseMode, PostData } from "../types/typing"
 
+/**
+ *
+ */
 interface DataToPass {
 	path: string
 	urlPath: string
@@ -25,13 +28,14 @@ interface DataToPass {
 /**
  * A recursive function that calls itself for every files and directories that it finds
  *
- * @param {ParseMode} mode
+ * @param {ParseMode} mode - parse mode
  * @param {string} path - path of file or folder
- *
- * @returns {void}
  */
 export function recursiveParse(mode: ParseMode, path: string): void {
+	// get name of the file or folder that's currently being parsed
 	const fileOrFolderName = path2FileOrFolderName(path)
+
+	// stop if the file or folder starts with a underscore
 	if (fileOrFolderName.startsWith("_")) return
 
 	const stats = fs.lstatSync(path)
@@ -52,12 +56,13 @@ function parseFile(
 	path: string,
 	fileOrFolderName: string
 ): void {
-	// skip if it is not a markdown file
+	// stop if it is not a markdown file
 	if (!fileOrFolderName.endsWith(".md")) {
 		console.log(`Ignoring non markdown file at: ${path}`)
 		return
 	}
 
+	// raw markdown text
 	const markdownRaw = fs.readFileSync(path, "utf8")
 	const markdownData: MarkdownData = parseFrontMatter(markdownRaw, path, mode)
 
@@ -308,18 +313,18 @@ function parseUnsearchable(data: DataToPass): void {
 }
 
 /**
- * todo: accurately calculate start and end of front matter
+ * parse the front matter if it exists
  *
  * @param {string} markdownRaw
  * @param {string} path
- *
- * @returns {MarkdownData}
+ * @param {ParseMode} mode
  */
 function parseFrontMatter(
 	markdownRaw: string,
 	path: string,
 	mode: ParseMode
 ): MarkdownData {
+	// todo: accurately calculate start and end of front matter
 	const result = matter(
 		markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)
 	).data

@@ -7,7 +7,6 @@ import { markdownPath } from "./config"
  * converts file path to url path that will be used in the url (starts with a slash)
  *
  * @param {string} pathToConvert
- * @returns {string}
  */
 export function path2URL(pathToConvert: string): string {
 	return `/${relative(markdownPath, pathToConvert)}`
@@ -15,7 +14,11 @@ export function path2URL(pathToConvert: string): string {
 		.replace(/ /g, "-") // replace all space with a dash
 }
 
-// gets the text after the last slash
+/**
+ * Returns the text after the last slash
+ *
+ * @param {string} inputPath - path to parse
+ */
 export function path2FileOrFolderName(inputPath: string): string {
 	// remove trailing slash
 	if (inputPath[-1] == "/")

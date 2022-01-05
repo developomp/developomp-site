@@ -33,6 +33,11 @@ export interface Map {
  * General
  */
 
+export interface Badge {
+	icon: string
+	text: string
+}
+
 export enum ParseMode {
 	POSTS,
 	SERIES,
@@ -104,5 +109,15 @@ export interface PortfolioOverview {
 }
 
 export interface PortfolioProject {
+	// shown in card
+
 	name: string
+	image: string // url to the image
+	overview: string
+	badges: Badge[]
+	repo: string // url of the git repository
+
+	// page content
+
+	description: string // html render of markdown description
 }
