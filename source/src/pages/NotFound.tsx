@@ -3,16 +3,8 @@ import { Helmet } from "react-helmet-async"
 
 import MainContent from "../components/MainContent"
 
-import theming from "../styles/theming"
-
 const StyledNotFound = styled(MainContent)`
 	text-align: center;
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#111111",
-			dark: "#EEEEEE",
-		})};
 `
 
 const Styled404 = styled.h1`
