@@ -107,7 +107,7 @@ const Search = () => {
 	const [selectedTags, setSelectedTags] = useState<TagsData[]>([])
 	const [searchInput, setSearchInput] = useState("")
 
-	const [postCards, setPostCards] = useState<unknown[]>([])
+	const [postCards, setPostCards] = useState<JSX.Element[]>([])
 
 	// parse search parameters
 	useEffect(() => {
@@ -188,7 +188,7 @@ const Search = () => {
 
 	function doSearch() {
 		try {
-			const _postCards: unknown[] = []
+			const _postCards: JSX.Element[] = []
 			for (const res of searchIndex.search(searchInput)) {
 				const postData = map.posts[res.ref]
 
