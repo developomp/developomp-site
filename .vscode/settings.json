@@ -5,14 +5,15 @@
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"cSpell.words": [
-		"Fontawesome",
-		"YYYYMMDD",
 		"developomp",
 		"developomp's",
 		"dompurify",
 		"elasticlunr",
+		"Fontawesome",
 		"hljs",
 		"katex",
-		"texmath"
+		"texmath",
+		"tinycolor",
+		"YYYYMMDD"
 	]
 }

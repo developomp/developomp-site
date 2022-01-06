@@ -1,6 +1,7 @@
 import fs from "fs"
 import simpleIcons from "simple-icons" // badge icons
 import readTimeEstimate from "read-time-estimate" // post read time estimation
+import tinycolor from "tinycolor2" // color manipulation
 
 import { path2FileOrFolderName, path2URL, writeToFile } from "./util"
 import { generateToc, parseFrontMatter } from "./parseMarkdown"
@@ -354,12 +355,15 @@ function parsePortfolio(data: DataToPass): void {
 		;(markdownData.badges as string[]).forEach((slug) => {
 			const icon = simpleIcons.Get(slug)
 
+			const color = tinycolor(icon.hex).lighten(5).desaturate(5)
+
 			// save svg icon
 			writeToFile(
 				`${iconsDirectoryPath}/${icon.slug}.json`,
 				JSON.stringify({
 					svg: icon.svg,
-					hex: icon.hex,
+					hex: color.toHexString(),
+					isDark: color.isDark(),
 					title: icon.title,
 				})
 			)

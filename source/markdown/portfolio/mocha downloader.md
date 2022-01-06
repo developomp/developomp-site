@@ -1,7 +1,7 @@
 ---
 name: Mocha Downloader
 overview: A cross-platform desktop download manager built with web technologies.
-image: /img/icon.png
+image: /img/portfolio/mocha-downloader.png
 repo: https://github.com/Mocha-Downloader
 badges:
     - typescript

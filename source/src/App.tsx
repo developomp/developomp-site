@@ -15,6 +15,7 @@ import PostList from "./pages/PostList"
 import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
+import Portfolio from "./pages/Portfolio"
 
 import theming from "./styles/theming"
 import GlobalStyle from "./styles/globalStyle"
@@ -94,9 +95,10 @@ const App = () => {
 							path="/"
 							element={<PostList howMany={5} title="Home" />}
 						/>
-						<Route path="/loading" element={<Loading />} />
 						<Route path="/search" element={<Search />} />
+						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/404" element={<NotFound />} />
+						<Route path="/loading" element={<Loading />} />
 						<Route path="/*" element={<Page />} />
 					</Routes>
 				)}
