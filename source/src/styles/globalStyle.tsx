@@ -170,7 +170,7 @@ const headerCSS = css`
 	h4,
 	h5,
 	h6 {
-		margin-top: 2.5rem;
+		margin-top: -3rem;
 	}
 `
 
@@ -197,9 +197,11 @@ const katexCSS = css`
 	}
 `
 
-// Theme that will be used throughout the website
-// wrapping it using css because prettier extension does not work well with styled-components
-// https://github.com/styled-components/vscode-styled-components/issues/175
+/**
+ * Theme that will be used throughout the website
+ * wrapping it using css because prettier extension does not work well with styled-components
+ * https://github.com/styled-components/vscode-styled-components/issues/175
+ */
 const globalStyle = css`
 	${scrollbarCSS}
 	${codeCSS}
@@ -245,11 +247,9 @@ const globalStyle = css`
 	}
 
 	// header anchor offset to compensate for navbar
-	:target:before {
-		content: "";
-		display: block;
-		height: 4rem;
-		margin: 4rem 0 0;
+	a.header-anchor {
+		display: inline-block;
+		margin-top: 4.2rem;
 	}
 
 	hr {
