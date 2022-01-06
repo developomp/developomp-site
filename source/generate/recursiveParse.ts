@@ -353,6 +353,8 @@ function parsePortfolio(data: DataToPass): void {
 		// todo: add badges to portfolio meta (for searchable and for svg)
 
 		;(markdownData.badges as string[]).forEach((slug) => {
+			portfolioData.skills.add(slug)
+
 			const icon = simpleIcons.Get(slug)
 
 			const color = tinycolor(icon.hex).lighten(5).desaturate(5)

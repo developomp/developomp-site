@@ -29,6 +29,7 @@ export const map: Map = {
 export const seriesMap: SeriesMap = {}
 export const portfolioData: PortfolioData = {
 	overview: "",
+	skills: new Set(),
 	projects: {},
 }
 
@@ -74,5 +75,11 @@ postProcess()
  */
 
 fs.writeFileSync(mapFilePath, JSON.stringify(map))
-fs.writeFileSync(portfolioFilePath, JSON.stringify(portfolioData))
+fs.writeFileSync(
+	portfolioFilePath,
+	JSON.stringify({
+		...portfolioData,
+		skills: Array.from(portfolioData.skills),
+	})
+)
 saveIndex()

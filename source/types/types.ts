@@ -95,6 +95,9 @@ export interface PortfolioData {
 	// rendered markdown html
 	overview: string
 
+	// a set of valid simple icons slug
+	skills: Set<string>
+
 	// key: url
 	projects: {
 		[key: string]: PortfolioProject

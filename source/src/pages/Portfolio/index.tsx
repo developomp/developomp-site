@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async"
 
 import MainContent from "../../components/MainContent"
 import ProjectCard from "./ProjectCard"
+import Badge from "../../components/Badge"
 
 import portfolio from "../../data/portfolio.json"
 
@@ -10,6 +11,7 @@ import { PortfolioProject } from "../../../types/types"
 
 const Portfolio = () => {
 	const [projects, setProjects] = useState<JSX.Element[]>([])
+	const [skills, setSkills] = useState<JSX.Element[]>([])
 
 	useEffect(() => {
 		const _projects: JSX.Element[] = []
@@ -28,6 +30,12 @@ const Portfolio = () => {
 		}
 
 		setProjects(_projects)
+
+		setSkills(
+			portfolio.skills.map((slug) => {
+				return <Badge key={slug} slug={slug} />
+			})
+		)
 	}, [])
 
 	return (
@@ -52,6 +60,13 @@ const Portfolio = () => {
 				<h1>Portfolio</h1>
 				<hr />
 				<div dangerouslySetInnerHTML={{ __html: portfolio.overview }} />
+				<h2 id="skills">
+					<a className="header-anchor" href="#skills">
+						#
+					</a>{" "}
+					Skills
+				</h2>
+				{skills}
 			</MainContent>
 
 			<br />
