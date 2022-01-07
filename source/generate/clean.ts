@@ -9,36 +9,27 @@ import {
 } from "./config"
 
 export default function clean() {
-	/**
-	 * Delete directories
-	 */
+	deleteDirectory(contentDirectoryPath)
+	deleteDirectory(iconsDirectoryPath)
 
+	deleteFile(mapFilePath)
+	deleteFile(portfolioFilePath)
+	deleteFile(searchIndexFilePath)
+
+	deleteFile("./public/img/skills.svg")
+	deleteFile("./public/img/projects.svg")
+}
+
+function deleteDirectory(path: string) {
 	try {
-		fs.rmSync(contentDirectoryPath, { recursive: true })
+		fs.rmSync(path, { recursive: true })
 		// eslint-disable-next-line no-empty
 	} catch (err) {}
+}
 
+function deleteFile(path: string) {
 	try {
-		fs.rmSync(iconsDirectoryPath, { recursive: true })
-		// eslint-disable-next-line no-empty
-	} catch (err) {}
-
-	/**
-	 * Delete folders
-	 */
-
-	try {
-		fs.unlinkSync(mapFilePath)
-		// eslint-disable-next-line no-empty
-	} catch (err) {}
-
-	try {
-		fs.unlinkSync(portfolioFilePath)
-		// eslint-disable-next-line no-empty
-	} catch (err) {}
-
-	try {
-		fs.unlinkSync(searchIndexFilePath)
+		fs.unlinkSync(path)
 		// eslint-disable-next-line no-empty
 	} catch (err) {}
 }
