@@ -349,9 +349,6 @@ function parsePortfolio(data: DataToPass): void {
 	if (lastPath == "0") {
 		portfolioData.overview = markdownData.content
 	} else {
-		// todo: generate svg in post process
-		// todo: add badges to portfolio meta (for searchable and for svg)
-
 		;(markdownData.badges as string[]).forEach((slug) => {
 			portfolioData.skills.add(slug)
 
@@ -371,7 +368,6 @@ function parsePortfolio(data: DataToPass): void {
 			)
 		})
 
-		// todo: simple-icons
 		const project: PortfolioProject = {
 			name: markdownData.name as string,
 			image: markdownData.image as string,
