@@ -22,6 +22,7 @@ const StyledSVG = styled.div<{ isDark: boolean }>`
 	vertical-align: middle;
 
 	margin-right: 0.2rem;
+	margin-bottom: 0.2rem;
 
 	svg {
 		height: 16px;
