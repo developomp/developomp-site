@@ -9,7 +9,7 @@
 		"go"
 	],
 	"frontEndWeb": ["react", "html5", "css3", "sass"],
-	"frontEndDesktop": ["qt", "gnome gtk", "windows winform"],
+	"frontEndDesktop": ["qt", "gnome gtk", "windows winform", "electron"],
 	"cloudComputing": [
 		"firebase",
 		"googlecloud",
