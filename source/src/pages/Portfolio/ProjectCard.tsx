@@ -1,15 +1,16 @@
 import styled from "styled-components"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useNavigate } from "react-router-dom"
 
-import MainContent from "../../components/MainContent"
 import Badge from "../../components/Badge"
+import Card from "../../components/Card"
 
 import { PortfolioProject } from "../../../types/types"
 import theming from "../../styles/theming"
 
-const StyledProjectCard = styled(MainContent)`
+const StyledProjectCard = styled(Card)`
 	margin-bottom: 2rem;
+
+	${theming.styles.hoverCard}
 `
 
 const StyledImg = styled.img`
@@ -19,39 +20,20 @@ const StyledImg = styled.img`
 	margin-bottom: 1rem;
 `
 
-const StyledGithubLink = styled.a`
-	display: flex;
-	float: right;
-
-	align-items: center;
-	gap: 0.5rem;
-
-	margin-top: 1.5rem;
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
-
-	svg {
-		font-size: 2rem;
-	}
-`
-
 interface ProjectCardProps {
+	projectID: string
 	project: PortfolioProject
 }
 
 const ProjectCard = (props: ProjectCardProps) => {
-	const { project } = props
+	const { projectID, project } = props
+
+	const navigate = useNavigate()
 
 	return (
-		<StyledProjectCard>
-			<StyledGithubLink href={project.repo}>
-				<FontAwesomeIcon icon={faGithub} />
-				Github
-			</StyledGithubLink>
+		<StyledProjectCard
+			onClick={() => navigate(process.env.PUBLIC_URL + projectID)}
+		>
 			<h1>{project.name}</h1>
 			<StyledImg src={project.image} />
 
