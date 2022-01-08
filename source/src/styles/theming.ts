@@ -45,6 +45,17 @@ export default {
 		color1: "#111111",
 	},
 	styles: {
+		hoverCard: css`
+			:hover {
+				cursor: pointer;
+
+				box-shadow: ${(props) =>
+					theme(props.theme.currentTheme, {
+						light: "0 4px 10px rgb(0 0 0 / 25%)",
+						dark: "0 4px 10px rgb(255 255 255 / 20%)",
+					})};
+			}
+		`,
 		navbarButtonStyle: css`
 			cursor: pointer; /* so it can be applies to divs too */
 			font-size: 1rem;

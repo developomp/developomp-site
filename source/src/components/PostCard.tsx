@@ -20,7 +20,6 @@ const StyledPostCard = styled(MainContent)`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 	text-align: left;
 	margin-bottom: 2rem;
-	cursor: pointer;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
@@ -28,13 +27,7 @@ const StyledPostCard = styled(MainContent)`
 			dark: theming.dark.color1,
 		})};
 
-	&:hover {
-		box-shadow: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "0 4px 10px rgb(0 0 0 / 25%)",
-				dark: "0 4px 10px rgb(255 255 255 / 20%)",
-			})};
-	}
+	${theming.styles.hoverCard}
 `
 
 const StyledTitle = styled.h1`
