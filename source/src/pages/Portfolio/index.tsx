@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
+import styled from "styled-components"
 
 import MainContent from "../../components/MainContent"
 import ProjectCard from "./ProjectCard"
@@ -8,6 +9,13 @@ import Badge from "../../components/Badge"
 import portfolio from "../../data/portfolio.json"
 
 import { PortfolioProject } from "../../../types/types"
+
+const SkillsImage = styled.img`
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+`
 
 const Portfolio = () => {
 	const [projects, setProjects] = useState<JSX.Element[]>([])
@@ -20,6 +28,7 @@ const Portfolio = () => {
 			_projects.push(
 				<ProjectCard
 					key={projectID}
+					projectID={projectID}
 					project={
 						// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 						// @ts-ignore
@@ -67,24 +76,24 @@ const Portfolio = () => {
 					Skills
 				</h2>
 
-				<img
-					alt="programming skills"
-					src="/img/skills.svg"
-					// center image
-					style={{
-						display: "block",
-						marginLeft: "auto",
-						marginRight: "auto",
-					}}
-				/>
+				<SkillsImage alt="programming skills" src="/img/skills.svg" />
+
+				{/* Projects */}
+
+				<h2 id="projects">
+					<a className="header-anchor" href="#projects">
+						#
+					</a>{" "}
+					Projects
+				</h2>
+
+				{skills}
 
 				<br />
-				{skills}
+				<br />
+
+				{projects}
 			</MainContent>
-
-			<br />
-
-			{projects}
 		</>
 	)
 }
