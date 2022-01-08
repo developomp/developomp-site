@@ -15,5 +15,10 @@
 		"texmath",
 		"tinycolor",
 		"YYYYMMDD"
-	]
+	],
+	"[svg]": {
+		"editor.defaultFormatter": "jock.svg"
+	},
+	// for .ejs files
+	"html.validate.styles": false
 }

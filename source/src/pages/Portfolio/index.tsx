@@ -66,6 +66,19 @@ const Portfolio = () => {
 					</a>{" "}
 					Skills
 				</h2>
+
+				<img
+					alt="programming skills"
+					src="/img/skills.svg"
+					// center image
+					style={{
+						display: "block",
+						marginLeft: "auto",
+						marginRight: "auto",
+					}}
+				/>
+
+				<br />
 				{skills}
 			</MainContent>
 

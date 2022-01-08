@@ -1,10 +1,22 @@
+import ejs from "ejs"
+import { optimize } from "svgo"
+import { readFileSync, writeFileSync } from "fs"
+import simpleIcon from "simple-icons"
+import tinycolor from "tinycolor2"
+
 import { map, seriesMap } from "."
+import { Badge } from "../src/components/Badge"
+
+import skills from "./portfolio/skills.json"
 
 export default function postProcess() {
-	/**
-	 * Sort date
-	 */
+	sortDates()
+	fillTags()
+	parseSeries()
+	generatePortfolioSVGs()
+}
 
+function sortDates() {
 	const TmpDate = map.date
 	map.date = {}
 	Object.keys(TmpDate)
@@ -12,17 +24,13 @@ export default function postProcess() {
 		.forEach((sortedDateKey) => {
 			map.date[sortedDateKey] = TmpDate[sortedDateKey]
 		})
+}
 
-	/**
-	 * Fill meta data
-	 */
-
+function fillTags() {
 	map.meta.tags = Object.keys(map.tags)
+}
 
-	/**
-	 * Parse Series
-	 */
-
+function parseSeries() {
 	// sort series map
 	for (const seriesURL in seriesMap) {
 		seriesMap[seriesURL].sort((a, b) => {
@@ -39,5 +47,61 @@ export default function postProcess() {
 		map.series[seriesURL].order = seriesMap[seriesURL].map(
 			(item) => item.url
 		)
+	}
+}
+
+function generatePortfolioSVGs() {
+	/**
+	 * render skills.svg
+	 */
+
+	// todo: wait add ejs once it's available
+
+	const style = readFileSync("./generate/portfolio/style.css", "utf-8")
+
+	const data: { [key in keyof typeof skills]: Badge[] } = {
+		programmingLanguage: [],
+		frontEndWeb: [],
+		frontEndDesktop: [],
+		cloudComputing: [],
+		gameDev: [],
+	}
+
+	for (const skillCategory in skills) {
+		skills[skillCategory as keyof typeof skills].forEach(
+			(badge: string) => {
+				data[skillCategory as keyof typeof skills].push(
+					parseBadge(badge)
+				)
+			}
+		)
+	}
+
+	const renderedSVG = ejs.render(
+		readFileSync("./generate/portfolio/skills.ejs", "utf-8"),
+		{ style, data },
+		{ views: ["./generate/portfolio"] }
+	)
+
+	const optimizedSVG = optimize(renderedSVG, { multipass: true })
+
+	writeFileSync("./public/img/skills.svg", optimizedSVG.data)
+}
+
+function parseBadge(badgeRaw: string): Badge {
+	const isMultiWord = badgeRaw.includes(" ")
+	const words = badgeRaw.split(" ")
+
+	const icon = isMultiWord
+		? simpleIcon.Get(words[0])
+		: simpleIcon.Get(badgeRaw)
+
+	const color = tinycolor(icon.hex).lighten(5).desaturate(5)
+
+	return {
+		svg: icon.svg,
+		hex: color.toHexString(),
+		isDark: color.isDark(),
+		title: isMultiWord ? words.slice(1).join(" ") : icon.title,
 	}
 }

@@ -33,7 +33,7 @@ const StyledSVG = styled.div<{ isDark: boolean }>`
 	}
 `
 
-interface Badge {
+export interface Badge {
 	svg: string
 	hex: string
 	isDark: boolean

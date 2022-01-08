@@ -3,6 +3,8 @@ _/
 
 # auto generated files
 source/src/data/
+source/public/img/skills.svg
+source/public/img/projects.svg
 !source/src/data/NavbarData.tsx
 
 # dependencies

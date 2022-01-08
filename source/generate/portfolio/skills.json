@@ -1,0 +1,21 @@
+{
+	"programmingLanguage": [
+		"javascript",
+		"typescript",
+		"python",
+		"rust",
+		"sharp",
+		"java",
+		"go"
+	],
+	"frontEndWeb": ["react", "html5", "css3", "sass"],
+	"frontEndDesktop": ["qt", "gnome gtk", "windows winform"],
+	"cloudComputing": [
+		"firebase",
+		"googlecloud",
+		"amazonaws",
+		"heroku",
+		"oracle"
+	],
+	"gameDev": ["unity"]
+}

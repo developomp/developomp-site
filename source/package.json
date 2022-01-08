@@ -32,6 +32,7 @@
 		"styled-components": "^5.3.3"
 	},
 	"devDependencies": {
+		"@types/ejs": "^3.1.0",
 		"@types/elasticlunr": "^0.9.4",
 		"@types/highlight.js": "^10.1.0",
 		"@types/jsdom": "^16.2.14",
@@ -45,10 +46,11 @@
 		"@types/react-router-hash-link": "^2.4.4",
 		"@types/react-select": "^5.0.1",
 		"@types/styled-components": "^5.1.19",
+		"@types/svgo": "^2.6.0",
 		"@types/tinycolor2": "^1.4.3",
 		"@typescript-eslint/eslint-plugin": "^5.9.0",
 		"@typescript-eslint/parser": "^5.9.0",
-		"canvas": "^2.8.0",
+		"ejs": "^3.1.6",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-json": "^3.1.0",
 		"eslint-plugin-react": "^7.28.0",
@@ -69,6 +71,7 @@
 		"prettier": "^2.5.1",
 		"read-time-estimate": "^0.0.3",
 		"simple-icons": "^6.5.0",
+		"svgo": "^2.8.0",
 		"tinycolor2": "^1.4.2",
 		"ts-node": "^10.4.0",
 		"tslint-config-prettier": "^1.18.0",
