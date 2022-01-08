@@ -53,7 +53,7 @@ export interface PostData {
 	tags?: string[]
 }
 
-export interface FetchedPage {
+export interface PageData {
 	title: string
 	date: string
 	readTime: string

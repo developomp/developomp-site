@@ -6,7 +6,7 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { FetchedPage } from "../../../types/types"
+import { PageData } from "../../../types/types"
 import theming from "../../styles/theming"
 
 const StyledMetaContainer = styled.div`
@@ -17,7 +17,7 @@ const StyledMetaContainer = styled.div`
 		})};
 `
 
-const Meta = (props: { fetchedPage: FetchedPage }) => {
+const Meta = (props: { fetchedPage: PageData }) => {
 	return (
 		<StyledMetaContainer>
 			<FontAwesomeIcon icon={faCalendar} />
