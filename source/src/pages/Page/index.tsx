@@ -43,12 +43,6 @@ enum PageType {
 	UNSEARCHABLE,
 }
 
-interface SeriesData {
-	seriesHome: string
-	prev?: string
-	next?: string
-}
-
 const fetchContent = async (pageType: PageType, url: string) => {
 	try {
 		if (pageType == PageType.UNSEARCHABLE) {
@@ -75,12 +69,6 @@ const Page = () => {
 	const [pageData, setPageData] = useState<PageData | undefined>(undefined)
 	const [pageType, setPageType] = useState<PageType>(PageType.POST)
 	const [isLoading, setIsLoading] = useState(true)
-
-	// only used when the page is a series post
-	// todo: merge with pageData
-	const [seriesData, setSeriesData] = useState<SeriesData | undefined>(
-		undefined
-	)
 
 	useEffect(() => {
 		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
@@ -136,6 +124,8 @@ const Page = () => {
 			toc: undefined,
 			content: "No content",
 
+			seriesHome: "",
+
 			image: "",
 			overview: "",
 			badges: [],
@@ -171,18 +161,6 @@ const Page = () => {
 					const prev = curr - 1
 					const next = curr + 1
 
-					setSeriesData({
-						seriesHome: seriesURL,
-						prev:
-							prev >= 0
-								? map.series[seriesURL].order[prev]
-								: undefined,
-						next:
-							next < map.series[seriesURL].order.length
-								? map.series[seriesURL].order[next]
-								: undefined,
-					})
-
 					const post = map.posts[url]
 
 					pageData.content = fetched_content.content
@@ -193,6 +171,16 @@ const Page = () => {
 					pageData.readTime = post.readTime
 					pageData.wordCount = post.wordCount
 					pageData.tags = post.tags || []
+
+					pageData.seriesHome = seriesURL
+					pageData.prev =
+						prev >= 0
+							? map.series[seriesURL].order[prev]
+							: undefined
+					pageData.next =
+						next < map.series[seriesURL].order.length
+							? map.series[seriesURL].order[next]
+							: undefined
 
 					break
 				}
@@ -251,8 +239,8 @@ const Page = () => {
 				{/* next/previous series post buttons */}
 				{pageType == PageType.SERIES && (
 					<NextPrevButtons
-						prevURL={seriesData?.prev}
-						nextURL={seriesData?.next}
+						prevURL={pageData.prev}
+						nextURL={pageData.next}
 					/>
 				)}
 
