@@ -1,9 +1,7 @@
 import styled from "styled-components"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
-
 import theming from "../styles/theming"
+import GithubLinkIcon from "./GithubLinkIcon"
 
 const StyledFooter = styled.footer`
 	display: flex;
@@ -40,24 +38,6 @@ const StyledFooterContainer = styled.div`
 	max-width: ${theming.size.screen_size2};
 `
 
-const StyledGithubLink = styled.a`
-	font-size: 2.5rem;
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "lightgrey",
-			dark: "grey",
-		})};
-
-	&:hover {
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: theming.light.color0,
-				dark: theming.dark.color0,
-			})};
-	}
-`
-
 const Footer = () => {
 	return (
 		<StyledFooter>
@@ -66,12 +46,7 @@ const Footer = () => {
 					Created by <b>developomp</b>
 				</div>
 
-				<StyledGithubLink
-					href="https://github.com/developomp/developomp-site"
-					target="_blank"
-				>
-					<FontAwesomeIcon icon={faGithub} />
-				</StyledGithubLink>
+				<GithubLinkIcon link="https://github.com/developomp/developomp-site" />
 			</StyledFooterContainer>
 		</StyledFooter>
 	)
