@@ -3,9 +3,9 @@ _/
 
 # auto generated files
 source/src/data/
+!source/src/data/NavbarData.tsx
 source/public/img/skills.svg
 source/public/img/projects.svg
-!source/src/data/NavbarData.tsx
 
 # dependencies
 .pnp/
