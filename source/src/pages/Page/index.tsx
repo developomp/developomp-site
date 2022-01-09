@@ -23,8 +23,16 @@ import { useEffect } from "react"
 
 const map: Map = _map
 
-const StyledTitle = styled.h1`
+const StyledTitle = styled.h1<{ pageType: PageType }>`
 	margin-bottom: 1rem;
+
+	word-wrap: break-word;
+
+	${(props) => {
+		if (props.pageType == PageType.PORTFOLIO_PROJECT) {
+			return "margin-right: 3rem;"
+		}
+	}}
 `
 
 const PortfolioGithubLinkContainer = styled.div`
@@ -249,7 +257,9 @@ const Page = () => {
 						<GithubLinkIcon link={pageData.repo} />
 					</PortfolioGithubLinkContainer>
 				)}
-				<StyledTitle>{pageData.title}</StyledTitle>
+				<StyledTitle pageType={PageType.PORTFOLIO_PROJECT}>
+					{pageData.title}
+				</StyledTitle>
 
 				{pageType == PageType.PORTFOLIO_PROJECT &&
 					pageData.badges.map((badge) => (
