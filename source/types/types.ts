@@ -61,6 +61,13 @@ export interface PageData {
 	tags: string[]
 	toc?: string
 	content: string
+
+	// portfolio-specific data
+
+	image: string // image url
+	overview: string
+	badges: string[]
+	repo: string
 }
 
 /**

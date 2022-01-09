@@ -5,9 +5,11 @@ import styled from "styled-components"
 
 import { PageData, Map } from "../../../types/types"
 
+import GithubLinkIcon from "../../components/GithubLinkIcon"
 import MainContent from "../../components/MainContent"
 import Loading from "../../components/Loading"
 import TagList from "../../components/TagList"
+import Badge from "../../components/Badge"
 import Tag from "../../components/Tag"
 import NotFound from "../NotFound"
 
@@ -23,6 +25,15 @@ const map: Map = _map
 
 const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
+`
+
+const PortfolioGithubLinkContainer = styled.div`
+	float: right;
+	margin-top: 1rem;
+`
+
+const ProjectImage = styled.img`
+	max-width: 100%;
 `
 
 enum PageType {
@@ -124,6 +135,11 @@ const Page = () => {
 			tags: [],
 			toc: undefined,
 			content: "No content",
+
+			image: "",
+			overview: "",
+			badges: [],
+			repo: "",
 		}
 
 		fetchContent(_pageType, url).then((fetched_content) => {
@@ -187,28 +203,14 @@ const Page = () => {
 							url as keyof typeof portfolio.projects
 						]
 
-					console.log(fetched_content)
-
 					pageData.content = fetched_content.content
 					pageData.toc = fetched_content.toc
 
 					pageData.title = data.name
-
-					// todo: add portfolio data
-					/*
-						"image": "/img/portfolio/developomp.com.png",
-						"overview": "my website for blogging, portfolio, and resume.",
-						"badges": [
-							"typescript",
-							"javascript",
-							"nodedotjs",
-							"firebase",
-							"react",
-							"html5",
-							"css3"
-						],
-						"repo": "https://github.com/developomp/developomp-site"
-					*/
+					pageData.image = data.image
+					pageData.overview = data.overview
+					pageData.badges = data.badges
+					pageData.repo = data.repo
 
 					break
 				}
@@ -241,24 +243,34 @@ const Page = () => {
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
-					content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
+					content={process.env.PUBLIC_URL + "/icon/icon.svg"}
 				/>
 			</Helmet>
 
 			<MainContent>
-				{pageType == PageType.SERIES ? (
+				{/* next/previous series post buttons */}
+				{pageType == PageType.SERIES && (
 					<NextPrevButtons
 						prevURL={seriesData?.prev}
 						nextURL={seriesData?.next}
 					/>
-				) : (
-					<br />
+				)}
+
+				{pageType == PageType.PORTFOLIO_PROJECT && (
+					<PortfolioGithubLinkContainer>
+						<GithubLinkIcon link={pageData.repo} />
+					</PortfolioGithubLinkContainer>
 				)}
 				<StyledTitle>{pageData.title}</StyledTitle>
 
+				{pageType == PageType.PORTFOLIO_PROJECT &&
+					pageData.badges.map((badge) => (
+						<Badge key={badge} slug={badge} />
+					))}
+
 				<small>
 					{/* Post tags */}
-					{!!pageData.tags.length && (
+					{pageData.tags.length > 0 && (
 						<TagList direction="left">
 							{pageData.tags.map((tag) => {
 								return (
@@ -273,15 +285,22 @@ const Page = () => {
 					<br />
 
 					{/* Post metadata */}
-					{pageType != PageType.UNSEARCHABLE && (
-						<Meta fetchedPage={pageData} />
-					)}
+					{[PageType.UNSEARCHABLE, PageType.POST].includes(
+						pageType
+					) && <Meta fetchedPage={pageData} />}
 				</small>
 
 				<hr />
 
 				{/* add table of contents if it exists */}
 				<Toc data={pageData.toc} />
+
+				{pageType == PageType.PORTFOLIO_PROJECT && (
+					<ProjectImage
+						src={pageData.image}
+						alt="project example image"
+					/>
+				)}
 
 				{/* page content */}
 				<div
