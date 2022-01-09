@@ -6,6 +6,7 @@ import Card from "../../components/Card"
 
 import { PortfolioProject } from "../../../types/types"
 import theming from "../../styles/theming"
+import { useEffect, useState } from "react"
 
 const StyledProjectCard = styled(Card)`
 	margin-bottom: 2rem;
@@ -28,7 +29,14 @@ interface ProjectCardProps {
 const ProjectCard = (props: ProjectCardProps) => {
 	const { projectID, project } = props
 
+	const [badges, setBadges] = useState<JSX.Element[]>([])
 	const navigate = useNavigate()
+
+	useEffect(() => {
+		setBadges(
+			project.badges.map((badge) => <Badge key={badge} slug={badge} />)
+		)
+	}, [])
 
 	return (
 		<StyledProjectCard
@@ -37,9 +45,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 			<h1>{project.name}</h1>
 			<StyledImg src={project.image} />
 
-			{project.badges.map((badge) => {
-				return <Badge key={badge} slug={badge} />
-			})}
+			{badges}
 			<hr />
 			<div dangerouslySetInnerHTML={{ __html: project.overview }} />
 		</StyledProjectCard>
