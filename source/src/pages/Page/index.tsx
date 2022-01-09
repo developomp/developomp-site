@@ -283,9 +283,9 @@ const Page = () => {
 					<br />
 
 					{/* Post metadata */}
-					{[PageType.UNSEARCHABLE, PageType.POST].includes(
-						pageType
-					) && <Meta fetchedPage={pageData} />}
+					{[PageType.POST, PageType.SERIES].includes(pageType) && (
+						<Meta fetchedPage={pageData} />
+					)}
 				</small>
 
 				<hr />
