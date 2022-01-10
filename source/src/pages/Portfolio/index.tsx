@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
-import styled from "styled-components"
 
 import MainContent from "../../components/MainContent"
 import ProjectCard from "./ProjectCard"
@@ -10,15 +9,9 @@ import portfolio from "../../data/portfolio.json"
 
 import { PortfolioProject } from "../../../types/types"
 
-const SkillsImage = styled.img`
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 100%;
-`
-
 const Portfolio = () => {
 	const [projects, setProjects] = useState<JSX.Element[]>([])
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [skills, setSkills] = useState<JSX.Element[]>([])
 
 	useEffect(() => {
@@ -67,16 +60,12 @@ const Portfolio = () => {
 
 			<MainContent>
 				<h1>Portfolio</h1>
-				<hr />
-				<div dangerouslySetInnerHTML={{ __html: portfolio.overview }} />
-				<h2 id="skills">
-					<a className="header-anchor" href="#skills">
-						#
-					</a>{" "}
-					Skills
-				</h2>
 
-				<SkillsImage alt="programming skills" src="/img/skills.svg" />
+				<hr />
+
+				{/* rendered markdown */}
+
+				<div dangerouslySetInnerHTML={{ __html: portfolio.overview }} />
 
 				{/* Projects */}
 
@@ -87,10 +76,13 @@ const Portfolio = () => {
 					Projects
 				</h2>
 
-				{skills}
+				{/*
+					// todo: filter projects by skill
+					{skills}
 
-				<br />
-				<br />
+					<br />
+					<br />
+				*/}
 
 				{projects}
 			</MainContent>
