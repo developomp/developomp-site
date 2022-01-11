@@ -89,10 +89,7 @@ const Sidebar = () => {
 
 	return (
 		<>
-			<StyledOverlay
-				isSidebarOpen={isSidebarOpen}
-				onClick={toggleSidebar}
-			/>
+			<StyledOverlay isSidebarOpen={isSidebarOpen} onClick={toggleSidebar} />
 
 			<StyledToggleSidebarButton
 				data-tip

@@ -81,8 +81,7 @@ const TagSelect = (props: TagSelectProps) => {
 								":hover": {
 									backgroundColor: theming
 										.theme(currentTheme.currentTheme, {
-											light: theming.light
-												.backgroundColor0,
+											light: theming.light.backgroundColor0,
 											dark: theming.dark.backgroundColor0,
 										})
 										.toString(),
@@ -96,13 +95,10 @@ const TagSelect = (props: TagSelectProps) => {
 										dark: theming.dark.backgroundColor1,
 									})
 									.toString(),
-								border: theming.theme(
-									currentTheme.currentTheme,
-									{
-										light: "1px solid #ccc",
-										dark: "1px solid #555",
-									}
-								),
+								border: theming.theme(currentTheme.currentTheme, {
+									light: "1px solid #ccc",
+									dark: "1px solid #555",
+								}),
 							}),
 							multiValue: (styles) => ({
 								...styles,

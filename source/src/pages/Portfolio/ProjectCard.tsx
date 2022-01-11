@@ -33,9 +33,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 	const navigate = useNavigate()
 
 	useEffect(() => {
-		setBadges(
-			project.badges.map((badge) => <Badge key={badge} slug={badge} />)
-		)
+		setBadges(project.badges.map((badge) => <Badge key={badge} slug={badge} />))
 	}, [])
 
 	return (

@@ -48,9 +48,7 @@ const Toc = (props: { data?: string }) => {
 			>
 				<strong>
 					Table of Contents{" "}
-					<FontAwesomeIcon
-						icon={isTocOpened ? faCaretUp : faCaretDown}
-					/>
+					<FontAwesomeIcon icon={isTocOpened ? faCaretUp : faCaretDown} />
 				</strong>
 			</StyledTocToggleButton>
 			<StyledCollapseContainer>

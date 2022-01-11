@@ -91,10 +91,7 @@ const App = () => {
 					<Loading />
 				) : (
 					<Routes>
-						<Route
-							path="/"
-							element={<PostList howMany={5} title="Home" />}
-						/>
+						<Route path="/" element={<PostList howMany={5} title="Home" />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/404" element={<NotFound />} />

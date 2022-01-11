@@ -10,8 +10,8 @@ Year of Birth: 2002
 
 ## Links
 
--   [Github](https://github.com/developomp)
--   [goals](/goals)
+- [Github](https://github.com/developomp)
+- [goals](/goals)
 
 ## Contact
 

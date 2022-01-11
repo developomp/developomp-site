@@ -50,10 +50,7 @@ const PostList = (props: Props) => {
 				postCount++
 				const url: string = map.date[date][length - i - 1]
 				_postCards.push(
-					<PostCard
-						key={url}
-						postData={{ url: url, ...map.posts[url] }}
-					/>
+					<PostCard key={url} postData={{ url: url, ...map.posts[url] }} />
 				)
 			}
 		}

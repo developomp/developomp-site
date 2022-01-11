@@ -114,8 +114,7 @@ export default function parseSeries(data: DataToPass): void {
 					)
 				)
 
-				if (isNaN(index))
-					throw Error(`Invalid series index at: ${path}`)
+				if (isNaN(index)) throw Error(`Invalid series index at: ${path}`)
 
 				const itemToPush = {
 					index: index,

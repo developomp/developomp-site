@@ -114,15 +114,11 @@ const Search = () => {
 		for (const [key, value] of URLSearchParams.entries()) {
 			switch (key) {
 				case "date_from":
-					setDateRange((prev) => [
-						{ ...prev[0], startDate: new Date(value) },
-					])
+					setDateRange((prev) => [{ ...prev[0], startDate: new Date(value) }])
 					break
 
 				case "date_to":
-					setDateRange((prev) => [
-						{ ...prev[0], endDate: new Date(value) },
-					])
+					setDateRange((prev) => [{ ...prev[0], endDate: new Date(value) }])
 					break
 
 				case "tags":
@@ -258,17 +254,12 @@ const Search = () => {
 							value={searchInput}
 							autoComplete="off"
 							placeholder="Search"
-							onChange={(event) =>
-								setSearchInput(event.target.value)
-							}
+							onChange={(event) => setSearchInput(event.target.value)}
 							onKeyPress={(event) => {
-								event.key === "Enter" &&
-									searchInput &&
-									doSearch()
+								event.key === "Enter" && searchInput && doSearch()
 							}}
 						/>
-						{postCards.length}{" "}
-						{postCards.length > 1 ? "results" : "result"}
+						{postCards.length} {postCards.length > 1 ? "results" : "result"}
 						<TagSelect
 							defaultValue={selectedTags}
 							onChange={(newValue) => {

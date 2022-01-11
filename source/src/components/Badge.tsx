@@ -27,9 +27,7 @@ const StyledSVG = styled.div<{ isDark: boolean }>`
 	svg {
 		height: 16px;
 		fill: ${(props) =>
-			props.isDark
-				? theming.dark.color1
-				: theming.light.color1} !important;
+			props.isDark ? theming.dark.color1 : theming.light.color1} !important;
 	}
 `
 

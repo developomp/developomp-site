@@ -8,8 +8,8 @@ Source code for my (developomp's) <a href="https://developomp.com" target="_blan
 
 ### Requirements
 
--   [nodeJS](https://nodejs.org)
--   [yarn](https://github.com/yarnpkg/yarn)
+- [nodeJS](https://nodejs.org)
+- [yarn](https://github.com/yarnpkg/yarn)
 
 ### Steps
 
@@ -39,10 +39,10 @@ yarn start
 
 ## Special thanks
 
--   My dear friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
--   [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
--   [Artem Golubin](https://github.com/rushter) for design inspiration ([his blog](https://rushter.com/blog))
--   [discord](http://discord.com) for dark theme color palette (before the [rebranding of May 2021](https://blog.discord.com/how-were-making-discord-more-welcoming-for-everyone-ee152f198c60))
+- My dear friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
+- [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
+- [Artem Golubin](https://github.com/rushter) for design inspiration ([his blog](https://rushter.com/blog))
+- [discord](http://discord.com) for dark theme color palette (before the [rebranding of May 2021](https://blog.discord.com/how-were-making-discord-more-welcoming-for-everyone-ee152f198c60))
 
 ## License
 
@@ -52,5 +52,5 @@ Font licenses:
 
 [Open Font License (OFL)](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL#5667e9e4):
 
--   [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) (monospaced code font)
--   [Noto Sans KR](https://fonts.google.com/specimen/Noto+Sans+KR) (Korean and English font)
+- [Source Code Pro](https://fonts.google.com/specimen/Source+Code+Pro?query=source+code+pro) (monospaced code font)
+- [Noto Sans KR](https://fonts.google.com/specimen/Noto+Sans+KR) (Korean and English font)

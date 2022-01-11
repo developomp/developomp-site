@@ -58,9 +58,7 @@ const PostCard = (props: Props) => {
 
 	return (
 		<StyledPostCard
-			onClick={() =>
-				navigate(process.env.PUBLIC_URL + props.postData.url)
-			}
+			onClick={() => navigate(process.env.PUBLIC_URL + props.postData.url)}
 		>
 			<StyledTitle>{props.postData?.title || "No title"}</StyledTitle>
 
@@ -70,12 +68,7 @@ const PostCard = (props: Props) => {
 				<TagList direction="left">
 					{props.postData.tags &&
 						props.postData.tags.map((tag) => {
-							return (
-								<Tag
-									key={props.postData.title + tag}
-									text={tag}
-								/>
-							)
+							return <Tag key={props.postData.title + tag} text={tag} />
 						})}
 				</TagList>
 				<hr />

@@ -21,8 +21,7 @@ export function path2URL(pathToConvert: string): string {
  */
 export function path2FileOrFolderName(inputPath: string): string {
 	// remove trailing slash
-	if (inputPath[-1] == "/")
-		inputPath = inputPath.slice(0, inputPath.length - 1)
+	if (inputPath[-1] == "/") inputPath = inputPath.slice(0, inputPath.length - 1)
 
 	// get the last section
 	return inputPath.slice(inputPath.lastIndexOf("/") + 1)

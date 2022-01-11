@@ -25,16 +25,10 @@ const Navbar = () => {
 						data-tip
 						data-for="theme"
 						className="right"
-						onClick={() =>
-							setTheme(currentTheme === "dark" ? "light" : "dark")
-						}
+						onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
 					>
-						{currentTheme == "dark" && (
-							<FontAwesomeIcon icon={faMoon} />
-						)}
-						{currentTheme == "light" && (
-							<FontAwesomeIcon icon={faSun} />
-						)}
+						{currentTheme == "dark" && <FontAwesomeIcon icon={faMoon} />}
+						{currentTheme == "light" && <FontAwesomeIcon icon={faSun} />}
 					</StyledThemeButton>
 					{!isMobile && (
 						<ReactTooltip id="theme" type="dark" effect="solid">

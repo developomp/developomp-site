@@ -7,13 +7,8 @@ import { map } from ".."
 import { DataToPass } from "."
 
 export default function parsePost(data: DataToPass): void {
-	const {
-		urlPath,
-		markdownRaw,
-		markdownData,
-		humanizedDuration,
-		totalWords,
-	} = data
+	const { urlPath, markdownRaw, markdownData, humanizedDuration, totalWords } =
+		data
 
 	const postData: PostData = {
 		title: markdownData.title as string,

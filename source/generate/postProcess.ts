@@ -44,9 +44,7 @@ function parseSeries() {
 	// series length and order
 	for (const seriesURL in seriesMap) {
 		map.series[seriesURL].length = seriesMap[seriesURL].length
-		map.series[seriesURL].order = seriesMap[seriesURL].map(
-			(item) => item.url
-		)
+		map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
 	}
 }
 
@@ -68,13 +66,9 @@ function generatePortfolioSVGs() {
 	}
 
 	for (const skillCategory in skills) {
-		skills[skillCategory as keyof typeof skills].forEach(
-			(badge: string) => {
-				data[skillCategory as keyof typeof skills].push(
-					parseBadge(badge)
-				)
-			}
-		)
+		skills[skillCategory as keyof typeof skills].forEach((badge: string) => {
+			data[skillCategory as keyof typeof skills].push(parseBadge(badge))
+		})
 	}
 
 	const renderedSVG = ejs.render(
@@ -92,9 +86,7 @@ function parseBadge(badgeRaw: string): Badge {
 	const isMultiWord = badgeRaw.includes(" ")
 	const words = badgeRaw.split(" ")
 
-	const icon = isMultiWord
-		? simpleIcon.Get(words[0])
-		: simpleIcon.Get(badgeRaw)
+	const icon = isMultiWord ? simpleIcon.Get(words[0]) : simpleIcon.Get(badgeRaw)
 
 	const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 

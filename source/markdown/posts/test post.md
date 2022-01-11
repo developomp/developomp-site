@@ -2,7 +2,7 @@
 title: Test post
 date: 2021-07-26
 tags:
-    - test
+  - test
 ---
 
 <!-- comment -->
@@ -32,23 +32,23 @@ A post have title, post date, tags, and content.
 
 ## List
 
--   Unordered list item
--   Unordered list item
-    -   unordered list sub-item
-    -   unordered list sub-item
--   [ ] Unordered task list item (unchecked)
--   [x] Unordered task list item (checked)
-    -   [ ] unordered task list sub-item (unchecked)
-    -   [x] unordered task list sub-item (checked)
+- Unordered list item
+- Unordered list item
+  - unordered list sub-item
+  - unordered list sub-item
+- [ ] Unordered task list item (unchecked)
+- [x] Unordered task list item (checked)
+  - [ ] unordered task list sub-item (unchecked)
+  - [x] unordered task list sub-item (checked)
 
 1. Ordered list item
 2. Ordered list item
-    1. ordered list sub item
-    2. ordered list sub item
+   1. ordered list sub item
+   2. ordered list sub item
 3. [ ] Ordered list task item (unchecked)
 4. [x] Ordered list task item (checked)
-    1. [ ] Ordered list task sub-item (unchecked)
-    2. [x] Ordered list task sub-item (checked)
+   1. [ ] Ordered list task sub-item (unchecked)
+   2. [x] Ordered list task sub-item (checked)
 
 ## Footnote
 

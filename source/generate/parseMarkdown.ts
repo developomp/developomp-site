@@ -79,8 +79,7 @@ export function parseFrontMatter(
 	).data
 
 	if (mode != ParseMode.PORTFOLIO) {
-		if (!frontMatter.title)
-			throw Error(`Title is not defined in file: ${path}`)
+		if (!frontMatter.title) throw Error(`Title is not defined in file: ${path}`)
 
 		if (mode != ParseMode.UNSEARCHABLE && !frontMatter.date)
 			throw Error(`Date is not defined in file: ${path}`)

@@ -52,10 +52,7 @@ const Portfolio = () => {
 					property="og:image"
 					content="http://developomp.com/icon/icon.svg"
 				/>
-				<meta
-					property="og:description"
-					content="developomp's Portfolio"
-				/>
+				<meta property="og:description" content="developomp's Portfolio" />
 			</Helmet>
 
 			<MainContent>

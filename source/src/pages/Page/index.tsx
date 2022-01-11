@@ -95,8 +95,7 @@ const Page = () => {
 			}
 
 			case PageType.SERIES: {
-				if (!(url.slice(0, url.lastIndexOf("/")) in map.series))
-					show404 = true
+				if (!(url.slice(0, url.lastIndexOf("/")) in map.series)) show404 = true
 
 				break
 			}
@@ -182,9 +181,7 @@ const Page = () => {
 
 					pageData.seriesHome = seriesURL
 					pageData.prev =
-						prev >= 0
-							? map.series[seriesURL].order[prev]
-							: undefined
+						prev >= 0 ? map.series[seriesURL].order[prev] : undefined
 					pageData.next =
 						next < map.series[seriesURL].order.length
 							? map.series[seriesURL].order[next]
@@ -195,9 +192,7 @@ const Page = () => {
 
 				case PageType.PORTFOLIO_PROJECT: {
 					const data =
-						portfolio.projects[
-							url as keyof typeof portfolio.projects
-						]
+						portfolio.projects[url as keyof typeof portfolio.projects]
 
 					pageData.content = fetched_content.content
 					pageData.toc = fetched_content.toc
@@ -246,10 +241,7 @@ const Page = () => {
 			<MainContent>
 				{/* next/previous series post buttons */}
 				{pageType == PageType.SERIES && (
-					<NextPrevButtons
-						prevURL={pageData.prev}
-						nextURL={pageData.next}
-					/>
+					<NextPrevButtons prevURL={pageData.prev} nextURL={pageData.next} />
 				)}
 
 				{pageType == PageType.PORTFOLIO_PROJECT && (
@@ -262,9 +254,7 @@ const Page = () => {
 				</StyledTitle>
 
 				{pageType == PageType.PORTFOLIO_PROJECT &&
-					pageData.badges.map((badge) => (
-						<Badge key={badge} slug={badge} />
-					))}
+					pageData.badges.map((badge) => <Badge key={badge} slug={badge} />)}
 
 				<small>
 					{/* Post tags */}
@@ -294,10 +284,7 @@ const Page = () => {
 				<Toc data={pageData.toc} />
 
 				{pageType == PageType.PORTFOLIO_PROJECT && (
-					<ProjectImage
-						src={pageData.image}
-						alt="project example image"
-					/>
+					<ProjectImage src={pageData.image} alt="project example image" />
 				)}
 
 				{/* page content */}
