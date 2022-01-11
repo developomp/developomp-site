@@ -9,6 +9,19 @@ badges:
     - javascript
     - html5
     - css3
+    - svelte
+    - tailwindcss
+    - rust
 ---
 
-War Brokers Mods (WBM) is a mod for the game War Brokers. It also provides OBS overlays for streamers too.
+## Intro
+
+War Brokers Mods (WBM) is a mod for the game [War Brokers](https://warbrokers.io). It also provides OBS overlays for streamers too.
+
+## The mod
+
+## OBS Overlay
+
+## Installer
+
+A simple cross-platform installer and update manager built with tauri, rust, svelte, and tailwind css.
