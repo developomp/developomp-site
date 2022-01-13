@@ -2,7 +2,7 @@ import fs from "fs"
 import readTimeEstimate from "read-time-estimate" // post read time estimation
 
 import { path2FileOrFolderName, path2URL } from "../util"
-import { parseFrontMatter } from "../parseMarkdown"
+import parseMarkdown from "../parseMarkdown"
 
 import { ParseMode } from "../../types/types"
 import parsePost from "./parsePost"
@@ -69,7 +69,7 @@ function parseFile(mode: ParseMode, path: string): void {
 	 */
 
 	const markdownRaw = fs.readFileSync(path, "utf8")
-	const markdownData = parseFrontMatter(markdownRaw, path, mode)
+	const markdownData = parseMarkdown(markdownRaw, path, mode)
 	const { humanizedDuration, totalWords } = readTimeEstimate(
 		markdownData.content,
 		275,

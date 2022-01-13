@@ -50,17 +50,6 @@ const md = markdownIt({
 	.use(highlightLines)
 	.use(markdownItFootnote)
 
-export default function parseMarkdown(markdownRaw: string): string {
-	return (
-		// todo: accurately calculate start and end of front matter
-		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
-	)
-}
-
-export function generateToc(markdownRaw: string): string {
-	return md.render(toc(markdownRaw).content)
-}
-
 /**
  * parse the front matter if it exists
  *
@@ -68,7 +57,7 @@ export function generateToc(markdownRaw: string): string {
  * @param {string} path - filename of the markdown file
  * @param {ParseMode} mode
  */
-export function parseFrontMatter(
+export default function parseMarkdown(
 	markdownRaw: string,
 	path: string,
 	mode: ParseMode
@@ -85,14 +74,38 @@ export function parseFrontMatter(
 			throw Error(`Date is not defined in file: ${path}`)
 	}
 
-	const dom = new JSDOM(parseMarkdown(markdownRaw))
+	//
+	// work with rendered DOM
+	//
+
+	const dom = new JSDOM(
+		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
+	)
 
 	// add .hljs class to all block codes
+
 	dom.window.document.querySelectorAll("pre > code").forEach((item) => {
 		item.classList.add("hljs")
+	})
+
+	// add parent div to tables (horizontally scroll table on small displays)
+
+	dom.window.document.querySelectorAll("table").forEach((item) => {
+		// `element` is the element you want to wrap
+		const parent = item.parentNode
+		if (!parent) return // stop if table doesn't have a parent node
+		const wrapper = dom.window.document.createElement("div")
+		wrapper.style.overflowX = "auto"
+
+		parent.replaceChild(wrapper, item)
+		wrapper.appendChild(item)
 	})
 
 	frontMatter.content = dom.window.document.documentElement.innerHTML
 
 	return frontMatter as MarkdownData
+}
+
+export function generateToc(markdownRaw: string): string {
+	return md.render(toc(markdownRaw).content)
 }

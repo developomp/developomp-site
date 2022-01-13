@@ -117,25 +117,27 @@ const kbdCSS = css`
 const tableCSS = css`
 	table {
 		border-collapse: collapse;
+		border-spacing: 0;
 		width: 100%;
-	}
 
-	table td,
-	table th {
-		border: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "1px solid #ddd",
-				dark: "1px solid #777777",
-			})};
-		padding: 8px;
-	}
+		td,
+		th {
+			padding: 8px;
+			border: ${(props) =>
+				theming.theme(props.theme.currentTheme, {
+					light: "1px solid #ddd",
+					dark: "1px solid #777777",
+				})};
+		}
 
-	table tr:nth-child(even) {
-		background-color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: "#f2f2f2",
-				dark: "#21272E",
-			})};
+		/* table alternating color */
+		tr:nth-child(even) {
+			background-color: ${(props) =>
+				theming.theme(props.theme.currentTheme, {
+					light: "#f2f2f2",
+					dark: "#21272E",
+				})};
+		}
 	}
 `
 
