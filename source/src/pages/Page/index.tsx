@@ -244,7 +244,7 @@ const Page = () => {
 					<NextPrevButtons prevURL={pageData.prev} nextURL={pageData.next} />
 				)}
 
-				{pageType == PageType.PORTFOLIO_PROJECT && (
+				{pageType == PageType.PORTFOLIO_PROJECT && pageData.repo && (
 					<PortfolioGithubLinkContainer>
 						<GithubLinkIcon link={pageData.repo} />
 					</PortfolioGithubLinkContainer>

@@ -16,33 +16,35 @@ export default function parsePortfolio(data: DataToPass): void {
 	if (lastPath == "0") {
 		portfolioData.overview = markdownData.content
 	} else {
-		;(markdownData.badges as string[]).forEach((slug) => {
-			// todo: handle cases when icon is not on simple-icons
+		if (markdownData.badges) {
+			;(markdownData.badges as string[]).forEach((slug) => {
+				// todo: handle cases when icon is not on simple-icons
 
-			portfolioData.skills.add(slug)
+				portfolioData.skills.add(slug)
 
-			const icon = simpleIcons.Get(slug)
+				const icon = simpleIcons.Get(slug)
 
-			const color = tinycolor(icon.hex).lighten(5).desaturate(5)
+				const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 
-			// save svg icon
-			writeToFile(
-				`${iconsDirectoryPath}/${icon.slug}.json`,
-				JSON.stringify({
-					svg: icon.svg,
-					hex: color.toHexString(),
-					isDark: color.isDark(),
-					title: icon.title,
-				})
-			)
-		})
+				// save svg icon
+				writeToFile(
+					`${iconsDirectoryPath}/${icon.slug}.json`,
+					JSON.stringify({
+						svg: icon.svg,
+						hex: color.toHexString(),
+						isDark: color.isDark(),
+						title: icon.title,
+					})
+				)
+			})
+		}
 
 		const project: PortfolioProject = {
 			name: markdownData.name as string,
 			image: markdownData.image as string,
 			overview: markdownData.overview as string,
-			badges: markdownData.badges as string[],
-			repo: markdownData.repo as string,
+			badges: (markdownData.badges as string[]) || [],
+			repo: (markdownData.repo as string) || "",
 		}
 
 		portfolioData.projects[urlPath] = project
