@@ -7,6 +7,24 @@ import "katex/dist/katex.min.css"
 
 import theming from "./theming"
 
+const anchorCSS = css`
+	a {
+		text-decoration: none;
+		color: ${theming.color.linkColor};
+	}
+
+	// header anchor offset to compensate for navbar
+	a.header-anchor {
+		display: inline-block;
+		margin-top: 4.5rem;
+	}
+
+	a[id^="fnref"] {
+		display: inline;
+		padding-top: 4.5rem;
+	}
+`
+
 const scrollbarCSS = css`
 	body::-webkit-scrollbar {
 		width: ${theming.size.x_small};
@@ -205,6 +223,7 @@ const katexCSS = css`
  * https://github.com/styled-components/vscode-styled-components/issues/175
  */
 const globalStyle = css`
+	${anchorCSS}
 	${scrollbarCSS}
 	${codeCSS}
 	${kbdCSS}
@@ -241,17 +260,6 @@ const globalStyle = css`
 		font-family: ${theming.font.regular};
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
-	}
-
-	a {
-		text-decoration: none;
-		color: ${theming.color.linkColor};
-	}
-
-	// header anchor offset to compensate for navbar
-	a.header-anchor {
-		display: inline-block;
-		margin-top: 4.2rem;
 	}
 
 	hr {
