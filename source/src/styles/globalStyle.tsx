@@ -58,7 +58,6 @@ const codeCSS = css`
 		padding: 0 3px;
 	}
 
-	/* https://stackoverflow.com/a/48694906/12979111 */
 	pre > code {
 		font-family: ${theming.font.code};
 		border: ${(props) =>
@@ -77,6 +76,7 @@ const codeCSS = css`
 			})};
 
 		display: block;
+		min-width: min-content;
 		margin: 0 -1rem;
 		padding: 0 1rem;
 	}
