@@ -32,7 +32,7 @@ Please do not send messages to these accounts. Use the contacts listed above ins
 | naver                            | developomp@naver.com                                                                  |
 | google                           | developomp@gmail.com                                                                  |
 | discord                          | developomp#0001 (501277805540147220)                                                  |
-| proton                           | developomp@protonmail.com                                                             |
+| proton mail                      | developomp@protonmail.com                                                             |
 | twitch                           | [developomp](https://www.twitch.tv/developomp)                                        |
 | twitter                          | [@developomp](https://twitter.com/developomp)                                         |
 | youtube                          | [developomp](https://www.youtube.com/channel/UCq42p4jHBZnzZE9LG7hoBJw)                |
