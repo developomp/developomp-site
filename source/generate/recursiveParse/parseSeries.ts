@@ -88,6 +88,14 @@ export default function parseSeries(data: DataToPass): void {
 	 *
 	 */
 
+	addDocument({
+		title: markdownData.title,
+		body: markdownData.content,
+		url: urlPath,
+	})
+
+	map.posts[urlPath] = postData
+
 	// series markdown starting with 0 is a series descriptor
 	if (isFileDescriptor) {
 		map.series[urlPath] = {
@@ -96,14 +104,6 @@ export default function parseSeries(data: DataToPass): void {
 			length: 0,
 		}
 	} else {
-		addDocument({
-			title: markdownData.title,
-			body: markdownData.content,
-			url: urlPath,
-		})
-
-		map.posts[urlPath] = postData
-
 		// put series post in appropriate series
 		for (const key of Object.keys(map.series)) {
 			if (urlPath.includes(key)) {
