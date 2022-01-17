@@ -7,12 +7,13 @@ import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import styled from "styled-components"
 
-import PostCard from "../components/PostCard"
+import PostCard from "../../components/PostCard"
+import ShowMoreButton from "./ShowMoreButton"
 
-import _map from "../data/map.json"
-import theming from "../styles/theming"
+import _map from "../../data/map.json"
+import theming from "../../styles/theming"
 
-import { Map } from "../../types/types"
+import { Map } from "../../../types/types"
 
 const map: Map = _map
 
@@ -28,16 +29,16 @@ const StyledPostList = styled.div`
 
 interface Props {
 	title: string
-	howMany?: number
 }
 
 const PostList = (props: Props) => {
-	const howMany = props.howMany || 0
+	const [howMany, setHowMany] = useState(5)
+	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
 
-	useEffect(() => {
+	const loadPostCards = () => {
 		let postCount = 0
-		const _postCards = [] as JSX.Element[]
+		const postCards = [] as JSX.Element[]
 
 		for (const date in map.date) {
 			if (postCount >= howMany) break
@@ -49,14 +50,19 @@ const PostList = (props: Props) => {
 
 				postCount++
 				const url: string = map.date[date][length - i - 1]
-				_postCards.push(
+				postCards.push(
 					<PostCard key={url} postData={{ url: url, ...map.posts[url] }} />
 				)
 			}
 		}
 
-		setPostCards(_postCards)
-	}, [])
+		setPostCards(postCards)
+	}
+
+	useEffect(() => {
+		loadPostCards()
+		setPostsLength(Object.keys(map.posts).length)
+	}, [howMany])
 
 	return (
 		<>
@@ -70,11 +76,16 @@ const PostList = (props: Props) => {
 					content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
 				/>
 			</Helmet>
-
 			<StyledPostList>
-				<h1>{howMany > 0 ? `Recent ${howMany} Posts` : "All Posts"}</h1>
-
+				<h1>Recent Posts</h1>
 				{postCards}
+				{postsLength > howMany && (
+					<ShowMoreButton
+						action={() => {
+							setHowMany((prev) => prev + 5)
+						}}
+					/>
+				)}
 			</StyledPostList>
 		</>
 	)
