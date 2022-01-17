@@ -7,7 +7,7 @@ export const cardCSS = css`
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "white",
-			dark: "#2F3136",
+			dark: theming.dark.backgroundColor2,
 		})};
 	padding: 2rem;
 	border-radius: 6px;

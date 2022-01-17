@@ -35,12 +35,14 @@ export default {
 	dark: {
 		backgroundColor0: "#202225",
 		backgroundColor1: "#36393F",
+		backgroundColor2: "#2F3136",
 		color0: "#FFFFFF",
 		color1: "#EEEEEE",
 	},
 	light: {
 		backgroundColor0: "#FFFFFF",
 		backgroundColor1: "#F7F7F7",
+		backgroundColor2: "#DDDDDD",
 		color0: "#000000",
 		color1: "#111111",
 	},
