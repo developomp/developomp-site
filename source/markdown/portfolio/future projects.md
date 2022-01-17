@@ -18,6 +18,8 @@ A compression algorithm based on [the library of babel](https://libraryofbabel.i
 
 ## boy-lang
 
+[Github](https://github.com/boy-lang)
+
 - rust
 - llvm
 
@@ -97,3 +99,7 @@ Events happened in the War Brokers community.
 - react native
 
 get some code from [xbrowsersync app](https://github.com/xbrowsersync/app).
+
+## FOG browser
+
+My custom [ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium) based browser.
