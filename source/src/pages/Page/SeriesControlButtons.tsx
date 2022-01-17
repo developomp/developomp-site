@@ -2,14 +2,20 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons"
+import {
+	faArrowLeft,
+	faArrowRight,
+	faListUl,
+} from "@fortawesome/free-solid-svg-icons"
 
 import theming from "../../styles/theming"
 
-const StyledNextPrevContainer = styled.div`
+const StyledContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	size: 100%;
+
+	line-height: 1rem;
 `
 
 const StyledLink = styled(Link)`
@@ -23,7 +29,6 @@ const StyledLink = styled(Link)`
 
 	height: 1rem;
 	width: 2rem;
-	margin-top: 2rem;
 
 	line-height: 1rem;
 	text-align: center;
@@ -45,16 +50,19 @@ const StyledDisabledLink = styled.div`
 
 	height: 1rem;
 	width: 2rem;
-	margin-top: 2rem;
 
 	line-height: 1rem;
 	text-align: center;
 	user-select: none;
 `
 
-const NextPrevButtons = (props: { prevURL?: string; nextURL?: string }) => {
+const SeriesControlButtons = (props: {
+	seriesHome: string
+	prevURL?: string
+	nextURL?: string
+}) => {
 	return (
-		<StyledNextPrevContainer>
+		<StyledContainer>
 			{props.prevURL ? (
 				<StyledLink to={props.prevURL}>
 					<FontAwesomeIcon icon={faArrowLeft} />
@@ -64,6 +72,11 @@ const NextPrevButtons = (props: { prevURL?: string; nextURL?: string }) => {
 					<FontAwesomeIcon icon={faArrowLeft} />
 				</StyledDisabledLink>
 			)}
+
+			<StyledLink to={props.seriesHome}>
+				<FontAwesomeIcon icon={faListUl} />
+			</StyledLink>
+
 			{props.nextURL ? (
 				<StyledLink to={props.nextURL}>
 					<FontAwesomeIcon icon={faArrowRight} />
@@ -73,8 +86,8 @@ const NextPrevButtons = (props: { prevURL?: string; nextURL?: string }) => {
 					<FontAwesomeIcon icon={faArrowRight} />
 				</StyledDisabledLink>
 			)}
-		</StyledNextPrevContainer>
+		</StyledContainer>
 	)
 }
 
-export default NextPrevButtons
+export default SeriesControlButtons

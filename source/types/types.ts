@@ -62,12 +62,18 @@ export interface PageData {
 	toc?: string
 	content: string
 
-	// series-specific data
+	// series
+
 	seriesHome: string
 	prev?: string
 	next?: string
 
-	// portfolio-specific data
+	// series home
+
+	order: string[]
+	length: number
+
+	// portfolio
 
 	image: string // image url
 	overview: string

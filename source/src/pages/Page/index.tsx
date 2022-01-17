@@ -7,13 +7,14 @@ import { PageData, Map } from "../../../types/types"
 
 import GithubLinkIcon from "../../components/GithubLinkIcon"
 import MainContent from "../../components/MainContent"
+import PostCard from "../../components/PostCard"
 import Loading from "../../components/Loading"
 import TagList from "../../components/TagList"
 import Badge from "../../components/Badge"
 import Tag from "../../components/Tag"
 import NotFound from "../NotFound"
 
-import NextPrevButtons from "./NextPrevButtons"
+import SeriesControlButtons from "./SeriesControlButtons"
 import Meta from "./Meta"
 import Toc from "./Toc"
 
@@ -47,6 +48,7 @@ const ProjectImage = styled.img`
 enum PageType {
 	POST,
 	SERIES,
+	SERIES_HOME,
 	PORTFOLIO_PROJECT,
 	UNSEARCHABLE,
 }
@@ -65,7 +67,15 @@ const fetchContent = async (pageType: PageType, url: string) => {
 
 const categorizePageType = (url: string): PageType => {
 	if (url.startsWith("/post")) return PageType.POST
-	if (url.startsWith("/series")) return PageType.SERIES
+	if (url.startsWith("/series")) {
+		if ([...(url.match(/\//g) || [])].length == 2) {
+			// url: /series/series-title
+			return PageType.SERIES_HOME
+		} else {
+			// url: /series/series-title/post-title
+			return PageType.SERIES
+		}
+	}
 	if (url.startsWith("/portfolio")) return PageType.PORTFOLIO_PROJECT
 
 	return PageType.UNSEARCHABLE
@@ -80,22 +90,25 @@ const Page = () => {
 
 	useEffect(() => {
 		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
-		const _pageType = categorizePageType(url)
+		const pageType = categorizePageType(url)
 
 		/**
 		 * Test if url is a valid one
 		 */
 
 		let show404 = false
-		switch (_pageType) {
+		switch (pageType) {
 			case PageType.POST: {
 				if (!map.posts[url]) show404 = true
 
 				break
 			}
 
+			case PageType.SERIES_HOME:
 			case PageType.SERIES: {
-				if (!(url.slice(0, url.lastIndexOf("/")) in map.series)) show404 = true
+				show404 = !Object.keys(map.series).some((seriesHomeURL) =>
+					url.startsWith(seriesHomeURL)
+				)
 
 				break
 			}
@@ -131,7 +144,18 @@ const Page = () => {
 			toc: undefined,
 			content: "No content",
 
+			// series
+
 			seriesHome: "",
+			prev: "",
+			next: "",
+
+			// series home
+
+			order: [],
+			length: 0,
+
+			// portfolio
 
 			image: "",
 			overview: "",
@@ -139,13 +163,13 @@ const Page = () => {
 			repo: "",
 		}
 
-		fetchContent(_pageType, url).then((fetched_content) => {
+		fetchContent(pageType, url).then((fetched_content) => {
 			if (!fetched_content) {
 				setIsLoading(false)
 				return
 			}
 
-			switch (_pageType) {
+			switch (pageType) {
 				case PageType.POST: {
 					const post = map.posts[url]
 
@@ -190,6 +214,21 @@ const Page = () => {
 					break
 				}
 
+				case PageType.SERIES_HOME: {
+					const seriesData = map.series[url]
+
+					pageData.title = seriesData.title
+					pageData.content = fetched_content.content
+
+					pageData.date = seriesData.date
+					pageData.readTime = seriesData.readTime
+					pageData.wordCount = seriesData.wordCount
+					pageData.order = seriesData.order
+					pageData.length = seriesData.length
+
+					break
+				}
+
 				case PageType.PORTFOLIO_PROJECT: {
 					const data =
 						portfolio.projects[url as keyof typeof portfolio.projects]
@@ -214,7 +253,11 @@ const Page = () => {
 				}
 			}
 
-			setPageType(_pageType)
+			/**
+			 * Apply result
+			 */
+
+			setPageType(pageType)
 			setPageData(pageData)
 
 			setIsLoading(false)
@@ -241,7 +284,11 @@ const Page = () => {
 			<MainContent>
 				{/* next/previous series post buttons */}
 				{pageType == PageType.SERIES && (
-					<NextPrevButtons prevURL={pageData.prev} nextURL={pageData.next} />
+					<SeriesControlButtons
+						seriesHome={pageData.seriesHome}
+						prevURL={pageData.prev}
+						nextURL={pageData.next}
+					/>
 				)}
 
 				{pageType == PageType.PORTFOLIO_PROJECT && pageData.repo && (
@@ -273,9 +320,9 @@ const Page = () => {
 					<br />
 
 					{/* Post metadata */}
-					{[PageType.POST, PageType.SERIES].includes(pageType) && (
-						<Meta fetchedPage={pageData} />
-					)}
+					{[PageType.POST, PageType.SERIES, PageType.SERIES_HOME].includes(
+						pageType
+					) && <Meta fetchedPage={pageData} />}
 				</small>
 
 				<hr />
@@ -294,6 +341,21 @@ const Page = () => {
 					}}
 				/>
 			</MainContent>
+
+			{/* series post list */}
+
+			{pageType == PageType.SERIES_HOME &&
+				pageData.order.map((post) => {
+					return (
+						<PostCard
+							key={post}
+							postData={{
+								url: post,
+								...map.posts[post],
+							}}
+						/>
+					)
+				})}
 		</>
 	)
 }
