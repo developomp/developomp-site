@@ -22,12 +22,14 @@ const Meta = (props: { fetchedPage: PageData }) => {
 	return (
 		<StyledMetaContainer>
 			{/* posts count */}
-			<FontAwesomeIcon icon={faFile} />
-			&nbsp;&nbsp;
-			{props.fetchedPage.length
-				? props.fetchedPage.length + " posts"
-				: "no posts"}
-			&nbsp;&nbsp;&nbsp;&nbsp;
+			{props.fetchedPage.length > 0 && (
+				<>
+					<FontAwesomeIcon icon={faFile} />
+					&nbsp;&nbsp;
+					{props.fetchedPage.length} post
+					{props.fetchedPage.length > 1 && "s"} &nbsp;&nbsp;&nbsp;&nbsp;
+				</>
+			)}
 			{/* date */}
 			<FontAwesomeIcon icon={faCalendar} />
 			&nbsp;&nbsp;
@@ -44,7 +46,9 @@ const Meta = (props: { fetchedPage: PageData }) => {
 			<FontAwesomeIcon icon={faBook} />
 			&nbsp;&nbsp;
 			{props.fetchedPage.wordCount
-				? props.fetchedPage.wordCount + " words"
+				? props.fetchedPage.wordCount +
+				  " word" +
+				  (props.fetchedPage.wordCount > 1 && "s")
 				: "unknown words"}
 		</StyledMetaContainer>
 	)
