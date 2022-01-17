@@ -45,48 +45,49 @@ const StyledMetaContainer = styled.small`
 		})};
 `
 
-interface _PostDateBase extends PostData {
+interface PostCardData extends PostData {
 	url: string
 }
 
 interface Props {
-	postData: _PostDateBase
+	postData: PostCardData
 }
 
 const PostCard = (props: Props) => {
+	const { postData } = props
 	const navigate = useNavigate()
 
 	return (
 		<StyledPostCard
-			onClick={() => navigate(process.env.PUBLIC_URL + props.postData.url)}
+			onClick={() => navigate(process.env.PUBLIC_URL + postData.url)}
 		>
-			<StyledTitle>{props.postData?.title || "No title"}</StyledTitle>
+			<StyledTitle>
+				{postData?.title || "No title"}
+				{/* show (series for regex matching "/series/<series-title>") */}
+				{/\/series\/[^/]*$/.test(postData.url) && " (series)"}
+			</StyledTitle>
 
 			<br />
 
 			<StyledMetaContainer>
 				<TagList direction="left">
-					{props.postData.tags &&
-						props.postData.tags.map((tag) => {
-							return <Tag key={props.postData.title + tag} text={tag} />
+					{postData.tags &&
+						postData.tags.map((tag) => {
+							return <Tag key={postData.title + tag} text={tag} />
 						})}
 				</TagList>
 				<hr />
 				<FontAwesomeIcon icon={faCalendar} />
 				&nbsp;&nbsp;&nbsp;
-				{props.postData?.date || "Unknown date"}
+				{postData?.date || "Unknown date"}
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<FontAwesomeIcon icon={faHourglass} />
 				&nbsp;&nbsp;&nbsp;
-				{props.postData?.readTime
-					? props.postData.readTime + " read"
-					: "unknown length"}
+				{postData?.readTime ? postData.readTime + " read" : "unknown length"}
 				&nbsp;&nbsp;&nbsp;&nbsp;
 				<FontAwesomeIcon icon={faBook} />
 				&nbsp;&nbsp;&nbsp;
-				{props.postData?.wordCount
-					? props.postData.wordCount + " words"
-					: "unknown words"}
+				{postData?.wordCount ? postData.wordCount + " words" : "unknown words"}
 			</StyledMetaContainer>
 		</StyledPostCard>
 	)
