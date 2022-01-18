@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
 import { isMobile } from "react-device-detect"
 
@@ -76,26 +76,36 @@ const StyledReadProgress = styled.div`
 		})};
 `
 
+const st = "scrollTop"
+const sh = "scrollHeight"
+const h = document.documentElement
+const b = document.body
+
 const ReadProgress = () => {
 	const [scroll, setScroll] = useState(0)
+	const location = useLocation()
+
+	// https://stackoverflow.com/a/8028584/12979111
+	function scrollHandler() {
+		setScroll(((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100)
+	}
 
 	useEffect(() => {
-		const st = "scrollTop"
-		const sh = "scrollHeight"
-		const scrollHandler = () => {
-			const h = document.documentElement
-			const b = document.body
-
-			// https://stackoverflow.com/a/8028584/12979111
-			setScroll(((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100)
-		}
-
 		window.addEventListener("scroll", scrollHandler)
 
 		return () => {
 			window.removeEventListener("scroll", scrollHandler)
 		}
 	}, [])
+
+	// update on path change
+	useEffect(() => {
+		setTimeout(() => {
+			window.scrollTo({ top: 0, behavior: "smooth" })
+
+			scrollHandler()
+		}, 100)
+	}, [location])
 
 	return <StyledReadProgress style={{ width: `${scroll}%` }} />
 }
