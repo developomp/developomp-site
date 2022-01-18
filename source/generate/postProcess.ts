@@ -61,8 +61,6 @@ function generatePortfolioSVGs() {
 		programmingLanguage: [],
 		frontEndWeb: [],
 		frontEndDesktop: [],
-		cloudComputing: [],
-		gameDev: [],
 	}
 
 	for (const skillCategory in skills) {
