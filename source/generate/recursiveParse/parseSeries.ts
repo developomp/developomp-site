@@ -19,7 +19,7 @@ export default function parseSeries(data: DataToPass): void {
 	// last part of the url without the slash
 	let lastPath = _urlPath.slice(_urlPath.lastIndexOf("/") + 1)
 	if (!lastPath.includes("_") && !lastPath.startsWith("0"))
-		throw Error(`Invalid series file name at: ${path}`)
+		throw Error(`Invalid series file name at: "${path}"`)
 
 	// if file is a series descriptor or not (not = regular series post)
 	const isFileDescriptor = lastPath.startsWith("0") && !lastPath.includes("_")
