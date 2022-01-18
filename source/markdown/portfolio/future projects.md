@@ -103,3 +103,17 @@ get some code from [xbrowsersync app](https://github.com/xbrowsersync/app).
 ## FOG browser
 
 My custom [ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium) based browser.
+
+## MC cinematic effects
+
+A Minecraft client mod that adds cinematic mods to player camera.
+
+<!--
+
+fog:
+  https://www.youtube.com/watch?v=DTamcuoeGXA
+
+black line:
+  https://www.youtube.com/watch?v=v-EPAzhluZ8
+
+-->
