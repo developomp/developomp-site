@@ -100,13 +100,6 @@ Events happened in the War Brokers community.
 
 get some code from [xbrowsersync app](https://github.com/xbrowsersync/app).
 
-## FOG browser
-
-- C++
-- python
-
-My custom [ungoogled-chromium](https://github.com/Eloston/ungoogled-chromium) based browser.
-
 ## MC cinematic effects
 
 - java
