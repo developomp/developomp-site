@@ -36,11 +36,11 @@ const PostList = (props: Props) => {
 	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
 
-	const loadPostCards = () => {
+	function loadPostCards() {
 		let postCount = 0
 		const postCards = [] as JSX.Element[]
 
-		for (const date in map.date) {
+		for (const date of Object.keys(map.date).reverse()) {
 			if (postCount >= howMany) break
 
 			const length = map.date[date].length
