@@ -40,8 +40,8 @@ const StyledTitle = styled.h1`
 const StyledMetaContainer = styled.small`
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: "#555",
-			dark: "#CCC",
+			light: theming.light.color2,
+			dark: theming.dark.color2,
 		})};
 `
 

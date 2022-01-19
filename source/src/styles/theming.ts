@@ -13,7 +13,7 @@ function theme(
 	return values[currentTheme]
 }
 
-export default {
+const theming = {
 	theme: theme,
 	font: {
 		regular: "'Noto Sans KR', sans-serif",
@@ -38,6 +38,7 @@ export default {
 		backgroundColor2: "#2F3136",
 		color0: "#FFFFFF",
 		color1: "#EEEEEE",
+		color2: "#CCC",
 	},
 	light: {
 		backgroundColor0: "#FFFFFF",
@@ -45,6 +46,7 @@ export default {
 		backgroundColor2: "#DDDDDD",
 		color0: "#000000",
 		color1: "#111111",
+		color2: "#555",
 	},
 	styles: {
 		hoverCard: css`
@@ -76,6 +78,7 @@ export default {
 					light: "white",
 					dark: "#202225",
 				})};
+
 			&:hover {
 				background-color: ${(props) =>
 					theme(props.theme.currentTheme, {
@@ -86,3 +89,5 @@ export default {
 		`,
 	},
 }
+
+export default theming

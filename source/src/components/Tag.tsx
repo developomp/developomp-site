@@ -9,11 +9,14 @@ import theming from "../styles/theming"
 const StyledTag = styled.div`
 	text-align: center;
 
-	padding: 0 0.8rem 0.1rem 0.8rem;
+	margin-right: 0.8rem;
 	border-radius: 10px;
 
-	background-color: ${theming.color.linkColor};
-	color: white;
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color2,
+			dark: theming.dark.color2,
+		})};
 `
 
 interface Props {
