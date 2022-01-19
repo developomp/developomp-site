@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link, useLocation } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
@@ -86,14 +86,20 @@ const ReadProgress = () => {
 	const location = useLocation()
 
 	// https://stackoverflow.com/a/8028584/12979111
-	function scrollHandler() {
+	const scrollHandler = useCallback(() => {
 		setScroll(((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100)
-	}
+	}, [])
 
 	useEffect(() => {
+		const resizeObserver = new ResizeObserver(() => {
+			scrollHandler()
+		})
+
+		resizeObserver.observe(document.body)
 		window.addEventListener("scroll", scrollHandler)
 
 		return () => {
+			resizeObserver.disconnect()
 			window.removeEventListener("scroll", scrollHandler)
 		}
 	}, [])
