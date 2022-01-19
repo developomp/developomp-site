@@ -17,6 +17,11 @@ const anchorCSS = css`
 	a.header-anchor {
 		display: inline-block;
 		margin-top: 4.5rem;
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: "lightgray",
+				dark: "lightslategray",
+			})};
 	}
 
 	a[id^="fnref"] {
