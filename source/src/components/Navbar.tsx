@@ -101,8 +101,6 @@ const ReadProgress = () => {
 	// update on path change
 	useEffect(() => {
 		setTimeout(() => {
-			window.scrollTo({ top: 0, behavior: "smooth" })
-
 			scrollHandler()
 		}, 100)
 	}, [location])
