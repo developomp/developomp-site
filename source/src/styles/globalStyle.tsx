@@ -250,7 +250,7 @@ const globalStyle = css`
 		margin: 0;
 		display: flex;
 		flex-flow: column;
-		line-height: 1.75rem;
+		line-height: 2rem;
 		background-color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: theming.light.backgroundColor1,
