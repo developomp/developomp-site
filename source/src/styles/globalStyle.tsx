@@ -196,6 +196,7 @@ const headerCSS = css`
 	h5,
 	h6 {
 		margin-top: -3rem;
+		font-weight: 700;
 	}
 `
 
@@ -263,6 +264,7 @@ const globalStyle = css`
 			})};
 		font-size: ${theming.size.medium};
 		font-family: ${theming.font.regular};
+		font-weight: 400;
 		-webkit-font-smoothing: antialiased;
 		text-rendering: optimizeLegibility;
 	}
