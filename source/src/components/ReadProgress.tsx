@@ -5,16 +5,20 @@ import styled from "styled-components"
 import theming from "../styles/theming"
 
 const StyledReadProgressBackground = styled.div`
-	height: 2px;
-	background-color: darkslategray;
+	height: 0.2rem;
+	background-color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: "silver",
+			dark: "darkslategrey",
+		})};
 `
 
 const StyledReadProgress = styled.div`
 	height: 100%;
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
+			light: theming.light.color0,
+			dark: theming.dark.color2,
 		})};
 `
 
