@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import styled, { css } from "styled-components"
 import ReactTooltip from "react-tooltip"
 import { isMobile } from "react-device-detect"
@@ -80,12 +80,10 @@ const SidebarWrap = styled.div`
 
 const Sidebar = () => {
 	const [isSidebarOpen, setSidebarOpen] = useState(false)
-
-	// for some reason this.setState only works if this is an arrow function
-	const toggleSidebar = () => {
+	const toggleSidebar = useCallback(() => {
 		setSidebarOpen((prev) => !prev)
 		document.body.style.overflow = isSidebarOpen ? "" : "hidden"
-	}
+	}, [isSidebarOpen])
 
 	return (
 		<>
