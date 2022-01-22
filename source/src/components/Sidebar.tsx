@@ -21,17 +21,20 @@ const CommonSidebarToggleButtonStyle = css`
 	}
 `
 
-const StyledToggleSidebarButton = styled.div`
+const SidebarOpenButton = styled.div`
 	${CommonSidebarToggleButtonStyle}
 `
 
-const StyledToggleSidebarButton2 = styled.div`
+const SidebarCloseButton = styled.div`
 	${CommonSidebarToggleButtonStyle}
-	border-radius: 0;
-	margin: auto;
 	width: 90%;
-	height: 2rem;
+	height: 4rem;
 	font-size: 1.1rem;
+
+	svg {
+		margin-top: 0.2rem;
+		margin-right: 0.5rem;
+	}
 `
 
 const StyledOverlay = styled.div<{ isSidebarOpen: boolean }>`
@@ -89,24 +92,25 @@ const Sidebar = () => {
 		<>
 			<StyledOverlay isSidebarOpen={isSidebarOpen} onClick={toggleSidebar} />
 
-			<StyledToggleSidebarButton
-				data-tip
-				data-for="sidebar"
-				onClick={toggleSidebar}
-			>
+			<SidebarOpenButton data-tip data-for="sidebar" onClick={toggleSidebar}>
 				<FontAwesomeIcon icon={faEllipsisV}></FontAwesomeIcon>
 				{!isMobile && (
 					<ReactTooltip id="sidebar" type="dark" effect="solid">
 						<span>open sidebar</span>
 					</ReactTooltip>
 				)}
-			</StyledToggleSidebarButton>
+			</SidebarOpenButton>
 
 			<SidebarNav isSidebarOpen={isSidebarOpen}>
 				<SidebarWrap>
-					<StyledToggleSidebarButton2 onClick={toggleSidebar}>
-						<FontAwesomeIcon icon={faTimes}></FontAwesomeIcon> Close
-					</StyledToggleSidebarButton2>
+					{/* close sidebar button */}
+
+					<SidebarCloseButton onClick={toggleSidebar}>
+						<FontAwesomeIcon icon={faTimes}></FontAwesomeIcon>Close
+					</SidebarCloseButton>
+
+					{/* sidebar items */}
+
 					{NavbarData.map((item: Item, index) => {
 						return <SubMenu item={item} key={index} />
 					})}

@@ -1,7 +1,6 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
-import { isMobile } from "react-device-detect"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSearch } from "@fortawesome/free-solid-svg-icons"
@@ -36,8 +35,7 @@ const StyledContainer = styled.div`
 	margin: 0 auto;
 	align-items: center;
 	display: flex;
-	height: 2rem;
-	padding: 1rem;
+	height: 4rem;
 
 	/* account for 20px scrollbar width */
 	@media only screen and (min-width: calc(${theming.size
@@ -51,53 +49,70 @@ const StyledContainer = styled.div`
 `
 
 const StyledNavLinks = styled.div`
+	display: flex;
+	height: 100%;
+
 	@media only screen and (max-width: ${theming.size.screen_size1}) {
 		display: none;
 	}
 `
 
 const StyledImg = styled.img`
-	height: 2rem;
+	height: 2.5rem;
+
+	display: block;
 	margin: 1rem;
 `
 
-const StyledLink = styled(Link)`
+const StyledLink = styled.div`
 	${theming.styles.navbarButtonStyle}
-	margin: 0 0.2rem 0 0.2rem;
 `
+
+const SearchButton = () => {
+	return (
+		<>
+			<div style={{ height: "100%" }}>
+				<Link
+					data-tip
+					data-for="search"
+					to={`${process.env.PUBLIC_URL}/search`}
+				>
+					<StyledLink>
+						<FontAwesomeIcon icon={faSearch} />
+					</StyledLink>
+				</Link>
+			</div>
+			<ReactTooltip id="search" type="dark" effect="solid">
+				<span>Search</span>
+			</ReactTooltip>
+		</>
+	)
+}
 
 const Navbar = () => {
 	return (
 		<StyledNav>
 			<StyledContainer>
+				{/* icon */}
+
 				<Link to="/">
 					<StyledImg src={process.env.PUBLIC_URL + "/icon/icon_circle.svg"} />
 				</Link>
 
+				{/* nav links */}
+
 				<StyledNavLinks>
 					{NavbarData.map((item, index) => (
-						<StyledLink key={index} to={item.path}>
-							{item.title}
-						</StyledLink>
+						<Link key={index} to={item.path}>
+							<StyledLink>{item.title}</StyledLink>
+						</Link>
 					))}
 				</StyledNavLinks>
 
+				{/* right buttons */}
+
 				<ThemeToggleButton />
-
-				<StyledLink
-					data-tip
-					data-for="search"
-					to={`${process.env.PUBLIC_URL}/search`}
-				>
-					<FontAwesomeIcon icon={faSearch} />
-				</StyledLink>
-
-				{!isMobile && (
-					<ReactTooltip id="search" type="dark" effect="solid">
-						<span>Search</span>
-					</ReactTooltip>
-				)}
-
+				<SearchButton />
 				<Sidebar />
 			</StyledContainer>
 			<ReadProgress />

@@ -23,7 +23,7 @@ const SidebarLink = styled(Link)`
 `
 
 const SidebarLabel = styled.span`
-	margin-left: 16px;
+	margin-left: 1rem;
 `
 
 interface Props {

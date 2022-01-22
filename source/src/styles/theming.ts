@@ -61,13 +61,26 @@ const theming = {
 			}
 		`,
 		navbarButtonStyle: css`
-			cursor: pointer; /* so it can be applies to divs too */
-			font-size: 1rem;
-			border-radius: 0.5rem;
-			float: left;
-			padding: 14px 16px;
+			/* style */
+
+			display: flex;
+			cursor: pointer;
+			align-items: center;
+			justify-content: center;
+
+			/* size */
+
+			height: 100%;
+			min-width: 3rem;
+			margin: 0;
+			padding: 0 1rem 0 1rem;
+
+			/* text */
+
 			text-decoration: none;
-			transition: transform 0.1s linear;
+
+			/* color */
+
 			color: ${(props) =>
 				theme(props.theme.currentTheme, {
 					light: "black",
@@ -79,10 +92,13 @@ const theming = {
 					dark: "#202225",
 				})};
 
+			/* animation */
+
+			transition: transform 0.1s linear;
 			&:hover {
 				background-color: ${(props) =>
 					theme(props.theme.currentTheme, {
-						light: "lightgrey",
+						light: "#EEEEEE",
 						dark: "#36393F",
 					})};
 			}
