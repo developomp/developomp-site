@@ -8,11 +8,8 @@ import {
 // item from sidebar data
 export type Item = {
 	path: string
-	subNav?: Array<Item>
 	icon: JSX.Element
 	title: string
-	iconOpened?: JSX.Element
-	iconClosed?: JSX.Element
 }
 
 const NavbarData: Array<Item> = [
