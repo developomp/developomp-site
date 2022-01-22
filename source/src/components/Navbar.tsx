@@ -66,9 +66,13 @@ const StyledLink = styled(Link)`
 	margin: 0 0.2rem 0 0.2rem;
 `
 
-const StyledReadProgress = styled.div`
+const StyledReadProgressBackground = styled.div`
 	height: 2px;
+	background-color: darkslategray;
+`
 
+const StyledReadProgress = styled.div`
+	height: 100%;
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: theming.light.color1,
@@ -111,7 +115,11 @@ const ReadProgress = () => {
 		}, 100)
 	}, [location])
 
-	return <StyledReadProgress style={{ width: `${scroll}%` }} />
+	return (
+		<StyledReadProgressBackground>
+			<StyledReadProgress style={{ width: `${scroll}%` }} />
+		</StyledReadProgressBackground>
+	)
 }
 
 const Navbar = () => {
