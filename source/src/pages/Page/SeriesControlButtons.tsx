@@ -1,4 +1,4 @@
-import styled from "styled-components"
+import styled, { css } from "styled-components"
 import { Link } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,50 +10,48 @@ import {
 
 import theming from "../../styles/theming"
 
-const StyledContainer = styled.div`
+const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
-	size: 100%;
-
-	line-height: 1rem;
 `
 
-const StyledLink = styled(Link)`
+const buttonStyle = css`
 	${theming.styles.navbarButtonStyle}
 
 	background-color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
-			light: "#EEEEEE",
 			dark: "#202225",
+			light: "#EEEEEE",
 		})};
+	border-radius: 0.5rem;
+	height: 3rem;
 
-	height: 1rem;
-	width: 2rem;
-
-	line-height: 1rem;
-	text-align: center;
+	&:hover {
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				dark: theming.dark.backgroundColor1,
+				light: theming.light.backgroundColor2,
+			})};
+	}
 `
 
-const StyledDisabledLink = styled.div`
-	font-size: 1rem;
-	border-radius: 0.5rem;
-	float: left;
-	padding: 14px 16px;
-	text-decoration: none;
-	transition: transform 0.1s linear;
+const Button = styled.div`
+	${buttonStyle}
+`
+
+const DisabledButton = styled.div`
+	${buttonStyle}
+
 	color: grey;
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#EEEEEE",
-			dark: "#202225",
-		})};
+	cursor: default;
 
-	height: 1rem;
-	width: 2rem;
-
-	line-height: 1rem;
-	text-align: center;
-	user-select: none;
+	&:hover {
+		background-color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				dark: "#202225",
+				light: "#EEEEEE",
+			})};
+	}
 `
 
 const SeriesControlButtons = (props: {
@@ -62,31 +60,37 @@ const SeriesControlButtons = (props: {
 	nextURL?: string
 }) => {
 	return (
-		<StyledContainer>
+		<Container>
 			{props.prevURL ? (
-				<StyledLink to={props.prevURL}>
-					<FontAwesomeIcon icon={faArrowLeft} />
-				</StyledLink>
+				<Link to={props.prevURL}>
+					<Button>
+						<FontAwesomeIcon icon={faArrowLeft} />
+					</Button>
+				</Link>
 			) : (
-				<StyledDisabledLink>
+				<DisabledButton>
 					<FontAwesomeIcon icon={faArrowLeft} />
-				</StyledDisabledLink>
+				</DisabledButton>
 			)}
 
-			<StyledLink to={props.seriesHome}>
-				<FontAwesomeIcon icon={faListUl} />
-			</StyledLink>
+			<Link to={props.seriesHome}>
+				<Button>
+					<FontAwesomeIcon icon={faListUl} />
+				</Button>
+			</Link>
 
 			{props.nextURL ? (
-				<StyledLink to={props.nextURL}>
-					<FontAwesomeIcon icon={faArrowRight} />
-				</StyledLink>
+				<Link to={props.nextURL}>
+					<Button>
+						<FontAwesomeIcon icon={faArrowRight} />
+					</Button>
+				</Link>
 			) : (
-				<StyledDisabledLink>
+				<DisabledButton>
 					<FontAwesomeIcon icon={faArrowRight} />
-				</StyledDisabledLink>
+				</DisabledButton>
 			)}
-		</StyledContainer>
+		</Container>
 	)
 }
 
