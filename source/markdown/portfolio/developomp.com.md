@@ -17,37 +17,53 @@ badges:
 ## Intro
 
 developomp.com is my website built for blogging, data hosting, portfolio, resume, etc.
-It is hosted on [google firebase](https://firebase.google.com), and domain registered with [amazon AWS](https://aws.amazon.com) Route 53.
-It is built with Node.js, React.js and typescript.
+
+It is a static, single page application built with [react](https://reactjs.org) framework.
+It is hosted on [google firebase](https://firebase.google.com), and domain registered with [AWS](https://aws.amazon.com) Route 53.
 
 ## How it works
 
-The build process of the site can be categorized into three stages.
+The build process of the site can be subdivided into three major stages: _content generation_, _site building_, and _deployment_.
 
 ### 1. content generation
 
-In this stage, markdown files are rendered to HTML, json files containing metadata are generated, and svg images are constructed.
+Before the site ever gets to deal with react stuff, a sort of content pre-processing should take place.
+In this stage, markdown files are rendered to HTML, svg images are constructed, and json files containing metadata are generated.
 These files are all saved in the `source/src/data` directory with exceptions for some image files which are saved in the `source/public/img` directory.
 
 #### A. HTML generation
 
-In this stage, [Markdown files](https://github.com/developomp/developomp-site/tree/master/source/markdown) are rendered to HTML using the [markdown-it](https://github.com/markdown-it/markdown-it) library.
+The [markdown files](https://github.com/developomp/developomp-site/tree/master/source/markdown) are rendered to HTML using the [markdown-it](https://github.com/markdown-it/markdown-it) library.
+Various extensions are used in this stage to extend markdown features such as footnotes, mathematical expressions, and code blocks.
 
-Check the [parsemarkdown.ts](https://github.com/developomp/developomp-site/blob/master/source/generate/parseMarkdown.ts) file to see the conversion logic and plugins used.
+- Check the [test post](/posts/test-post) to see all markdown features.
+- Check the [`source/generate/parsemarkdown.ts`](https://github.com/developomp/developomp-site/blob/master/source/generate/parseMarkdown.ts) file to see the conversion logic.
 
-#### B. metadata
+#### B. images
 
-To allow content searching and listing, json files containing metadata such as title, length, and tags are generated.
-The [elasticlunr.js](https://github.com/weixsong/elasticlunr.js) library is also used for searching.
+After the all the text contents are parsed, svg images are constructed.
 
-#### C. images
+First, icons from [simple-icons](https://github.com/simple-icons/simple-icons) that are used by the site are saved in the `source/src/data/icons` directory.
 
-svg images are generated so they can be used in other sites like in my [github profile](https://github.com/developomp#skills).
-The [EJS](https://ejs.co) templates and style used to generate the image can be found in `source/generate/portfolio`.
+Then, other images such as the "programming skills" stats that can be seen in my [portfolio](/portfolio) and in my [github profile](https://github.com/developomp#skills).
 
-### 2. site-building
+- The [EJS](https://ejs.co) library is used for svg construction.
+- The code can be found in [`source/generate/portfolio`](https://github.com/developomp/developomp-site/tree/master/source/generate/portfolio).
 
-Just a classic boring react build process. Uses [react-scripts](https://www.npmjs.com/package/react-scripts).
+#### C. metadata
+
+After all the contents are generated, json files containing metadata about the contents are generated.
+This can then be imported in react for searching and listing.
+
+Files generated in this stage includes:
+
+- `source/src/data/map.json` (contains information about regular blog posts and pages)
+- `source/src/data/portfolio.json` (contains information about portfolio related data such as my projects)
+- `source/src/data/search.json` (contains searchable [elasticlunr](https://github.com/weixsong/elasticlunr.js) index for the search page)
+
+### 2. site building
+
+Good old react build process using [react-scripts](https://www.npmjs.com/package/react-scripts).
 
 ### 3. deployment
 
@@ -55,4 +71,9 @@ The site is deployed to firebase.
 
 ## Limitations
 
-Since the site does not support server side rendering (SSR), the pages might be too slow to use for some weaker devices.
+Because all the work is done in the client-side,
+there is a possibility that the site is too slow to use for some users with outdated hardware especially for mobile users.
+
+Also, since the search operation also happens in the client-side,
+the client has to download every blog posts in the site for the search feature to work.
+This may be a issue for users with slow/limited access to the internet.
