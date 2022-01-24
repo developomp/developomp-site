@@ -187,6 +187,13 @@ const blockquoteCSS = css`
 	}
 `
 
+const hrCSS = css`
+	hr {
+		border: 0;
+		border-bottom: 1px solid;
+	}
+`
+
 const headerCSS = css`
 	/* intentionally left out h1 */
 
@@ -223,22 +230,7 @@ const katexCSS = css`
 	}
 `
 
-/**
- * Theme that will be used throughout the website
- * wrapping it using css because prettier extension does not work well with styled-components
- * https://github.com/styled-components/vscode-styled-components/issues/175
- */
-const globalStyle = css`
-	${anchorCSS}
-	${scrollbarCSS}
-	${codeCSS}
-	${kbdCSS}
-	${tableCSS}
-	${blockquoteCSS}
-	${headerCSS}
-	${markCSS}
-	${katexCSS}
-	
+const globalCSS = css`
 	body {
 		overflow-x: hidden;
 		overflow-y: scroll;
@@ -247,11 +239,27 @@ const globalStyle = css`
 	html,
 	body,
 	#root {
+		/* size */
+
 		min-height: 100vh;
 		margin: 0;
+
+		/* style */
+
 		display: flex;
 		flex-flow: column;
+
+		/* text */
+
 		line-height: 2rem;
+		font-size: ${theming.size.medium};
+		font-family: ${theming.font.regular};
+		font-weight: 400;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+
+		/* color */
+
 		background-color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: theming.light.backgroundColor1,
@@ -262,16 +270,6 @@ const globalStyle = css`
 				light: theming.light.color1,
 				dark: theming.dark.color1,
 			})};
-		font-size: ${theming.size.medium};
-		font-family: ${theming.font.regular};
-		font-weight: 400;
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeLegibility;
-	}
-
-	hr {
-		border: 0;
-		border-bottom: 1px solid;
 	}
 
 	* {
@@ -280,6 +278,21 @@ const globalStyle = css`
 	}
 `
 
+/**
+ * Theme that will be used throughout the website
+ * prettier extension does not work here
+ * see https://github.com/styled-components/vscode-styled-components/issues/175
+ */
 export default createGlobalStyle`
-	${globalStyle}
+	${anchorCSS}
+	${scrollbarCSS}
+	${codeCSS}
+	${kbdCSS}
+	${tableCSS}
+	${blockquoteCSS}
+	${hrCSS}
+	${headerCSS}
+	${markCSS}
+	${katexCSS}
+	${globalCSS}
 `
