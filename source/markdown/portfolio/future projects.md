@@ -100,18 +100,24 @@ Events happened in the War Brokers community.
 
 get some code from [xbrowsersync app](https://github.com/xbrowsersync/app).
 
-## MC cinematic effects
+## Minecraft Cinematic Utility
 
 - java
 
 A Minecraft client mod that adds cinematic mods to player camera.
 
-<!--
+## Ecclesiis
 
-fog:
-  https://www.youtube.com/watch?v=DTamcuoeGXA
+- flutter/react native
+- firebase
+- redis
 
-black line:
-  https://www.youtube.com/watch?v=v-EPAzhluZ8
+A map of certified and verified churches in the Philippine.
 
--->
+## webppt
+
+- rust + wasm
+- svelte
+- tailwind css
+
+MS powerpoint built with web technologies.
