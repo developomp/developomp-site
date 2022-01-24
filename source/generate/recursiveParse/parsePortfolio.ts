@@ -3,12 +3,13 @@ import tinycolor from "tinycolor2"
 
 import { contentDirectoryPath, iconsDirectoryPath } from "../config"
 import { PortfolioProject } from "../../types/types"
+import { generateToc } from "../parseMarkdown"
 import { writeToFile } from "../util"
 import { portfolioData } from ".."
 import { DataToPass } from "."
 
 export default function parsePortfolio(data: DataToPass): void {
-	const { urlPath, markdownData } = data
+	const { urlPath, markdownRaw, markdownData } = data
 
 	const lastPath = urlPath.slice(urlPath.lastIndexOf("/") + 1)
 
@@ -53,6 +54,7 @@ export default function parsePortfolio(data: DataToPass): void {
 			`${contentDirectoryPath}${urlPath}.json`,
 			JSON.stringify({
 				content: markdownData.content,
+				toc: generateToc(markdownRaw),
 			})
 		)
 	}
