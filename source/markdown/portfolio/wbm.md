@@ -16,12 +16,16 @@ badges:
 
 ## Intro
 
-War Brokers Mods (WBM) is a mod for the game [War Brokers](https://warbrokers.io). It also provides OBS overlays for streamers too.
+War Brokers Mods (WBM) is a mod for the game [War Brokers](https://warbrokers.io).
 
 ## The mod
 
+Built with C#, it uses [BepInEx](https://github.com/BepInEx/BepInEx) framework to patch different aspects of the game.
+
 ## OBS Overlay
+
+Overlays for [OBS studio](https://github.com/obsproject/obs-studio). Built with standard web technologies (html, css, js).
 
 ## Installer
 
-A simple cross-platform installer and update manager built with tauri, rust, svelte, and tailwind css.
+A simple cross-platform installer and update manager. Built with [tauri](https://github.com/tauri-apps/tauri), [rust](https://github.com/rust-lang/rust), [svelte](https://github.com/sveltejs/svelte), and [tailwind css](https://github.com/tailwindlabs/tailwindcss).
