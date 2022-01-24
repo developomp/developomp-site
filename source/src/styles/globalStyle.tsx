@@ -10,13 +10,28 @@ import theming from "./theming"
 const anchorCSS = css`
 	a {
 		text-decoration: none;
-		color: ${theming.color.linkColor};
+
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.linkColor,
+				dark: theming.dark.linkColor,
+			})};
+
+		&:hover {
+			color: ${(props) =>
+				theming.theme(props.theme.currentTheme, {
+					light: theming.dark.linkColor,
+					dark: theming.light.linkColor,
+				})};
+		}
 	}
 
-	// header anchor offset to compensate for navbar
+	/* The "#" thingy used beside headers */
 	a.header-anchor {
+		/* compensate for navbar height*/
 		display: inline-block;
 		margin-top: 4.5rem;
+
 		color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: "lightgray",
@@ -24,6 +39,7 @@ const anchorCSS = css`
 			})};
 	}
 
+	/* footnote anchors */
 	a[id^="fnref"] {
 		display: inline;
 		padding-top: 4.5rem;

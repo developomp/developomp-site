@@ -29,9 +29,6 @@ const theming = {
 		screen_size1: "1000px",
 		screen_size2: "1500px",
 	},
-	color: {
-		linkColor: "#4592F7",
-	},
 	dark: {
 		backgroundColor0: "#202225",
 		backgroundColor1: "#36393F",
@@ -39,6 +36,7 @@ const theming = {
 		color0: "#FFFFFF",
 		color1: "#EEEEEE",
 		color2: "#CCC",
+		linkColor: "#66AAFF",
 	},
 	light: {
 		backgroundColor0: "#FFFFFF",
@@ -47,6 +45,7 @@ const theming = {
 		color0: "#000000",
 		color1: "#111111",
 		color2: "#555",
+		linkColor: "#4592F7",
 	},
 	styles: {
 		hoverCard: css`

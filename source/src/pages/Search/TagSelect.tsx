@@ -103,7 +103,7 @@ const TagSelect = (props: TagSelectProps) => {
 							multiValue: (styles) => ({
 								...styles,
 								color: "white",
-								backgroundColor: theming.color.linkColor,
+								backgroundColor: theming.light.linkColor,
 								borderRadius: "5px",
 							}),
 							multiValueLabel: (styles) => ({
@@ -116,7 +116,7 @@ const TagSelect = (props: TagSelectProps) => {
 								marginLeft: "0.2rem",
 								":hover": {
 									backgroundColor: "white",
-									color: theming.color.linkColor,
+									color: theming.light.linkColor,
 								},
 							}),
 						}}
