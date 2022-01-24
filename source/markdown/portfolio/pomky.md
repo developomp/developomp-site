@@ -11,5 +11,4 @@ badges:
 
 ## Intro
 
-Pomky is a [conky](https://github.com/brndnmtthws/conky)-like system monitor written in rust.
-It is built to teach myself the rust programming language and to write a more flexible, efficient, and tailored version of conky.
+Pomky is a simple gtk-based, [conky](https://github.com/brndnmtthws/conky)-like system monitor written in rust.
