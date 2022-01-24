@@ -7,8 +7,7 @@ tags:
 
 <!-- comment -->
 
-This post exists to test various features such as markdown-to-html conversion.<br />
-A post have title, post date, tags, and content.
+This post exists to test various features such as markdown-to-html conversion, table of contents generation, and metadata parsing.<br />
 
 ## Link
 
@@ -76,7 +75,7 @@ print(z is w) # False. id(z) is not equal to id(w)
 # All integers between -5 and 256 share the same id.
 ```
 
-## Etc
+## Text styling
 
 > blockquote
 >
@@ -90,7 +89,7 @@ _italic_<br />
 this is a ^superscript^ (soon^TM^)<br />
 and this is a ~subscript~ (H~2~O)
 
-## Styling
+## CSS styling
 
 <p align="center">
 	centered paragraph
@@ -122,3 +121,26 @@ $$
 
 [^css_bad]: Based on my experience building this website, Dec 2021.
 [^python_is_overrated]: Based on my infinite wisdom, Dec 2021.
+
+## headers
+
+Headers have different size and indentation depending on their level.
+
+- Post title: `h1`
+- this section: `h2`
+
+### h3
+
+Lorem ipsum blah blah.
+
+#### h4
+
+Lorem ipsum blah blah.
+
+##### h5
+
+Lorem ipsum blah blah.
+
+###### h6
+
+Lorem ipsum blah blah.
