@@ -24,12 +24,34 @@ These are the projects I'll be working on in the future. Ordered alphabetically.
 
 Slow but efficient compression algorithm based on [the library of babel](https://libraryofbabel.info/theory.html).
 
+## better xbrowsersync
+
+- typescript
+- tsx
+- react native
+
+A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better styling.
+
 ## boy-lang
 
 - rust
 - llvm
 
 My own programming language.
+
+## Ecclesiis
+
+- flutter
+- firebase
+- redis
+
+A map of certified and verified churches in the Philippine.
+
+## fog browser
+
+- mypy (python)
+
+A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
 
 ## gnome life calendar
 
@@ -44,6 +66,12 @@ gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks
 - godot
 
 an accurate Minecraft parkour training with the same movement logic.
+
+## Minecraft Cinematic Utility
+
+- kotlin
+
+A Minecraft client mod that adds cinematic mods to player camera.
 
 ## onetab-firefox
 
@@ -79,28 +107,6 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 
 Events happened in the War Brokers community.
 
-## better-xbrowsersync
-
-- typescript
-- tsx
-- react native
-
-A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better styling.
-
-## Minecraft Cinematic Utility
-
-- kotlin
-
-A Minecraft client mod that adds cinematic mods to player camera.
-
-## Ecclesiis
-
-- flutter
-- firebase
-- redis
-
-A map of certified and verified churches in the Philippine.
-
 ## webppt
 
 - rust + wasm
@@ -108,9 +114,3 @@ A map of certified and verified churches in the Philippine.
 - tailwind css
 
 MS powerpoint built with web technologies.
-
-## fog browser
-
-- mypy (python)
-
-A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
