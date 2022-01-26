@@ -4,6 +4,8 @@ title: Wannabuy
 
 ## Laptop
 
+**waiting** for ARM / RISC-V powered laptops.
+
 [Framework laptop DIY edition](https://frame.work/products/laptop-diy-edition)
 
 Total price: $1098
@@ -25,6 +27,8 @@ Total price: $1098
 - [Logitech powerplay](https://www.logitechg.com/en-us/products/gaming-mouse-pads/powerplay-wireless-charging)
 
 ## Keyboard
+
+Not decided
 
 Type: pantograph
 
