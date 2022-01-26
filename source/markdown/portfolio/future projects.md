@@ -6,55 +6,44 @@ image: /img/icon.png
 
 <!--
 - SQL
+- deno
+- go
+- qt
+- Extend lang such as py/js with rust/C/C++
+- Vue
+- nuxtjs
+- nextjs
+- vite
 -->
 
-These are the projects I'll be working on in the future. They are ordered alphabetically.
+These are the projects I'll be working on in the future. Ordered alphabetically.
 
 ## babel-compressor
 
 - C
 
-A compression algorithm based on [the library of babel](https://libraryofbabel.info/theory.html).
+Slow but efficient compression algorithm based on [the library of babel](https://libraryofbabel.info/theory.html).
 
 ## boy-lang
-
-[Github](https://github.com/boy-lang)
 
 - rust
 - llvm
 
 My own programming language.
 
-## Disko
-
-- C
-- python
-- qt
-
-SSD health manager for linux.
-
-## flatpak GUI
-
-- tauri
-- rust
-- react
-- deno
-- typescript
-
-A distro-agnostic graphical front-end for flatpak
-
 ## gnome life calendar
 
-- go
+- [gjs](https://gjs.guide) (javascript)
 - gtk
 
 gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
 
 ## mcpk.io
 
+- GDScript
 - godot
 
-an accurate minecraft parkour training with the same movement logic.
+an accurate Minecraft parkour training with the same movement logic.
 
 ## onetab-firefox
 
@@ -63,52 +52,50 @@ an accurate minecraft parkour training with the same movement logic.
 - svelte
 - html5
 - css3
+- sass
+- tailwindcss
 
 onetab for firefox.
 
 ## Starlight prince
 
+- GDScript
 - godot
 
 A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/222304395450) ([YouTube](https://www.youtube.com/playlist?list=PL1dMxl3V0rvgYQi4C-UEzW7s24D4EfBXf)).
-
-## War Brokers Homepage
-
-- Vue
-- nuxtjs
-- vite
-- node.js
-- javascript
-- typescript
-- html5
-- css3
-- sass
-
-A new homepage for [warbrokers.io](https://warbrokers.io).
 
 ## War Brokers timeline
 
 - redis
 - graphQL
+- rust
+- html5
+- css3
+- sass
+- tailwindCSS
+- javascript
+- typescript
 - [yew](https://github.com/yewstack/yew)
 
 Events happened in the War Brokers community.
 
-## xbrowsersync mobile rewrite
+## better-xbrowsersync
 
+- typescript
+- tsx
 - react native
 
-get some code from [xbrowsersync app](https://github.com/xbrowsersync/app).
+A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better styling.
 
 ## Minecraft Cinematic Utility
 
-- java
+- kotlin
 
 A Minecraft client mod that adds cinematic mods to player camera.
 
 ## Ecclesiis
 
-- flutter/react native
+- flutter
 - firebase
 - redis
 
@@ -121,3 +108,9 @@ A map of certified and verified churches in the Philippine.
 - tailwind css
 
 MS powerpoint built with web technologies.
+
+## fog browser
+
+- mypy (python)
+
+A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
