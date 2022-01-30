@@ -39,6 +39,10 @@ A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better
 
 My own programming language.
 
+## doc-vcs
+
+A git-like version control system for documents.
+
 ## Ecclesiis
 
 - flutter
@@ -94,16 +98,13 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 
 ## War Brokers timeline
 
-- redis
-- graphQL
-- rust
 - html5
 - css3
 - sass
 - tailwindCSS
 - javascript
 - typescript
-- [yew](https://github.com/yewstack/yew)
+- infernojs
 
 Events happened in the War Brokers community.
 
