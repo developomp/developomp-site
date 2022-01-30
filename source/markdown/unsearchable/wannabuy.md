@@ -18,6 +18,7 @@ Total price: $1098
 |     Operating system | None                                                                                                       |
 |               Memory | 16GB (2 x 8GB) DDR4-3200                                                                                   |
 |             Keyboard | **waiting** for Korean keyboard w/ full size arrow key and number pad                                      |
+|              Display | **waiting** for 120+Hz display                                                                             |
 |        Power Adapter | **waiting** for [Schuko plug (type f plug)](https://www.worldstandards.eu/electricity/plugs-and-sockets/f) |
 | Port expansion cards | 1xDP 3xUSB-A 2xUSB-C 1xHDMI + **waiting** for RJ-45 ethernet port                                          |
 
@@ -30,8 +31,8 @@ Total price: $1098
 
 Not decided
 
-Type: pantograph
-
+- programmable
+- pantograph
 - number pad
 - full size arrow keys
 
