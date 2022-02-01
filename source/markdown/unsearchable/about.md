@@ -12,7 +12,6 @@ Year of Birth: 2002
 
 - [Github](https://github.com/developomp)
 - [goals](/goals)
-- [wannabuy](/wannabuy)
 
 ## Contact
 
