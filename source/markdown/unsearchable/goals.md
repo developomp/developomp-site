@@ -14,27 +14,33 @@ title: Goals
   - [x] My own website ([Github](https://github.com/developomp/developomp-site))
   - [x] My own linux setup script ([Github](https://github.com/developomp/setup))
   - [ ] My own programming language ([Github](https://github.com/boy-lang))
-- [ ] Push at least one commit every day for 365 days
+- Push at least one commit every day for X days
+  - [x] 30
+  - [x] 50
+  - [ ] 100
+  - [ ] 200
+  - [ ] 300
+  - [ ] 365
+  - [ ] 500
 - [ ] Get my code in the linux kernel
+- [ ] submit a CVE with the severity rating 7.0 (high) or above (NVD CVSS v3)
 
 ## Lean how to
 
 - Type at least X letters per minute (rules: count the number of correct keystrokes made in one minute. Use [10fastfingers.com](https://10fastfingers.com/typing-test) for testing. The typing speed must be consistent and could be replicated on-demand.)
   - Korean
     - [x] 100
+    - [x] 150
     - [x] 200
+    - [ ] 250
     - [ ] 300
   - English
     - [x] 100
+    - [x] 150
     - [x] 200
+    - [x] 250
     - [ ] 300
-- [ ] Type without looking at keyboard
-- Speak basic Chinese
-  - [ ] Counting up to 15 digits
-  - [ ] Greetings
-- Speak basic Japanese
-  - [ ] Counting up to 15 digits
-  - [ ] Greetings
+- [x] Type without looking at keyboard
 
 ## Etc
 
