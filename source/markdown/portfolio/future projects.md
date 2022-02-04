@@ -101,10 +101,11 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 - html5
 - css3
 - sass
-- tailwindCSS
 - javascript
 - typescript
-- infernojs
+- yew
+- rust
+- wasm
 
 Events happened in the War Brokers community.
 
