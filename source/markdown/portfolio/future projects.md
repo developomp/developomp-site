@@ -7,10 +7,10 @@ image: /img/icon.png
 <!--
 - SQL
 - deno
-- go
 - qt
+- infernojs
+- solidjs
 - Extend lang such as py/js with rust/C/C++
-- Vue
 - nuxtjs
 - nextjs
 - vite
@@ -26,8 +26,6 @@ Slow but efficient compression algorithm based on [the library of babel](https:/
 
 ## better xbrowsersync
 
-- typescript
-- tsx
 - react native
 
 A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better styling.
@@ -41,6 +39,8 @@ My own programming language.
 
 ## doc-vcs
 
+- go
+
 A git-like version control system for documents.
 
 ## Ecclesiis
@@ -53,6 +53,7 @@ A map of certified and verified churches in the Philippine.
 
 ## fog browser
 
+- C
 - mypy (python)
 
 A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
@@ -103,9 +104,7 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 - sass
 - javascript
 - typescript
-- yew
-- rust
-- wasm
+- vue
 
 Events happened in the War Brokers community.
 
