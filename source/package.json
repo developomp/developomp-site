@@ -70,7 +70,7 @@
 		"markdown-toc": "^1.2.0",
 		"prettier": "^2.5.1",
 		"read-time-estimate": "^0.0.3",
-		"simple-icons": "^6.5.0",
+		"simple-icons": "^6.9.0",
 		"svgo": "^2.8.0",
 		"tinycolor2": "^1.4.2",
 		"ts-node": "^10.4.0",

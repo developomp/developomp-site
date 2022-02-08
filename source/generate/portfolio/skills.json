@@ -7,5 +7,5 @@
 		"csharp"
 	],
 	"frontEndWeb": ["react", "svelte", "html5", "css3", "sass", "tailwindcss"],
-	"frontEndDesktop": ["gnome gtk", "electron"]
+	"frontEndDesktop": ["gnome gtk", "electron", "tauri"]
 }
