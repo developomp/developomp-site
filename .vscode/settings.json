@@ -21,5 +21,6 @@
 		"editor.defaultFormatter": "jock.svg"
 	},
 	// for .ejs files
-	"html.validate.styles": false
+	"html.validate.styles": false,
+	"color-highlight.markerType": "outline"
 }
