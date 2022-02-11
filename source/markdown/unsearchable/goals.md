@@ -10,6 +10,12 @@ title: Goals
   - [ ] 500
   - [ ] 1,000
   - [ ] 10,000
+- Make X github contributions in a year (jan 1 ~ dec 31)
+  - [x] 100
+  - [x] 500
+  - [x] 1000
+  - [ ] 2000
+  - [ ] 3000
 - Create...
   - [x] My own website ([Github](https://github.com/developomp/developomp-site))
   - [x] My own linux setup script ([Github](https://github.com/developomp/setup))
