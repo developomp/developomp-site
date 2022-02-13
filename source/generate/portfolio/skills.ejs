@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="600">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="750">
 	<style>
 		<%= style %>
 	</style>
@@ -21,6 +21,10 @@
 			<h3>Desktop</h3>
 
 			<%- include("badges.ejs", { badges: data.frontEndDesktop }) %>
+
+			<h3>Game development</h3>
+
+			<%- include("badges.ejs", { badges: data.gameDev }) %>
 		</div>
 	</foreignObject>
 </svg>
