@@ -72,12 +72,6 @@ gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks
 
 an accurate Minecraft parkour training with the same movement logic.
 
-## Minecraft Cinematic Utility
-
-- kotlin
-
-A Minecraft client mod that adds cinematic mods to player camera.
-
 ## onetab-firefox
 
 - javascript
@@ -108,11 +102,3 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 - webassembly
 
 Events happened in the War Brokers community.
-
-## webppt
-
-- rust + wasm
-- svelte
-- tailwind css
-
-MS powerpoint built with web technologies.
