@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import { PostData } from "../../types/types"
 
@@ -55,41 +55,42 @@ interface Props {
 
 const PostCard = (props: Props) => {
 	const { postData } = props
-	const navigate = useNavigate()
 
 	return (
-		<StyledPostCard
-			onClick={() => navigate(process.env.PUBLIC_URL + postData.url)}
-		>
-			<StyledTitle>
-				{postData?.title || "No title"}
-				{/* show (series for regex matching "/series/<series-title>") */}
-				{/\/series\/[^/]*$/.test(postData.url) && " (series)"}
-			</StyledTitle>
+		<Link to={process.env.PUBLIC_URL + postData.url}>
+			<StyledPostCard>
+				<StyledTitle>
+					{postData?.title || "No title"}
+					{/* show (series for regex matching "/series/<series-title>") */}
+					{/\/series\/[^/]*$/.test(postData.url) && " (series)"}
+				</StyledTitle>
 
-			<br />
+				<br />
 
-			<StyledMetaContainer>
-				<TagList direction="left">
-					{postData.tags &&
-						postData.tags.map((tag) => {
-							return <Tag key={postData.title + tag} text={tag} />
-						})}
-				</TagList>
-				<hr />
-				<FontAwesomeIcon icon={faCalendar} />
-				&nbsp;&nbsp;&nbsp;
-				{postData?.date || "Unknown date"}
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<FontAwesomeIcon icon={faHourglass} />
-				&nbsp;&nbsp;&nbsp;
-				{postData?.readTime ? postData.readTime + " read" : "unknown length"}
-				&nbsp;&nbsp;&nbsp;&nbsp;
-				<FontAwesomeIcon icon={faBook} />
-				&nbsp;&nbsp;&nbsp;
-				{postData?.wordCount ? postData.wordCount + " words" : "unknown words"}
-			</StyledMetaContainer>
-		</StyledPostCard>
+				<StyledMetaContainer>
+					<TagList direction="left">
+						{postData.tags &&
+							postData.tags.map((tag) => {
+								return <Tag key={postData.title + tag} text={tag} />
+							})}
+					</TagList>
+					<hr />
+					<FontAwesomeIcon icon={faCalendar} />
+					&nbsp;&nbsp;&nbsp;
+					{postData?.date || "Unknown date"}
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<FontAwesomeIcon icon={faHourglass} />
+					&nbsp;&nbsp;&nbsp;
+					{postData?.readTime ? postData.readTime + " read" : "unknown length"}
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<FontAwesomeIcon icon={faBook} />
+					&nbsp;&nbsp;&nbsp;
+					{postData?.wordCount
+						? postData.wordCount + " words"
+						: "unknown words"}
+				</StyledMetaContainer>
+			</StyledPostCard>
+		</Link>
 	)
 }
 
