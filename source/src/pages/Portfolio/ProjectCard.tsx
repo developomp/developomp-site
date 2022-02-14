@@ -1,17 +1,24 @@
+import { useEffect, useState } from "react"
 import styled from "styled-components"
-import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import Badge from "../../components/Badge"
-import Card from "../../components/Card"
+import { cardCSS } from "../../components/Card"
 
 import { PortfolioProject } from "../../../types/types"
 import theming from "../../styles/theming"
-import { useEffect, useState } from "react"
 
-const StyledProjectCard = styled(Card)`
+const StyledProjectCard = styled.div`
+	${cardCSS}
+	${theming.styles.hoverCard}
+
 	margin-bottom: 2rem;
 
-	${theming.styles.hoverCard}
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color1,
+			dark: theming.dark.color1,
+		})};
 `
 
 const StyledImg = styled.img`
@@ -30,23 +37,22 @@ const ProjectCard = (props: ProjectCardProps) => {
 	const { projectID, project } = props
 
 	const [badges, setBadges] = useState<JSX.Element[]>([])
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		setBadges(project.badges.map((badge) => <Badge key={badge} slug={badge} />))
 	}, [])
 
 	return (
-		<StyledProjectCard
-			onClick={() => navigate(process.env.PUBLIC_URL + projectID)}
-		>
-			<h1>{project.name}</h1>
-			<StyledImg src={project.image} />
+		<Link to={process.env.PUBLIC_URL + projectID}>
+			<StyledProjectCard>
+				<h1>{project.name}</h1>
+				<StyledImg src={project.image} />
 
-			{badges}
-			<hr />
-			<div dangerouslySetInnerHTML={{ __html: project.overview }} />
-		</StyledProjectCard>
+				{badges}
+				<hr />
+				<div dangerouslySetInnerHTML={{ __html: project.overview }} />
+			</StyledProjectCard>
+		</Link>
 	)
 }
 
