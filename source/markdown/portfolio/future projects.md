@@ -65,13 +65,6 @@ A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chro
 
 gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
 
-## mcpk.io
-
-- GDScript
-- godot
-
-an accurate Minecraft parkour training with the same movement logic.
-
 ## onetab-firefox
 
 - javascript
@@ -84,13 +77,6 @@ an accurate Minecraft parkour training with the same movement logic.
 
 onetab for firefox.
 
-## Starlight prince
-
-- GDScript
-- godot
-
-A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/222304395450) ([YouTube](https://www.youtube.com/playlist?list=PL1dMxl3V0rvgYQi4C-UEzW7s24D4EfBXf)).
-
 ## War Brokers timeline
 
 - html5
@@ -102,3 +88,10 @@ A platformer game based on [a minecraft map](https://blog.naver.com/edward2065/2
 - webassembly
 
 Events happened in the War Brokers community.
+
+## Earth live
+
+- bevy
+- rust
+
+An interactive 3D live satellite view of the earth with variable band support.
