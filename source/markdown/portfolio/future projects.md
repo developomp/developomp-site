@@ -53,8 +53,10 @@ A map of certified and verified churches in the Philippine.
 
 ## fog browser
 
-- C
+- C++
 - mypy (python)
+- deno
+- typescript
 
 A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
 
