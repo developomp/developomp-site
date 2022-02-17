@@ -6,14 +6,10 @@ image: /img/icon.png
 
 <!--
 - SQL
-- deno
 - qt
-- infernojs
-- solidjs
+- flutter
+- redis
 - Extend lang such as py/js with rust/C/C++
-- nuxtjs
-- nextjs
-- vite
 -->
 
 These are the projects I'll be working on in the future. Ordered alphabetically.
@@ -43,18 +39,10 @@ My own programming language.
 
 A git-like version control system for documents.
 
-## Ecclesiis
-
-- flutter
-- firebase
-- redis
-
-A map of certified and verified churches in the Philippine.
-
 ## fog browser
 
 - C++
-- mypy (python)
+- python
 - deno
 - typescript
 
@@ -66,18 +54,6 @@ A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chro
 - gtk
 
 gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
-
-## onetab-firefox
-
-- javascript
-- typescript
-- svelte
-- html5
-- css3
-- sass
-- tailwindcss
-
-onetab for firefox.
 
 ## Earth live
 
