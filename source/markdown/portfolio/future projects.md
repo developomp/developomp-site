@@ -79,18 +79,6 @@ gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks
 
 onetab for firefox.
 
-## War Brokers timeline
-
-- html5
-- css3
-- sass
-- javascript
-- yew
-- rust
-- webassembly
-
-Events happened in the War Brokers community.
-
 ## Earth live
 
 - bevy
