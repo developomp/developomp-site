@@ -1,5 +1,5 @@
 /**
- * from source/node_modules/highlight.js/styles/atom-one-dark-reasonable.css
+ * from node_modules/highlight.js/styles/atom-one-dark-reasonable.css
  */
 
 import { css } from "styled-components"

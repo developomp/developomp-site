@@ -1,5 +1,5 @@
 /**
- * from source/node_modules/highlight.js/styles/default.css
+ * from node_modules/highlight.js/styles/default.css
  */
 
 import { css } from "styled-components"

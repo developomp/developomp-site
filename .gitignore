@@ -2,10 +2,10 @@
 _/
 
 # auto generated files
-source/src/data/
-!source/src/data/NavbarData.tsx
-source/public/img/skills.svg
-source/public/img/projects.svg
+/src/data/
+!/src/data/NavbarData.tsx
+/public/img/skills.svg
+/public/img/projects.svg
 
 # dependencies
 .pnp/

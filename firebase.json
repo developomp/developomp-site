@@ -3,7 +3,7 @@
 		{
 			"target": "stable",
 			"cleanUrls": true,
-			"public": "source/build",
+			"public": "build",
 			"rewrites": [
 				{
 					"source": "**",

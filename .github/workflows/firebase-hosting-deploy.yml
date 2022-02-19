@@ -17,14 +17,14 @@ jobs:
         with:
           node-version: 16
           cache: yarn
-          cache-dependency-path: source/yarn.lock
+          cache-dependency-path: yarn.lock
       - name: Install dependencies and Build
-        run: cd source && yarn install && yarn build
+        run: yarn install && yarn build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
           name: build
-          path: source/build
+          path: build
 
   deploy:
     if: ${{ github.repository_owner == 'developomp' }}
@@ -38,7 +38,7 @@ jobs:
         uses: actions/download-artifact@master
         with:
           name: build
-          path: source/build
+          path: build
       - name: Set target
         uses: w9jds/firebase-action@master
         with:

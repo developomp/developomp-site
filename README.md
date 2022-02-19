@@ -19,19 +19,13 @@ Source code for my (developomp's) <a href="https://developomp.com" target="_blan
 git clone https://github.com/developomp/developomp-site.git
 ```
 
-#### 2. Open the [`source`](./source) directory
-
-```bash
-cd source
-```
-
-#### 3. Install dependencies
+#### 2. Install dependencies
 
 ```bash
 yarn install
 ```
 
-#### 4. Test locally
+#### 3. Test locally
 
 ```bash
 yarn start
