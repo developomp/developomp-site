@@ -39,15 +39,6 @@ My own programming language.
 
 A git-like version control system for documents.
 
-## fog browser
-
-- C++
-- python
-- deno
-- typescript
-
-A custom tailored [ungoogled chromium](https://github.com/Eloston/ungoogled-chromium) based web browser just for me.
-
 ## gnome life calendar
 
 - [gjs](https://gjs.guide) (javascript)
