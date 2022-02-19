@@ -2,7 +2,7 @@
 _/
 
 # auto generated files
-/src/data/
+/src/data/**
 !/src/data/NavbarData.tsx
 /public/img/skills.svg
 /public/img/projects.svg
