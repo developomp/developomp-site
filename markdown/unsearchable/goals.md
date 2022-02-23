@@ -23,7 +23,7 @@ title: Goals
 - Push at least one commit every day for X days
   - [x] 30
   - [x] 50
-  - [ ] 100
+  - [x] 100
   - [ ] 200
   - [ ] 300
   - [ ] 365
