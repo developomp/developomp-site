@@ -1,6 +1,6 @@
 ---
 name: future projects
-overview: Projects I'll work on in the future
+overview: Next big projects ^TM^
 image: /img/icon.png
 ---
 

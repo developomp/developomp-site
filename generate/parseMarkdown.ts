@@ -74,6 +74,12 @@ export default function parseMarkdown(
 			throw Error(`Date is not defined in file: ${path}`)
 	}
 
+	if (mode === ParseMode.PORTFOLIO) {
+		if (frontMatter.overview) {
+			frontMatter.overview = md.render(frontMatter.overview)
+		}
+	}
+
 	//
 	// work with rendered DOM
 	//
