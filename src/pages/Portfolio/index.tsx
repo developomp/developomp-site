@@ -73,13 +73,12 @@ const Portfolio = () => {
 					Projects
 				</h2>
 
-				{/*
-					// todo: filter projects by skill
-					{skills}
+				{/* todo: filter projects by skill */}
 
-					<br />
-					<br />
-				*/}
+				{skills}
+
+				<br />
+				<br />
 
 				{projects}
 			</MainContent>
