@@ -7,6 +7,6 @@
 		"csharp"
 	],
 	"gameDev": ["unity"],
-	"frontEndWeb": ["react", "svelte", "html5", "css3", "sass", "tailwindcss"],
+	"frontEndWeb": ["react", "svelte", "sass", "tailwindcss"],
 	"frontEndDesktop": ["gnome gtk", "electron", "tauri"]
 }
