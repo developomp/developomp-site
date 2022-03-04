@@ -38,13 +38,6 @@ A git-like version control system for documents.
 
 gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
 
-## Earth live
-
-- bevy
-- rust
-
-An interactive 3D live satellite view of the earth with variable band support.
-
 ## Etc
 
 Project using one or more of the following technologies:
@@ -54,3 +47,4 @@ Project using one or more of the following technologies:
 - flutter
 - redis
 - elm
+- bevy engine
