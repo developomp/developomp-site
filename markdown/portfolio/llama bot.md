@@ -8,7 +8,7 @@ badges:
   - nodedotjs
   - javascript
   - typescript
-  - react
+  - svelte
   - html5
   - css3
   - express
