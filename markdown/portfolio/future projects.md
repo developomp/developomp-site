@@ -4,14 +4,6 @@ overview: Next big projects ^TM^
 image: /img/icon.png
 ---
 
-<!--
-- SQL
-- qt
-- flutter
-- redis
-- Extend lang such as py/js with rust/C/C++
--->
-
 These are the projects I'll be working on in the future. Ordered alphabetically.
 
 ## babel-compressor
@@ -52,3 +44,13 @@ gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks
 - rust
 
 An interactive 3D live satellite view of the earth with variable band support.
+
+## Etc
+
+Project using one or more of the following technologies:
+
+- SQL
+- qt
+- flutter
+- redis
+- elm
