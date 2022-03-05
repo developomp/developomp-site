@@ -48,18 +48,27 @@ const anchorCSS = css`
 
 const scrollbarCSS = css`
 	body::-webkit-scrollbar {
-		width: ${theming.size.x_small};
+		width: 8px;
 	}
 
 	body::-webkit-scrollbar-track {
 		border-radius: ${theming.size.x2_small};
-		background: rgba(0, 0, 0, 0.06);
+
+		background: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.backgroundColor0,
+				dark: theming.dark.backgroundColor0,
+			})};
 		box-shadow: inset 0 0 5px rgb(0 0 0 / 10%);
 	}
 
 	body::-webkit-scrollbar-thumb {
 		border-radius: ${theming.size.x2_small};
-		background: rgba(0, 0, 0, 0.1);
+		background: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.backgroundColor2,
+				dark: "#888888",
+			})};
 		box-shadow: inset 0 0 10px rgb(0 0 0 / 20%);
 	}
 `

@@ -21,7 +21,6 @@ const theming = {
 	},
 	size: {
 		x2_small: "3px",
-		x_small: "8px",
 		small: 0,
 		medium: "1rem",
 		large: 0,
