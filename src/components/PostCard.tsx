@@ -16,6 +16,26 @@ import MainContent from "./MainContent"
 
 import theming from "../styles/theming"
 
+const PostCardContainer = styled(Link)`
+	display: block;
+	padding: 2rem;
+	text-decoration: none;
+
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color2,
+			dark: theming.dark.color2,
+		})};
+
+	&:hover {
+		color: ${(props) =>
+			theming.theme(props.theme.currentTheme, {
+				light: theming.light.color2,
+				dark: theming.dark.color2,
+			})};
+	}
+`
+
 const StyledPostCard = styled(MainContent)`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
 	text-align: left;
@@ -28,6 +48,7 @@ const StyledPostCard = styled(MainContent)`
 		})};
 
 	${theming.styles.hoverCard}
+	padding: 0;
 `
 
 const StyledTitle = styled.h1`
@@ -35,15 +56,10 @@ const StyledTitle = styled.h1`
 	font-style: bold;
 	margin: 0;
 	margin-bottom: 1rem;
+	color: #eeeeee;
 `
 
-const StyledMetaContainer = styled.small`
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color2,
-			dark: theming.dark.color2,
-		})};
-`
+const StyledMetaContainer = styled.small``
 
 interface PostCardData extends PostData {
 	url: string
@@ -57,8 +73,8 @@ const PostCard = (props: Props) => {
 	const { postData } = props
 
 	return (
-		<Link to={process.env.PUBLIC_URL + postData.url}>
-			<StyledPostCard>
+		<StyledPostCard>
+			<PostCardContainer to={process.env.PUBLIC_URL + postData.url}>
 				<StyledTitle>
 					{postData?.title || "No title"}
 					{/* show (series for regex matching "/series/<series-title>") */}
@@ -89,8 +105,8 @@ const PostCard = (props: Props) => {
 						? postData.wordCount + " words"
 						: "unknown words"}
 				</StyledMetaContainer>
-			</StyledPostCard>
-		</Link>
+			</PostCardContainer>
+		</StyledPostCard>
 	)
 }
 
