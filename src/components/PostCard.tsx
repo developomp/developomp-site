@@ -20,6 +20,7 @@ const PostCardContainer = styled(Link)`
 	display: block;
 	padding: 2rem;
 	text-decoration: none;
+	padding: 0;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
@@ -48,7 +49,6 @@ const StyledPostCard = styled(MainContent)`
 		})};
 
 	${theming.styles.hoverCard}
-	padding: 0;
 `
 
 const StyledTitle = styled.h1`
