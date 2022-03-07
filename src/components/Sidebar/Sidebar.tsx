@@ -8,8 +8,8 @@ import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 
 import SubMenu from "./SubMenu"
 
-import NavbarData, { Item } from "../data/NavbarData"
-import theming from "../styles/theming"
+import NavbarData, { Item } from "../../data/NavbarData"
+import theming from "../../styles/theming"
 
 const CommonSidebarToggleButtonStyle = css`
 	${theming.styles.navbarButtonStyle}

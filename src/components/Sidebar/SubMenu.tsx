@@ -6,8 +6,8 @@ import { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import { Item } from "../data/NavbarData"
-import theming from "../styles/theming"
+import { Item } from "../../data/NavbarData"
+import theming from "../../styles/theming"
 
 const SidebarLink = styled(Link)`
 	${theming.styles.navbarButtonStyle};
