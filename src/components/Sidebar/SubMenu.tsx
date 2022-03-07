@@ -20,6 +20,10 @@ const SidebarLink = styled(Link)`
 	align-items: center;
 	padding: 20px;
 	list-style: none;
+
+	&:hover {
+		color: inherit;
+	}
 `
 
 const SidebarLabel = styled.span`
