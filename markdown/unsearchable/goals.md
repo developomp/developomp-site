@@ -51,3 +51,15 @@ title: Goals
 ## Etc
 
 - [ ] Make a high quality video that I'm proud of with at least 1M views on YouTube
+- [ ] Get a job
+  - [ ] Get a job at FAANG (or some future equivalent of it)
+- [ ] Witness the technological singularity
+- [ ] Go to moon
+- [ ] Celebrate by Xth birthday
+  - [ ] 30
+  - [ ] 40
+  - [ ] 50
+  - [ ] 80
+  - [ ] 100
+  - [ ] 150
+  - [ ] 200
