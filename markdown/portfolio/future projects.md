@@ -38,6 +38,17 @@ A git-like version control system for documents.
 
 gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
 
+## kakaotoku
+
+FOSS cross-platform [Kakaotalk](https://www.kakaocorp.com) client.
+
+- rust
+- typescript
+- javascript
+- svelte
+- tailwindcss
+- tauri
+
 ## Etc
 
 Project using one or more of the following technologies:
