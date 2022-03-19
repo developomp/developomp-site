@@ -13,6 +13,7 @@ const StyledProjectCard = styled.div`
 	${theming.styles.hoverCard}
 
 	margin-bottom: 2rem;
+	word-wrap: break-word;
 
 	color: ${(props) =>
 		theming.theme(props.theme.currentTheme, {
