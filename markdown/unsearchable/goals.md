@@ -30,6 +30,19 @@ title: Goals
   - [ ] 500
 - [ ] Get my code in the linux kernel
 - [ ] submit a CVE with the severity rating 7.0 (high) or above (NVD CVSS v3)
+- Algorithm problem solving ([solved.ac](https://solved.ac))
+  - solve all X problems
+    - [ ] [Bronze V](https://solved.ac/problems/level/1)
+  - Reach X tier
+    - [x] Bronze (**5 4 3 2 1**)
+    - [x] Silver (**5** 4 3 2 1)
+    - [ ] Gold (5 4 3 2 1)
+    - [ ] Platinum (5 4 3 2 1)
+    - [ ] Diamond (5 4 3 2 1)
+    - [ ] Ruby (5 4 3 2 1)
+  - Reach X digit global ranking
+    - [ ] 4
+    - [ ] 3
 
 ## Lean how to
 
