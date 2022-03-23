@@ -5,6 +5,8 @@
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
 	"cSpell.words": [
+		"bspwm",
+		"classnet",
 		"developomp",
 		"developomp's",
 		"dompurify",
@@ -12,9 +14,13 @@
 		"Fontawesome",
 		"hljs",
 		"katex",
+		"Librewolf",
+		"polybar",
 		"Pomky",
+		"sxhkd",
 		"texmath",
 		"tinycolor",
+		"ungoogled",
 		"YYYYMMDD"
 	],
 	"[svg]": {
