@@ -10,11 +10,14 @@ badges:
   - vim
 ---
 
-Setting up a linux desktop properly takes a lot of time.
-I learned this the hard way when I was still in highschool.
-While playing around with OS one day, I somehow managed to completely mess up the OS files beyond repair and had no choice but to reinstall the whole thing.
+## Introduction
+
+Properly setting up a linux desktop takes a lot of time.
+I learned this the hard way back when I was still in highschool.
+While playing around with OS one day, I somehow managed to completely mess up the core OS files beyond repair and had no choice but to reinstall the whole thing.
 Luckily, this was right after the classes were over so I was able to fix it at the cost of my entire afternoon.
-That's when I decided that I need some automation.
+That night, I thought about how if this were to happen again at the wrong time, I will be completely screwed.
+That's when I realized that I needed some automation.
 
 This project is essentially a collection of python scripts that automates the OS setup process.
 It automatically sets up applications and restores the configuration just the way I like it.
