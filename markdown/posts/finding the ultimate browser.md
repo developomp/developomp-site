@@ -2,8 +2,8 @@
 title: Finding the ultimate browser
 date: 2022-03-24
 tags:
-	- browser
-	- story
+  - story
+  - browser
 ---
 
 ## Intro
