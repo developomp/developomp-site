@@ -16,7 +16,7 @@ const StyledThemeButton = styled.div`
 		})};
 `
 
-const Navbar = () => {
+const ThemeToggleButton = () => {
 	return (
 		<ThemeConsumer>
 			{({ currentTheme, setTheme }) => (
@@ -40,4 +40,4 @@ const Navbar = () => {
 	)
 }
 
-export default Navbar
+export default ThemeToggleButton
