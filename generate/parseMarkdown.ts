@@ -63,9 +63,9 @@ export default function parseMarkdown(
 	mode: ParseMode
 ): MarkdownData {
 	// todo: accurately calculate start and end of front matter
-	const frontMatter = matter(
-		markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)
-	).data
+	const frontMatter = markdownRaw.startsWith("---")
+		? matter(markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)).data
+		: {}
 
 	if (mode != ParseMode.PORTFOLIO) {
 		if (!frontMatter.title) throw Error(`Title is not defined in file: ${path}`)
@@ -85,7 +85,11 @@ export default function parseMarkdown(
 	//
 
 	const dom = new JSDOM(
-		md.render(markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)) || ""
+		md.render(
+			markdownRaw.startsWith("---")
+				? markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)
+				: markdownRaw
+		) || ""
 	)
 
 	// add .hljs class to all block codes
