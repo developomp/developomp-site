@@ -9,7 +9,7 @@ import { StyledLink } from "./Navbar"
 const SearchButton = () => {
 	return (
 		<>
-			<div style={{ height: "100%" }}>
+			<div>
 				<Link
 					data-tip
 					data-for="search"
