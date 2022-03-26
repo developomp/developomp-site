@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 import NavLinks from "./NavLinks"
+import LocaleToggleButton from "./LocaleToggleButton"
 import ThemeToggleButton from "./ThemeToggleButton"
 import SearchButton from "./SearchButton"
 import ReadProgress from "./ReadProgress"
@@ -72,6 +73,7 @@ const Navbar = () => {
 
 				{/* right buttons */}
 				<RightButtons>
+					<LocaleToggleButton />
 					<ThemeToggleButton />
 					<SearchButton />
 				</RightButtons>
