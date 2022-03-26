@@ -56,7 +56,11 @@ const StyledTitle = styled.h1`
 	font-style: bold;
 	margin: 0;
 	margin-bottom: 1rem;
-	color: #eeeeee;
+	color: ${(props) =>
+		theming.theme(props.theme.currentTheme, {
+			light: theming.light.color2,
+			dark: theming.dark.color2,
+		})};
 `
 
 const StyledMetaContainer = styled.small``
@@ -76,8 +80,8 @@ const PostCard = (props: Props) => {
 		<StyledPostCard>
 			<PostCardContainer to={process.env.PUBLIC_URL + postData.url}>
 				<StyledTitle>
-					{postData?.title || "No title"}
-					{/* show (series for regex matching "/series/<series-title>") */}
+					{postData.title || "No title"}
+					{/* show "(series)" for urls that matches regex "/series/<series-title>" */}
 					{/\/series\/[^/]*$/.test(postData.url) && " (series)"}
 				</StyledTitle>
 
@@ -93,17 +97,19 @@ const PostCard = (props: Props) => {
 					<hr />
 					<FontAwesomeIcon icon={faCalendar} />
 					&nbsp;&nbsp;&nbsp;
-					{postData?.date || "Unknown date"}
+					{postData.date || "Unknown date"}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<FontAwesomeIcon icon={faHourglass} />
 					&nbsp;&nbsp;&nbsp;
-					{postData?.readTime ? postData.readTime + " read" : "unknown length"}
+					{postData.readTime
+						? postData.readTime + " read"
+						: "unknown read time"}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<FontAwesomeIcon icon={faBook} />
 					&nbsp;&nbsp;&nbsp;
-					{postData?.wordCount
+					{postData.wordCount
 						? postData.wordCount + " words"
-						: "unknown words"}
+						: "unknown length"}
 				</StyledMetaContainer>
 			</PostCardContainer>
 		</StyledPostCard>
