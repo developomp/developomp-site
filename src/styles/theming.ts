@@ -69,7 +69,7 @@ const theming = {
 			/* size */
 
 			height: 100%;
-			min-width: 3rem;
+			min-width: 2.5rem;
 			margin: 0;
 			padding: 0 1rem 0 1rem;
 
