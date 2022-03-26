@@ -66,7 +66,7 @@ const PostList = () => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | Home</title>
+				<title>pomp | {globalState.locale == "en" ? "Home" : "홈"}</title>
 
 				<meta property="og:type" content="website" />
 				<meta
