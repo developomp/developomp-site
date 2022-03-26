@@ -2,7 +2,7 @@
 title: About
 ---
 
-## Me
+## Who am I?
 
 Name: Jimin Kim<br />
 Location: South Korea<br />
@@ -11,7 +11,6 @@ Year of Birth: 2002
 ## Links
 
 - [Github](https://github.com/developomp)
-- [goals](/goals)
 
 ## Contact
 
@@ -22,7 +21,7 @@ Send messages through these platform to reach out to me.
 | [![discord](https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com) | developomp#0001 (501277805540147220) | Immediate              |
 |   [![gmail](https://img.shields.io/badge/gmail-FF0027?style=for-the-badge&logo=gmail&logoColor=white)](https://mail.google.com) | developomp@gmail.com                 | half a week on average |
 
-## Official online accounts
+## Online accounts
 
 Please do not send messages to these accounts. Use the contacts listed above instead.
 
