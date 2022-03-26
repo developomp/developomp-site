@@ -11,44 +11,45 @@ import { DataToPass } from "."
 export default function parsePortfolio(data: DataToPass): void {
 	const { urlPath, markdownRaw, markdownData } = data
 
-	const lastPath = urlPath.slice(urlPath.lastIndexOf("/") + 1)
-
 	// check if the file is a portfolio overview or a project
-	if (lastPath == "0") {
+	// explanation: file `0.md` is a special file (i.e. not a regular project file)
+	if (urlPath.slice(urlPath.lastIndexOf("/") + 1) == "0") {
 		portfolioData.overview = markdownData.content
 	} else {
-		if (markdownData.badges) {
-			;(markdownData.badges as string[]).forEach((slug) => {
-				// todo: handle cases when icon is not on simple-icons
+		if (!urlPath.endsWith(".kr")) {
+			if (markdownData.badges) {
+				;(markdownData.badges as string[]).forEach((slug) => {
+					// todo: handle cases when icon is not on simple-icons
 
-				portfolioData.skills.add(slug)
+					portfolioData.skills.add(slug)
 
-				const icon = simpleIcons.Get(slug)
+					const icon = simpleIcons.Get(slug)
 
-				const color = tinycolor(icon.hex).lighten(5).desaturate(5)
+					const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 
-				// save svg icon
-				writeToFile(
-					`${iconsDirectoryPath}/${icon.slug}.json`,
-					JSON.stringify({
-						svg: icon.svg,
-						hex: color.toHexString(),
-						isDark: color.isDark(),
-						title: icon.title,
-					})
-				)
-			})
+					// save svg icon
+					writeToFile(
+						`${iconsDirectoryPath}/${icon.slug}.json`,
+						JSON.stringify({
+							svg: icon.svg,
+							hex: color.toHexString(),
+							isDark: color.isDark(),
+							title: icon.title,
+						})
+					)
+				})
+			}
+
+			const project: PortfolioProject = {
+				name: markdownData.name as string,
+				image: markdownData.image as string,
+				overview: markdownData.overview as string,
+				badges: (markdownData.badges as string[]) || [],
+				repo: (markdownData.repo as string) || "",
+			}
+
+			portfolioData.projects[urlPath] = project
 		}
-
-		const project: PortfolioProject = {
-			name: markdownData.name as string,
-			image: markdownData.image as string,
-			overview: markdownData.overview as string,
-			badges: (markdownData.badges as string[]) || [],
-			repo: (markdownData.repo as string) || "",
-		}
-
-		portfolioData.projects[urlPath] = project
 
 		writeToFile(
 			`${contentDirectoryPath}${urlPath}.json`,
