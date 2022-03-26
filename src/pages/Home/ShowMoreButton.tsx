@@ -1,6 +1,8 @@
+import { useContext } from "react"
 import styled from "styled-components"
 
 import theming from "../../styles/theming"
+import { globalContext } from "../../globalContext"
 
 const Button = styled.button`
 	/* size */
@@ -47,7 +49,13 @@ interface Props {
 }
 
 const ShowMoreButton = (props: Props) => {
-	return <Button onClick={props.action}>Show more posts...</Button>
+	const { globalState } = useContext(globalContext)
+
+	return (
+		<Button onClick={props.action}>
+			{globalState.locale == "en" ? "Show more posts" : "더 많은 포스트 보이기"}
+		</Button>
+	)
 }
 
 export default ShowMoreButton
