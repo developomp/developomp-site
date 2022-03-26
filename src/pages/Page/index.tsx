@@ -67,7 +67,11 @@ const fetchContent = async (
 		if (locale == "en") {
 			return await import(`../../data/content${url}.json`)
 		} else {
-			return await import(`../../data/content${url}.${locale}.json`)
+			try {
+				return await import(`../../data/content${url}.${locale}.json`)
+			} catch {
+				return await import(`../../data/content${url}.json`)
+			}
 		}
 	} catch (err) {
 		return
