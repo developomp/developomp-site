@@ -1,16 +1,13 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
-import ReactTooltip from "react-tooltip"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import ThemeToggleButton from "../ThemeToggleButton"
+import ReadProgress from "../ReadProgress"
+import Sidebar from "../Sidebar"
+import SearchButton from "./SearchButton"
+import NavLinks from "./NavLinks"
 
-import ThemeToggleButton from "./ThemeToggleButton"
-import ReadProgress from "./ReadProgress"
-import Sidebar from "./Sidebar"
-
-import theming from "../styles/theming"
-import NavbarData from "../data/NavbarData"
+import theming from "../../styles/theming"
 
 const StyledNav = styled.nav`
 	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
@@ -48,15 +45,6 @@ const StyledContainer = styled.div`
 	}
 `
 
-const StyledNavLinks = styled.div`
-	display: flex;
-	height: 100%;
-
-	@media only screen and (max-width: ${theming.size.screen_size1}) {
-		display: none;
-	}
-`
-
 const StyledImg = styled.img`
 	height: 2.5rem;
 
@@ -64,53 +52,23 @@ const StyledImg = styled.img`
 	margin: 1rem;
 `
 
-const StyledLink = styled.div`
+export const StyledLink = styled.div`
 	${theming.styles.navbarButtonStyle}
 `
-
-const SearchButton = () => {
-	return (
-		<>
-			<div style={{ height: "100%" }}>
-				<Link
-					data-tip
-					data-for="search"
-					to={`${process.env.PUBLIC_URL}/search`}
-				>
-					<StyledLink>
-						<FontAwesomeIcon icon={faSearch} />
-					</StyledLink>
-				</Link>
-			</div>
-			<ReactTooltip id="search" type="dark" effect="solid">
-				<span>Search</span>
-			</ReactTooltip>
-		</>
-	)
-}
 
 const Navbar = () => {
 	return (
 		<StyledNav>
 			<StyledContainer>
 				{/* icon */}
-
 				<Link to="/">
 					<StyledImg src={process.env.PUBLIC_URL + "/icon/icon_circle.svg"} />
 				</Link>
 
 				{/* nav links */}
-
-				<StyledNavLinks>
-					{NavbarData.map((item, index) => (
-						<Link key={index} to={item.path}>
-							<StyledLink>{item.title}</StyledLink>
-						</Link>
-					))}
-				</StyledNavLinks>
+				<NavLinks />
 
 				{/* right buttons */}
-
 				<ThemeToggleButton />
 				<SearchButton />
 				<Sidebar />
