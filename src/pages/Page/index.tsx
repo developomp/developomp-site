@@ -309,9 +309,9 @@ const Page = () => {
 						<TagList direction="left">
 							{pageData.tags.map((tag) => {
 								return (
-									<td key={pageData?.title + tag}>
+									<div key={pageData?.title + tag}>
 										<Tag text={tag} />
-									</td>
+									</div>
 								)
 							})}
 						</TagList>
