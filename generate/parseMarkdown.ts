@@ -62,21 +62,25 @@ export default function parseMarkdown(
 	path: string,
 	mode: ParseMode
 ): MarkdownData {
-	// todo: accurately calculate start and end of front matter
-	const frontMatter = markdownRaw.startsWith("---")
+	const fileHasFrontMatter = markdownRaw.startsWith("---")
+
+	const frontMatter = fileHasFrontMatter
 		? matter(markdownRaw.slice(0, nthIndex(markdownRaw, "---", 2) + 3)).data
 		: {}
 
-	if (mode != ParseMode.PORTFOLIO) {
-		if (!frontMatter.title) throw Error(`Title is not defined in file: ${path}`)
+	if (fileHasFrontMatter) {
+		if (mode != ParseMode.PORTFOLIO) {
+			if (!frontMatter.title)
+				throw Error(`Title is not defined in file: ${path}`)
 
-		if (mode != ParseMode.UNSEARCHABLE && !frontMatter.date)
-			throw Error(`Date is not defined in file: ${path}`)
-	}
+			if (mode != ParseMode.UNSEARCHABLE && !frontMatter.date)
+				throw Error(`Date is not defined in file: ${path}`)
+		}
 
-	if (mode === ParseMode.PORTFOLIO) {
-		if (frontMatter.overview) {
-			frontMatter.overview = md.render(frontMatter.overview)
+		if (mode === ParseMode.PORTFOLIO) {
+			if (frontMatter.overview) {
+				frontMatter.overview = md.render(frontMatter.overview)
+			}
 		}
 	}
 
@@ -86,7 +90,7 @@ export default function parseMarkdown(
 
 	const dom = new JSDOM(
 		md.render(
-			markdownRaw.startsWith("---")
+			fileHasFrontMatter
 				? markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)
 				: markdownRaw
 		) || ""

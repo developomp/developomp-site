@@ -61,7 +61,17 @@ const fetchContent = async (
 ) => {
 	try {
 		if (pageType == PageType.UNSEARCHABLE) {
-			return await import(`../../data/content/unsearchable${url}.json`)
+			if (locale == "en") {
+				return await import(`../../data/content/unsearchable${url}.json`)
+			} else {
+				try {
+					return await import(
+						`../../data/content/unsearchable${url}.${locale}.json`
+					)
+				} catch {
+					return await import(`../../data/content/unsearchable${url}.json`)
+				}
+			}
 		}
 
 		if (locale == "en") {
@@ -260,7 +270,10 @@ const Page = () => {
 				}
 
 				case PageType.UNSEARCHABLE: {
-					pageData.title = map.unsearchable[url].title
+					pageData.title = (
+						map.unsearchable[`${url}.${globalState.locale}`] ||
+						map.unsearchable[url]
+					).title
 					pageData.content = fetched_content.content
 
 					break
