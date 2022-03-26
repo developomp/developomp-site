@@ -1,9 +1,7 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
-
-import { PageData, Map } from "../../../types/types"
 
 import GithubLinkIcon from "../../components/GithubLinkIcon"
 import MainContent from "../../components/MainContent"
@@ -21,6 +19,9 @@ import Toc from "./Toc"
 import portfolio from "../../data/portfolio.json"
 import _map from "../../data/map.json"
 import { useEffect } from "react"
+
+import type { PageData, Map } from "../../../types/types"
+import { globalContext, SiteLocale } from "../../globalContext"
 
 const map: Map = _map
 
@@ -53,13 +54,21 @@ enum PageType {
 	UNSEARCHABLE,
 }
 
-const fetchContent = async (pageType: PageType, url: string) => {
+const fetchContent = async (
+	pageType: PageType,
+	url: string,
+	locale: SiteLocale
+) => {
 	try {
 		if (pageType == PageType.UNSEARCHABLE) {
 			return await import(`../../data/content/unsearchable${url}.json`)
 		}
 
-		return await import(`../../data/content${url}.json`)
+		if (locale == "en") {
+			return await import(`../../data/content${url}.json`)
+		} else {
+			return await import(`../../data/content${url}.${locale}.json`)
+		}
 	} catch (err) {
 		return
 	}
@@ -82,6 +91,7 @@ const categorizePageType = (url: string): PageType => {
 }
 
 const Page = () => {
+	const { globalState } = useContext(globalContext)
 	const location = useLocation()
 
 	const [pageData, setPageData] = useState<PageData | undefined>(undefined)
@@ -163,7 +173,7 @@ const Page = () => {
 			repo: "",
 		}
 
-		fetchContent(pageType, url).then((fetched_content) => {
+		fetchContent(pageType, url, globalState.locale).then((fetched_content) => {
 			if (!fetched_content) {
 				setIsLoading(false)
 				return
@@ -262,7 +272,7 @@ const Page = () => {
 
 			setIsLoading(false)
 		})
-	}, [location])
+	}, [location, globalState.locale])
 
 	if (isLoading) return <Loading />
 
