@@ -85,8 +85,10 @@ const codeCSS = css`
 		}
 	}}
 
+	/* line code */
 	:not(pre) > code {
 		font-family: ${theming.font.code};
+		word-wrap: break-word;
 		color: ${(props) =>
 			theming.theme(props.theme.currentTheme, {
 				light: theming.light.color1,
@@ -106,6 +108,7 @@ const codeCSS = css`
 		padding: 0 3px;
 	}
 
+	/* code block */
 	pre > code {
 		font-family: ${theming.font.code};
 		border: ${(props) =>
