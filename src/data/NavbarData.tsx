@@ -22,7 +22,7 @@ const NavbarData: Item[] = [
 	},
 	{
 		title_en: "About",
-		title_kr: "About",
+		title_kr: "소개",
 		path: "/about",
 		icon: <FontAwesomeIcon icon={faIdCard} />,
 	},
