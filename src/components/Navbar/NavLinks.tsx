@@ -1,10 +1,12 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
+import { StyledLink } from "./Navbar"
+
 import NavbarData from "../../data/NavbarData"
 import theming from "../../styles/theming"
-
-import { StyledLink } from "./Navbar"
+import { globalContext } from "../../globalContext"
 
 const StyledNavLinks = styled.div`
 	display: flex;
@@ -16,11 +18,15 @@ const StyledNavLinks = styled.div`
 `
 
 const NavLinks = () => {
+	const { globalState } = useContext(globalContext)
+
 	return (
 		<StyledNavLinks>
 			{NavbarData.map((item, index) => (
 				<Link key={index} to={item.path}>
-					<StyledLink>{item.title}</StyledLink>
+					<StyledLink>
+						{globalState.locale == "en" ? item.title_en : item.title_kr}
+					</StyledLink>
 				</Link>
 			))}
 		</StyledNavLinks>

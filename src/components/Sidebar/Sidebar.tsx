@@ -8,7 +8,7 @@ import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 
 import SubMenu from "./SubMenu"
 
-import NavbarData, { Item } from "../../data/NavbarData"
+import NavbarData from "../../data/NavbarData"
 import theming from "../../styles/theming"
 
 const CommonSidebarToggleButtonStyle = css`
@@ -111,7 +111,7 @@ const Sidebar = () => {
 
 					{/* sidebar items */}
 
-					{NavbarData.map((item: Item, index) => {
+					{NavbarData.map((item, index) => {
 						return <SubMenu item={item} key={index} />
 					})}
 				</SidebarWrap>

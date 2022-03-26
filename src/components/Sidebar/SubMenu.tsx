@@ -2,12 +2,14 @@
  * @file Submenu item for sidebar
  */
 
-import { useCallback, useState } from "react"
+import { useCallback, useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import { Item } from "../../data/NavbarData"
 import theming from "../../styles/theming"
+import { globalContext } from "../../globalContext"
+
+import type { Item } from "../../data/NavbarData"
 
 const SidebarLink = styled(Link)`
 	${theming.styles.navbarButtonStyle};
@@ -35,6 +37,7 @@ interface Props {
 }
 
 const SubMenu = (props: Props) => {
+	const { globalState } = useContext(globalContext)
 	const [isSubNavOpen, setSubNavOpen] = useState(false)
 	const handleSidebarLinkClick = useCallback(() => {
 		setSubNavOpen((prev) => !prev)
@@ -45,7 +48,11 @@ const SubMenu = (props: Props) => {
 			<SidebarLink to={props.item.path} onClick={handleSidebarLinkClick}>
 				<div>
 					{props.item.icon}
-					<SidebarLabel>{props.item.title}</SidebarLabel>
+					<SidebarLabel>
+						{globalState.locale == "en"
+							? props.item.title_en
+							: props.item.title_kr}
+					</SidebarLabel>
 				</div>
 			</SidebarLink>
 		</>
