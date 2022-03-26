@@ -1,9 +1,9 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import ThemeToggleButton from "../ThemeToggleButton"
-import ReadProgress from "../ReadProgress"
 import Sidebar from "../Sidebar"
+import ThemeToggleButton from "./ThemeToggleButton"
+import ReadProgress from "./ReadProgress"
 import SearchButton from "./SearchButton"
 import NavLinks from "./NavLinks"
 

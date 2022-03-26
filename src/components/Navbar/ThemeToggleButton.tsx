@@ -5,7 +5,7 @@ import ReactTooltip from "react-tooltip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 
-import theming from "../styles/theming"
+import theming from "../../styles/theming"
 
 const StyledThemeButton = styled.div`
 	${theming.styles.navbarButtonStyle}

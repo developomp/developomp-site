@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
-import theming from "../styles/theming"
+import theming from "../../styles/theming"
 
 const StyledReadProgressBackground = styled.div`
 	height: 0.2rem;
