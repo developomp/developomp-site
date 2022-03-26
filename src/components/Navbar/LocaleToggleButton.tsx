@@ -38,7 +38,7 @@ const LocaleToggleButton = () => {
 				<FontAwesomeIcon icon={faLanguage} />
 			</StyledLocaleToggleButton>
 			<ReactTooltip id="locale" type="dark" effect="solid">
-				<span>Locale: {globalState.locale}</span>
+				<span>{globalState.locale == "en" ? "English" : "한국어"} </span>
 			</ReactTooltip>
 		</>
 	)
