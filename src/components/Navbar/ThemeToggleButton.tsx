@@ -24,7 +24,6 @@ const Navbar = () => {
 					<StyledThemeButton
 						data-tip
 						data-for="theme"
-						className="right"
 						onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
 					>
 						{currentTheme == "dark" && <FontAwesomeIcon icon={faMoon} />}

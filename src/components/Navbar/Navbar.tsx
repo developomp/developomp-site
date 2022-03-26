@@ -1,11 +1,11 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import Sidebar from "../Sidebar"
-import ThemeToggleButton from "./ThemeToggleButton"
-import ReadProgress from "./ReadProgress"
-import SearchButton from "./SearchButton"
 import NavLinks from "./NavLinks"
+import ThemeToggleButton from "./ThemeToggleButton"
+import SearchButton from "./SearchButton"
+import ReadProgress from "./ReadProgress"
+import Sidebar from "../Sidebar"
 
 import theming from "../../styles/theming"
 
@@ -39,10 +39,12 @@ const StyledContainer = styled.div`
 			.screen_size2} + 20px)) {
 		width: calc(${theming.size.screen_size2} - 20px);
 	}
+`
 
-	.right {
-		margin-left: auto;
-	}
+const RightButtons = styled.div`
+	display: flex;
+	height: 100%;
+	margin-left: auto;
 `
 
 const StyledImg = styled.img`
@@ -69,8 +71,12 @@ const Navbar = () => {
 				<NavLinks />
 
 				{/* right buttons */}
-				<ThemeToggleButton />
-				<SearchButton />
+				<RightButtons>
+					<ThemeToggleButton />
+					<SearchButton />
+				</RightButtons>
+
+				{/* etc */}
 				<Sidebar />
 			</StyledContainer>
 			<ReadProgress />
