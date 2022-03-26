@@ -8,7 +8,7 @@ import Loading from "./components/Loading"
 import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
-import PostList from "./pages/PostList"
+import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
@@ -80,7 +80,7 @@ export default function App() {
 					<Loading />
 				) : (
 					<Routes>
-						<Route path="/" element={<PostList title="Home" />} />
+						<Route path="/" element={<Home />} />
 						<Route path="/search" element={<Search />} />
 						<Route path="/portfolio" element={<Portfolio />} />
 						<Route path="/404" element={<NotFound />} />

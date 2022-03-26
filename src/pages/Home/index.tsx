@@ -3,7 +3,7 @@
  * show posts in recent order
  */
 
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import styled from "styled-components"
 
@@ -13,7 +13,9 @@ import ShowMoreButton from "./ShowMoreButton"
 import _map from "../../data/map.json"
 import theming from "../../styles/theming"
 
-import { Map } from "../../../types/types"
+import { globalContext } from "../../globalContext"
+
+import type { Map } from "../../../types/types"
 
 const map: Map = _map
 
@@ -27,11 +29,8 @@ const StyledPostList = styled.div`
 		})};
 `
 
-interface Props {
-	title: string
-}
-
-const PostList = (props: Props) => {
+const PostList = () => {
+	const { globalState } = useContext(globalContext)
 	const [howMany, setHowMany] = useState(5)
 	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
@@ -67,17 +66,17 @@ const PostList = (props: Props) => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | {props.title}</title>
+				<title>pomp | Home</title>
 
-				<meta property="og:title" content={props.title} />
 				<meta property="og:type" content="website" />
 				<meta
 					property="og:image"
 					content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
 				/>
 			</Helmet>
+
 			<StyledPostList>
-				<h1>Recent Posts</h1>
+				<h1>{globalState.locale == "en" ? "Recent Posts" : "최근 포스트"}</h1>
 				{postCards}
 				{postsLength > howMany && (
 					<ShowMoreButton
