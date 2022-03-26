@@ -1,10 +1,9 @@
 import "styled-components"
-
-export type ThemeType = "dark" | "light"
+import type { SiteTheme } from "../src/globalContext"
 
 declare module "styled-components" {
 	export interface DefaultTheme {
-		currentTheme: ThemeType
-		setTheme(setThemeTo: ThemeType): void
+		currentTheme: SiteTheme
+		setTheme(setThemeTo: SiteTheme): void
 	}
 }

@@ -1,11 +1,8 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
 import { Helmet } from "react-helmet-async"
-import storage from "local-storage-fallback"
 import { isIE } from "react-device-detect"
-
-import { ThemeType } from "../types/styled-components"
 
 import Loading from "./components/Loading"
 import Navbar from "./components/Navbar"
@@ -19,6 +16,8 @@ import Portfolio from "./pages/Portfolio"
 
 import theming from "./styles/theming"
 import GlobalStyle from "./styles/globalStyle"
+
+import { ActionsEnum, globalContext } from "./globalContext"
 
 const IENotSupported = styled.p`
 	margin: auto;
@@ -34,17 +33,12 @@ const StyledContentContainer = styled.div`
 	margin-top: 5rem;
 `
 
-const App = () => {
+export default function App() {
+	const { globalState, dispatch } = useContext(globalContext)
 	const [isLoading, setIsLoading] = useState(true)
-	const [currentTheme, setCurrentTheme] = useState<ThemeType>(
-		(storage.getItem("theme") || "dark") as ThemeType // get theme from storage and set to "dark" mode if not set already
-	)
 
+	// set loading to false if all fonts are loaded
 	useEffect(() => {
-		// show loading screen until all fonts are loaded.
-		// Experimental feature. Not fully supported on all browsers (IE, I'm looking at you).
-		// https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet
-
 		// checks if document.fonts.onloadingdone is supported on the browser
 		if (typeof document.fonts.onloadingdone != undefined) {
 			document.fonts.onloadingdone = () => {
@@ -54,11 +48,6 @@ const App = () => {
 			setIsLoading(false)
 		}
 	}, [])
-
-	useEffect(() => {
-		// save theme when it is changed
-		storage.setItem("theme", currentTheme)
-	}, [currentTheme])
 
 	if (isIE)
 		return (
@@ -70,9 +59,9 @@ const App = () => {
 	return (
 		<ThemeProvider
 			theme={{
-				currentTheme: currentTheme,
+				currentTheme: globalState.theme,
 				setTheme(setThemeTo) {
-					setCurrentTheme(setThemeTo)
+					dispatch({ type: ActionsEnum.UPDATE_THEME, payload: setThemeTo })
 				},
 			}}
 		>
@@ -104,5 +93,3 @@ const App = () => {
 		</ThemeProvider>
 	)
 }
-
-export default App
