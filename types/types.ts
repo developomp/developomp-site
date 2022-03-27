@@ -111,7 +111,8 @@ export interface SeriesEntry {
 
 export interface PortfolioData {
 	// rendered markdown html
-	overview: string
+	overview_en: string
+	overview_kr: string
 
 	// a set of valid simple icons slug
 	skills: Set<string>

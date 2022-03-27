@@ -9,12 +9,14 @@ import { portfolioData } from ".."
 import { DataToPass } from "."
 
 export default function parsePortfolio(data: DataToPass): void {
-	const { urlPath, markdownRaw, markdownData } = data
+	const { urlPath, markdownRaw, markdownData, path } = data
 
 	// check if the file is a portfolio overview or a project
 	// explanation: file `0.md` is a special file (i.e. not a regular project file)
-	if (urlPath.slice(urlPath.lastIndexOf("/") + 1) == "0") {
-		portfolioData.overview = markdownData.content
+	if (path.endsWith("/0.md")) {
+		portfolioData.overview_en = markdownData.content
+	} else if (path.endsWith("/0.kr.md")) {
+		portfolioData.overview_kr = markdownData.content
 	} else {
 		if (!urlPath.endsWith(".kr")) {
 			if (markdownData.badges) {
