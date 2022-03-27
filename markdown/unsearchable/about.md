@@ -11,6 +11,7 @@ Year of Birth: 2002
 ## Links
 
 - [Github](https://github.com/developomp)
+- [Goals](/goals)
 
 ## Contact
 
@@ -23,7 +24,8 @@ Send messages through these platform to reach out to me.
 
 ## Online accounts
 
-Please do not send messages to these accounts. Use the contacts listed above instead.
+Please do not send messages to these accounts as I may not be able to reply to them.
+Use the contacts listed above instead.
 
 | Platform                         | ID                                                                                    |
 | -------------------------------- | :------------------------------------------------------------------------------------ |
