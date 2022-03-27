@@ -16,10 +16,6 @@ title: Goals
   - [x] 1000
   - [ ] 2000
   - [ ] 3000
-- Create...
-  - [x] My own website ([Github](https://github.com/developomp/developomp-site))
-  - [x] My own linux setup script ([Github](https://github.com/developomp/setup))
-  - [ ] My own programming language ([Github](https://github.com/boy-lang))
 - Push at least one commit every day for X days
   - [x] 30
   - [x] 50
@@ -28,7 +24,7 @@ title: Goals
   - [ ] 300
   - [ ] 365
   - [ ] 500
-- [ ] Get my code in the linux kernel
+- [ ] Get my code into the linux kernel
 - [ ] submit a CVE with the severity rating 7.0 (high) or above (NVD CVSS v3)
 - Algorithm problem solving ([solved.ac](https://solved.ac))
   - solve all X problems
@@ -59,7 +55,7 @@ title: Goals
     - [x] 200
     - [x] 250
     - [ ] 300
-- [x] Type without looking at keyboard
+- [x] Type without looking at the keyboard
 
 ## Etc
 
@@ -67,12 +63,9 @@ title: Goals
 - [ ] Get a job
   - [ ] Get a job at FAANG (or some future equivalent of it)
 - [ ] Witness the technological singularity
-- [ ] Go to moon
-- [ ] Celebrate by Xth birthday
+- [ ] Go to the moon
+- Celebrate my Xth birthday
+  - [x] 15
+  - [x] 20
+  - [ ] 25
   - [ ] 30
-  - [ ] 40
-  - [ ] 50
-  - [ ] 80
-  - [ ] 100
-  - [ ] 150
-  - [ ] 200
