@@ -7,6 +7,7 @@ title: 소개
 이름: 김지민<br />
 거주지: 서울, 대한만국<br />
 출생: 2002년
+MBTI: [INTP](https://www.16personalities.com/ko/성격유형-intp)
 
 ## 링크
 
