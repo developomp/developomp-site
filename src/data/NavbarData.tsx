@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-	faAddressBook,
 	faHome,
-	faIdCard,
+	faFileLines,
+	faUser,
+	faUserTie,
 } from "@fortawesome/free-solid-svg-icons"
 
 // item from sidebar data
@@ -24,13 +25,19 @@ const NavbarData: Item[] = [
 		title_en: "About",
 		title_kr: "소개",
 		path: "/about",
-		icon: <FontAwesomeIcon icon={faIdCard} />,
+		icon: <FontAwesomeIcon icon={faUser} />,
 	},
 	{
 		title_en: "Portfolio",
 		title_kr: "포트폴리오",
 		path: "/portfolio",
-		icon: <FontAwesomeIcon icon={faAddressBook} />,
+		icon: <FontAwesomeIcon icon={faFileLines} />,
+	},
+	{
+		title_en: "Resume",
+		title_kr: "이력서",
+		path: "/resume",
+		icon: <FontAwesomeIcon icon={faUserTie} />,
 	},
 ]
 

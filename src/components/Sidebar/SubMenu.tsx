@@ -23,6 +23,10 @@ const SidebarLink = styled(Link)`
 	padding: 20px;
 	list-style: none;
 
+	svg {
+		scale: 1.5;
+	}
+
 	&:hover {
 		color: inherit;
 	}
