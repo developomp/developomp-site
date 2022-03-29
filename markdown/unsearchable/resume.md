@@ -9,10 +9,7 @@ Frontend engineer wannabe
 - [Github](https://github.com/developomp)
 - [Portfolio](/portfolio)
 
-### Contact
-
-Email: developomp@gmail.com<br />
-Phone: 010-8208-8094
+Email: developomp@gmail.com
 
 ## Education
 

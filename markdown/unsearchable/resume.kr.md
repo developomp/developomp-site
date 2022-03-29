@@ -9,10 +9,7 @@ title: 이력서
 - [깃허브](https://github.com/developomp)
 - [포트폴리오](/portfolio)
 
-### 연락처
-
-이메일: developomp@gmail.com<br />
-전화: 010-8208-8904
+이메일: developomp@gmail.com
 
 ## 교육
 
