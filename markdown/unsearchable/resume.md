@@ -4,10 +4,18 @@ title: Resume
 
 ## Jimin Kim
 
+[![Github](https://img.shields.io/badge/github-black?style=for-the-badge&logo=github)](https://github.com/developomp)
+[![Portfolio](https://img.shields.io/badge/portfolio-grey?style=for-the-badge)](/portfolio)
+
 Frontend engineer wannabe
 
-- [Github](https://github.com/developomp)
-- [Portfolio](/portfolio)
+A natural-born developer who has got to create everything with his own hand.
+He won't be satisfied until he breaks everything down to its components and understands what's behind it.
+
+Characteristics:
+
+- daily drives [arch linux](https://archlinux.org)
+- can fluently speak, read, and write English and Korean at a native level
 
 Email: developomp@gmail.com
 
@@ -19,8 +27,10 @@ Email: developomp@gmail.com
 
 Currently studying computer science at [hongik university](https://wwwce.hongik.ac.kr) (freshman).
 
+## Github
+
+<img alt="github metrics" src="https://raw.githubusercontent.com/developomp/developomp/master/github-metrics.svg" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;">
+
 ## Skills
 
 <img alt="programming skills" src="/img/skills.svg" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;" />
-
-<img alt="github metrics" src="https://raw.githubusercontent.com/developomp/developomp/master/github-metrics.svg" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%;">
