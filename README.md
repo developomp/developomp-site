@@ -1,7 +1,6 @@
 # developomp-site
 
 [![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://developomp.com/portfolio/developomp.com)
-[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=for-the-badge)](./LICENSE)
 
 Source code for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
 
