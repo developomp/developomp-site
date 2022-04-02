@@ -28,10 +28,11 @@ title: 목표
 - [ ] severity rating 7.0 (high, NVD CVSS v3)이상의 CVE 제출하기
 - 알고리즘 문제풀이 ([solved.ac](https://solved.ac))
   - 모든 X 문제 풀기
-    - [ ] [브론즈 V](https://solved.ac/problems/level/1)
+    - [x] [브론즈 V](https://solved.ac/problems/level/1)
+    - [ ] [브론즈 IV](https://solved.ac/problems/level/2)
   - X티어 달성하기
     - [x] 브론즈 (**5 4 3 2 1**)
-    - [x] 실버 (**5** 4 3 2 1)
+    - [x] 실버 (**5 4 3** 2 1)
     - [ ] 골드 (5 4 3 2 1)
     - [ ] 플래티넘 (5 4 3 2 1)
     - [ ] 다이아 (5 4 3 2 1)
