@@ -7,13 +7,6 @@ _/
 /public/img/skills.svg
 /public/img/projects.svg
 
-# dependencies
-.pnp/
-.pnp.js
-
-# testing
-coverage/
-
 # production
 build/
 
