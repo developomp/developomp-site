@@ -31,12 +31,12 @@ title: Goals
     - [x] [Bronze V](https://solved.ac/problems/level/1)
     - [ ] [브론즈 IV](https://solved.ac/problems/level/2)
   - Reach X tier
-    - [x] Bronze (**5 4 3 2 1**)
-    - [x] Silver (**5 4 3 2** 1)
-    - [ ] Gold (5 4 3 2 1)
-    - [ ] Platinum (5 4 3 2 1)
-    - [ ] Diamond (5 4 3 2 1)
-    - [ ] Ruby (5 4 3 2 1)
+    - [x] Bronze
+    - [x] Silver (Currently Silver I)
+    - [ ] Gold
+    - [ ] Platinum
+    - [ ] Diamond
+    - ~~Ruby~~
   - Reach X digit global ranking
     - [ ] 4
     - [ ] 3
