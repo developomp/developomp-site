@@ -21,11 +21,9 @@ Email: developomp@gmail.com
 
 ## Education
 
-### Hongik University
+### [Hongik university](https://wwwce.hongik.ac.kr) computer science major
 
 - Mar 2022 - now
-
-Currently studying computer science at [hongik university](https://wwwce.hongik.ac.kr) (freshman).
 
 ## Github
 
