@@ -9,7 +9,10 @@ title: 소개
 출생: 2002년<br />
 MBTI: [논리적인 사색가 INTP-A](https://www.16personalities.com/ko/성격유형-intp)
 
-<img alt="MBTI result" src="/img/mbti.png" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; width: 600px" />
+<p align="center">
+	<img alt="MBTI result" src="/img/mbti.png" style="display: block; margin-left: auto; margin-right: auto; max-width: 100%; width: 600px" />
+	2022년 4월 14일 <a href="https://16personalities.com">16personalities.com</a> 검사 결과
+</p>
 
 ## 링크
 
