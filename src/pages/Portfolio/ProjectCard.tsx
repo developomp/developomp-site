@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -7,6 +7,7 @@ import { cardCSS } from "../../components/Card"
 
 import { PortfolioProject } from "../../../types/types"
 import theming from "../../styles/theming"
+import { globalContext } from "../../globalContext"
 
 const StyledProjectCard = styled.div`
 	${cardCSS}
@@ -37,6 +38,7 @@ interface ProjectCardProps {
 const ProjectCard = (props: ProjectCardProps) => {
 	const { projectID, project } = props
 
+	const { globalState } = useContext(globalContext)
 	const [badges, setBadges] = useState<JSX.Element[]>([])
 
 	useEffect(() => {
@@ -44,7 +46,7 @@ const ProjectCard = (props: ProjectCardProps) => {
 	}, [])
 
 	return (
-		<Link to={process.env.PUBLIC_URL + projectID}>
+		<Link to={`/${globalState.locale}${projectID}`}>
 			<StyledProjectCard>
 				<h1>{project.name}</h1>
 				<StyledImg src={project.image} />

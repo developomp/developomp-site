@@ -9,8 +9,11 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import theming from "../../styles/theming"
 import { ActionsEnum, globalContext } from "../../globalContext"
 
-const StyledThemeButton = styled.div`
+const StyledThemeButton = styled.button`
 	${theming.styles.navbarButtonStyle}
+	border: none;
+	width: 72px;
+
 	${(props) =>
 		theming.theme(props.theme.currentTheme, {
 			light: "",

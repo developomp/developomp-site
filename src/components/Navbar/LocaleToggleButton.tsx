@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import ReactTooltip from "react-tooltip"
 import styled from "styled-components"
+import ReactTooltip from "react-tooltip"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLanguage } from "@fortawesome/free-solid-svg-icons"
@@ -14,18 +14,20 @@ interface StyledLocaleToggleButtonProps {
 	locale: SiteLocale
 }
 
-const StyledLocaleToggleButton = styled.div<StyledLocaleToggleButtonProps>`
+const StyledLocaleToggleButton = styled.button<StyledLocaleToggleButtonProps>`
 	${theming.styles.navbarButtonStyle}
+	border: none;
+	width: 72px;
+
 	${(props) => (props.locale == "en" ? "" : "transform: scaleX(-1);")};
 `
 
-const LocaleToggleButton = () => {
+function LocaleToggleButton() {
 	const { globalState, dispatch } = useContext(globalContext)
 
 	return (
 		<>
 			<StyledLocaleToggleButton
-				locale={globalState.locale}
 				data-tip
 				data-for="locale"
 				onClick={() => {
@@ -34,6 +36,7 @@ const LocaleToggleButton = () => {
 						payload: globalState.locale == "en" ? "kr" : "en",
 					})
 				}}
+				locale={globalState.locale}
 			>
 				<FontAwesomeIcon icon={faLanguage} />
 			</StyledLocaleToggleButton>

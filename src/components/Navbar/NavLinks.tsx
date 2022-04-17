@@ -23,7 +23,7 @@ const NavLinks = () => {
 	return (
 		<StyledNavLinks>
 			{NavbarData.map((item, index) => (
-				<Link key={index} to={item.path}>
+				<Link key={index} to={globalState.locale + item.path}>
 					<StyledLink>
 						{globalState.locale == "en" ? item.title_en : item.title_kr}
 					</StyledLink>

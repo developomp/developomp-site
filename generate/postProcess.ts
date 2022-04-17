@@ -1,5 +1,5 @@
 import ejs from "ejs"
-import { optimize } from "svgo"
+import { optimize, OptimizedSvg } from "svgo"
 import { readFileSync, writeFileSync } from "fs"
 import simpleIcon from "simple-icons"
 import tinycolor from "tinycolor2"
@@ -78,7 +78,12 @@ function generatePortfolioSVGs() {
 
 	const optimizedSVG = optimize(renderedSVG, { multipass: true })
 
-	writeFileSync("./public/img/skills.svg", optimizedSVG.data)
+	if (optimizedSVG.error) {
+		console.error("Failed to generate optimized skills.svg")
+		return
+	}
+
+	writeFileSync("./public/img/skills.svg", (optimizedSVG as OptimizedSvg).data)
 }
 
 function parseBadge(badgeRaw: string): Badge {

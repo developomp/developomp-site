@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
@@ -12,16 +12,23 @@ import Badge from "../../components/Badge"
 import Tag from "../../components/Tag"
 import NotFound from "../NotFound"
 
+import TranslationNotAvailable from "./TranslationNotAvailable"
 import SeriesControlButtons from "./SeriesControlButtons"
+import {
+	categorizePageType,
+	checkURLValidity,
+	fetchContent,
+	PageType,
+	URLValidity,
+	parsePageData,
+} from "./helper"
 import Meta from "./Meta"
 import Toc from "./Toc"
 
-import portfolio from "../../data/portfolio.json"
-import _map from "../../data/map.json"
-import { useEffect } from "react"
-
+import { globalContext } from "../../globalContext"
 import type { PageData, Map } from "../../../types/types"
-import { globalContext, SiteLocale } from "../../globalContext"
+
+import _map from "../../data/map.json"
 
 const map: Map = _map
 
@@ -46,252 +53,71 @@ const ProjectImage = styled.img`
 	max-width: 100%;
 `
 
-enum PageType {
-	POST,
-	SERIES,
-	SERIES_HOME,
-	PORTFOLIO_PROJECT,
-	UNSEARCHABLE,
-}
-
-const fetchContent = async (
-	pageType: PageType,
-	url: string,
-	locale: SiteLocale
-) => {
-	try {
-		if (pageType == PageType.UNSEARCHABLE) {
-			if (locale == "en") {
-				return await import(`../../data/content/unsearchable${url}.json`)
-			} else {
-				try {
-					return await import(
-						`../../data/content/unsearchable${url}.${locale}.json`
-					)
-				} catch {
-					return await import(`../../data/content/unsearchable${url}.json`)
-				}
-			}
-		}
-
-		if (locale == "en") {
-			return await import(`../../data/content${url}.json`)
-		} else {
-			try {
-				return await import(`../../data/content${url}.${locale}.json`)
-			} catch {
-				return await import(`../../data/content${url}.json`)
-			}
-		}
-	} catch (err) {
-		return
-	}
-}
-
-const categorizePageType = (url: string): PageType => {
-	if (url.startsWith("/post")) return PageType.POST
-	if (url.startsWith("/series")) {
-		if ([...(url.match(/\//g) || [])].length == 2) {
-			// url: /series/series-title
-			return PageType.SERIES_HOME
-		} else {
-			// url: /series/series-title/post-title
-			return PageType.SERIES
-		}
-	}
-	if (url.startsWith("/portfolio")) return PageType.PORTFOLIO_PROJECT
-
-	return PageType.UNSEARCHABLE
-}
-
-const Page = () => {
+export default function Page() {
 	const { globalState } = useContext(globalContext)
-	const location = useLocation()
+	const { locale } = globalState
+	const { pathname } = useLocation()
 
 	const [pageData, setPageData] = useState<PageData | undefined>(undefined)
 	const [pageType, setPageType] = useState<PageType>(PageType.POST)
 	const [isLoading, setIsLoading] = useState(true)
+	const [isTranslationAvailable, setIsTranslationAvailable] = useState(true)
 
+	// this code runs if either the  url or the locale changes
 	useEffect(() => {
-		const url = location.pathname.replace(/\/$/, "") // remove trailing slash
-		const pageType = categorizePageType(url)
+		const content_id =
+			pathname
+				.replace(/^\/kr/, "") // remove /kr prefix
+				.replace(/^\/en/, "") // remove /en prefix
+				.replace(/\/$/, "") + // remove trailing slash
+			(locale == "en" ? "" : ".kr")
 
-		/**
-		 * Test if url is a valid one
-		 */
+		const pageType = categorizePageType(content_id)
 
-		let show404 = false
-		switch (pageType) {
-			case PageType.POST: {
-				if (!map.posts[url]) show404 = true
-
+		switch (checkURLValidity(content_id, pageType)) {
+			case URLValidity.VALID: {
+				// continue if the URL is valid
 				break
 			}
 
-			case PageType.SERIES_HOME:
-			case PageType.SERIES: {
-				show404 = !Object.keys(map.series).some((seriesHomeURL) =>
-					url.startsWith(seriesHomeURL)
-				)
+			case URLValidity.VALID_BUT_IN_OTHER_LOCALE: {
+				// stop loading and set isTranslationAvailable to true so translation not available page will display
+				setIsTranslationAvailable(false)
+				setIsLoading(false)
 
-				break
+				return
 			}
 
-			case PageType.PORTFOLIO_PROJECT: {
-				if (!(url in portfolio.projects)) show404 = true
+			case URLValidity.NOT_VALID: {
+				// stop loading without fetching pageData so 404 page will display
+				setIsLoading(false)
 
-				break
+				return
 			}
-
-			case PageType.UNSEARCHABLE: {
-				if (!map.unsearchable[url]) show404 = true
-
-				break
-			}
-		}
-
-		if (show404) {
-			setIsLoading(false)
-			return
 		}
 
 		/**
 		 * Get page data
 		 */
 
-		const pageData: PageData = {
-			title: "No title",
-			date: "Unknown date",
-			readTime: "Unknown read time",
-			wordCount: 0,
-			tags: [],
-			toc: undefined,
-			content: "No content",
-
-			// series
-
-			seriesHome: "",
-			prev: "",
-			next: "",
-
-			// series home
-
-			order: [],
-			length: 0,
-
-			// portfolio
-
-			image: "",
-			overview: "",
-			badges: [],
-			repo: "",
-		}
-
-		fetchContent(pageType, url, globalState.locale).then((fetched_content) => {
+		fetchContent(pageType, content_id, locale).then((fetched_content) => {
 			if (!fetched_content) {
+				// stop loading without fetching pageData so 404 page will display
 				setIsLoading(false)
+
 				return
 			}
 
-			switch (pageType) {
-				case PageType.POST: {
-					const post = map.posts[url]
-
-					pageData.content = fetched_content.content
-					pageData.toc = fetched_content.toc
-
-					pageData.title = post.title
-					pageData.date = post.date
-					pageData.readTime = post.readTime
-					pageData.wordCount = post.wordCount
-					pageData.tags = post.tags || []
-
-					break
-				}
-
-				case PageType.SERIES: {
-					const seriesURL = url.slice(0, url.lastIndexOf("/"))
-
-					const curr = map.series[seriesURL].order.indexOf(url)
-					const prev = curr - 1
-					const next = curr + 1
-
-					const post = map.posts[url]
-
-					pageData.content = fetched_content.content
-					pageData.toc = fetched_content.toc
-
-					pageData.title = post.title
-					pageData.date = post.date
-					pageData.readTime = post.readTime
-					pageData.wordCount = post.wordCount
-					pageData.tags = post.tags || []
-
-					pageData.seriesHome = seriesURL
-					pageData.prev =
-						prev >= 0 ? map.series[seriesURL].order[prev] : undefined
-					pageData.next =
-						next < map.series[seriesURL].order.length
-							? map.series[seriesURL].order[next]
-							: undefined
-
-					break
-				}
-
-				case PageType.SERIES_HOME: {
-					const seriesData = map.series[url]
-
-					pageData.title = seriesData.title
-					pageData.content = fetched_content.content
-
-					pageData.date = seriesData.date
-					pageData.readTime = seriesData.readTime
-					pageData.wordCount = seriesData.wordCount
-					pageData.order = seriesData.order
-					pageData.length = seriesData.length
-
-					break
-				}
-
-				case PageType.PORTFOLIO_PROJECT: {
-					const data =
-						portfolio.projects[url as keyof typeof portfolio.projects]
-
-					pageData.content = fetched_content.content
-					pageData.toc = fetched_content.toc
-
-					pageData.title = data.name
-					pageData.image = data.image
-					pageData.overview = data.overview
-					pageData.badges = data.badges
-					pageData.repo = data.repo
-
-					break
-				}
-
-				case PageType.UNSEARCHABLE: {
-					pageData.title = (
-						map.unsearchable[`${url}.${globalState.locale}`] ||
-						map.unsearchable[url]
-					).title
-					pageData.content = fetched_content.content
-
-					break
-				}
-			}
-
-			/**
-			 * Apply result
-			 */
-
+			setPageData(parsePageData(fetched_content, pageType, content_id, locale))
+			setIsTranslationAvailable(true)
 			setPageType(pageType)
-			setPageData(pageData)
-
 			setIsLoading(false)
 		})
-	}, [location, globalState.locale])
+	}, [pathname, locale])
 
 	if (isLoading) return <Loading />
+
+	if (!isTranslationAvailable) return <TranslationNotAvailable />
 
 	if (!pageData) return <NotFound />
 
@@ -386,5 +212,3 @@ const Page = () => {
 		</>
 	)
 }
-
-export default Page

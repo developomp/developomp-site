@@ -49,7 +49,10 @@ const SubMenu = (props: Props) => {
 
 	return (
 		<>
-			<SidebarLink to={props.item.path} onClick={handleSidebarLinkClick}>
+			<SidebarLink
+				to={globalState.locale + props.item.path}
+				onClick={handleSidebarLinkClick}
+			>
 				<div>
 					{props.item.icon}
 					<SidebarLabel>

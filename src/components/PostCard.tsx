@@ -78,7 +78,7 @@ const PostCard = (props: Props) => {
 
 	return (
 		<StyledPostCard>
-			<PostCardContainer to={process.env.PUBLIC_URL + postData.url}>
+			<PostCardContainer to={postData.url}>
 				<StyledTitle>
 					{postData.title || "No title"}
 					{/* show "(series)" for urls that matches regex "/series/<series-title>" */}
@@ -107,7 +107,7 @@ const PostCard = (props: Props) => {
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<FontAwesomeIcon icon={faBook} />
 					&nbsp;&nbsp;&nbsp;
-					{postData.wordCount
+					{typeof postData.wordCount === "number"
 						? postData.wordCount + " words"
 						: "unknown length"}
 				</StyledMetaContainer>

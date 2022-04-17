@@ -31,8 +31,15 @@ export interface IGlobalContext {
 	dispatch: Dispatch<GlobalAction>
 }
 
+function getDefaultLocale(): SiteLocale {
+	if (window.location.pathname.startsWith("/en")) return "en"
+	if (window.location.pathname.startsWith("/kr")) return "kr"
+
+	return (storage.getItem("locale") as SiteLocale) || "en"
+}
+
 const defaultState: IGlobalState = {
-	locale: (storage.getItem("locale") || "en") as SiteLocale,
+	locale: getDefaultLocale(),
 	theme: (storage.getItem("theme") || "dark") as SiteTheme,
 }
 

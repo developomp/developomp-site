@@ -31,6 +31,8 @@ const StyledPostList = styled.div`
 
 const Home = () => {
 	const { globalState } = useContext(globalContext)
+	const { locale } = globalState
+
 	const [howMany, setHowMany] = useState(5)
 	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
@@ -48,9 +50,17 @@ const Home = () => {
 				if (postCount >= howMany) break
 
 				postCount++
-				const url: string = map.date[date][length - i - 1]
+				const content_id = map.date[date][length - i - 1]
+
 				postCards.push(
-					<PostCard key={url} postData={{ url: url, ...map.posts[url] }} />
+					<PostCard
+						key={content_id}
+						postData={{
+							// /<locale>/<content id without locale suffix>
+							url: `/${locale}${content_id.replace(/(.kr)$/g, "")}`,
+							...map.posts[content_id],
+						}}
+					/>
 				)
 			}
 		}
@@ -66,7 +76,7 @@ const Home = () => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | {globalState.locale == "en" ? "Home" : "홈"}</title>
+				<title>pomp | {locale == "en" ? "Home" : "홈"}</title>
 
 				<meta property="og:type" content="website" />
 				<meta
@@ -76,7 +86,7 @@ const Home = () => {
 			</Helmet>
 
 			<StyledPostList>
-				<h1>{globalState.locale == "en" ? "Recent Posts" : "최근 포스트"}</h1>
+				<h1>{locale == "en" ? "Recent Posts" : "최근 포스트"}</h1>
 				{postCards}
 				{postsLength > howMany && (
 					<ShowMoreButton
