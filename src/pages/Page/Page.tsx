@@ -203,7 +203,7 @@ export default function Page() {
 						<PostCard
 							key={post}
 							postData={{
-								url: post,
+								content_id: post,
 								...map.posts[post],
 							}}
 						/>

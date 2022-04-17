@@ -79,6 +79,7 @@ export function checkURLValidity(
 		: content_id + ".kr" // add .kr suffix
 
 	switch (pageType) {
+		case PageType.SERIES:
 		case PageType.POST: {
 			if (map.posts[content_id]) return URLValidity.VALID
 
@@ -88,20 +89,19 @@ export function checkURLValidity(
 			break
 		}
 
-		case PageType.SERIES_HOME:
-		case PageType.SERIES: {
+		case PageType.SERIES_HOME: {
 			const series_keys = Object.keys(map.series)
 
 			if (
 				series_keys.some((seriesHomeURL) =>
-					content_id.startsWith(seriesHomeURL)
+					seriesHomeURL.startsWith(content_id)
 				)
 			)
 				return URLValidity.VALID
 
 			if (
 				series_keys.some((seriesHomeURL) =>
-					alt_content_id.startsWith(seriesHomeURL)
+					seriesHomeURL.startsWith(alt_content_id)
 				)
 			)
 				return URLValidity.VALID_BUT_IN_OTHER_LOCALE

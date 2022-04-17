@@ -56,8 +56,7 @@ const Home = () => {
 					<PostCard
 						key={content_id}
 						postData={{
-							// /<locale>/<content id without locale suffix>
-							url: `/${locale}${content_id.replace(/(.kr)$/g, "")}`,
+							content_id: content_id,
 							...map.posts[content_id],
 						}}
 					/>

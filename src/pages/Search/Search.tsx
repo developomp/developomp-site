@@ -201,7 +201,7 @@ const Search = () => {
 						<PostCard
 							key={res.ref}
 							postData={{
-								url: res.ref,
+								content_id: res.ref,
 								...postData,
 							}}
 						/>

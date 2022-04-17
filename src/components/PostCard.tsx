@@ -1,3 +1,4 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -15,6 +16,7 @@ import TagList from "./TagList"
 import MainContent from "./MainContent"
 
 import theming from "../styles/theming"
+import { globalContext } from "../globalContext"
 
 const PostCardContainer = styled(Link)`
 	display: block;
@@ -66,7 +68,7 @@ const StyledTitle = styled.h1`
 const StyledMetaContainer = styled.small``
 
 interface PostCardData extends PostData {
-	url: string
+	content_id: string
 }
 
 interface Props {
@@ -75,40 +77,43 @@ interface Props {
 
 const PostCard = (props: Props) => {
 	const { postData } = props
+	const { content_id, wordCount, date, readTime, title, tags } = postData
+
+	const { globalState } = useContext(globalContext)
 
 	return (
 		<StyledPostCard>
-			<PostCardContainer to={postData.url}>
+			<PostCardContainer
+				to={`/${globalState.locale}${content_id.replace(/(.kr)$/g, "")}`}
+			>
 				<StyledTitle>
-					{postData.title || "No title"}
+					{title || "No title"}
 					{/* show "(series)" for urls that matches regex "/series/<series-title>" */}
-					{/\/series\/[^/]*$/.test(postData.url) && " (series)"}
+					{/\/series\/[^/]*$/.test(content_id) && " (series)"}
 				</StyledTitle>
 
 				<br />
 
 				<StyledMetaContainer>
 					<TagList direction="left">
-						{postData.tags &&
-							postData.tags.map((tag) => {
-								return <Tag key={postData.title + tag} text={tag} />
+						{tags &&
+							tags.map((tag) => {
+								return <Tag key={title + tag} text={tag} />
 							})}
 					</TagList>
 					<hr />
 					<FontAwesomeIcon icon={faCalendar} />
 					&nbsp;&nbsp;&nbsp;
-					{postData.date || "Unknown date"}
+					{date || "Unknown date"}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<FontAwesomeIcon icon={faHourglass} />
 					&nbsp;&nbsp;&nbsp;
-					{postData.readTime
-						? postData.readTime + " read"
-						: "unknown read time"}
+					{readTime ? readTime + " read" : "unknown read time"}
 					&nbsp;&nbsp;&nbsp;&nbsp;
 					<FontAwesomeIcon icon={faBook} />
 					&nbsp;&nbsp;&nbsp;
-					{typeof postData.wordCount === "number"
-						? postData.wordCount + " words"
+					{typeof wordCount === "number"
+						? wordCount + " words"
 						: "unknown length"}
 				</StyledMetaContainer>
 			</PostCardContainer>
