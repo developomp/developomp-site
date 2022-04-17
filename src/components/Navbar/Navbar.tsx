@@ -1,3 +1,4 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -9,6 +10,8 @@ import ReadProgress from "./ReadProgress"
 import Sidebar from "../Sidebar"
 
 import theming from "../../styles/theming"
+
+import { globalContext } from "../../globalContext"
 
 const StyledNav = styled.nav`
 	/* set z index to arbitrarily high value to prevent other components from drawing over the navbar */
@@ -60,12 +63,15 @@ export const StyledLink = styled.div`
 `
 
 const Navbar = () => {
+	const { globalState } = useContext(globalContext)
+	const { locale } = globalState
+
 	return (
 		<StyledNav>
 			<StyledContainer>
 				{/* icon */}
-				<Link to="/">
-					<StyledImg src={process.env.PUBLIC_URL + "/icon/icon_circle.svg"} />
+				<Link to={`/${locale}`}>
+					<StyledImg src="/icon/icon_circle.svg" />
 				</Link>
 
 				{/* nav links */}

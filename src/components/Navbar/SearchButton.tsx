@@ -11,22 +11,19 @@ import { globalContext } from "../../globalContext"
 
 const SearchButton = () => {
 	const { globalState } = useContext(globalContext)
+	const { locale } = globalState
 
 	return (
 		<>
 			<div>
-				<Link
-					data-tip
-					data-for="search"
-					to={`${process.env.PUBLIC_URL}/search`}
-				>
+				<Link data-tip data-for="search" to={`/${locale}/search`}>
 					<StyledLink>
 						<FontAwesomeIcon icon={faSearch} />
 					</StyledLink>
 				</Link>
 			</div>
 			<ReactTooltip id="search" type="dark" effect="solid">
-				<span>{globalState.locale == "en" ? "Search" : "검색"}</span>
+				<span>{locale == "en" ? "Search" : "검색"}</span>
 			</ReactTooltip>
 		</>
 	)
