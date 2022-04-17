@@ -1,7 +1,10 @@
+import { useContext } from "react"
 import styled from "styled-components"
 import { Helmet } from "react-helmet-async"
 
 import MainContent from "../components/MainContent"
+
+import { globalContext } from "../globalContext"
 
 const StyledNotFound = styled(MainContent)`
 	text-align: center;
@@ -12,6 +15,8 @@ const Styled404 = styled.h1`
 `
 
 const NotFound = () => {
+	const { globalState } = useContext(globalContext)
+
 	return (
 		<>
 			<Helmet>
@@ -30,7 +35,9 @@ const NotFound = () => {
 			<StyledNotFound>
 				<Styled404>404</Styled404>
 				<br />
-				Page was not found :(
+				{globalState.locale == "en"
+					? "Page was not found :("
+					: "페이지를 찾을 수 없습니다 :("}
 			</StyledNotFound>
 		</>
 	)
