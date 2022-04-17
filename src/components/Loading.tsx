@@ -38,7 +38,7 @@ const StyledSVG = styled.svg`
 
 	display: block;
 	margin: 1rem;
-	margin-bottom: 2rem;
+	margin-bottom: 4.5rem;
 
 	transform: scale(2);
 
