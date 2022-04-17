@@ -29,7 +29,7 @@ const StyledPostList = styled.div`
 		})};
 `
 
-const PostList = () => {
+const Home = () => {
 	const { globalState } = useContext(globalContext)
 	const [howMany, setHowMany] = useState(5)
 	const [postsLength, setPostsLength] = useState(0)
@@ -90,4 +90,4 @@ const PostList = () => {
 	)
 }
 
-export default PostList
+export default Home
