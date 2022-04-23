@@ -119,9 +119,6 @@ $$
 	\ce{6 CO2 + 6 H2O <=>[{photosynthesis}][{respiration}] C6H12O6 + 6 O2}
 $$
 
-[^css_bad]: Based on my experience building this website, Dec 2021.
-[^python_is_overrated]: Based on my infinite wisdom, Dec 2021.
-
 ## headers
 
 Headers have different size and indentation depending on their level.
@@ -144,3 +141,8 @@ Lorem ipsum blah blah.
 ###### h6
 
 Lorem ipsum blah blah.
+
+<!-- Footnotes -->
+
+[^css_bad]: Based on my experience building this website, Dec 2021.
+[^python_is_overrated]: Based on my infinite wisdom, Dec 2021.
