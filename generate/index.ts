@@ -28,8 +28,6 @@ export const map: Map = {
 }
 export const seriesMap: SeriesMap = {}
 export const portfolioData: PortfolioData = {
-	overview_en: "",
-	overview_kr: "",
 	skills: new Set(),
 	projects: {},
 }

@@ -2,7 +2,7 @@ import portfolio from "../../data/portfolio.json"
 import _map from "../../data/map.json"
 
 import type { SiteLocale } from "../../globalContext"
-import type { Map, PageData } from "../../../types/types"
+import type { Map, PageData, PortfolioProject } from "../../../types/types"
 
 const map: Map = _map
 
@@ -110,10 +110,29 @@ export function checkURLValidity(
 		}
 
 		case PageType.PORTFOLIO_PROJECT: {
-			if (content_id in portfolio.projects) return URLValidity.VALID
+			const locale: SiteLocale = content_id.endsWith(".kr") ? "kr" : "en"
+			const portfolio_content_id = content_id.endsWith(".kr")
+				? content_id.slice(0, content_id.length - 3)
+				: content_id
 
-			if (alt_content_id in portfolio.projects)
-				return URLValidity.VALID_BUT_IN_OTHER_LOCALE
+			try {
+				const project = portfolio.projects[
+					portfolio_content_id as keyof typeof portfolio.projects
+				] as PortfolioProject
+
+				if (locale == "en" && project.overview_en) {
+					return URLValidity.VALID
+				} else if (locale == "kr" && project.overview_kr) {
+					return URLValidity.VALID
+				} else if (
+					(locale == "en" && project.overview_kr) ||
+					(locale == "kr" && project.overview_en)
+				) {
+					return URLValidity.VALID_BUT_IN_OTHER_LOCALE
+				}
+			} catch {
+				// prevent linting error
+			}
 
 			break
 		}
@@ -228,15 +247,21 @@ export function parsePageData(
 		}
 
 		case PageType.PORTFOLIO_PROJECT: {
+			const portfolio_content_id = content_id.endsWith(".kr")
+				? content_id.slice(0, content_id.length - 3)
+				: content_id
+
 			const data =
-				portfolio.projects[content_id as keyof typeof portfolio.projects]
+				portfolio.projects[
+					portfolio_content_id as keyof typeof portfolio.projects
+				]
 
 			pageData.content = fetched_content.content
 			pageData.toc = fetched_content.toc
 
 			pageData.title = data.name
 			pageData.image = data.image
-			pageData.overview = data.overview
+			pageData.overview = locale == "en" ? data.overview_en : data.overview_kr
 			pageData.badges = data.badges
 			pageData.repo = data.repo
 

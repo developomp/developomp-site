@@ -39,6 +39,8 @@ const ProjectCard = (props: ProjectCardProps) => {
 	const { projectID, project } = props
 
 	const { globalState } = useContext(globalContext)
+	const { locale } = globalState
+
 	const [badges, setBadges] = useState<JSX.Element[]>([])
 
 	useEffect(() => {
@@ -46,14 +48,18 @@ const ProjectCard = (props: ProjectCardProps) => {
 	}, [])
 
 	return (
-		<Link to={`/${globalState.locale}${projectID}`}>
+		<Link to={`/${locale}${projectID}`}>
 			<StyledProjectCard>
 				<h1>{project.name}</h1>
 				<StyledImg src={project.image} />
 
 				{badges}
 				<hr />
-				<div dangerouslySetInnerHTML={{ __html: project.overview }} />
+				<div
+					dangerouslySetInnerHTML={{
+						__html: locale == "en" ? project.overview_en : project.overview_kr,
+					}}
+				/>
 			</StyledProjectCard>
 		</Link>
 	)

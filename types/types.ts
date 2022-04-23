@@ -110,10 +110,6 @@ export interface SeriesEntry {
  */
 
 export interface PortfolioData {
-	// rendered markdown html
-	overview_en: string
-	overview_kr: string
-
 	// a set of valid simple icons slug
 	skills: Set<string>
 
@@ -132,7 +128,8 @@ export interface PortfolioOverview {
 export interface PortfolioProject {
 	name: string
 	image: string // url to the image
-	overview: string
+	overview_en: string
+	overview_kr: string
 	badges: string[] // array of valid simpleIcons slug
 	repo: string // url of the git repository
 }

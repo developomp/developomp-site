@@ -65,15 +65,6 @@ const Portfolio = () => {
 
 				<hr />
 
-				{/* rendered markdown */}
-
-				<div
-					dangerouslySetInnerHTML={{
-						__html:
-							locale == "en" ? portfolio.overview_en : portfolio.overview_kr,
-					}}
-				/>
-
 				{/* Projects */}
 
 				<h2 id="projects">
