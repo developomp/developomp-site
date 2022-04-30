@@ -17,7 +17,7 @@ Year of Birth: 2002
 
 I may not be able to reply if contacted by any other methods other than what's listed below.
 
-|                             Type | Details                              | Response  |
-| -------------------------------: | :----------------------------------- | :-------- |
-|   [Discord](https://discord.com) | developomp#0001 (501277805540147220) | Immediate |
-| [Gmail](https://mail.google.com) | developomp@gmail.com                 | 2~4 days  |
+|                         Platform |                  ID                  | Response time |
+| -------------------------------: | :----------------------------------: | :------------ |
+|   [Discord](https://discord.com) | developomp#0001 (501277805540147220) | Immediate     |
+| [Gmail](https://mail.google.com) |         developomp@gmail.com         | 2~4 days      |
