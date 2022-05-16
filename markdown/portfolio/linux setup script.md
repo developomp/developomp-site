@@ -1,24 +1,21 @@
 ---
 name: Arch Linux setup script
-overview: My arch linux desktop setup
+overview: My Arch Linux desktop setup
 image: /img/portfolio/linux-setup-script.png
 repo: https://github.com/developomp/setup
 badges:
   - linux
   - python
-  - gnubash
-  - vim
 ---
 
 ## Introduction
 
-Properly setting up a linux desktop takes a lot of time.
-I learned this the hard way back when I was still in highschool.
-While playing around with OS one day, I somehow managed to completely mess up the core OS files beyond repair and had no choice but to reinstall the whole thing.
-Luckily, this was right after the classes were over so I was able to fix it at the cost of my entire afternoon.
-That night, I thought about how if this were to happen again at the wrong time, I will be completely screwed.
-That's when I realized that I needed some automation.
+Properly setting up a desktop takes a lot of time.
+Installing all of your favorite applications and configuring them to your liking is no easy task.
+The primary purpose of this project is to solve this exact problem by automating the process of installation and configuration of applications and system.
 
-This project is essentially a collection of python scripts that automates the OS setup process.
-It automatically sets up applications and restores the configuration just the way I like it.
-It also has a nice text-based user interface so I can choose specific actions to execute.
+## How does it work?
+
+[Github pages](https://pages.github.com) allows the developers to deploy a static site directly from their repositories.
+I have set up a [github action](https://docs.github.com/en/actions) so that the content of the bootstrap script gets copied over to the `index.html` file in the `gh-pages` branch so it can be downloaded from https://setup.developomp.com/.
+This script then clones the rest of the repository upon execution so it can start doing its thing.
