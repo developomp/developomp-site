@@ -63,6 +63,7 @@ title: Goals
 - [ ] Make a high quality video that I'm proud of with at least 1M views on YouTube
 - [ ] Get a job
   - [ ] Get a job at FAANG (or some future equivalent of it)
+- [ ] Buy a house
 - [ ] Witness the technological singularity
 - [ ] Go to the moon
 - Celebrate my Xth birthday
