@@ -6,56 +6,38 @@ image: /img/icon.png
 
 These are the projects I'll be working on in the future. Ordered alphabetically.
 
-## babel-compressor
+## are we arm yet
 
-- C
+Inspired by the "are we X yet?" websites from the rust community, are-we-arm-yet is a website that lists all information related to ARM desktop adoption.
+
+## awesome-wb
+
+An [awesome](https://github.com/sindresorhus/awesome) list of [War Brokers](https://warbrokers.io) related topics.
+
+## babel-compressor
 
 Slow but efficient compression algorithm based on [the library of babel](https://libraryofbabel.info/theory.html).
 
-## better xbrowsersync
+## bevy-earth
 
-- react native
-
-A rewrite of [xbrowsersync app](https://github.com/xbrowsersync/app) with better styling.
+Satellite image viewing utility built with [bevy](https://github.com/bevyengine/bevy).
 
 ## boy-lang
 
-- rust
-- llvm
+My own programming language built with rust and LLVM.
 
-My own programming language.
+## katoku
 
-## doc-vcs
+A FOSS cross-platform alternative [Kakaotalk](https://www.kakaocorp.com) client.
 
-- go
+## leset
 
-A git-like version control system for documents.
+The only system settings app you need on Linux (**Le** **Set**tings).
 
-## gnome life calendar
+## universal-update-notifier
 
-- [gjs](https://gjs.guide) (javascript)
-- gtk
+A Distro-agnostic and package-manager-agnostic update notifier.
 
-gnome extension to add [life calendar](https://waitbutwhy.com/2014/05/life-weeks.html) to top bar calendar.
+## wb-iceberg
 
-## kakaotoku
-
-FOSS cross-platform [Kakaotalk](https://www.kakaocorp.com) client.
-
-- rust
-- typescript
-- javascript
-- svelte
-- tailwindcss
-- tauri
-
-## Etc
-
-Project using one or more of the following technologies:
-
-- SQL
-- qt
-- flutter
-- redis
-- elm
-- bevy engine
+An [iceberg](https://knowyourmeme.com/memes/iceberg-tiers-parodies) of obscure information related to War Brokers.
