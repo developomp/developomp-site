@@ -6,13 +6,17 @@ image: /img/icon.png
 
 These are the projects I'll be working on in the future. Ordered alphabetically.
 
+## Exyle.io
+
+- [exyle.io](https://github.com/exyleio)
+
+A browser-based online multiplayer fps game.
+
 ## are we arm yet
 
+- [GitHub](https://github.com/Are-we-ARM-yet)
+
 Inspired by the "are we X yet?" websites from the rust community, are-we-arm-yet is a website that lists all information related to ARM desktop adoption.
-
-## awesome-wb
-
-An [awesome](https://github.com/sindresorhus/awesome) list of [War Brokers](https://warbrokers.io) related topics.
 
 ## babel-compressor
 
@@ -24,20 +28,10 @@ Satellite image viewing utility built with [bevy](https://github.com/bevyengine/
 
 ## boy-lang
 
+- [GitHub](https://github.com/boy-lang)
+
 My own programming language built with rust and LLVM.
 
 ## katoku
 
 A FOSS cross-platform alternative [Kakaotalk](https://www.kakaocorp.com) client.
-
-## leset
-
-The only system settings app you need on Linux (**Le** **Set**tings).
-
-## universal-update-notifier
-
-A Distro-agnostic and package-manager-agnostic update notifier.
-
-## wb-iceberg
-
-An [iceberg](https://knowyourmeme.com/memes/iceberg-tiers-parodies) of obscure information related to War Brokers.
