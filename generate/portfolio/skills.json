@@ -7,6 +7,6 @@
 		"csharp"
 	],
 	"gameDev": ["unity"],
-	"frontEndWeb": ["react", "svelte"],
-	"frontEndDesktop": ["gnome gtk", "electron", "tauri"]
+	"frontEndWeb": ["react", "svelte", "tailwindcss"],
+	"frontEndDesktop": ["gtk", "electron", "tauri", "godotengine Godot"]
 }
