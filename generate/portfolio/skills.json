@@ -6,7 +6,7 @@
 		"rust",
 		"csharp"
 	],
-	"gameDev": ["unity"],
 	"frontEndWeb": ["react", "svelte", "tailwindcss"],
-	"frontEndDesktop": ["gtk", "electron", "tauri", "godotengine Godot"]
+	"frontEndDesktop": ["gtk", "electron", "tauri"],
+	"gameDev": ["unity", "godotengine Godot"]
 }
