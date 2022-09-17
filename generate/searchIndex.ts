@@ -13,7 +13,11 @@ const elasticlunrIndex = elasticlunr(function () {
 	this.setRef("url" as never)
 })
 
-export function addDocument(doc: unknown) {
+export function addDocument(doc: {
+	title?: unknown
+	body?: string
+	url?: string
+}) {
 	elasticlunrIndex.addDoc(doc)
 }
 
