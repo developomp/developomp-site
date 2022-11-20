@@ -8,23 +8,17 @@
 			xmlns="http://www.w3.org/1999/xhtml"
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 		>
-			<h2>Programming Languages</h2>
-
-			<%- include("badges.ejs", { badges: data.programmingLanguage }) %>
-
-			<h2>Front End</h2>
-
-			<h3>Web</h3>
-
-			<%- include("badges.ejs", { badges: data.frontEndWeb }) %>
-
-			<h3>Desktop</h3>
-
-			<%- include("badges.ejs", { badges: data.frontEndDesktop }) %>
-
-			<h3>Game development</h3>
-
-			<%- include("badges.ejs", { badges: data.gameDev }) %>
+			<% for (let key in data) { %>
+				<% if(data[key] instanceof Array){ %>
+					<h2><%- key %></h2>
+					<%- include("badges.ejs", { badges: data[key] }) %>
+				<% } else{ %>  
+					<% for (let subKey in data[key]) { %>
+						<h3><%- subKey %></h3>
+						<%- include("badges.ejs", { badges: data[key][subKey] }) %>
+					<% } %>
+				<% } %>
+			<% } %>
 		</div>
 	</foreignObject>
 </svg>

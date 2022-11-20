@@ -57,17 +57,50 @@ function generatePortfolioSVGs() {
 
 	const style = readFileSync("./generate/portfolio/style.css", "utf-8")
 
-	const data: { [key in keyof typeof skills]: Badge[] } = {
-		programmingLanguage: [],
-		frontEndWeb: [],
-		frontEndDesktop: [],
-		gameDev: [],
-	}
+	const data: {
+		[key: string]: Badge[] | { [key: string]: Badge[] }
+	} = {}
 
-	for (const skillCategory in skills) {
-		skills[skillCategory as keyof typeof skills].forEach((badge: string) => {
-			data[skillCategory as keyof typeof skills].push(parseBadge(badge))
-		})
+	// C O G N I T O - H A Z A R D
+	// THIS PART OF THE CODE WAS WRITTEN IN 3 AM
+	// C O G N I T O - H A Z A R D
+
+	for (const key in skills) {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
+		if (skills[key] instanceof Array) {
+			if (!data[key]) {
+				data[key] = []
+			}
+
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			;(skills[key] as string[]).forEach((badge) =>
+				(data[key] as Badge[]).push(parseBadge(badge))
+			)
+		} else {
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
+			for (const subKey in skills[key]) {
+				if (!data[key]) data[key] = {}
+
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				if (!data[key][subKey]) {
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
+					data[key][subKey] = []
+				}
+
+				// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+				// @ts-ignore
+				skills[key][subKey].forEach((badge: string) =>
+					// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+					// @ts-ignore
+					(data[key][subKey] as Badge[]).push(parseBadge(badge))
+				)
+			}
+		}
 	}
 
 	const renderedSVG = ejs.render(

@@ -1,12 +1,15 @@
 {
-	"programmingLanguage": [
+	"Programming Languages": [
 		"javascript",
 		"typescript",
 		"python",
 		"rust",
 		"csharp"
 	],
-	"frontEndWeb": ["react", "svelte", "tailwindcss"],
-	"frontEndDesktop": ["gtk", "electron", "tauri"],
-	"gameDev": ["unity", "godotengine Godot"]
+	"Front End": {
+		"Web": ["react", "svelte", "tailwindcss"],
+		"Desktop": ["gtk", "electron", "tauri"]
+	},
+	"Game Development": ["unity", "godotengine Godot"],
+	"Etc": ["figma", "markdown"]
 }
