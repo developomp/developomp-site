@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="480" height="750">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="800">
 	<style>
 		<%= style %>
 	</style>
@@ -9,8 +9,8 @@
 			xmlns:xlink="http://www.w3.org/1999/xlink"
 		>
 			<% for (let key in data) { %>
+				<h2><%- key %></h2>
 				<% if(data[key] instanceof Array){ %>
-					<h2><%- key %></h2>
 					<%- include("badges.ejs", { badges: data[key] }) %>
 				<% } else{ %>  
 					<% for (let subKey in data[key]) { %>
