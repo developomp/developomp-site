@@ -2,9 +2,9 @@
 	"private": true,
 	"scripts": {
 		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate",
-		"start": "yarn generate && react-scripts start",
+		"start": "npm run generate && react-scripts start",
 		"quick-start": "react-scripts start",
-		"build": "yarn generate && react-scripts build"
+		"build": "npm run generate && react-scripts build"
 	},
 	"resolutions": {
 		"@types/react": "18.0.20"
