@@ -1,7 +1,6 @@
 import ejs from "ejs"
-import { optimize, OptimizedSvg } from "svgo"
+import { optimize } from "svgo"
 import { readFileSync, writeFileSync } from "fs"
-import simpleIcon from "simple-icons"
 import tinycolor from "tinycolor2"
 
 import { map, seriesMap } from "."
@@ -109,21 +108,21 @@ function generatePortfolioSVGs() {
 		{ views: ["./generate/portfolio"] }
 	)
 
-	const optimizedSVG = optimize(renderedSVG, { multipass: true })
-
-	if (optimizedSVG.error) {
-		console.error("Failed to generate optimized skills.svg")
-		return
-	}
-
-	writeFileSync("./public/img/skills.svg", (optimizedSVG as OptimizedSvg).data)
+	writeFileSync(
+		"./public/img/skills.svg",
+		optimize(renderedSVG, { multipass: true }).data
+	)
 }
 
 function parseBadge(badgeRaw: string): Badge {
 	const isMultiWord = badgeRaw.includes(" ")
 	const words = badgeRaw.split(" ")
 
-	const icon = isMultiWord ? simpleIcon.Get(words[0]) : simpleIcon.Get(badgeRaw)
+	const icon = isMultiWord
+		? // eslint-disable-next-line @typescript-eslint/no-var-requires
+		  require("simple-icons")[words[0]]
+		: // eslint-disable-next-line @typescript-eslint/no-var-requires
+		  require("simple-icons")[badgeRaw]
 
 	const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 

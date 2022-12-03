@@ -1,4 +1,3 @@
-import simpleIcons from "simple-icons"
 import tinycolor from "tinycolor2"
 
 import { contentDirectoryPath, iconsDirectoryPath } from "../config"
@@ -35,7 +34,8 @@ export default function parsePortfolio(data: DataToPass): void {
 
 				portfolioData.skills.add(slug)
 
-				const icon = simpleIcons.Get(slug)
+				// eslint-disable-next-line @typescript-eslint/no-var-requires
+				const icon = require("simple-icons")[slug]
 
 				const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 
