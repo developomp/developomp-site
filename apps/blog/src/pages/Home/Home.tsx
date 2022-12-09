@@ -78,10 +78,7 @@ const Home = () => {
 				<title>pomp | {locale == "en" ? "Home" : "홈"}</title>
 
 				<meta property="og:type" content="website" />
-				<meta
-					property="og:image"
-					content={`${process.env.PUBLIC_URL}/icon/icon.svg`}
-				/>
+				<meta property="og:image" content="/icon/icon.svg" />
 			</Helmet>
 
 			<StyledPostList>

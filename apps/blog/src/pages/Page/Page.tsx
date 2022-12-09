@@ -128,10 +128,7 @@ export default function Page() {
 
 				<meta property="og:title" content={pageData.title} />
 				<meta property="og:type" content="website" />
-				<meta
-					property="og:image"
-					content={process.env.PUBLIC_URL + "/icon/icon.svg"}
-				/>
+				<meta property="og:image" content="/icon/icon.svg" />
 			</Helmet>
 
 			<MainContent>

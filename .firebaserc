@@ -1,0 +1,18 @@
+{
+  "projects": {
+    "developomp-site": "developomp-site"
+  },
+  "targets": {
+    "developomp-site": {
+      "hosting": {
+        "main": [
+          "developomp-site"
+        ],
+        "blog": [
+          "developomp-site-blog"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

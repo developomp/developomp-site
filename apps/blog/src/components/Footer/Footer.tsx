@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
-import theming from "../styles/theming"
-import GithubLinkIcon from "./GithubLinkIcon"
+import theming from "../../styles/theming"
+import GithubLinkIcon from "../GithubLinkIcon"
 
 const StyledFooter = styled.footer`
 	display: flex;

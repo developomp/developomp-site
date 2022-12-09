@@ -1,6 +1,6 @@
 ---
-name: developomp.com
-overview: my website for blogging, portfolio, and resume.
+name: developomp-site
+overview: my websites for blogging, portfolio, resume, etc.
 image: /img/portfolio/developomp.com.png
 repo: https://github.com/developomp/developomp-site
 badges:

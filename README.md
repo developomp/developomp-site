@@ -1,35 +1,34 @@
 # developomp-site
 
-[![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://developomp.com/portfolio/developomp.com)
+[![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://developomp.com/portfolio/developomp-site)
 
-Source code for my (developomp's) <a href="https://developomp.com" target="_blank">website</a>.
+A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portfolio, resume, etc.
 
-## Setup
+## Usage
 
-### Requirements
+1. Clone this git repository
+2. Install [NodeJS](https://nodejs.org) and [pnpm](https://pnpm.io/installation)
+3. Install Dependencies
+   ```
+   pnpm install
+   ```
+4. Run whatever command you need
+   - `pnpm build` - Build all apps and packages
+   - `pnpm dev` - Run all apps and packages locally
+   - `pnpm lint` - Lint all apps and packages
+   - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
 
-- [nodeJS](https://nodejs.org)
-- [yarn](https://github.com/yarnpkg/yarn)
+## Project Structure
 
-### Steps
-
-#### 1. Clone this repository
-
-```bash
-git clone https://github.com/developomp/developomp-site.git
-```
-
-#### 2. Install dependencies
-
-```bash
-yarn install
-```
-
-#### 3. Test locally
-
-```bash
-yarn start
-```
+- `aps`
+  - `apps/docs` - [Storybook](https://storybook.js.org) documentation of React components
+- `packages` - packages prefixed with `@developomp-site/`
+  - `components-react` - ReactJS components
+  - `eslint-config` - ESLint configuration files
+  - `tailwind-config` -tailwindCSS configuration files
+  - `theme` - universal developomp theme
+  - `tsconfig` - TSConfig files
+  - `utils` - Utility functions
 
 ## Special thanks
 

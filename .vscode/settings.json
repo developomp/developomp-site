@@ -13,19 +13,23 @@
 		"dompurify",
 		"elasticlunr",
 		"Fontawesome",
+		"fortawesome",
 		"Freedesktop",
 		"hljs",
 		"hongik",
 		"Jimin",
 		"katex",
 		"Librewolf",
+		"pnpm",
 		"polybar",
 		"Pomky",
 		"rainmeter",
 		"sxhkd",
+		"tailwindcss",
 		"tauri",
 		"texmath",
 		"tinycolor",
+		"Turborepo",
 		"ungoogled",
 		"unixporn",
 		"YYYYMMDD"
@@ -35,5 +39,8 @@
 	},
 	// for .ejs files
 	"html.validate.styles": false,
-	"color-highlight.markerType": "outline"
+	"color-highlight.markerType": "outline",
+	"[dotenv]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	}
 }

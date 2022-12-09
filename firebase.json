@@ -1,16 +1,28 @@
 {
 	"hosting": [
 		{
-			"target": "stable",
+			"target": "main",
 			"cleanUrls": true,
-			"public": "build",
+			"public": "apps/blog/build",
 			"rewrites": [
 				{
 					"source": "**",
 					"destination": "/index.html"
 				}
 			],
-			"ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+			"ignore": ["**/.*"]
+		},
+		{
+			"target": "blog",
+			"cleanUrls": true,
+			"public": "apps/blog/build",
+			"rewrites": [
+				{
+					"source": "**",
+					"destination": "/index.html"
+				}
+			],
+			"ignore": ["**/.*"]
 		}
 	]
 }
