@@ -1,0 +1,58 @@
+import { Meta, ColorPalette, ColorItem } from "@storybook/addon-docs"
+import darkTheme from "@developomp-site/theme/dark"
+
+<Meta title="Colors" />
+
+# Colors
+
+## Layers
+
+```
+┌────────────────────┐
+│       Header       │
+╞════════════════════╡
+│                    │
+│ ┌────────────────┐ │                    header  ━━━
+│ │                │ │              interactives           ━━     ━
+│ │ [Interactives] │ │     --->         contents         ━    ━━━   ━━
+│ │                │ │     --->            cards       ━━━━━━━━━━━━━━━━━
+│ │                │ │                    footer                          ━━━━
+│ │    Contents    │ │                background  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+│ │                │ │
+│ └────────────────┘ │
+│                    │
+├────────────────────┤
+│       Footer       │
+└────────────────────┘
+```
+
+## Dark Theme
+
+<ColorPalette>
+	<ColorItem
+		title="Header"
+		colors={{
+			"background (custom)": darkTheme.component.header.color.background,
+			"hover (zinc-700)": darkTheme.component.header.color.hover,
+			"text (zinc-300)": darkTheme.component.header.color.text,
+		}}
+	/>
+	<ColorItem
+		title="Scroll Progress Bar"
+		colors={{
+			"background (zinc-600)":
+				darkTheme.component.scrollProgressBar.color.background,
+			"foreground (zinc-300)":
+				darkTheme.component.scrollProgressBar.color.foreground,
+		}}
+	/>
+	<ColorItem
+		title="Links"
+		colors={{
+			"default (blue-400)": "#60a5fa",
+			"hover (blue-500)": "#3b82f6",
+		}}
+	/>
+</ColorPalette>
+
+## Light Theme

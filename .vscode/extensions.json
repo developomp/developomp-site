@@ -5,6 +5,8 @@
 		"naumovs.color-highlight",
 		"streetsidesoftware.code-spell-checker",
 		"aaron-bond.better-comments",
-		"styled-components.vscode-styled-components"
+		"styled-components.vscode-styled-components",
+		"bradlc.vscode-tailwindcss",
+		"unifiedjs.vscode-mdx"
 	]
 }

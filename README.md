@@ -21,7 +21,9 @@ A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portf
 ## Project Structure
 
 - `aps`
-  - `apps/docs` - [Storybook](https://storybook.js.org) documentation of React components
+  - `main` - https://developomp.com
+  - `blog` - https://blog.developomp.com
+  - `style` - https://style.developomp.com
 - `packages` - packages prefixed with `@developomp-site/`
   - `components-react` - ReactJS components
   - `eslint-config` - ESLint configuration files
