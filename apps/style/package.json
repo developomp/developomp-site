@@ -16,6 +16,7 @@
 	"devDependencies": {
 		"@developomp-site/eslint-config": "workspace:*",
 		"@developomp-site/tsconfig": "workspace:*",
+		"@developomp-site/theme": "workspace:*",
 		"@developomp-site/utils": "workspace:*",
 		"@storybook/addon-actions": "^6.5.14",
 		"@storybook/addon-docs": "^6.5.14",
