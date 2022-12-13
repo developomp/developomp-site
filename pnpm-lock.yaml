@@ -232,10 +232,8 @@ importers:
 
   packages/theme:
     specifiers:
-      '@developomp-site/tailwind-config': workspace:*
       tailwindcss: ^3.1.4
     devDependencies:
-      '@developomp-site/tailwind-config': link:../tailwind-config
       tailwindcss: 3.2.4_postcss@8.4.19
 
   packages/tsconfig:
