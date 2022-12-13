@@ -19,7 +19,6 @@ importers:
   apps/blog:
     specifiers:
       '@developomp-site/eslint-config': workspace:0.0.0
-      '@developomp-site/theme': workspace:*
       '@developomp-site/tsconfig': workspace:0.0.0
       '@fortawesome/fontawesome-svg-core': ^6.2.1
       '@fortawesome/free-brands-svg-icons': ^6.2.1
@@ -106,7 +105,6 @@ importers:
       styled-components: 5.3.6_7i5myeigehqah43i5u7wbekgba
     devDependencies:
       '@developomp-site/eslint-config': link:../../packages/eslint-config
-      '@developomp-site/theme': link:../../packages/theme
       '@developomp-site/tsconfig': link:../../packages/tsconfig
       '@types/ejs': 3.1.1
       '@types/elasticlunr': 0.9.5
