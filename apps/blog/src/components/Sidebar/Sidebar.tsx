@@ -9,26 +9,19 @@ import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 import SubMenu from "./SubMenu"
 
 import NavbarData from "../../data/NavbarData"
-import HeaderButton from "../Header/HeaderButton"
+import { HeaderButtonCSS } from "../Header/HeaderButton"
 
-const CommonSidebarToggleButtonStyle = css`
-	${HeaderButton}
-	width: 1.5rem;
-	text-align: center;
+const SidebarOpenButton = styled.div`
+	${HeaderButtonCSS}
 
 	@media only screen and (min-width: ${({ theme }) =>
-			theme.theme.maxDisplayWidth.mobile}) {
+		theme.theme.maxDisplayWidth.mobile}) {
 		display: none;
 	}
 `
 
-const SidebarOpenButton = styled.div`
-	${CommonSidebarToggleButtonStyle}
-`
-
 const SidebarCloseButton = styled.div`
-	${CommonSidebarToggleButtonStyle}
-	width: 90%;
+	${HeaderButtonCSS}
 	height: 4rem;
 	font-size: 1.1rem;
 
