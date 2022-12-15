@@ -1,6 +1,4 @@
-/* eslint-disable react/prop-types */
-
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import { useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
@@ -10,7 +8,6 @@ import elasticlunr from "elasticlunr" // search engine
 
 import _map from "../../data/map.json"
 import searchData from "../../data/search.json"
-import theming from "../../styles/theming"
 
 import Loading from "../../components/Loading"
 import PostCard from "../../components/PostCard"
@@ -54,7 +51,8 @@ const StyledSearchContainer = styled.div`
 	display: flex;
 	align-items: flex-start;
 
-	@media screen and (max-width: ${theming.size.screen_size2}) {
+	@media screen and (max-width: ${(props) =>
+			props.theme.theme.maxDisplayWidth.mobile}) {
 		flex-direction: column-reverse;
 		align-items: center;
 	}
@@ -64,7 +62,8 @@ const StyledSearchControlContainer = styled.div`
 	width: 100%;
 	margin-left: 1rem;
 
-	@media screen and (max-width: ${theming.size.screen_size2}) {
+	@media screen and (max-width: ${(props) =>
+			props.theme.theme.maxDisplayWidth.mobile}) {
 		margin-top: 2rem;
 		margin-left: 0;
 	}
@@ -112,6 +111,38 @@ const Search = () => {
 	const [searchInput, setSearchInput] = useState("")
 
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
+
+	const doSearch = useCallback(() => {
+		try {
+			const _postCards: JSX.Element[] = []
+			for (const res of searchIndex.search(searchInput)) {
+				const postData = map.posts[res.ref]
+
+				if (
+					postData && // if post data exists
+					isDateInRange(postData.date, dateRange[0]) && // date is within range
+					isSelectedTagsInPost(selectedTags, postData.tags) // if post include tags
+				) {
+					_postCards.push(
+						<PostCard
+							key={res.ref}
+							postData={{
+								content_id: res.ref,
+								...postData,
+							}}
+						/>
+					)
+				}
+			}
+
+			// apply search result
+			setPostCards(_postCards)
+
+			// eslint-disable-next-line no-empty
+		} catch (err) {
+			console.error(err)
+		}
+	}, [dateRange, selectedTags, searchInput])
 
 	// parse search parameters
 	useEffect(() => {
@@ -185,38 +216,6 @@ const Search = () => {
 
 		return () => clearTimeout(delayDebounceFn)
 	}, [searchInput])
-
-	function doSearch() {
-		try {
-			const _postCards: JSX.Element[] = []
-			for (const res of searchIndex.search(searchInput)) {
-				const postData = map.posts[res.ref]
-
-				if (
-					postData && // if post data exists
-					isDateInRange(postData.date, dateRange[0]) && // date is within range
-					isSelectedTagsInPost(selectedTags, postData.tags) // if post include tags
-				) {
-					_postCards.push(
-						<PostCard
-							key={res.ref}
-							postData={{
-								content_id: res.ref,
-								...postData,
-							}}
-						/>
-					)
-				}
-			}
-
-			// apply search result
-			setPostCards(_postCards)
-
-			// eslint-disable-next-line no-empty
-		} catch (err) {
-			console.error(err)
-		}
-	}
 
 	if (!initialized) return <Loading />
 

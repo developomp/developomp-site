@@ -9,14 +9,15 @@ import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
 import SubMenu from "./SubMenu"
 
 import NavbarData from "../../data/NavbarData"
-import theming from "../../styles/theming"
+import HeaderButton from "../Header/HeaderButton"
 
 const CommonSidebarToggleButtonStyle = css`
-	${theming.styles.navbarButtonStyle}
+	${HeaderButton}
 	width: 1.5rem;
 	text-align: center;
-	cursor: pointer;
-	@media only screen and (min-width: ${theming.size.screen_size1}) {
+
+	@media only screen and (min-width: ${({ theme }) =>
+			theme.theme.maxDisplayWidth.mobile}) {
 		display: none;
 	}
 `
@@ -65,16 +66,9 @@ const SidebarNav = styled.nav<{ isSidebarOpen: boolean }>`
 	z-index: 30;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.backgroundColor0,
-			dark: theming.dark.backgroundColor0,
-		})};
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color0,
-			dark: theming.dark.color0,
-		})};
+	background-color: ${({ theme }) =>
+		theme.theme.component.header.color.background};
+	color: ${({ theme }) => theme.theme.component.header.color.text};
 `
 
 const SidebarWrap = styled.div`

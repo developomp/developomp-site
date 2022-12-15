@@ -2,24 +2,16 @@ import { useCallback, useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
-
-const StyledReadProgressBackground = styled.div`
+const Background = styled.div`
 	height: 0.2rem;
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "silver",
-			dark: "darkslategrey",
-		})};
+	background-color: ${({ theme }) =>
+		theme.theme.component.scrollProgressBar.color.background};
 `
 
-const StyledReadProgress = styled.div`
+const ProgressBar = styled.div`
 	height: 100%;
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color0,
-			dark: theming.dark.color2,
-		})};
+	background-color: ${({ theme }) =>
+		theme.theme.component.scrollProgressBar.color.foreground};
 `
 
 const st = "scrollTop"
@@ -58,9 +50,9 @@ const ReadProgress = () => {
 	}, [location])
 
 	return (
-		<StyledReadProgressBackground>
-			<StyledReadProgress style={{ width: `${scroll}%` }} />
-		</StyledReadProgressBackground>
+		<Background>
+			<ProgressBar style={{ width: `${scroll}%` }} />
+		</Background>
 	)
 }
 

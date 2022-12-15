@@ -6,21 +6,21 @@ import Badge from "../../components/Badge"
 import { cardCSS } from "../../components/Card"
 
 import { PortfolioProject } from "../../../types/types"
-import theming from "../../styles/theming"
 import { globalContext } from "../../globalContext"
 
 const StyledProjectCard = styled.div`
 	${cardCSS}
-	${theming.styles.hoverCard}
 
+	color: ${(props) => props.theme.theme.color.text.default};
 	margin-bottom: 2rem;
 	word-wrap: break-word;
 
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
+	:hover {
+		cursor: pointer;
+
+		box-shadow: 0 4px 10px
+			${(props) => props.theme.theme.component.card.color.hoverGlow};
+	}
 `
 
 const StyledImg = styled.img`

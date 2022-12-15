@@ -1,7 +1,8 @@
+import dark from "@developomp-site/theme/dist/dark.json"
+import light from "@developomp-site/theme/dist/light.json"
+
 import { useEffect, useState } from "react"
 import styled from "styled-components"
-
-import theming from "../styles/theming"
 
 const StyledBadge = styled.div<{ color: string; isDark: boolean }>`
 	vertical-align: middle;
@@ -15,7 +16,7 @@ const StyledBadge = styled.div<{ color: string; isDark: boolean }>`
 
 	background-color: ${(props) => props.color};
 	color: ${(props) =>
-		props.isDark ? theming.dark.color1 : theming.light.color1};
+		props.isDark ? dark.color.text.default : light.color.text.default};
 `
 
 const StyledSVG = styled.div<{ isDark: boolean }>`
@@ -27,7 +28,9 @@ const StyledSVG = styled.div<{ isDark: boolean }>`
 	svg {
 		height: 16px;
 		fill: ${(props) =>
-			props.isDark ? theming.dark.color1 : theming.light.color1} !important;
+			props.isDark
+				? dark.color.text.default
+				: light.color.text.default} !important;
 	}
 `
 

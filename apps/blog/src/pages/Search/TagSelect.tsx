@@ -2,8 +2,6 @@ import { useContext } from "react"
 import styled from "styled-components"
 import Select from "react-select"
 
-import theming from "../../styles/theming"
-
 import _map from "../../data/map.json"
 import { globalContext } from "../../globalContext"
 
@@ -33,24 +31,19 @@ interface TagSelectProps {
 
 const TagSelect = (props: TagSelectProps) => {
 	const { globalState } = useContext(globalContext)
+	const { theme } = globalState
 	const locale = globalState.locale
-	const currentTheme = globalState.theme
 	const { onChange, defaultValue: selectedTags } = props
 
 	return (
 		<StyledReactTagsContainer>
 			<Select
 				placeholder={locale == "en" ? "Select tags..." : "태그를 선택하세요"}
-				theme={(theme) => ({
-					...theme,
+				theme={(reactSelectTheme) => ({
+					...reactSelectTheme,
 					colors: {
-						...theme.colors,
-						neutral0: theming
-							.theme(currentTheme, {
-								light: theming.light.backgroundColor1,
-								dark: theming.dark.backgroundColor1,
-							})
-							.toString(),
+						...reactSelectTheme.colors,
+						neutral0: theme.component.input.color.background.default,
 						neutral5: "hsl(0, 0%, 20%)",
 						neutral10: "hsl(0, 0%, 30%)",
 						neutral20: "hsl(0, 0%, 40%)",
@@ -68,59 +61,42 @@ const TagSelect = (props: TagSelectProps) => {
 				styles={{
 					option: (styles) => ({
 						...styles,
-						backgroundColor: theming
-							.theme(currentTheme, {
-								light: theming.light.backgroundColor1,
-								dark: theming.dark.backgroundColor1,
-							})
-							.toString(),
-						color: theming
-							.theme(currentTheme, {
-								light: theming.light.color1,
-								dark: theming.dark.color1,
-							})
-							.toString(),
+						backgroundColor: theme.component.input.color.background.default,
+						color: theme.color.text.default,
 						cursor: "pointer",
-						padding: 10,
 						":hover": {
-							backgroundColor: theming
-								.theme(currentTheme, {
-									light: theming.light.backgroundColor0,
-									dark: theming.dark.backgroundColor0,
-								})
-								.toString(),
+							backgroundColor: theme.component.input.color.background.itemHover,
 						},
 					}),
 					control: (styles) => ({
 						...styles,
-						backgroundColor: theming
-							.theme(currentTheme, {
-								light: theming.light.backgroundColor1,
-								dark: theming.dark.backgroundColor1,
-							})
-							.toString(),
-						border: theming.theme(currentTheme, {
-							light: "1px solid #ccc",
-							dark: "1px solid #555",
-						}),
+						backgroundColor: theme.component.input.color.background.default,
+						border: `1px solid ${theme.component.input.color.border.default}`,
+						":hover": {
+							border: `1px solid ${theme.component.input.color.border.hover}`,
+						},
+						":focus": {
+							border: `1px solid ${theme.component.input.color.border.focus}`,
+						},
 					}),
 					multiValue: (styles) => ({
 						...styles,
-						color: "white",
-						backgroundColor: theming.light.linkColor,
-						borderRadius: "5px",
+						color: theme.color.text.default,
+						backgroundColor: theme.component.ui.color.background.default,
+						borderRadius: "10px",
 					}),
 					multiValueLabel: (styles) => ({
 						...styles,
+						color: theme.color.text.default,
 						marginLeft: "0.2rem",
-						marginRight: "0.2rem",
 					}),
 					multiValueRemove: (styles) => ({
 						...styles,
-						marginLeft: "0.2rem",
+						marginRight: "0.3rem",
+						cursor: "pointer",
+						color: theme.component.input.color.placeHolder,
 						":hover": {
-							backgroundColor: "white",
-							color: theming.light.linkColor,
+							color: theme.color.text.default,
 						},
 					}),
 				}}

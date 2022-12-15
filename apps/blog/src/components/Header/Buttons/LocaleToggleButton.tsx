@@ -1,3 +1,5 @@
+import type { SiteLocale } from "../../../globalContext"
+
 import { useContext } from "react"
 import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
@@ -5,29 +7,28 @@ import ReactTooltip from "react-tooltip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLanguage } from "@fortawesome/free-solid-svg-icons"
 
-import { ActionsEnum, globalContext } from "../../globalContext"
-import theming from "../../styles/theming"
+import { ActionsEnum, globalContext } from "../../../globalContext"
+import { HeaderButtonCSS } from "../HeaderButton"
 
-import type { SiteLocale } from "../../globalContext"
-
-interface StyledLocaleToggleButtonProps {
+interface Props {
 	locale: SiteLocale
 }
 
-const StyledLocaleToggleButton = styled.button<StyledLocaleToggleButtonProps>`
-	${theming.styles.navbarButtonStyle}
+const LocaleToggleButton = styled.button<Props>`
+	${HeaderButtonCSS}
+
 	border: none;
 	width: 72px;
 
 	${(props) => (props.locale == "en" ? "" : "transform: scaleX(-1);")};
 `
 
-function LocaleToggleButton() {
+export default () => {
 	const { globalState, dispatch } = useContext(globalContext)
 
 	return (
 		<>
-			<StyledLocaleToggleButton
+			<LocaleToggleButton
 				data-tip
 				data-for="locale"
 				onClick={() => {
@@ -39,12 +40,10 @@ function LocaleToggleButton() {
 				locale={globalState.locale}
 			>
 				<FontAwesomeIcon icon={faLanguage} />
-			</StyledLocaleToggleButton>
+			</LocaleToggleButton>
 			<ReactTooltip id="locale" type="dark" effect="solid">
 				<span>{globalState.locale == "en" ? "English" : "한국어"} </span>
 			</ReactTooltip>
 		</>
 	)
 }
-
-export default LocaleToggleButton

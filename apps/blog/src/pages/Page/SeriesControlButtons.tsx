@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import { Link } from "react-router-dom"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,33 +9,12 @@ import {
 	faListUl,
 } from "@fortawesome/free-solid-svg-icons"
 
-import theming from "../../styles/theming"
-
+import buttonStyle from "../../styles/button"
 import { globalContext } from "../../globalContext"
 
 const Container = styled.div`
 	display: flex;
 	justify-content: space-between;
-`
-
-const buttonStyle = css`
-	${theming.styles.navbarButtonStyle}
-
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			dark: "#202225",
-			light: "#EEEEEE",
-		})};
-	border-radius: 0.5rem;
-	height: 3rem;
-
-	&:hover {
-		background-color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				dark: theming.dark.backgroundColor1,
-				light: theming.light.backgroundColor2,
-			})};
-	}
 `
 
 const Button = styled.div`
@@ -47,14 +26,6 @@ const DisabledButton = styled.div`
 
 	color: grey;
 	cursor: default;
-
-	&:hover {
-		background-color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				dark: "#202225",
-				light: "#EEEEEE",
-			})};
-	}
 `
 
 interface Props {

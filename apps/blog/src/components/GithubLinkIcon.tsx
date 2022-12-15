@@ -4,39 +4,27 @@ import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-import theming from "../styles/theming"
-
 const StyledGithubLink = styled.a<{ size?: string }>`
 	font-size: ${(props) => props.size || "2.5rem"};
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "lightgrey",
-			dark: "grey",
-		})};
+	color: ${({ theme }) =>
+		theme.currentTheme === "dark" ? "grey" : "lightgrey"};
 
 	:hover {
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: theming.light.color0,
-				dark: theming.dark.color0,
-			})};
+		color: ${({ theme }) => theme.theme.color.text.highContrast};
 	}
 `
 
-interface GithubLinkIconProps {
+interface Props {
 	link: string
 	size?: string
 	children?: ReactNode
 }
 
-const GithubLinkIcon = (props: GithubLinkIconProps) => {
+export default ({ link, size, children }: Props) => {
 	return (
-		<StyledGithubLink size={props.size} href={props.link} target="_blank">
+		<StyledGithubLink size={size} href={link} target="_blank">
 			<FontAwesomeIcon icon={faGithub} />
-			{props.children}
+			{children}
 		</StyledGithubLink>
 	)
 }
-
-export default GithubLinkIcon

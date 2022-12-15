@@ -6,24 +6,21 @@ import ReactTooltip from "react-tooltip"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 
-import theming from "../../styles/theming"
-import { ActionsEnum, globalContext } from "../../globalContext"
+import { ActionsEnum, globalContext } from "../../../globalContext"
+import { HeaderButtonCSS } from "../HeaderButton"
 
 const StyledThemeButton = styled.button`
-	${theming.styles.navbarButtonStyle}
+	${HeaderButtonCSS}
 	border: none;
 	width: 72px;
 
-	${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "",
-			dark: "transform: scaleX(-1);",
-		})};
+	${({ theme }) =>
+		theme.currentTheme === "dark" ? "transform: scaleX(-1)" : ""};
 `
 
 const ThemeToggleButton = () => {
 	const { globalState, dispatch } = useContext(globalContext)
-	const theme = globalState.theme
+	const theme = globalState.currentTheme
 
 	return (
 		<>

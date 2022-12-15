@@ -6,8 +6,6 @@ import styled from "styled-components"
 
 import MainContent from "./MainContent"
 
-import theming from "../styles/theming"
-
 const StyledContainer = styled(MainContent)`
 	display: flex;
 	flex-direction: column;
@@ -30,11 +28,7 @@ const StyledContainer = styled(MainContent)`
 `
 
 const StyledSVG = styled.svg`
-	--color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
+	--color: ${({ theme }) => theme.theme.color.text.default};
 
 	display: block;
 	margin: 1rem;

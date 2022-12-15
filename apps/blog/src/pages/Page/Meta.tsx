@@ -8,14 +8,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 import { PageData } from "../../../types/types"
-import theming from "../../styles/theming"
 
 const StyledMetaContainer = styled.div`
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#555",
-			dark: "#CCC",
-		})};
+	color: ${({ theme }) => theme.theme.color.text.gray};
 `
 
 const Meta = (props: { fetchedPage: PageData }) => {

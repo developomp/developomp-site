@@ -1,32 +1,30 @@
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
-
-const StyledSearchBar = styled.input`
+export default styled.input`
 	width: 100%;
 	border-radius: 100px; /* arbitrarily large value */
 	height: 2.5rem;
 	text-align: center;
 	font-size: 1.2rem;
 	outline: none;
-
-	border: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "1px solid #ccc",
-			dark: "1px solid #555",
-		})};
-
+	color: ${({ theme }) => theme.theme.color.text.default};
+	border: 1px solid
+		${(props) => props.theme.theme.component.input.color.border.default};
 	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.dark.color1,
-			dark: theming.dark.backgroundColor1,
-		})};
+		props.theme.theme.component.input.color.background.default};
 
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
+	::placeholder {
+		color: ${(props) => props.theme.theme.component.input.color.placeHolder};
+		opacity: 1;
+	}
+
+	&:hover {
+		border: 1px solid
+			${({ theme }) => theme.theme.component.input.color.border.hover};
+	}
+
+	&:focus {
+		border: 1px solid
+			${({ theme }) => theme.theme.component.input.color.border.focus};
+	}
 `
-
-export default StyledSearchBar

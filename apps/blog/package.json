@@ -9,6 +9,7 @@
 		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf build"
 	},
 	"dependencies": {
+		"@developomp-site/theme": "workspace:*",
 		"@fortawesome/fontawesome-svg-core": "^6.2.1",
 		"@fortawesome/free-brands-svg-icons": "^6.2.1",
 		"@fortawesome/free-regular-svg-icons": "^6.2.1",
@@ -33,8 +34,8 @@
 		"styled-components": "^5.3.6"
 	},
 	"devDependencies": {
-		"@developomp-site/tsconfig": "workspace:0.0.0",
-		"@developomp-site/eslint-config": "workspace:0.0.0",
+		"@developomp-site/eslint-config": "workspace:*",
+		"@developomp-site/tsconfig": "workspace:*",
 		"@types/ejs": "^3.1.1",
 		"@types/elasticlunr": "^0.9.5",
 		"@types/highlight.js": "^10.1.0",

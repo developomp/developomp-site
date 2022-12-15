@@ -2,17 +2,17 @@
  * @file Submenu item for sidebar
  */
 
+import type { Item } from "../../data/NavbarData"
+
 import { useCallback, useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
 import { globalContext } from "../../globalContext"
-
-import type { Item } from "../../data/NavbarData"
+import button from "../../styles/button"
 
 const SidebarLink = styled(Link)`
-	${theming.styles.navbarButtonStyle};
+	${button};
 	display: flex;
 	width: 100%;
 	margin: 0;

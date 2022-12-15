@@ -1,6 +1,5 @@
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
 import GithubLinkIcon from "../GithubLinkIcon"
 
 const StyledFooter = styled.footer`
@@ -13,17 +12,8 @@ const StyledFooter = styled.footer`
 	align-items: center;
 	justify-content: center;
 
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "black",
-			dark: "white",
-		})};
-
-	background-color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "white",
-			dark: "black",
-		})};
+	background-color: ${({ theme }) =>
+		theme.theme.component.footer.color.background};
 `
 
 const StyledFooterContainer = styled.div`
@@ -35,10 +25,10 @@ const StyledFooterContainer = styled.div`
 	color: gray;
 
 	width: 100%;
-	max-width: ${theming.size.screen_size2};
+	max-width: ${({ theme }) => theme.theme.maxDisplayWidth.desktop};
 `
 
-const Footer = () => {
+export default () => {
 	return (
 		<StyledFooter>
 			<StyledFooterContainer>
@@ -51,5 +41,3 @@ const Footer = () => {
 		</StyledFooter>
 	)
 }
-
-export default Footer

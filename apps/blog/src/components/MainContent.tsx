@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components"
-import theming from "../styles/theming"
 
 import Card from "./Card"
 
@@ -15,7 +14,8 @@ export const mainContentCSS = css`
 		max-width: fit-content;
 	}
 
-	@media screen and (max-width: ${theming.size.screen_size1}) {
+	@media screen and (max-width: ${({ theme }) =>
+			theme.theme.maxDisplayWidth.mobile}) {
 		width: auto;
 		margin: 1rem;
 	}

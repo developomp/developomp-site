@@ -1,5 +1,11 @@
 {
 	"compilerOptions": {
+		"plugins": [
+			{
+				"name": "typescript-styled-plugin",
+				"validate": false
+			}
+		],
 		"target": "es5",
 		"module": "esnext",
 		"lib": ["dom", "dom.iterable", "esnext"],

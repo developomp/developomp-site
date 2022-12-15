@@ -15,8 +15,19 @@ import Tag from "./Tag"
 import TagList from "./TagList"
 import MainContent from "./MainContent"
 
-import theming from "../styles/theming"
 import { globalContext } from "../globalContext"
+
+const PostCard = styled(MainContent)`
+	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
+	text-align: left;
+	margin-bottom: 2rem;
+
+	:hover {
+		cursor: pointer;
+		box-shadow: 0 4px 10px
+			${({ theme }) => theme.theme.component.card.color.hoverGlow};
+	}
+`
 
 const PostCardContainer = styled(Link)`
 	display: block;
@@ -24,48 +35,21 @@ const PostCardContainer = styled(Link)`
 	text-decoration: none;
 	padding: 0;
 
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color2,
-			dark: theming.dark.color2,
-		})};
-
+	/* override link color */
+	color: ${({ theme }) => theme.theme.color.text.gray};
 	&:hover {
-		color: ${(props) =>
-			theming.theme(props.theme.currentTheme, {
-				light: theming.light.color2,
-				dark: theming.dark.color2,
-			})};
+		color: ${({ theme }) => theme.theme.color.text.gray};
 	}
 `
 
-const StyledPostCard = styled(MainContent)`
-	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
-	text-align: left;
-	margin-bottom: 2rem;
-
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color1,
-			dark: theming.dark.color1,
-		})};
-
-	${theming.styles.hoverCard}
-`
-
-const StyledTitle = styled.h1`
+const Title = styled.h1`
 	font-size: 2rem;
 	font-style: bold;
 	margin: 0;
 	margin-bottom: 1rem;
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: theming.light.color2,
-			dark: theming.dark.color2,
-		})};
 `
 
-const StyledMetaContainer = styled.small``
+const MetaContainer = styled.small``
 
 interface PostCardData extends PostData {
 	content_id: string
@@ -75,26 +59,26 @@ interface Props {
 	postData: PostCardData
 }
 
-const PostCard = (props: Props) => {
+export default (props: Props) => {
 	const { postData } = props
 	const { content_id, wordCount, date, readTime, title, tags } = postData
 
 	const { globalState } = useContext(globalContext)
 
 	return (
-		<StyledPostCard>
+		<PostCard>
 			<PostCardContainer
 				to={`/${globalState.locale}${content_id.replace(/(.kr)$/g, "")}`}
 			>
-				<StyledTitle>
+				<Title>
 					{title || "No title"}
 					{/* show "(series)" for urls that matches regex "/series/<series-title>" */}
 					{/\/series\/[^/]*$/.test(content_id) && " (series)"}
-				</StyledTitle>
+				</Title>
 
 				<br />
 
-				<StyledMetaContainer>
+				<MetaContainer>
 					<TagList direction="left">
 						{tags &&
 							tags.map((tag) => {
@@ -115,10 +99,8 @@ const PostCard = (props: Props) => {
 					{typeof wordCount === "number"
 						? wordCount + " words"
 						: "unknown length"}
-				</StyledMetaContainer>
+				</MetaContainer>
 			</PostCardContainer>
-		</StyledPostCard>
+		</PostCard>
 	)
 }
-
-export default PostCard

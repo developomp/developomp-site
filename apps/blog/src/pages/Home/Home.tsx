@@ -2,8 +2,9 @@
  * PostList.tsx
  * show posts in recent order
  */
+import type { Map } from "../../../types/types"
 
-import { useContext, useEffect, useState } from "react"
+import { useCallback, useContext, useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import styled from "styled-components"
 
@@ -11,25 +12,20 @@ import PostCard from "../../components/PostCard"
 import ShowMoreButton from "./ShowMoreButton"
 
 import _map from "../../data/map.json"
-import theming from "../../styles/theming"
 
 import { globalContext } from "../../globalContext"
 
-import type { Map } from "../../../types/types"
-
 const map: Map = _map
 
-const StyledPostList = styled.div`
+const PostList = styled.div`
+	flex-direction: column;
+	align-items: center;
 	text-align: center;
 
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "#111111",
-			dark: "#EEEEEE",
-		})};
+	color: ${({ theme }) => theme.theme.color.text.default};
 `
 
-const Home = () => {
+export default () => {
 	const { globalState } = useContext(globalContext)
 	const { locale } = globalState
 
@@ -37,7 +33,7 @@ const Home = () => {
 	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
 
-	function loadPostCards() {
+	const loadPostCards = useCallback(() => {
 		let postCount = 0
 		const postCards = [] as JSX.Element[]
 
@@ -65,7 +61,7 @@ const Home = () => {
 		}
 
 		setPostCards(postCards)
-	}
+	}, [howMany, postCards])
 
 	useEffect(() => {
 		loadPostCards()
@@ -81,9 +77,11 @@ const Home = () => {
 				<meta property="og:image" content="/icon/icon.svg" />
 			</Helmet>
 
-			<StyledPostList>
+			<PostList>
 				<h1>{locale == "en" ? "Recent Posts" : "최근 포스트"}</h1>
+
 				{postCards}
+
 				{postsLength > howMany && (
 					<ShowMoreButton
 						action={() => {
@@ -91,9 +89,7 @@ const Home = () => {
 						}}
 					/>
 				)}
-			</StyledPostList>
+			</PostList>
 		</>
 	)
 }
-
-export default Home

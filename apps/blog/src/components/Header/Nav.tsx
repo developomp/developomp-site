@@ -2,35 +2,33 @@ import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import { StyledLink } from "./Navbar"
+import HeaderButton from "./HeaderButton"
 
 import NavbarData from "../../data/NavbarData"
-import theming from "../../styles/theming"
 import { globalContext } from "../../globalContext"
 
-const StyledNavLinks = styled.div`
+const Nav = styled.div`
 	display: flex;
 	height: 100%;
 
-	@media only screen and (max-width: ${theming.size.screen_size1}) {
+	@media only screen and (max-width: ${({ theme }) =>
+			theme.theme.maxDisplayWidth.mobile}) {
 		display: none;
 	}
 `
 
-const NavLinks = () => {
+export default () => {
 	const { globalState } = useContext(globalContext)
 
 	return (
-		<StyledNavLinks>
+		<Nav>
 			{NavbarData.map((item, index) => (
 				<Link key={index} to={globalState.locale + item.path}>
-					<StyledLink>
+					<HeaderButton>
 						{globalState.locale == "en" ? item.title_en : item.title_kr}
-					</StyledLink>
+					</HeaderButton>
 				</Link>
 			))}
-		</StyledNavLinks>
+		</Nav>
 	)
 }
-
-export default NavLinks

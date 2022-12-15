@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
 import { globalContext } from "../../globalContext"
 
 const StyledTocToggleButton = styled.button`
@@ -16,11 +15,7 @@ const StyledTocToggleButton = styled.button`
 	background-color: rgba(0, 0, 0, 0);
 	width: 100%;
 	padding: 0.5rem;
-	color: ${(props) =>
-		theming.theme(props.theme.currentTheme, {
-			light: "black",
-			dark: "white",
-		})};
+	color: ${({ theme }) => theme.theme.color.text.highContrast};
 `
 
 const StyledCollapseContainer = styled.div`

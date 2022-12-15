@@ -1,3 +1,6 @@
+import darkTheme from "@developomp-site/theme/dist/dark.json"
+import lightTheme from "@developomp-site/theme/dist/light.json"
+
 import { useContext, useEffect, useState } from "react"
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
@@ -5,7 +8,7 @@ import { Helmet } from "react-helmet-async"
 import { isIE } from "react-device-detect"
 
 import Loading from "./components/Loading"
-import Navbar from "./components/Navbar"
+import Header from "./components/Header"
 import Footer from "./components/Footer"
 
 import Home from "./pages/Home"
@@ -14,17 +17,16 @@ import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
 import Portfolio from "./pages/Portfolio"
 
-import theming from "./styles/theming"
 import GlobalStyle from "./styles/globalStyle"
 
-import { ActionsEnum, globalContext } from "./globalContext"
+import { globalContext } from "./globalContext"
 
 const IENotSupported = styled.p`
 	margin: auto;
 	font-size: 2rem;
 	margin-top: 2rem;
 	text-align: center;
-	font-family: ${theming.font.regular};
+	font-family: ${(props) => props.theme.theme.font.sansSerif};
 `
 
 const StyledContentContainer = styled.div`
@@ -34,7 +36,7 @@ const StyledContentContainer = styled.div`
 `
 
 export default function App() {
-	const { globalState, dispatch } = useContext(globalContext)
+	const { globalState } = useContext(globalContext)
 	const { locale } = globalState
 
 	const navigate = useNavigate()
@@ -73,10 +75,8 @@ export default function App() {
 	return (
 		<ThemeProvider
 			theme={{
-				currentTheme: globalState.theme,
-				setTheme(setThemeTo) {
-					dispatch({ type: ActionsEnum.UPDATE_THEME, payload: setThemeTo })
-				},
+				currentTheme: globalState.currentTheme,
+				theme: globalState.currentTheme === "dark" ? darkTheme : lightTheme,
 			}}
 		>
 			<Helmet>
@@ -87,7 +87,7 @@ export default function App() {
 
 			<GlobalStyle />
 
-			<Navbar />
+			<Header />
 			<StyledContentContainer>
 				{isLoading ? (
 					<Loading />

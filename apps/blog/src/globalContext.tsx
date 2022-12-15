@@ -1,7 +1,10 @@
+import type { Dispatch, ReactNode, ReactElement } from "react"
+import type { Theme } from "@developomp-site/theme"
+
+import darkTheme from "@developomp-site/theme/dist/dark.json"
+import lightTheme from "@developomp-site/theme/dist/light.json"
 import { createContext, useEffect, useReducer } from "react"
 import storage from "local-storage-fallback"
-
-import type { Dispatch, ReactNode, ReactElement } from "react"
 
 export type SiteLocale = "en" | "kr"
 export type SiteTheme = "dark" | "light"
@@ -9,11 +12,6 @@ export type SiteTheme = "dark" | "light"
 export enum ActionsEnum {
 	UPDATE_THEME,
 	UPDATE_LOCALE,
-}
-
-export interface IGlobalState {
-	locale: SiteLocale
-	theme: SiteTheme
 }
 
 export type GlobalAction =
@@ -25,6 +23,12 @@ export type GlobalAction =
 			type: ActionsEnum.UPDATE_LOCALE
 			payload: SiteLocale
 	  }
+
+export interface IGlobalState {
+	locale: SiteLocale
+	currentTheme: SiteTheme
+	theme: Theme
+}
 
 export interface IGlobalContext {
 	globalState: IGlobalState
@@ -40,7 +44,11 @@ function getDefaultLocale(): SiteLocale {
 
 const defaultState: IGlobalState = {
 	locale: getDefaultLocale(),
-	theme: (storage.getItem("theme") || "dark") as SiteTheme,
+	currentTheme: (storage.getItem("theme") || "dark") as SiteTheme,
+	theme:
+		((storage.getItem("theme") || "dark") as SiteTheme) === "dark"
+			? darkTheme
+			: lightTheme,
 }
 
 export const globalContext = createContext({} as IGlobalContext)
@@ -48,7 +56,8 @@ export const globalContext = createContext({} as IGlobalContext)
 function reducer(state = defaultState, action: GlobalAction): IGlobalState {
 	switch (action.type) {
 		case ActionsEnum.UPDATE_THEME:
-			state.theme = action.payload
+			state.currentTheme = action.payload
+			state.theme = state.currentTheme === "dark" ? darkTheme : lightTheme
 			break
 
 		case ActionsEnum.UPDATE_LOCALE:
@@ -67,8 +76,8 @@ export function GlobalStore(props: { children: ReactNode }): ReactElement {
 
 	// save theme when it is changed
 	useEffect(() => {
-		storage.setItem("theme", globalState.theme)
-	}, [globalState.theme])
+		storage.setItem("theme", globalState.currentTheme)
+	}, [globalState.currentTheme])
 
 	// save locale when it is changed
 	useEffect(() => {

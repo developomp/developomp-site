@@ -1,12 +1,11 @@
 import { DateRange } from "react-date-range"
 import styled from "styled-components"
 
-import theming from "../../styles/theming"
-
 export const DateRangeControl = styled.div`
 	width: 350px;
 
-	@media screen and (max-width: ${theming.size.screen_size2}) {
+	@media screen and (max-width: ${(props) =>
+			props.theme.theme.maxDisplayWidth.mobile}) {
 		margin-top: 2rem;
 	}
 `
