@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import styled, { css } from "styled-components"
+import styled from "styled-components"
 import ReactTooltip from "react-tooltip"
 import { isMobile } from "react-device-detect"
 
