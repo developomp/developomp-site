@@ -63,7 +63,7 @@ export default function Page() {
 	const [isLoading, setIsLoading] = useState(true)
 	const [isTranslationAvailable, setIsTranslationAvailable] = useState(true)
 
-	// this code runs if either the  url or the locale changes
+	// this code runs if either the url or the locale changes
 	useEffect(() => {
 		const content_id =
 			pathname
