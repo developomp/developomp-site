@@ -4,12 +4,13 @@
 		"typescript",
 		"python",
 		"rust",
-		"csharp"
+		"csharp C#"
 	],
 	"Front End": {
-		"Web": ["react", "svelte", "tailwindcss"],
+		"Web": ["react", "svelte", "tailwindcss Tailwind"],
 		"Desktop": ["gtk", "electron", "tauri"]
 	},
+	"Back End": ["docker", "firebase", "pocketbase", "linode"],
 	"Game Development": ["unity", "godotengine Godot"],
 	"Etc": ["figma", "markdown"]
 }
