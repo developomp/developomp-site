@@ -6,11 +6,10 @@
 		"rust",
 		"csharp C#"
 	],
-	"Front End": {
-		"Web": ["react", "svelte", "tailwindcss Tailwind"],
-		"Desktop": ["gtk", "electron", "tauri"]
-	},
-	"Back End": ["docker", "firebase", "pocketbase", "linode"],
+	"Web Front End": ["react", "svelte", "tailwindcss Tailwind"],
+	"Desktop Front End": ["gtk", "electron", "tauri"],
+	"Back End": ["firebase", "pocketbase", "linode", "redis"],
+	"DevOps": ["docker", "githubactions GH Actions"],
 	"Game Development": ["unity", "godotengine Godot"],
-	"Etc": ["figma", "markdown"]
+	"Etc": ["figma", "markdown", "google Google-Fu"]
 }
