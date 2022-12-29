@@ -4,6 +4,8 @@ overview: my websites for blogging, portfolio, resume, etc.
 image: /img/portfolio/developomp.com.png
 repo: https://github.com/developomp/developomp-site
 badges:
+  - githubactions
+  - turborepo
   - typescript
   - javascript
   - nodedotjs

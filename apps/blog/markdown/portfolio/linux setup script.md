@@ -4,6 +4,8 @@ overview: My Arch Linux desktop setup
 image: /img/portfolio/linux-setup-script.png
 repo: https://github.com/developomp/setup
 badges:
+  - githubpages
+  - githubactions
   - linux
   - python
 ---
