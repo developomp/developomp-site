@@ -8,7 +8,7 @@
 	],
 	"Web Front End": ["react", "svelte", "tailwindcss Tailwind"],
 	"Desktop Front End": ["gtk", "electron", "tauri"],
-	"Back End": ["firebase", "pocketbase", "linode", "redis"],
+	"Back End": ["firebase", "linode", "redis"],
 	"DevOps": ["docker", "githubactions GH Actions"],
 	"Game Development": ["unity", "godotengine Godot"],
 	"Etc": ["figma", "markdown", "google Google-Fu"]
