@@ -6,34 +6,22 @@ title: 목표
 
 - 깃허브에서 별 X개 얻기 (본인 미포함)
   - [x] 10
+  - [ ] 50
   - [ ] 100
   - [ ] 500
   - [ ] 1,000
-  - [ ] 10,000
 - 깃허브에서 1년에 X개의 기여하기 (1월 1일 ~ 12월 31일)
-  - [x] 100
-  - [x] 500
-  - [x] 1000
-  - [ ] 2000
+  - [x] 1000 ([2021](https://github.com/developomp?tab=overview&from=2021-12-01&to=2021-12-31))
+  - [x] 2000 ([2022](https://github.com/developomp?tab=overview&from=2022-12-01&to=2022-12-31))
   - [ ] 3000
-- X일동안 하루에 적어도 한개의 커밋 push하기
-  - [x] 30
-  - [x] 50
-  - [x] 100
-  - [ ] 200
-  - [ ] 300
-  - [ ] 365
-  - [ ] 500
-- [ ] 리눅스 커널에 코드 기여하기
-- [ ] severity rating 7.0 (high, NVD CVSS v3)이상의 CVE 제출하기
 - 알고리즘 문제풀이 ([solved.ac](https://solved.ac))
   - 모든 X 문제 풀기
     - [x] [브론즈 V](https://solved.ac/problems/level/1)
     - [ ] [브론즈 IV](https://solved.ac/problems/level/2)
   - X티어 달성하기
     - [x] 브론즈
-    - [x] 실버 (현재 실버 I)
-    - [ ] 골드
+    - [x] 실버
+    - [x] 골드 (현재 골드 IV)
     - [ ] 플래티넘
     - [ ] 다이아
     - ~~루비~~

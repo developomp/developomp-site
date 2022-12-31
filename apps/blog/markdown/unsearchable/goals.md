@@ -6,34 +6,22 @@ title: Goals
 
 - Get a total of X stars on github (not counting mine)
   - [x] 10
+  - [ ] 50
   - [ ] 100
   - [ ] 500
   - [ ] 1,000
-  - [ ] 10,000
 - Make X github contributions in a year (jan 1 ~ dec 31)
-  - [x] 100
-  - [x] 500
-  - [x] 1000
-  - [ ] 2000
+  - [x] 1000 ([2021](https://github.com/developomp?tab=overview&from=2021-12-01&to=2021-12-31))
+  - [x] 2000 ([2022](https://github.com/developomp?tab=overview&from=2022-12-01&to=2022-12-31))
   - [ ] 3000
-- Push at least one commit every day for X days
-  - [x] 30
-  - [x] 50
-  - [x] 100
-  - [ ] 200
-  - [ ] 300
-  - [ ] 365
-  - [ ] 500
-- [ ] Get my code into the linux kernel
-- [ ] submit a CVE with the severity rating 7.0 (high) or above (NVD CVSS v3)
 - Algorithm problem solving ([solved.ac](https://solved.ac))
   - solve all X problems
     - [x] [Bronze V](https://solved.ac/problems/level/1)
     - [ ] [브론즈 IV](https://solved.ac/problems/level/2)
   - Reach X tier
     - [x] Bronze
-    - [x] Silver (Currently Silver I)
-    - [ ] Gold
+    - [x] Silver
+    - [x] Gold (Currently Gold IV)
     - [ ] Platinum
     - [ ] Diamond
     - ~~Ruby~~
