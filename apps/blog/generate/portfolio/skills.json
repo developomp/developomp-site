@@ -8,8 +8,14 @@
 	],
 	"Web Front End": ["react", "svelte", "tailwindcss Tailwind"],
 	"Desktop Front End": ["gtk", "electron", "tauri"],
-	"Back End": ["firebase", "redis"],
+	"Back End": ["firebase"],
 	"DevOps": ["docker", "githubactions GH Actions"],
-	"Game Development": ["unity", "godotengine Godot"],
-	"Etc": ["figma", "markdown", "notion", "google Google-Fu"]
+	"Game Development": ["unity"],
+	"Etc": [
+		"figma",
+		"markdown",
+		"notion",
+		"google Google-Fu",
+		"discord Discord Bot"
+	]
 }
