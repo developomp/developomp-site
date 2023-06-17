@@ -22,7 +22,12 @@ interface Props {
 
 export default ({ link, size, children }: Props) => {
 	return (
-		<StyledGithubLink size={size} href={link} target="_blank">
+		<StyledGithubLink
+			aria-label="GitHub repository"
+			size={size}
+			href={link}
+			target="_blank"
+		>
 			<FontAwesomeIcon icon={faGithub} />
 			{children}
 		</StyledGithubLink>

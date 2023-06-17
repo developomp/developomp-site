@@ -26,6 +26,7 @@ const ThemeToggleButton = () => {
 		<>
 			<StyledThemeButton
 				data-tip
+				aria-label="theme toggle"
 				data-for="theme"
 				onClick={() =>
 					dispatch({

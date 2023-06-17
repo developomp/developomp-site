@@ -9,7 +9,12 @@ const SearchButton = () => {
 	return (
 		<>
 			<div>
-				<Link data-tip data-for="search" to="/search">
+				<Link
+					data-tip
+					data-for="search"
+					to="/search"
+					aria-label="go to search page"
+				>
 					<HeaderButton>
 						<FontAwesomeIcon icon={faSearch} />
 					</HeaderButton>
