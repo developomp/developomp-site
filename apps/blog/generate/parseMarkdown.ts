@@ -39,9 +39,10 @@ const md = markdownIt({
 		delimiters: "dollars",
 	})
 	.use(markdownItAnchor, {
-		permalink: true,
-		permalinkBefore: true,
-		permalinkSymbol: "#",
+		permalink: markdownItAnchor.permalink.ariaHidden({
+			placement: "before",
+			symbol: "#",
+		}),
 	})
 	.use(markdownItTaskCheckbox)
 	.use(markDownItMark)
