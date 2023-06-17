@@ -70,6 +70,7 @@ export default function App() {
 				<meta property="og:site_name" content="developomp" />
 				<meta property="og:title" content="Home" />
 				<meta property="og:description" content="developomp's blog" />
+				<meta name="description" content="developomp's blog" />
 			</Helmet>
 
 			<GlobalStyle />
