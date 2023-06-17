@@ -1,6 +1,7 @@
 import ejs from "ejs"
 import { optimize } from "svgo"
 import { readFileSync, writeFileSync } from "fs"
+import icons from "simple-icons/icons"
 import tinycolor from "tinycolor2"
 
 import { map, seriesMap } from "."
@@ -117,12 +118,10 @@ function generatePortfolioSVGs() {
 function parseBadge(badgeRaw: string): Badge {
 	const isMultiWord = badgeRaw.includes(" ")
 	const words = badgeRaw.split(" ")
+	const slug = words[0]
 
-	const icon = isMultiWord
-		? // eslint-disable-next-line @typescript-eslint/no-var-requires
-		  require("simple-icons")[words[0]]
-		: // eslint-disable-next-line @typescript-eslint/no-var-requires
-		  require("simple-icons")[badgeRaw]
+	// @ts-ignore
+	const icon = icons["si" + slug[0].toUpperCase() + slug.slice(1)]
 
 	const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 

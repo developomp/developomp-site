@@ -1,4 +1,6 @@
 import tinycolor from "tinycolor2"
+import icons from "simple-icons/icons"
+import { SimpleIcon } from "simple-icons"
 
 import { contentDirectoryPath, iconsDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
@@ -12,11 +14,11 @@ export default function parsePortfolio(data: DataToPass): void {
 	if (markdownData.badges) {
 		;(markdownData.badges as string[]).forEach((slug) => {
 			// todo: handle cases when icon is not on simple-icons
+			const icon: SimpleIcon =
+				// @ts-ignore
+				icons["si" + slug[0].toUpperCase() + slug.slice(1)]
 
 			portfolioData.skills.add(slug)
-
-			// eslint-disable-next-line @typescript-eslint/no-var-requires
-			const icon = require("simple-icons")[slug]
 
 			const color = tinycolor(icon.hex).lighten(5).desaturate(5)
 
