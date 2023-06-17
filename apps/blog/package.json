@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"generate": "ts-node -O '{\"module\":\"commonjs\"}' --files ./generate",
-		"dev": "npm run generate && react-scripts start",
-		"build": "npm run generate && react-scripts build",
+		"dev": "pnpm run generate && react-scripts start",
+		"build": "pnpm run generate && react-scripts build",
 		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf build"
 	},
 	"dependencies": {
