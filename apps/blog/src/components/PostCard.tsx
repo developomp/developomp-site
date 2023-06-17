@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -14,8 +13,6 @@ import {
 import Tag from "./Tag"
 import TagList from "./TagList"
 import MainContent from "./MainContent"
-
-import { globalContext } from "../globalContext"
 
 const PostCard = styled(MainContent)`
 	box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
@@ -63,13 +60,9 @@ export default (props: Props) => {
 	const { postData } = props
 	const { content_id, wordCount, date, readTime, title, tags } = postData
 
-	const { globalState } = useContext(globalContext)
-
 	return (
 		<PostCard>
-			<PostCardContainer
-				to={`/${globalState.locale}${content_id.replace(/(.kr)$/g, "")}`}
-			>
+			<PostCardContainer to={content_id}>
 				<Title>
 					{title || "No title"}
 					{/* show "(series)" for urls that matches regex "/series/<series-title>" */}

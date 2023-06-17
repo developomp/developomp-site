@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
 
 import MainContent from "../../components/MainContent"
@@ -7,14 +7,9 @@ import ProjectCard from "./ProjectCard"
 
 import portfolio from "../../data/portfolio.json"
 
-import { globalContext } from "../../globalContext"
-
 import type { PortfolioProject } from "../../../types/types"
 
 const Portfolio = () => {
-	const { globalState } = useContext(globalContext)
-	const locale = globalState.locale
-
 	const [projects, setProjects] = useState<JSX.Element[]>([])
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	const [skills, setSkills] = useState<JSX.Element[]>([])
@@ -48,7 +43,7 @@ const Portfolio = () => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | {locale == "en" ? "Portfolio" : "포트폴리오"}</title>
+				<title>pomp | Portfolio</title>
 
 				<meta property="og:title" content="Portfolio" />
 				<meta property="og:type" content="website" />
@@ -61,7 +56,7 @@ const Portfolio = () => {
 			</Helmet>
 
 			<MainContent>
-				<h1>{locale == "en" ? "Portfolio" : "포트폴리오"}</h1>
+				<h1>Portfolio</h1>
 
 				<hr />
 
@@ -70,8 +65,8 @@ const Portfolio = () => {
 				<h2 id="projects">
 					<a className="header-anchor" href="#projects">
 						#
-					</a>{" "}
-					{locale == "en" ? "Projects" : "프로젝트"}
+					</a>
+					{" Projects"}
 				</h2>
 
 				{/* todo: filter projects by skill */}

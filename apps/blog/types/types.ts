@@ -128,8 +128,7 @@ export interface PortfolioOverview {
 export interface PortfolioProject {
 	name: string
 	image: string // url to the image
-	overview_en: string
-	overview_kr: string
+	overview: string
 	badges: string[] // array of valid simpleIcons slug
 	repo: string // url of the git repository
 }

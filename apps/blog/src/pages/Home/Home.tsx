@@ -4,7 +4,7 @@
  */
 import type { Map } from "../../../types/types"
 
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
 import styled from "styled-components"
 
@@ -12,8 +12,6 @@ import PostCard from "../../components/PostCard"
 import ShowMoreButton from "./ShowMoreButton"
 
 import _map from "../../data/map.json"
-
-import { globalContext } from "../../globalContext"
 
 const map: Map = _map
 
@@ -26,9 +24,6 @@ const PostList = styled.div`
 `
 
 export default () => {
-	const { globalState } = useContext(globalContext)
-	const { locale } = globalState
-
 	const [howMany, setHowMany] = useState(5)
 	const [postsLength, setPostsLength] = useState(0)
 	const [postCards, setPostCards] = useState<JSX.Element[]>([])
@@ -71,14 +66,14 @@ export default () => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | {locale == "en" ? "Home" : "홈"}</title>
+				<title>pomp | Home</title>
 
 				<meta property="og:type" content="website" />
 				<meta property="og:image" content="/icon/icon.svg" />
 			</Helmet>
 
 			<PostList>
-				<h1>{locale == "en" ? "Recent Posts" : "최근 포스트"}</h1>
+				<h1>Recent Posts</h1>
 
 				{postCards}
 

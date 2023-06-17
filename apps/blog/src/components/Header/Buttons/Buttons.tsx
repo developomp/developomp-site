@@ -1,6 +1,5 @@
 import styled from "styled-components"
 
-import LocaleToggleButton from "./LocaleToggleButton"
 import ThemeToggleButton from "./ThemeToggleButton"
 import SearchButton from "./SearchButton"
 
@@ -13,7 +12,6 @@ const RightButtons = styled.div`
 export default () => {
 	return (
 		<RightButtons>
-			<LocaleToggleButton />
 			<ThemeToggleButton />
 			<SearchButton />
 		</RightButtons>

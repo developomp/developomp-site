@@ -32,13 +32,12 @@ interface TagSelectProps {
 const TagSelect = (props: TagSelectProps) => {
 	const { globalState } = useContext(globalContext)
 	const { theme } = globalState
-	const locale = globalState.locale
 	const { onChange, defaultValue: selectedTags } = props
 
 	return (
 		<StyledReactTagsContainer>
 			<Select
-				placeholder={locale == "en" ? "Select tags..." : "태그를 선택하세요"}
+				placeholder="Select tags..."
 				theme={(reactSelectTheme) => ({
 					...reactSelectTheme,
 					colors: {

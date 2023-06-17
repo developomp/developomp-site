@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
@@ -10,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons"
 
 import buttonStyle from "../../styles/button"
-import { globalContext } from "../../globalContext"
 
 const Container = styled.div`
 	display: flex;
@@ -35,13 +33,10 @@ interface Props {
 }
 
 function SeriesControlButtons({ prevURL, seriesHome, nextURL }: Props) {
-	const { globalState } = useContext(globalContext)
-	const { locale } = globalState
-
 	return (
 		<Container>
 			{prevURL ? (
-				<Link to={`/${locale}${prevURL}`}>
+				<Link to={prevURL}>
 					<Button>
 						<FontAwesomeIcon icon={faArrowLeft} />
 					</Button>
@@ -52,14 +47,14 @@ function SeriesControlButtons({ prevURL, seriesHome, nextURL }: Props) {
 				</DisabledButton>
 			)}
 
-			<Link to={`/${locale}${seriesHome}`}>
+			<Link to={seriesHome}>
 				<Button>
 					<FontAwesomeIcon icon={faListUl} />
 				</Button>
 			</Link>
 
 			{nextURL ? (
-				<Link to={`/${locale}${nextURL}`}>
+				<Link to={nextURL}>
 					<Button>
 						<FontAwesomeIcon icon={faArrowRight} />
 					</Button>

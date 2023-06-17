@@ -2,7 +2,7 @@ import darkTheme from "@developomp-site/theme/dist/dark.json"
 import lightTheme from "@developomp-site/theme/dist/light.json"
 
 import { useContext, useEffect, useState } from "react"
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
 import { Helmet } from "react-helmet-async"
 import { isIE } from "react-device-detect"
@@ -37,17 +37,8 @@ const StyledContentContainer = styled.div`
 
 export default function App() {
 	const { globalState } = useContext(globalContext)
-	const { locale } = globalState
-
-	const navigate = useNavigate()
-	const { pathname } = useLocation()
 
 	const [isLoading, setIsLoading] = useState(true)
-
-	// update url on locale change
-	useEffect(() => {
-		navigate(locale + pathname.slice(3))
-	}, [locale])
 
 	useEffect(() => {
 		// set loading to false if all fonts are loaded
@@ -59,10 +50,6 @@ export default function App() {
 		} else {
 			setIsLoading(false)
 		}
-
-		// automatically add locale prefix if it's not specified
-		if (!pathname.startsWith("/en") && !pathname.startsWith("/kr"))
-			navigate(`/${globalState.locale}${pathname}`)
 	}, [])
 
 	if (isIE)
@@ -93,29 +80,12 @@ export default function App() {
 					<Loading />
 				) : (
 					<Routes>
-						{/*
-						Using this ugly code because the developers of react-router-dom decided that
-						removing regex support was a good idea.
-						https://github.com/remix-run/react-router/issues/7285
-						*/}
-
-						<Route path="en">
-							<Route index element={<Home />} />
-							<Route path="search" element={<Search />} />
-							<Route path="portfolio" element={<Portfolio />} />
-							<Route path="404" element={<NotFound />} />
-							<Route path="loading" element={<Loading />} />
-							<Route path="*" element={<Page />} />
-						</Route>
-
-						<Route path="kr">
-							<Route index element={<Home />} />
-							<Route path="search" element={<Search />} />
-							<Route path="portfolio" element={<Portfolio />} />
-							<Route path="404" element={<NotFound />} />
-							<Route path="loading" element={<Loading />} />
-							<Route path="*" element={<Page />} />
-						</Route>
+						<Route index element={<Home />} />
+						<Route path="search" element={<Search />} />
+						<Route path="portfolio" element={<Portfolio />} />
+						<Route path="404" element={<NotFound />} />
+						<Route path="loading" element={<Loading />} />
+						<Route path="*" element={<Page />} />
 					</Routes>
 				)}
 			</StyledContentContainer>

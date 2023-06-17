@@ -10,32 +10,27 @@ import {
 export type Item = {
 	path: string
 	icon: JSX.Element
-	title_en: string
-	title_kr: string
+	title: string
 }
 
 const NavbarData: Item[] = [
 	{
-		title_en: "Home",
-		title_kr: "홈",
+		title: "Home",
 		path: "/",
 		icon: <FontAwesomeIcon icon={faHome} />,
 	},
 	{
-		title_en: "About",
-		title_kr: "소개",
+		title: "About",
 		path: "/about",
 		icon: <FontAwesomeIcon icon={faUser} />,
 	},
 	{
-		title_en: "Portfolio",
-		title_kr: "포트폴리오",
+		title: "Portfolio",
 		path: "/portfolio",
 		icon: <FontAwesomeIcon icon={faFileLines} />,
 	},
 	{
-		title_en: "Resume",
-		title_kr: "이력서",
+		title: "Resume",
 		path: "/resume",
 		icon: <FontAwesomeIcon icon={faUserTie} />,
 	},

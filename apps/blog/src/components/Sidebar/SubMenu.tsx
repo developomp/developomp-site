@@ -4,11 +4,10 @@
 
 import type { Item } from "../../data/NavbarData"
 
-import { useCallback, useContext, useState } from "react"
+import { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import { globalContext } from "../../globalContext"
 import button from "../../styles/button"
 
 const SidebarLink = styled(Link)`
@@ -41,7 +40,6 @@ interface Props {
 }
 
 const SubMenu = (props: Props) => {
-	const { globalState } = useContext(globalContext)
 	const [isSubNavOpen, setSubNavOpen] = useState(false)
 	const handleSidebarLinkClick = useCallback(() => {
 		setSubNavOpen((prev) => !prev)
@@ -49,17 +47,10 @@ const SubMenu = (props: Props) => {
 
 	return (
 		<>
-			<SidebarLink
-				to={globalState.locale + props.item.path}
-				onClick={handleSidebarLinkClick}
-			>
+			<SidebarLink to={props.item.path} onClick={handleSidebarLinkClick}>
 				<div>
 					{props.item.icon}
-					<SidebarLabel>
-						{globalState.locale == "en"
-							? props.item.title_en
-							: props.item.title_kr}
-					</SidebarLabel>
+					<SidebarLabel>{props.item.title}</SidebarLabel>
 				</div>
 			</SidebarLink>
 		</>

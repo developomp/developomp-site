@@ -1,8 +1,7 @@
 import portfolio from "../../data/portfolio.json"
 import _map from "../../data/map.json"
 
-import type { SiteLocale } from "../../globalContext"
-import type { Map, PageData, PortfolioProject } from "../../../types/types"
+import type { Map, PageData } from "../../../types/types"
 
 const map: Map = _map
 
@@ -14,40 +13,12 @@ export enum PageType {
 	UNSEARCHABLE,
 }
 
-export enum URLValidity {
-	VALID, // page does exist in selected language
-	VALID_BUT_IN_OTHER_LOCALE, // page exists but only in another language
-	NOT_VALID, // page does not exist
-}
-
-export async function fetchContent(
-	pageType: PageType,
-	url: string,
-	locale: SiteLocale
-) {
+export async function fetchContent(pageType: PageType, url: string) {
 	try {
 		if (pageType == PageType.UNSEARCHABLE) {
-			if (locale == "en") {
-				return await import(`../../data/content/unsearchable${url}.json`)
-			} else {
-				try {
-					return await import(
-						`../../data/content/unsearchable${url}.${locale}.json`
-					)
-				} catch {
-					return await import(`../../data/content/unsearchable${url}.json`)
-				}
-			}
-		}
-
-		if (locale == "en") {
-			return await import(`../../data/content${url}.json`)
+			return await import(`../../data/content/unsearchable${url}.json`)
 		} else {
-			try {
-				return await import(`../../data/content${url}.${locale}.json`)
-			} catch {
-				return await import(`../../data/content${url}.json`)
-			}
+			return await import(`../../data/content${url}.json`)
 		}
 	} catch (err) {
 		return
@@ -69,93 +40,11 @@ export function categorizePageType(content_id: string): PageType {
 	return PageType.UNSEARCHABLE
 }
 
-export function checkURLValidity(
-	content_id: string,
-	pageType: PageType
-): URLValidity {
-	// content ID of other language
-	const alt_content_id = content_id.endsWith(".kr")
-		? content_id.replace(/\.kr$/, "") // remove .kr suffix
-		: content_id + ".kr" // add .kr suffix
-
-	switch (pageType) {
-		case PageType.SERIES:
-		case PageType.POST: {
-			if (map.posts[content_id]) return URLValidity.VALID
-
-			if (map.posts[alt_content_id])
-				return URLValidity.VALID_BUT_IN_OTHER_LOCALE
-
-			break
-		}
-
-		case PageType.SERIES_HOME: {
-			const series_keys = Object.keys(map.series)
-
-			if (
-				series_keys.some((seriesHomeURL) =>
-					seriesHomeURL.startsWith(content_id)
-				)
-			)
-				return URLValidity.VALID
-
-			if (
-				series_keys.some((seriesHomeURL) =>
-					seriesHomeURL.startsWith(alt_content_id)
-				)
-			)
-				return URLValidity.VALID_BUT_IN_OTHER_LOCALE
-
-			break
-		}
-
-		case PageType.PORTFOLIO_PROJECT: {
-			const locale: SiteLocale = content_id.endsWith(".kr") ? "kr" : "en"
-			const portfolio_content_id = content_id.endsWith(".kr")
-				? content_id.slice(0, content_id.length - 3)
-				: content_id
-
-			try {
-				const project = portfolio.projects[
-					portfolio_content_id as keyof typeof portfolio.projects
-				] as PortfolioProject
-
-				if (locale == "en" && project.overview_en) {
-					return URLValidity.VALID
-				} else if (locale == "kr" && project.overview_kr) {
-					return URLValidity.VALID
-				} else if (
-					(locale == "en" && project.overview_kr) ||
-					(locale == "kr" && project.overview_en)
-				) {
-					return URLValidity.VALID_BUT_IN_OTHER_LOCALE
-				}
-			} catch {
-				// prevent linting error
-			}
-
-			break
-		}
-
-		case PageType.UNSEARCHABLE: {
-			if (map.unsearchable[content_id]) return URLValidity.VALID
-
-			if (map.unsearchable[alt_content_id])
-				return URLValidity.VALID_BUT_IN_OTHER_LOCALE
-
-			break
-		}
-	}
-
-	return URLValidity.NOT_VALID
-}
-
 export function parsePageData(
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	fetched_content: any,
 	pageType: PageType,
-	content_id: string,
-	locale: SiteLocale
+	content_id: string
 ): PageData {
 	// page date to be saved as a react state
 	const pageData: PageData = {
@@ -247,21 +136,15 @@ export function parsePageData(
 		}
 
 		case PageType.PORTFOLIO_PROJECT: {
-			const portfolio_content_id = content_id.endsWith(".kr")
-				? content_id.slice(0, content_id.length - 3)
-				: content_id
-
 			const data =
-				portfolio.projects[
-					portfolio_content_id as keyof typeof portfolio.projects
-				]
+				portfolio.projects[content_id as keyof typeof portfolio.projects]
 
 			pageData.content = fetched_content.content
 			pageData.toc = fetched_content.toc
 
 			pageData.title = data.name
 			pageData.image = data.image
-			pageData.overview = locale == "en" ? data.overview_en : data.overview_kr
+			pageData.overview = data.overview
 			pageData.badges = data.badges
 			pageData.repo = data.repo
 
@@ -269,10 +152,7 @@ export function parsePageData(
 		}
 
 		case PageType.UNSEARCHABLE: {
-			pageData.title = (
-				map.unsearchable[`${content_id}.${locale}`] ||
-				map.unsearchable[content_id]
-			).title
+			pageData.title = map.unsearchable[content_id].title
 			pageData.content = fetched_content.content
 
 			break

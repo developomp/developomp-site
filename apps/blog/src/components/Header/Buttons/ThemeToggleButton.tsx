@@ -40,11 +40,7 @@ const ThemeToggleButton = () => {
 
 			{!isMobile && (
 				<ReactTooltip id="theme" type="dark" effect="solid">
-					{globalState.locale == "en" ? (
-						<span>Using {theme} theme</span>
-					) : (
-						<span>{theme == "dark" ? "어두운" : "밝은"} 테마 사용중</span>
-					)}
+					<span>Using {theme} theme</span>
 				</ReactTooltip>
 			)}
 		</>

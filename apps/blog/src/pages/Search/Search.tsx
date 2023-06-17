@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import styled from "styled-components"
 import { useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
@@ -16,7 +16,6 @@ import MainContent from "../../components/MainContent"
 import SearchBar from "./SearchBar"
 import TagSelect, { TagsData } from "./TagSelect"
 import { ClearDateButton, DateRangeControl, StyledDateRange } from "./DateRange"
-import { globalContext } from "../../globalContext"
 
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
@@ -98,9 +97,6 @@ function isSelectedTagsInPost(selectedTags?: TagsData[], postTags?: string[]) {
 }
 
 const Search = () => {
-	const { globalState } = useContext(globalContext)
-	const locale = globalState.locale
-
 	// URL search parameters
 	const [URLSearchParams, setURLSearchParams] = useSearchParams()
 
@@ -222,11 +218,11 @@ const Search = () => {
 	return (
 		<>
 			<Helmet>
-				<title>pomp | {locale == "en" ? "Search" : "검색"}</title>
+				<title>pomp | Search</title>
 			</Helmet>
 
 			<StyledSearch>
-				<h1>{locale == "en" ? "Search" : "검색"}</h1>
+				<h1>Search</h1>
 
 				<StyledSearchContainer>
 					<DateRangeControl>
@@ -235,7 +231,7 @@ const Search = () => {
 								setDateRange(defaultDateRange)
 							}}
 						>
-							{locale == "en" ? "Reset date range" : "날짜 범위 초기화"}
+							Reset date range
 						</ClearDateButton>
 						<StyledDateRange
 							editableDateInputs
@@ -256,15 +252,13 @@ const Search = () => {
 							type="search"
 							value={searchInput}
 							autoComplete="off"
-							placeholder={locale == "en" ? "Search" : "검색"}
+							placeholder="Search"
 							onChange={(event) => setSearchInput(event.target.value)}
 							onKeyPress={(event) => {
 								event.key === "Enter" && searchInput && doSearch()
 							}}
 						/>
-						{locale == "kr" && "결과: "}
-						{postCards.length}{" "}
-						{locale == "en" && (postCards.length > 1 ? "results" : "result")}
+						{postCards.length} result{postCards.length > 1 && "s"}
 						<TagSelect
 							defaultValue={selectedTags}
 							onChange={(newValue) => {

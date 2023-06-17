@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 import ReadProgress from "./ReadProgress"
@@ -7,7 +6,6 @@ import Nav from "./Nav"
 
 import Sidebar from "../Sidebar"
 
-import { globalContext } from "../../globalContext"
 import Buttons from "./Buttons"
 
 const Header = styled.header`
@@ -44,13 +42,10 @@ const Icon = styled.img`
 `
 
 export default () => {
-	const { globalState } = useContext(globalContext)
-	const { locale } = globalState
-
 	return (
 		<Header>
 			<Container>
-				<Link to={`/${locale}`}>
+				<Link to="/">
 					<Icon src="/icon/icon_circle.svg" />
 				</Link>
 				<Nav />

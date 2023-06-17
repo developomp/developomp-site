@@ -1,12 +1,10 @@
-import { useContext, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Collapse } from "react-collapse"
 import storage from "local-storage-fallback"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
-
-import { globalContext } from "../../globalContext"
 
 const StyledTocToggleButton = styled.button`
 	cursor: pointer;
@@ -25,7 +23,6 @@ const StyledCollapseContainer = styled.div`
 `
 
 const Toc = (props: { data?: string }) => {
-	const { globalState } = useContext(globalContext)
 	const [isTocOpened, setIsTocOpened] = useState(
 		storage.getItem("isTocOpened") == "true"
 	)
@@ -44,7 +41,7 @@ const Toc = (props: { data?: string }) => {
 				}}
 			>
 				<strong>
-					{globalState.locale == "en" ? "Table of Contents " : "목차 "}
+					Table of Contents
 					<FontAwesomeIcon icon={isTocOpened ? faCaretUp : faCaretDown} />
 				</strong>
 			</StyledTocToggleButton>

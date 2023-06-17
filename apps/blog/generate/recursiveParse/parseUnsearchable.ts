@@ -10,17 +10,15 @@ export default function parseUnsearchable(data: DataToPass): void {
 	// convert path like /XXX/YYY/ZZZ to /YYY/ZZZ
 	const urlPath = _urlPath.slice(_urlPath.slice(1).indexOf("/") + 1)
 
-	if (!urlPath.endsWith(".kr.md")) {
-		addDocument({
-			title: markdownData.title,
-			body: markdownData.content,
-			url: urlPath,
-		})
+	addDocument({
+		title: markdownData.title,
+		body: markdownData.content,
+		url: urlPath,
+	})
 
-		// Parse data that will be written to map.js
-		map.unsearchable[urlPath] = {
-			title: markdownData.title as string,
-		}
+	// Parse data that will be written to map.js
+	map.unsearchable[urlPath] = {
+		title: markdownData.title as string,
 	}
 
 	/**

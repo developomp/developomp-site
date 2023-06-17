@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
@@ -12,20 +12,16 @@ import Badge from "../../components/Badge"
 import Tag from "../../components/Tag"
 import NotFound from "../NotFound"
 
-import TranslationNotAvailable from "./TranslationNotAvailable"
 import SeriesControlButtons from "./SeriesControlButtons"
 import {
 	categorizePageType,
-	checkURLValidity,
 	fetchContent,
 	PageType,
-	URLValidity,
 	parsePageData,
 } from "./helper"
 import Meta from "./Meta"
 import Toc from "./Toc"
 
-import { globalContext } from "../../globalContext"
 import type { PageData, Map } from "../../../types/types"
 
 import _map from "../../data/map.json"
@@ -54,53 +50,18 @@ const ProjectImage = styled.img`
 `
 
 export default function Page() {
-	const { globalState } = useContext(globalContext)
-	const { locale } = globalState
 	const { pathname } = useLocation()
 
 	const [pageData, setPageData] = useState<PageData | undefined>(undefined)
 	const [pageType, setPageType] = useState<PageType>(PageType.POST)
 	const [isLoading, setIsLoading] = useState(true)
-	const [isTranslationAvailable, setIsTranslationAvailable] = useState(true)
 
 	// this code runs if either the url or the locale changes
 	useEffect(() => {
-		const content_id =
-			pathname
-				.replace(/^\/kr/, "") // remove /kr prefix
-				.replace(/^\/en/, "") // remove /en prefix
-				.replace(/\/$/, "") + // remove trailing slash
-			(locale == "en" ? "" : ".kr")
-
+		const content_id = pathname.replace(/\/$/, "") // remove trailing slash
 		const pageType = categorizePageType(content_id)
 
-		switch (checkURLValidity(content_id, pageType)) {
-			case URLValidity.VALID: {
-				// continue if the URL is valid
-				break
-			}
-
-			case URLValidity.VALID_BUT_IN_OTHER_LOCALE: {
-				// stop loading and set isTranslationAvailable to true so translation not available page will display
-				setIsTranslationAvailable(false)
-				setIsLoading(false)
-
-				return
-			}
-
-			case URLValidity.NOT_VALID: {
-				// stop loading without fetching pageData so 404 page will display
-				setIsLoading(false)
-
-				return
-			}
-		}
-
-		/**
-		 * Get page data
-		 */
-
-		fetchContent(pageType, content_id, locale).then((fetched_content) => {
+		fetchContent(pageType, content_id).then((fetched_content) => {
 			if (!fetched_content) {
 				// stop loading without fetching pageData so 404 page will display
 				setIsLoading(false)
@@ -108,16 +69,13 @@ export default function Page() {
 				return
 			}
 
-			setPageData(parsePageData(fetched_content, pageType, content_id, locale))
-			setIsTranslationAvailable(true)
+			setPageData(parsePageData(fetched_content, pageType, content_id))
 			setPageType(pageType)
 			setIsLoading(false)
 		})
-	}, [pathname, locale])
+	}, [pathname])
 
 	if (isLoading) return <Loading />
-
-	if (!isTranslationAvailable) return <TranslationNotAvailable />
 
 	if (!pageData) return <NotFound />
 
