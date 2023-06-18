@@ -23,18 +23,6 @@
 				}
 			],
 			"ignore": ["**/.*"]
-		},
-		{
-			"target": "style",
-			"cleanUrls": true,
-			"public": "apps/style/storybook-static",
-			"rewrites": [
-				{
-					"source": "**",
-					"destination": "/index.html"
-				}
-			],
-			"ignore": ["**/.*"]
 		}
 	]
 }

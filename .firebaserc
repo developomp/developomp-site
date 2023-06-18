@@ -10,9 +10,6 @@
         ],
         "blog": [
           "developomp-site-blog"
-        ],
-        "style": [
-          "developomp-site-style"
         ]
       }
     }

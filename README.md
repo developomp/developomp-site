@@ -23,7 +23,6 @@ A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portf
 - `aps`
   - `main` - https://developomp.com
   - `blog` - https://blog.developomp.com
-  - `style` - https://style.developomp.com
 - `packages` - packages prefixed with `@developomp-site/`
   - `components-react` - ReactJS components
   - `eslint-config` - ESLint configuration files
