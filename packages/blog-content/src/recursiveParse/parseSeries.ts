@@ -1,10 +1,11 @@
 import { contentDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
-import { PostData } from "../../types/types"
 import { addDocument } from "../searchIndex"
 import { writeToFile } from "../util"
-import { map, seriesMap } from ".."
+import { contentMap, seriesMap } from ".."
+
 import { DataToPass } from "."
+import { PostData } from "../types/types"
 
 export default function parseSeries(data: DataToPass): void {
 	const {
@@ -63,10 +64,10 @@ export default function parseSeries(data: DataToPass): void {
 	})
 
 	const YYYY_MM_DD = postDate.toISOString().split("T")[0]
-	if (map.date[YYYY_MM_DD]) {
-		map.date[YYYY_MM_DD].push(urlPath)
+	if (contentMap.date[YYYY_MM_DD]) {
+		contentMap.date[YYYY_MM_DD].push(urlPath)
 	} else {
-		map.date[YYYY_MM_DD] = [urlPath]
+		contentMap.date[YYYY_MM_DD] = [urlPath]
 	}
 
 	/**
@@ -76,10 +77,10 @@ export default function parseSeries(data: DataToPass): void {
 	postData.tags = markdownData.tags as string[]
 	if (postData.tags) {
 		postData.tags.forEach((tag) => {
-			if (map.tags[tag]) {
-				map.tags[tag].push(urlPath)
+			if (contentMap.tags[tag]) {
+				contentMap.tags[tag].push(urlPath)
 			} else {
-				map.tags[tag] = [urlPath]
+				contentMap.tags[tag] = [urlPath]
 			}
 		})
 	}
@@ -94,18 +95,18 @@ export default function parseSeries(data: DataToPass): void {
 		url: urlPath,
 	})
 
-	map.posts[urlPath] = postData
+	contentMap.posts[urlPath] = postData
 
 	// series markdown starting with 0 is a series descriptor
 	if (isFileDescriptor) {
-		map.series[urlPath] = {
+		contentMap.series[urlPath] = {
 			...postData,
 			order: [],
 			length: 0,
 		}
 	} else {
 		// put series post in appropriate series
-		for (const key of Object.keys(map.series)) {
+		for (const key of Object.keys(contentMap.series)) {
 			if (urlPath.includes(key)) {
 				const index = parseInt(
 					_urlPath.slice(

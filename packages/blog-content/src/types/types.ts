@@ -1,4 +1,4 @@
-export interface Map {
+export interface ContentMap {
 	// key: YYYY-MM-DD
 	// value: url
 	date: { [key: string]: string[] }
@@ -79,6 +79,13 @@ export interface PageData {
 	overview: string
 	badges: string[]
 	repo: string
+}
+
+export interface Badge {
+	svg: string
+	hex: string
+	isDark: boolean
+	title: string
 }
 
 /**

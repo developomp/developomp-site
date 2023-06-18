@@ -7,7 +7,7 @@ import {
 	faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 
-import { PageData } from "../../../types/types"
+import { PageData } from "@developomp-site/blog-content/src/types/types"
 
 const StyledMetaContainer = styled.div`
 	color: ${({ theme }) => theme.theme.color.text.gray};

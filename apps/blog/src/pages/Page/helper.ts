@@ -1,9 +1,8 @@
-import portfolio from "../../data/portfolio.json"
-import _map from "../../data/map.json"
+import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
 
-import type { Map, PageData } from "../../../types/types"
+import type { PageData } from "@developomp-site/blog-content/src/types/types"
 
-const map: Map = _map
+import contentMap from "../../contentMap"
 
 export enum PageType {
 	POST,
@@ -16,9 +15,13 @@ export enum PageType {
 export async function fetchContent(pageType: PageType, url: string) {
 	try {
 		if (pageType == PageType.UNSEARCHABLE) {
-			return await import(`../../data/content/unsearchable${url}.json`)
+			return await import(
+				`@developomp-site/blog-content/dist/content/unsearchable${url}.json`
+			)
 		} else {
-			return await import(`../../data/content${url}.json`)
+			return await import(
+				`@developomp-site/blog-content/dist/content${url}.json`
+			)
 		}
 	} catch (err) {
 		return
@@ -78,7 +81,7 @@ export function parsePageData(
 	// load and parse content differently depending on the content type
 	switch (pageType) {
 		case PageType.POST: {
-			const post = map.posts[content_id]
+			const post = contentMap.posts[content_id]
 
 			pageData.content = fetched_content.content
 			pageData.toc = fetched_content.toc
@@ -95,11 +98,11 @@ export function parsePageData(
 		case PageType.SERIES: {
 			const seriesURL = content_id.slice(0, content_id.lastIndexOf("/"))
 
-			const curr = map.series[seriesURL].order.indexOf(content_id)
+			const curr = contentMap.series[seriesURL].order.indexOf(content_id)
 			const prev = curr - 1
 			const next = curr + 1
 
-			const post = map.posts[content_id]
+			const post = contentMap.posts[content_id]
 
 			pageData.content = fetched_content.content
 			pageData.toc = fetched_content.toc
@@ -111,17 +114,18 @@ export function parsePageData(
 			pageData.tags = post.tags || []
 
 			pageData.seriesHome = seriesURL
-			pageData.prev = prev >= 0 ? map.series[seriesURL].order[prev] : undefined
+			pageData.prev =
+				prev >= 0 ? contentMap.series[seriesURL].order[prev] : undefined
 			pageData.next =
-				next < map.series[seriesURL].order.length
-					? map.series[seriesURL].order[next]
+				next < contentMap.series[seriesURL].order.length
+					? contentMap.series[seriesURL].order[next]
 					: undefined
 
 			break
 		}
 
 		case PageType.SERIES_HOME: {
-			const seriesData = map.series[content_id]
+			const seriesData = contentMap.series[content_id]
 
 			pageData.title = seriesData.title
 			pageData.content = fetched_content.content
@@ -152,7 +156,7 @@ export function parsePageData(
 		}
 
 		case PageType.UNSEARCHABLE: {
-			pageData.title = map.unsearchable[content_id].title
+			pageData.title = contentMap.unsearchable[content_id].title
 			pageData.content = fetched_content.content
 
 			break

@@ -2,7 +2,6 @@
  * PostList.tsx
  * show posts in recent order
  */
-import type { Map } from "../../../types/types"
 
 import { useCallback, useEffect, useState } from "react"
 import { Helmet } from "react-helmet-async"
@@ -11,9 +10,7 @@ import styled from "styled-components"
 import PostCard from "../../components/PostCard"
 import ShowMoreButton from "./ShowMoreButton"
 
-import _map from "../../data/map.json"
-
-const map: Map = _map
+import contentMap from "../../contentMap"
 
 const PostList = styled.div`
 	flex-direction: column;
@@ -32,23 +29,23 @@ export default () => {
 		let postCount = 0
 		const postCards = [] as JSX.Element[]
 
-		for (const date of Object.keys(map.date).reverse()) {
+		for (const date of Object.keys(contentMap.date).reverse()) {
 			if (postCount >= howMany) break
 
-			const length = map.date[date].length
+			const length = contentMap.date[date].length
 
 			for (let i = 0; i < length; i++) {
 				if (postCount >= howMany) break
 
 				postCount++
-				const content_id = map.date[date][length - i - 1]
+				const content_id = contentMap.date[date][length - i - 1]
 
 				postCards.push(
 					<PostCard
 						key={content_id}
 						postData={{
 							content_id: content_id,
-							...map.posts[content_id],
+							...contentMap.posts[content_id],
 						}}
 					/>
 				)
@@ -60,7 +57,7 @@ export default () => {
 
 	useEffect(() => {
 		loadPostCards()
-		setPostsLength(Object.keys(map.posts).length)
+		setPostsLength(Object.keys(contentMap.posts).length)
 	}, [howMany])
 
 	return (

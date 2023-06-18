@@ -1,7 +1,7 @@
 import { contentDirectoryPath } from "../config"
 import { addDocument } from "../searchIndex"
 import { writeToFile } from "../util"
-import { map } from ".."
+import { contentMap } from ".."
 import { DataToPass } from "."
 
 export default function parseUnsearchable(data: DataToPass): void {
@@ -17,7 +17,7 @@ export default function parseUnsearchable(data: DataToPass): void {
 	})
 
 	// Parse data that will be written to map.js
-	map.unsearchable[urlPath] = {
+	contentMap.unsearchable[urlPath] = {
 		title: markdownData.title as string,
 	}
 

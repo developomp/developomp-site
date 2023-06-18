@@ -12,11 +12,10 @@ import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
 import postProcess from "./postProcess"
-import clean from "./clean"
 
-import { Map, ParseMode, SeriesMap, PortfolioData } from "../types/types"
+import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
 
-export const map: Map = {
+export const contentMap: ContentMap = {
 	date: {},
 	tags: {},
 	meta: {
@@ -36,7 +35,10 @@ export const portfolioData: PortfolioData = {
  * Delete previously generated files
  */
 
-clean()
+try {
+	fs.rmSync("dist", { recursive: true })
+	// eslint-disable-next-line no-empty
+} catch (err) {}
 
 /**
  * Checking
@@ -73,7 +75,7 @@ postProcess()
  * Save results
  */
 
-fs.writeFileSync(mapFilePath, JSON.stringify(map))
+fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
 fs.writeFileSync(
 	portfolioFilePath,
 	JSON.stringify({
@@ -81,4 +83,5 @@ fs.writeFileSync(
 		skills: Array.from(portfolioData.skills),
 	})
 )
+
 saveIndex()

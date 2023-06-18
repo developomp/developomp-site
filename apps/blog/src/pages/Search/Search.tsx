@@ -6,8 +6,7 @@ import { Range } from "react-date-range"
 
 import elasticlunr from "elasticlunr" // search engine
 
-import _map from "../../data/map.json"
-import searchData from "../../data/search.json"
+import searchData from "@developomp-site/blog-content/dist/search.json"
 
 import Loading from "../../components/Loading"
 import PostCard from "../../components/PostCard"
@@ -17,12 +16,10 @@ import SearchBar from "./SearchBar"
 import TagSelect, { TagsData } from "./TagSelect"
 import { ClearDateButton, DateRangeControl, StyledDateRange } from "./DateRange"
 
+import contentMap from "../../contentMap"
+
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
-
-import type { Map } from "../../../types/types"
-
-const map: Map = _map
 
 const searchIndex = elasticlunr.Index.load(searchData as never)
 
@@ -112,7 +109,7 @@ const Search = () => {
 		try {
 			const _postCards: JSX.Element[] = []
 			for (const res of searchIndex.search(searchInput)) {
-				const postData = map.posts[res.ref]
+				const postData = contentMap.posts[res.ref]
 
 				if (
 					postData && // if post data exists

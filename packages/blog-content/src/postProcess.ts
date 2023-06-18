@@ -4,10 +4,12 @@ import { readFileSync, writeFileSync } from "fs"
 import icons from "simple-icons/icons"
 import tinycolor from "tinycolor2"
 
-import { map, seriesMap } from "."
-import { Badge } from "../src/components/Badge"
+import { contentMap, seriesMap } from "."
+
+import { Badge } from "./types/types"
 
 import skills from "./portfolio/skills.json"
+import { writeToFile } from "./util"
 
 export default function postProcess() {
 	sortDates()
@@ -17,17 +19,17 @@ export default function postProcess() {
 }
 
 function sortDates() {
-	const TmpDate = map.date
-	map.date = {}
+	const TmpDate = contentMap.date
+	contentMap.date = {}
 	Object.keys(TmpDate)
 		.sort()
 		.forEach((sortedDateKey) => {
-			map.date[sortedDateKey] = TmpDate[sortedDateKey]
+			contentMap.date[sortedDateKey] = TmpDate[sortedDateKey]
 		})
 }
 
 function fillTags() {
-	map.meta.tags = Object.keys(map.tags)
+	contentMap.meta.tags = Object.keys(contentMap.tags)
 }
 
 function parseSeries() {
@@ -43,8 +45,10 @@ function parseSeries() {
 
 	// series length and order
 	for (const seriesURL in seriesMap) {
-		map.series[seriesURL].length = seriesMap[seriesURL].length
-		map.series[seriesURL].order = seriesMap[seriesURL].map((item) => item.url)
+		contentMap.series[seriesURL].length = seriesMap[seriesURL].length
+		contentMap.series[seriesURL].order = seriesMap[seriesURL].map(
+			(item) => item.url
+		)
 	}
 }
 
@@ -55,7 +59,7 @@ function generatePortfolioSVGs() {
 
 	// todo: wait add ejs once it's available
 
-	const style = readFileSync("./generate/portfolio/style.css", "utf-8")
+	const style = readFileSync("./src/portfolio/style.css", "utf-8")
 
 	const data: {
 		[key: string]: Badge[] | { [key: string]: Badge[] }
@@ -104,13 +108,13 @@ function generatePortfolioSVGs() {
 	}
 
 	const renderedSVG = ejs.render(
-		readFileSync("./generate/portfolio/skills.ejs", "utf-8"),
+		readFileSync("./src/portfolio/skills.ejs", "utf-8"),
 		{ style, data },
-		{ views: ["./generate/portfolio"] }
+		{ views: ["./src/portfolio"] }
 	)
 
-	writeFileSync(
-		"./public/img/skills.svg",
+	writeToFile(
+		"./dist/public/img/skills.svg",
 		optimize(renderedSVG, { multipass: true }).data
 	)
 }

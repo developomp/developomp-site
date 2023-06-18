@@ -1,6 +1,7 @@
 import dark from "@developomp-site/theme/dist/dark.json"
 import light from "@developomp-site/theme/dist/light.json"
 
+import { Badge } from "@developomp-site/blog-content/src/types/types"
 import { useEffect, useState } from "react"
 import styled from "styled-components"
 
@@ -34,23 +35,16 @@ const StyledSVG = styled.div<{ isDark: boolean }>`
 	}
 `
 
-export interface Badge {
-	svg: string
-	hex: string
-	isDark: boolean
-	title: string
-}
-
 interface BadgeProps {
 	slug: string
 }
 
-const Badge = (props: BadgeProps) => {
+export default (props: BadgeProps) => {
 	const [badgeData, setBadgeData] = useState<Badge | undefined>(undefined)
 	const { slug } = props
 
 	const getBadgeData = async () => {
-		return await require(`../data/icons/${slug}.json`)
+		return await require(`@developomp-site/blog-content/dist/icons/${slug}.json`)
 	}
 
 	useEffect(() => {
@@ -71,5 +65,3 @@ const Badge = (props: BadgeProps) => {
 		</StyledBadge>
 	)
 }
-
-export default Badge

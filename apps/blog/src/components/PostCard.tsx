@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 
-import { PostData } from "../../types/types"
+import { PostData } from "@developomp-site/blog-content/src/types/types"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {

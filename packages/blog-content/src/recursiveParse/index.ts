@@ -4,11 +4,12 @@ import readTimeEstimate from "read-time-estimate" // post read time estimation
 import { path2FileOrFolderName, path2URL } from "../util"
 import parseMarkdown from "../parseMarkdown"
 
-import { ParseMode } from "../../types/types"
 import parsePost from "./parsePost"
 import parseSeries from "./parseSeries"
 import parseUnsearchable from "./parseUnsearchable"
 import parsePortfolio from "./parsePortfolio"
+
+import { ParseMode } from "../types/types"
 
 /**
  * Data that's passed from {@link parseFile} to other function

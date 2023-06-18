@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import Badge from "../../components/Badge"
 import { cardCSS } from "../../components/Card"
 
-import { PortfolioProject } from "../../../types/types"
+import { PortfolioProject } from "@developomp-site/blog-content/src/types/types"
 
 const StyledProjectCard = styled.div`
 	${cardCSS}

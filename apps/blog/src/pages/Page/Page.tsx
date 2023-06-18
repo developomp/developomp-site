@@ -22,11 +22,9 @@ import {
 import Meta from "./Meta"
 import Toc from "./Toc"
 
-import type { PageData, Map } from "../../../types/types"
+import type { PageData } from "@developomp-site/blog-content/src/types/types"
 
-import _map from "../../data/map.json"
-
-const map: Map = _map
+import contentMap from "../../contentMap"
 
 const StyledTitle = styled.h1<{ pageType: PageType }>`
 	margin-bottom: 1rem;
@@ -159,7 +157,7 @@ export default function Page() {
 							key={post}
 							postData={{
 								content_id: post,
-								...map.posts[post],
+								...contentMap.posts[post],
 							}}
 						/>
 					)

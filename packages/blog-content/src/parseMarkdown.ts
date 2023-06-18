@@ -18,7 +18,7 @@ import "katex/contrib/mhchem" // chemical formula
 import { JSDOM } from "jsdom" // HTML DOM parsing
 
 import { nthIndex } from "./util"
-import { MarkdownData, ParseMode } from "../types/types"
+import { MarkdownData, ParseMode } from "./types/types"
 
 const md = markdownIt({
 	// https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md

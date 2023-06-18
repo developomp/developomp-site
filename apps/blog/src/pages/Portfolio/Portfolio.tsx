@@ -5,9 +5,9 @@ import MainContent from "../../components/MainContent"
 import Badge from "../../components/Badge"
 import ProjectCard from "./ProjectCard"
 
-import portfolio from "../../data/portfolio.json"
+import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
 
-import type { PortfolioProject } from "../../../types/types"
+import type { PortfolioProject } from "@developomp-site/blog-content/src/types/types"
 
 const Portfolio = () => {
 	const [projects, setProjects] = useState<JSX.Element[]>([])

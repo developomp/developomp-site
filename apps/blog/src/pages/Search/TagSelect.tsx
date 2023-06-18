@@ -2,12 +2,8 @@ import { useContext } from "react"
 import styled from "styled-components"
 import Select from "react-select"
 
-import _map from "../../data/map.json"
+import contentMap from "../../contentMap"
 import { globalContext } from "../../globalContext"
-
-import type { Map } from "../../../types/types"
-
-const map: Map = _map
 
 const StyledReactTagsContainer = styled.div`
 	width: 100%;
@@ -19,7 +15,7 @@ export interface TagsData {
 	label: string
 }
 
-const options: TagsData[] = map.meta.tags.map((elem) => ({
+const options: TagsData[] = contentMap.meta.tags.map((elem) => ({
 	value: elem,
 	label: elem,
 }))

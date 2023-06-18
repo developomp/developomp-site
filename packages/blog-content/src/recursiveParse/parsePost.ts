@@ -1,10 +1,11 @@
 import { contentDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
-import { PostData } from "../../types/types"
 import { addDocument } from "../searchIndex"
 import { writeToFile } from "../util"
-import { map } from ".."
+import { contentMap } from ".."
 import { DataToPass } from "."
+
+import { PostData } from "../types/types"
 
 export default function parsePost(data: DataToPass): void {
 	const { urlPath, markdownRaw, markdownData, humanizedDuration, totalWords } =
@@ -30,10 +31,10 @@ export default function parsePost(data: DataToPass): void {
 	})
 
 	const YYYY_MM_DD = postDate.toISOString().split("T")[0]
-	if (map.date[YYYY_MM_DD]) {
-		map.date[YYYY_MM_DD].push(urlPath)
+	if (contentMap.date[YYYY_MM_DD]) {
+		contentMap.date[YYYY_MM_DD].push(urlPath)
 	} else {
-		map.date[YYYY_MM_DD] = [urlPath]
+		contentMap.date[YYYY_MM_DD] = [urlPath]
 	}
 
 	/**
@@ -43,10 +44,10 @@ export default function parsePost(data: DataToPass): void {
 	postData.tags = markdownData.tags as string[]
 	if (postData.tags) {
 		postData.tags.forEach((tag) => {
-			if (map.tags[tag]) {
-				map.tags[tag].push(urlPath)
+			if (contentMap.tags[tag]) {
+				contentMap.tags[tag].push(urlPath)
 			} else {
-				map.tags[tag] = [urlPath]
+				contentMap.tags[tag] = [urlPath]
 			}
 		})
 	}
@@ -55,7 +56,7 @@ export default function parsePost(data: DataToPass): void {
 	 *
 	 */
 
-	map.posts[urlPath] = postData
+	contentMap.posts[urlPath] = postData
 	addDocument({
 		title: markdownData.title,
 		body: markdownData.content,
