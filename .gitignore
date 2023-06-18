@@ -1,6 +1,7 @@
 # where I keep my notes
 _/
 
+.firebase/
 .DS_Store
 node_modules
 .turbo
