@@ -24,6 +24,7 @@ A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portf
   - `main` - https://developomp.com
   - `blog` - https://blog.developomp.com
 - `packages` - packages prefixed with `@developomp-site/`
+  - `blog-content` - Contents for the blog
   - `components-react` - ReactJS components
   - `eslint-config` - ESLint configuration files
   - `tailwind-config` -tailwindCSS configuration files
