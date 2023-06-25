@@ -1,5 +1,6 @@
+# Deploy sites in firebase.json
+
 name: Deploy pages
-description: Deploy sites in firebase.json
 on:
   push:
     branches:
