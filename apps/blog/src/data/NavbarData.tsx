@@ -21,7 +21,7 @@ const NavbarData: Item[] = [
 	},
 	{
 		title: "About",
-		path: "/about",
+		path: "https://developomp.com",
 		icon: <FontAwesomeIcon icon={faUser} />,
 	},
 	{
