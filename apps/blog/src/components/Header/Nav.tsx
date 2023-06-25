@@ -18,11 +18,17 @@ const Nav = styled.div`
 export default () => {
 	return (
 		<Nav>
-			{NavbarData.map((item, index) => (
-				<Link key={index} to={item.path}>
-					<HeaderButton>{item.title}</HeaderButton>
-				</Link>
-			))}
+			{NavbarData.map(({ path, title }, index) => {
+				return path.at(0) === "/" ? (
+					<Link key={index} to={path}>
+						<HeaderButton>{title}</HeaderButton>
+					</Link>
+				) : (
+					<a key={index} target="_blank" href={path}>
+						<HeaderButton>{title}</HeaderButton>
+					</a>
+				)
+			})}
 		</Nav>
 	)
 }
