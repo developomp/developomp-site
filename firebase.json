@@ -3,7 +3,7 @@
 		{
 			"target": "main",
 			"cleanUrls": true,
-			"public": "apps/blog/build",
+			"public": "apps/main/build",
 			"rewrites": [
 				{
 					"source": "**",

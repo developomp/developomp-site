@@ -1,0 +1,43 @@
+@import "@fontsource/noto-sans-kr/400.css";
+@import "@fontsource/noto-sans-kr/700.css";
+@import "@fontsource/source-code-pro";
+
+body {
+    /* SvelteKit has 8px margin by default for some reason */
+    margin: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    min-height: 100vh;
+
+    /* center main horizontally */
+    margin: 0 auto;
+}
+
+* {
+    font-weight: 400;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 5rem;
+
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+p {
+    line-height: 1.5;
+}
+
+b {
+    font-weight: 700;
+}
