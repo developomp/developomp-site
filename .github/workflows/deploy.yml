@@ -1,28 +1,34 @@
 name: Deploy pages
+description: Deploy sites in firebase.json
 on:
   push:
     branches:
       - master
 jobs:
-  blog:
+  deploy:
     if: ${{ github.repository_owner == 'developomp' }}
     name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master
+
       - uses: pnpm/action-setup@v2
         with:
           version: 8
+
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: 18
           cache: pnpm
+
       - name: Install dependencies
         run: pnpm install
+
       - name: Build
         run: pnpm build
+
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
