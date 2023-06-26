@@ -99,7 +99,7 @@ const Sidebar = () => {
 					{/* sidebar items */}
 
 					{NavbarData.map((item, index) => {
-						return <SubMenu item={item} key={index} />
+						return <SubMenu onClick={toggleSidebar} item={item} key={index} />
 					})}
 				</SidebarWrap>
 			</SidebarNav>

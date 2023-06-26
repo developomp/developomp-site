@@ -45,12 +45,14 @@ const SidebarLabel = styled.span`
 
 interface Props {
 	item: Item
+	onClick: () => void
 }
 
-const SubMenu = ({ item }: Props) => {
+const SubMenu = ({ item, onClick }: Props) => {
 	const { path, icon, title } = item
 	const [isSubNavOpen, setSubNavOpen] = useState(false)
 	const handleSidebarLinkClick = useCallback(() => {
+		onClick()
 		setSubNavOpen((prev) => !prev)
 	}, [isSubNavOpen])
 
