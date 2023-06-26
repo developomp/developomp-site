@@ -63,7 +63,7 @@
 
         margin-bottom: 1rem;
 
-        width: 95%;
+        width: calc(100% - 2rem);
         max-width: 64rem;
 
         th {
@@ -114,6 +114,7 @@
 
 <i
     class={css`
+        margin: 0 2rem;
         color: #ffffffcc;
     `}
 >
@@ -125,6 +126,8 @@
     class={css`
         margin-top: 3rem;
         display: flex;
+        flex-wrap: wrap;
+        max-width: calc(100% - 2rem);
         gap: 1.5rem;
     `}
 >
