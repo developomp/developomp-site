@@ -8,13 +8,6 @@
     import Navbar from "../components/Navbar.svelte"
 </script>
 
-<svelte:head>
-    <meta name="description" content="developomp's website" />
-    <meta name="theme-color" content="#000000" />
-    <meta property="og:image" content="/icon.png" />
-    <meta property="og:type" content="website" />
-</svelte:head>
-
 <!-- prevent flickering while theme is loading -->
 {#if browser}
     <div

@@ -22,10 +22,6 @@
     }
 </script>
 
-<svelte:head>
-    <title>developomp</title>
-</svelte:head>
-
 <img
     class={"logo " +
         css`
