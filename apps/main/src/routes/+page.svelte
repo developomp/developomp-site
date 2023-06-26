@@ -1,5 +1,4 @@
 <script>
-    import { page } from "$app/stores"
     import { css } from "@emotion/css"
     import darkTheme from "@developomp-site/theme/dist/dark.json"
     import HandWave from "../components/HandWave.svelte"
