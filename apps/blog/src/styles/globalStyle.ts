@@ -3,6 +3,7 @@ import "katex/dist/katex.min.css"
 
 import anchorCSS from "./anchor"
 import scrollbarCSS from "./scrollbar"
+import checkbox from "./checkbox"
 import codeCSS from "./code"
 import kbdCSS from "./kbd"
 import tableCSS from "./table"
@@ -60,6 +61,7 @@ const globalCSS = css`
 export default createGlobalStyle`
 	${anchorCSS}
 	${scrollbarCSS}
+	${checkbox}
 	${codeCSS}
 	${kbdCSS}
 	${tableCSS}
