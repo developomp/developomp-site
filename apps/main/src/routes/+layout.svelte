@@ -17,10 +17,8 @@
 
 <!-- prevent flickering while theme is loading -->
 {#if browser}
-    <main
+    <div
         class={css`
-            padding-bottom: 5rem;
-
             font-family: ${darkTheme.font.sansSerif};
 
             color: ${darkTheme.color.text.default};
@@ -44,6 +42,8 @@
         `}
     >
         <Navbar />
-        <slot />
-    </main>
+        <main>
+            <slot />
+        </main>
+    </div>
 {/if}

@@ -28,13 +28,10 @@
 </svelte:head>
 
 <img
-    class={css`
-        width: 14rem;
-        height: 14rem;
-        border-radius: 50%;
-        box-shadow: 0 0 40px 20px ${darkTheme.color.text.gray};
-        margin: 5rem auto;
-    `}
+    class={"logo " +
+        css`
+            box-shadow: 0 0 40px 20px ${darkTheme.color.text.gray};
+        `}
     src="/favicon.svg"
     alt="logo"
 />
@@ -43,13 +40,7 @@
 
 <h2>Who am I?</h2>
 
-<span
-    class={css`
-        text-align: center;
-        width: 95%;
-        max-width: 64rem;
-    `}
->
+<span>
     I am a <b>{new Date().getFullYear() - 2002} years old</b> college student studying computer science
     in Seoul, South Korea.
 </span>
@@ -58,35 +49,9 @@
 
 <table
     class={css`
-        border-collapse: collapse;
-        border-spacing: 1rem 0;
-
-        margin-bottom: 1rem;
-
-        width: calc(100% - 2rem);
-        max-width: 64rem;
-
-        th {
-            background-color: #ffffff22;
-            font-weight: 700;
-        }
-
         th,
         td {
-            padding: 8px;
-            text-align: center;
-            width: 10rem;
             border: 1px solid ${darkTheme.component.table.color.border};
-        }
-
-        th:nth-child(1),
-        td:nth-child(1) {
-            text-align: right;
-        }
-
-        th:nth-child(3),
-        td:nth-child(3) {
-            text-align: left;
         }
     `}
 >
@@ -112,25 +77,12 @@
     </tr>
 </table>
 
-<i
-    class={css`
-        margin: 0 2rem;
-        color: #ffffffcc;
-    `}
->
+<i class="note">
     *Note that I may not be able to read your messages if you reach out to me using methods not
     listed above.
 </i>
 
-<div
-    class={css`
-        margin-top: 3rem;
-        display: flex;
-        flex-wrap: wrap;
-        max-width: calc(100% - 2rem);
-        gap: 1.5rem;
-    `}
->
+<div class="socials-and-profiles">
     <a class={SocialProfile} target="_blank" href="https://github.com/developomp">
         <GitHub />
     </a>
