@@ -29,6 +29,8 @@
         `}
     src="/favicon.svg"
     alt="logo"
+    width="200"
+    height="200"
 />
 
 <h1><HandWave />Hello! I am <b>developomp</b></h1>
