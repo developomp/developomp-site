@@ -16,7 +16,6 @@
         "@developomp-site/theme": "workspace:*",
         "@emotion/css": "^11.11.2",
         "@fontsource/noto-sans-kr": "^5.0.3",
-        "@fontsource/source-code-pro": "^5.0.3",
         "@inqling/svelte-icons": "^3.3.2",
         "@sveltejs/adapter-static": "^2.0.2",
         "@sveltejs/kit": "^1.20.5",
