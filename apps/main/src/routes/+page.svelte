@@ -68,6 +68,7 @@
 
         th {
             background-color: #ffffff22;
+            font-weight: 700;
         }
 
         th,
