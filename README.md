@@ -1,6 +1,6 @@
 # developomp-site
 
-[![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://developomp.com/portfolio/developomp-site)
+[![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://blog.developomp.com/portfolio/developomp-site)
 
 A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portfolio, resume, etc.
 
