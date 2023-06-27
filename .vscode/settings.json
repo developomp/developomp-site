@@ -4,6 +4,9 @@
 	"editor.formatOnSave": true,
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
+	"editor.codeActionsOnSave": {
+		"source.fixAll": true
+	},
 	"cSpell.words": [
 		"bspwm",
 		"cairographics",
