@@ -55,6 +55,7 @@
 		"webassembly",
 		"YYYYMMDD"
 	],
+	"eslint.workingDirectories": [{ "mode": "auto" }],
 	"[svg]": {
 		"editor.defaultFormatter": "jock.svg"
 	},
