@@ -2,10 +2,11 @@ import { useTitleTemplate } from "hoofd"
 import { type FC } from "react"
 import { Route, Switch } from "wouter"
 
-import Header from "./components/Header"
-import Home from "./routes/Home"
-import NotFound from "./routes/NotFound"
-import Project from "./routes/Project"
+import Header from "@/components/Header"
+import Home from "@/routes/Home"
+import Loading from "@/routes/Loading"
+import NotFound from "@/routes/NotFound"
+import Project from "@/routes/Project"
 
 const App: FC = () => {
     useTitleTemplate("Portfolio | %s")
@@ -21,6 +22,10 @@ const App: FC = () => {
 
                     <Route path="/project/:id">
                         <Project />
+                    </Route>
+
+                    <Route path="/loading">
+                        <Loading />
                     </Route>
 
                     <Route>
