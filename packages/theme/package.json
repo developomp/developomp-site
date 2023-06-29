@@ -7,7 +7,7 @@
 	"scripts": {
 		"dev": "nodemon --ignore dist/ --exec pnpm build",
 		"build": "npx ts-node ./build.ts",
-		"clean": "rm -rf dist && rm -rf node_modules"
+		"clean": "rm -rf .turbo node_modules dist"
 	},
 	"devDependencies": {
 		"@types/merge-deep": "^3.0.0",

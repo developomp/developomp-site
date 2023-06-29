@@ -6,7 +6,7 @@
 		"cp": "cp -a ../../packages/blog-content/dist/public/. ./public",
 		"dev": "pnpm cp && react-scripts start",
 		"build": "pnpm cp && react-scripts build",
-		"clean": "rm -rf .turbo && rm -rf node_modules && rm -rf build"
+		"clean": "rm -rf .turbo build node_modules"
 	},
 	"dependencies": {
 		"@developomp-site/blog-content": "workspace:*",
