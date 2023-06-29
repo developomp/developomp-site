@@ -14,6 +14,9 @@ A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portf
    ```
 4. Run whatever command you need
    - `pnpm build` - Build all apps and packages
+     - blog: http://localhost:3000
+     - main: http://localhost:5173
+     - portfolio: http://localhost:5174
    - `pnpm dev` - Run all apps and packages locally
    - `pnpm lint` - Lint all apps and packages
    - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
