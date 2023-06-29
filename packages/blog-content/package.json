@@ -6,7 +6,7 @@
 		"dist/**"
 	],
 	"scripts": {
-		"build": "ts-node -O '{\"module\":\"commonjs\"}' --files ./src",
+		"build": "ts-node --experimental-specifier-resolution=node ./src",
 		"clean": "rm -rf .turbo node_modules dist"
 	},
 	"dependencies": {
