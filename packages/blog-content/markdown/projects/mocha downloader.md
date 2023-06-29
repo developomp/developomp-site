@@ -15,4 +15,7 @@ badges:
   - css3
 ---
 
-Mocha Downloader is a cross-platform desktop download manager built with web technologies.
+## Introduction
+
+Mocha Downloader is a cross-platform desktop download manager app built with
+web technologies.

@@ -9,5 +9,9 @@ badges:
   - typescript
 ---
 
-The llama bot is a discord bot made for the [Llama's Pyjamas community discord server](discord.gg/2fsar34APa).
-It is written in typescript and uses the [sapphire framework](https://sapphirejs.dev).
+## Introduction
+
+The llama bot is a discord bot made for the
+[Llama's Pyjamas community discord server](discord.gg/2fsar34APa).
+It is written in typescript and uses the
+[sapphire framework](https://sapphirejs.dev).

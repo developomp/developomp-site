@@ -17,26 +17,31 @@ badges:
   - tauri
 ---
 
-## Intro
+## Introduction
 
-War Brokers Mods (WBM) is a mod for the game [War Brokers](https://warbrokers.io).
+The War Brokers Mods (WBM) is a mod for the game
+[War Brokers](https://warbrokers.io) consisting of 3 sub-projects:
 
-## The mod
-
-Built with C#, it uses [BepInEx](https://github.com/BepInEx/BepInEx) framework to patch different aspects of the game.
-
-## OBS Overlay
+- [mod][mod] - Built with C#, it uses the [BepInEx][bepinex] framework to patch
+  different aspects of the game
+- [OBS overlay][overlays] - Customizable overlays for [OBS studio](https://github.com/obsproject/obs-studio)
 
 <p align="center">
 	<img alt="Overlay image" src="/img/portfolio/wbm-overlays.avif" />
 </p>
 
-Overlays for [OBS studio](https://github.com/obsproject/obs-studio). Built with standard web technologies (html, css, js).
-
-## Installer
+- [installer][installer] - Utility for installing updating the mod. Built with [tauri][tauri],
+  [rust][rust], [svelte][svelte], and [tailwind css][tailwindcss].
 
 <p align="center">
 	<img alt="Installer image" src="/img/portfolio/wbm-installer.avif" />
 </p>
 
-A simple cross-platform installer and update manager. Built with [tauri](https://github.com/tauri-apps/tauri), [rust](https://github.com/rust-lang/rust), [svelte](https://github.com/sveltejs/svelte), and [tailwind css](https://github.com/tailwindlabs/tailwindcss).
+[mod]: https://github.com/War-Brokers-Mods/WBM
+[overlays]: https://github.com/War-Brokers-Mods/WBM-Overlays
+[installer]: https://github.com/War-Brokers-Mods/WBM-installer
+[bepinex]: https://github.com/BepInEx/BepInEx
+[tauri]: https://github.com/tauri-apps/tauri
+[rust]: https://github.com/rust-lang/rust
+[svelte]: https://github.com/sveltejs/svelte
+[tailwindcss]: https://github.com/tailwindlabs/tailwindcss
