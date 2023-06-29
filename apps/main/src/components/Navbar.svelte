@@ -27,7 +27,7 @@
             <a target="_blank" href="https://blog.developomp.com">Blog</a>
         </li>
         <li aria-current={$page.url.pathname === "/about" ? "page" : undefined}>
-            <a target="_blank" href="https://blog.developomp.com/portfolio">Portfolio</a>
+            <a target="_blank" href="https://portfolio.developomp.com">Portfolio</a>
         </li>
         <li
             class={css`
