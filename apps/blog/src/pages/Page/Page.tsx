@@ -30,10 +30,6 @@ const StyledTitle = styled.h1`
 	word-wrap: break-word;
 `
 
-const ProjectImage = styled.img`
-	max-width: 100%;
-`
-
 export default function Page() {
 	const { pathname } = useLocation()
 
