@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    @apply scroll-m-16;
+    @apply scroll-m-16 leading-8;
 }
 
 html {
