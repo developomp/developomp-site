@@ -32,6 +32,12 @@ importers:
       '@developomp-site/theme':
         specifier: workspace:*
         version: link:../../packages/theme
+      '@fontsource/noto-sans-kr':
+        specifier: ^5.0.3
+        version: 5.0.3
+      '@fontsource/source-code-pro':
+        specifier: ^5.0.3
+        version: 5.0.3
       '@fortawesome/fontawesome-svg-core':
         specifier: ^6.2.1
         version: 6.2.1
