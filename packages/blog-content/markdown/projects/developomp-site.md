@@ -40,20 +40,20 @@ These files are all saved in the `src/data` directory with exceptions for some i
 
 #### A. HTML generation
 
-The [markdown files](https://github.com/developomp/developomp-site/tree/master/markdown) are rendered to HTML using the [markdown-it](https://github.com/markdown-it/markdown-it) library.
+The [markdown files](https://github.com/developomp/developomp-site/tree/16cb0ee44dbf2545951c6422e7ba442ca5c33cde/packages/blog-content/markdown) are rendered to HTML using the [markdown-it](https://github.com/markdown-it/markdown-it) library.
 Various extensions are used in this stage to extend markdown features such as footnotes, mathematical expressions, and code blocks.
 
 - Check the [test post](/posts/test-post) to see all markdown related features.
-- The conversion logic can be found in the [`generate/parsemarkdown.ts`](https://github.com/developomp/developomp-site/blob/master/generate/parseMarkdown.ts) file.
+- The conversion logic can be found in the [`packages/blog-content/src/parseMarkdown.ts`](https://github.com/developomp/developomp-site/blob/16cb0ee44dbf2545951c6422e7ba442ca5c33cde/packages/blog-content/src/parseMarkdown.ts) file.
 
 #### B. images
 
 After the all the text contents are parsed, svg images are constructed.
 
 First, icons from [simple-icons](https://github.com/simple-icons/simple-icons) that are used by the site are copied to the `src/data/icons` directory.
-Then, other images such as the "programming skills" stats that can be seen in the [portfolio](/portfolio) page and in my [github profile](https://github.com/developomp#skills) are generated using the [EJS](https://ejs.co) library.
+Then, other images such as the "programming skills" stats that can be seen in the [portfolio](/portfolio) page and in my [github profile](https://github.com/developomp#development-skills) are generated using the [EJS](https://ejs.co) library.
 
-- The code can be found in [`generate/portfolio`](https://github.com/developomp/developomp-site/tree/master/generate/portfolio).
+- The code can be found in [`packages/blog-content/src/portfolio`](https://github.com/developomp/developomp-site/tree/16cb0ee44dbf2545951c6422e7ba442ca5c33cde/packages/blog-content/src/portfolio).
 
 #### C. metadata
 

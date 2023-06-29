@@ -5,7 +5,7 @@ title: Resume
 ## Jimin Kim
 
 [![Github](https://img.shields.io/badge/github-black?style=for-the-badge&logo=github)](https://github.com/developomp)
-[![Portfolio](https://img.shields.io/badge/portfolio-grey?style=for-the-badge)](/portfolio)
+[![Portfolio](https://img.shields.io/badge/portfolio-grey?style=for-the-badge)](https://portfolio.developomp.com)
 
 Frontend engineer wannabe
 
