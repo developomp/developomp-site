@@ -1,18 +1,17 @@
 {
     "$schema": "https://turbo.build/schema.json",
     "pipeline": {
+        "dev": {
+            "cache": false
+        },
         "build": {
-            "outputs": ["build/**", "dist/**", "storybook-static/**"],
+            "cache": false,
             "dependsOn": ["^build"]
         },
-        "test": {
-            "outputs": ["coverage/**"],
-            "dependsOn": []
+        "preview": {
+            "cache": false
         },
         "lint": {
-            "outputs": []
-        },
-        "dev": {
             "cache": false
         },
         "clean": {
