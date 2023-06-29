@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
-    faHome,
     faFileLines,
     faUser,
     faUserTie,
@@ -14,11 +13,6 @@ export type Item = {
 }
 
 const NavbarData: Item[] = [
-    {
-        title: "Home",
-        path: "/",
-        icon: <FontAwesomeIcon icon={faHome} />,
-    },
     {
         title: "About",
         path: "https://developomp.com",
