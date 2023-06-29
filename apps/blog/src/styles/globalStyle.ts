@@ -50,6 +50,7 @@ const globalCSS = css`
 	* {
 		transition: color 0.1s linear;
 		scroll-behavior: smooth;
+		scroll-margin: 4rem;
 	}
 `
 

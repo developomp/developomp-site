@@ -19,7 +19,6 @@ export default css`
 	a.header-anchor {
 		/* compensate for navbar height*/
 		display: inline-block;
-		margin-top: 4.5rem;
 
 		color: ${(props) => props.theme.theme.component.anchor.color.header};
 	}
@@ -27,6 +26,5 @@ export default css`
 	/* footnote anchors */
 	a[id^="fnref"] {
 		display: inline;
-		padding-top: 4.5rem;
 	}
 `

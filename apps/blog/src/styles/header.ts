@@ -7,7 +7,8 @@ export default css`
 	h4,
 	h5,
 	h6 {
-		margin-top: -2rem;
+		margin-top: 3rem;
+		padding-top: 0.5rem;
 		margin-bottom: 0.5rem;
 		font-weight: 700;
 	}
