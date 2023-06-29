@@ -80,16 +80,36 @@
 </i>
 
 <div class="socials-and-profiles">
-    <a class={SocialProfile} target="_blank" href="https://github.com/developomp">
+    <a
+        class={SocialProfile}
+        target="_blank"
+        href="https://github.com/developomp"
+        aria-label="GitHub link"
+    >
         <GitHub />
     </a>
-    <a class={SocialProfile} target="_blank" href="https://twitter.com/developomp">
+    <a
+        class={SocialProfile}
+        target="_blank"
+        href="https://twitter.com/developomp"
+        aria-label="Twitter link"
+    >
         <Twitter />
     </a>
-    <a class={SocialProfile} target="_blank" href="https://mastodon.social/@developomp">
+    <a
+        class={SocialProfile}
+        target="_blank"
+        href="https://mastodon.social/@developomp"
+        aria-label="Mastodon link"
+    >
         <Mastodon />
     </a>
-    <a class={SocialProfile} target="_blank" href="https://youtube.com/@developomp">
+    <a
+        class={SocialProfile}
+        target="_blank"
+        href="https://youtube.com/@developomp"
+        aria-label="YouTube link"
+    >
         <YouTube />
     </a>
 </div>
