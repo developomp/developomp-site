@@ -1,4 +1,4 @@
 module.exports = {
-  root: true,
-  extends: ["developomp-site"],
-};
+    root: true,
+    extends: ["developomp-site"],
+}

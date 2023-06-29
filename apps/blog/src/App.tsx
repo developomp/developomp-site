@@ -21,74 +21,77 @@ import GlobalStyle from "./styles/globalStyle"
 import { globalContext } from "./globalContext"
 
 const IENotSupported = styled.p`
-	margin: auto;
-	font-size: 2rem;
-	margin-top: 2rem;
-	text-align: center;
-	font-family: ${(props) => props.theme.theme.font.sansSerif};
+    margin: auto;
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+    font-family: ${(props) => props.theme.theme.font.sansSerif};
 `
 
 const StyledContentContainer = styled.div`
-	flex: 1 1 auto;
-	margin-bottom: 3rem;
-	margin-top: 5rem;
+    flex: 1 1 auto;
+    margin-bottom: 3rem;
+    margin-top: 5rem;
 `
 
 export default function App() {
-	const { globalState } = useContext(globalContext)
+    const { globalState } = useContext(globalContext)
 
-	const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setIsLoading] = useState(true)
 
-	useEffect(() => {
-		// set loading to false if all fonts are loaded
-		// checks if document.fonts.onloadingdone is supported on the browser
-		if (typeof document.fonts.onloadingdone != undefined) {
-			document.fonts.onloadingdone = () => {
-				setIsLoading(false)
-			}
-		} else {
-			setIsLoading(false)
-		}
-	}, [])
+    useEffect(() => {
+        // set loading to false if all fonts are loaded
+        // checks if document.fonts.onloadingdone is supported on the browser
+        if (typeof document.fonts.onloadingdone != undefined) {
+            document.fonts.onloadingdone = () => {
+                setIsLoading(false)
+            }
+        } else {
+            setIsLoading(false)
+        }
+    }, [])
 
-	if (isIE)
-		return (
-			<IENotSupported>
-				Internet Explorer is <b>not supported.</b>
-			</IENotSupported>
-		)
+    if (isIE)
+        return (
+            <IENotSupported>
+                Internet Explorer is <b>not supported.</b>
+            </IENotSupported>
+        )
 
-	return (
-		<ThemeProvider
-			theme={{
-				currentTheme: globalState.currentTheme,
-				theme: globalState.currentTheme === "dark" ? darkTheme : lightTheme,
-			}}
-		>
-			<Helmet>
-				<meta property="og:site_name" content="developomp" />
-				<meta property="og:title" content="Home" />
-				<meta property="og:description" content="developomp's blog" />
-				<meta name="description" content="developomp's blog" />
-			</Helmet>
+    return (
+        <ThemeProvider
+            theme={{
+                currentTheme: globalState.currentTheme,
+                theme:
+                    globalState.currentTheme === "dark"
+                        ? darkTheme
+                        : lightTheme,
+            }}
+        >
+            <Helmet>
+                <meta property="og:site_name" content="developomp" />
+                <meta property="og:title" content="Home" />
+                <meta property="og:description" content="developomp's blog" />
+                <meta name="description" content="developomp's blog" />
+            </Helmet>
 
-			<GlobalStyle />
+            <GlobalStyle />
 
-			<Header />
-			<StyledContentContainer>
-				{isLoading ? (
-					<Loading />
-				) : (
-					<Routes>
-						<Route index element={<Home />} />
-						<Route path="search" element={<Search />} />
-						<Route path="404" element={<NotFound />} />
-						<Route path="loading" element={<Loading />} />
-						<Route path="*" element={<Page />} />
-					</Routes>
-				)}
-			</StyledContentContainer>
-			<Footer />
-		</ThemeProvider>
-	)
+            <Header />
+            <StyledContentContainer>
+                {isLoading ? (
+                    <Loading />
+                ) : (
+                    <Routes>
+                        <Route index element={<Home />} />
+                        <Route path="search" element={<Search />} />
+                        <Route path="404" element={<NotFound />} />
+                        <Route path="loading" element={<Loading />} />
+                        <Route path="*" element={<Page />} />
+                    </Routes>
+                )}
+            </StyledContentContainer>
+            <Footer />
+        </ThemeProvider>
+    )
 }

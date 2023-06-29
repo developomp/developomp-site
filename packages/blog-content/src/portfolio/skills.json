@@ -1,21 +1,21 @@
 {
-	"Programming Languages": [
-		"javascript",
-		"typescript",
-		"python",
-		"rust",
-		"csharp C#"
-	],
-	"Web Front End": ["react", "svelte", "tailwindcss Tailwind"],
-	"Desktop Front End": ["gtk", "electron", "tauri"],
-	"Back End": ["firebase"],
-	"DevOps": ["docker", "githubactions GH Actions"],
-	"Game Development": ["unity"],
-	"Etc": [
-		"figma",
-		"markdown",
-		"notion",
-		"google Google-Fu",
-		"discord Discord Bot"
-	]
+    "Programming Languages": [
+        "javascript",
+        "typescript",
+        "python",
+        "rust",
+        "csharp C#"
+    ],
+    "Web Front End": ["react", "svelte", "tailwindcss Tailwind"],
+    "Desktop Front End": ["gtk", "electron", "tauri"],
+    "Back End": ["firebase"],
+    "DevOps": ["docker", "githubactions GH Actions"],
+    "Game Development": ["unity"],
+    "Etc": [
+        "figma",
+        "markdown",
+        "notion",
+        "google Google-Fu",
+        "discord Discord Bot"
+    ]
 }

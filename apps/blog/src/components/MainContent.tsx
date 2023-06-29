@@ -3,26 +3,26 @@ import styled, { css } from "styled-components"
 import Card from "./Card"
 
 export const mainContentCSS = css`
-	margin-top: 1rem;
-	width: 50%;
+    margin-top: 1rem;
+    width: 50%;
 
-	img {
-		max-width: 100%;
-	}
+    img {
+        max-width: 100%;
+    }
 
-	table img {
-		max-width: fit-content;
-	}
+    table img {
+        max-width: fit-content;
+    }
 
-	@media screen and (max-width: ${({ theme }) =>
-			theme.theme.maxDisplayWidth.mobile}) {
-		width: auto;
-		margin: 1rem;
-	}
+    @media screen and (max-width: ${({ theme }) =>
+            theme.theme.maxDisplayWidth.mobile}) {
+        width: auto;
+        margin: 1rem;
+    }
 `
 
 const MainContent = styled(Card)`
-	${mainContentCSS}
+    ${mainContentCSS}
 `
 
 export default MainContent

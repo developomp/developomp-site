@@ -11,70 +11,74 @@ import styled, { css } from "styled-components"
 import button from "../../styles/button"
 
 const sharedStyle = css`
-	${button};
-	display: flex;
-	width: 100%;
-	margin: 0;
-	border-radius: 0;
-	justify-content: space-between;
-	height: 2rem;
-	align-items: center;
-	padding: 20px;
-	list-style: none;
+    ${button};
+    display: flex;
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+    justify-content: space-between;
+    height: 2rem;
+    align-items: center;
+    padding: 20px;
+    list-style: none;
 
-	svg {
-		scale: 1.5;
-	}
+    svg {
+        scale: 1.5;
+    }
 
-	&:hover {
-		color: inherit;
-	}
+    &:hover {
+        color: inherit;
+    }
 `
 
 const SidebarLink = styled(Link)`
-	${sharedStyle}
+    ${sharedStyle}
 `
 
 const SidebarAnchor = styled.a`
-	${sharedStyle}
+    ${sharedStyle}
 `
 
 const SidebarLabel = styled.span`
-	margin-left: 1rem;
+    margin-left: 1rem;
 `
 
 interface Props {
-	item: Item
-	onClick: () => void
+    item: Item
+    onClick: () => void
 }
 
 const SubMenu = ({ item, onClick }: Props) => {
-	const { path, icon, title } = item
-	const [isSubNavOpen, setSubNavOpen] = useState(false)
-	const handleSidebarLinkClick = useCallback(() => {
-		onClick()
-		setSubNavOpen((prev) => !prev)
-	}, [isSubNavOpen])
+    const { path, icon, title } = item
+    const [isSubNavOpen, setSubNavOpen] = useState(false)
+    const handleSidebarLinkClick = useCallback(() => {
+        onClick()
+        setSubNavOpen((prev) => !prev)
+    }, [isSubNavOpen])
 
-	if (path.at(0) == "/") {
-		return (
-			<SidebarLink to={path} onClick={handleSidebarLinkClick}>
-				<div>
-					{icon}
-					<SidebarLabel>{title}</SidebarLabel>
-				</div>
-			</SidebarLink>
-		)
-	}
+    if (path.at(0) == "/") {
+        return (
+            <SidebarLink to={path} onClick={handleSidebarLinkClick}>
+                <div>
+                    {icon}
+                    <SidebarLabel>{title}</SidebarLabel>
+                </div>
+            </SidebarLink>
+        )
+    }
 
-	return (
-		<SidebarAnchor target="_blank" href={path} onClick={handleSidebarLinkClick}>
-			<div>
-				{icon}
-				<SidebarLabel>{title}</SidebarLabel>
-			</div>
-		</SidebarAnchor>
-	)
+    return (
+        <SidebarAnchor
+            target="_blank"
+            href={path}
+            onClick={handleSidebarLinkClick}
+        >
+            <div>
+                {icon}
+                <SidebarLabel>{title}</SidebarLabel>
+            </div>
+        </SidebarAnchor>
+    )
 }
 
 export default SubMenu

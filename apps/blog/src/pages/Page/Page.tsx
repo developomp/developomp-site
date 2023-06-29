@@ -12,10 +12,10 @@ import NotFound from "../NotFound"
 
 import SeriesControlButtons from "./SeriesControlButtons"
 import {
-	categorizePageType,
-	fetchContent,
-	PageType,
-	parsePageData,
+    categorizePageType,
+    fetchContent,
+    PageType,
+    parsePageData,
 } from "./helper"
 import Meta from "./Meta"
 import Toc from "./Toc"
@@ -25,112 +25,114 @@ import type { PageData } from "@developomp-site/blog-content/src/types/types"
 import contentMap from "../../contentMap"
 
 const StyledTitle = styled.h1`
-	margin-bottom: 1rem;
+    margin-bottom: 1rem;
 
-	word-wrap: break-word;
+    word-wrap: break-word;
 `
 
 export default function Page() {
-	const { pathname } = useLocation()
+    const { pathname } = useLocation()
 
-	const [pageData, setPageData] = useState<PageData | undefined>(undefined)
-	const [pageType, setPageType] = useState<PageType>(PageType.POST)
-	const [isLoading, setIsLoading] = useState(true)
+    const [pageData, setPageData] = useState<PageData | undefined>(undefined)
+    const [pageType, setPageType] = useState<PageType>(PageType.POST)
+    const [isLoading, setIsLoading] = useState(true)
 
-	// this code runs if either the url or the locale changes
-	useEffect(() => {
-		const content_id = pathname.replace(/\/$/, "") // remove trailing slash
-		const pageType = categorizePageType(content_id)
+    // this code runs if either the url or the locale changes
+    useEffect(() => {
+        const content_id = pathname.replace(/\/$/, "") // remove trailing slash
+        const pageType = categorizePageType(content_id)
 
-		fetchContent(pageType, content_id).then((fetched_content) => {
-			if (!fetched_content) {
-				// stop loading without fetching pageData so 404 page will display
-				setIsLoading(false)
+        fetchContent(pageType, content_id).then((fetched_content) => {
+            if (!fetched_content) {
+                // stop loading without fetching pageData so 404 page will display
+                setIsLoading(false)
 
-				return
-			}
+                return
+            }
 
-			setPageData(parsePageData(fetched_content, pageType, content_id))
-			setPageType(pageType)
-			setIsLoading(false)
-		})
-	}, [pathname])
+            setPageData(parsePageData(fetched_content, pageType, content_id))
+            setPageType(pageType)
+            setIsLoading(false)
+        })
+    }, [pathname])
 
-	if (isLoading) return <Loading />
+    if (isLoading) return <Loading />
 
-	if (!pageData) return <NotFound />
+    if (!pageData) return <NotFound />
 
-	return (
-		<>
-			<Helmet>
-				<title>pomp | {pageData.title}</title>
+    return (
+        <>
+            <Helmet>
+                <title>pomp | {pageData.title}</title>
 
-				<meta property="og:title" content={pageData.title} />
-				<meta property="og:type" content="website" />
-				<meta property="og:image" content="/icon/icon.svg" />
-			</Helmet>
+                <meta property="og:title" content={pageData.title} />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="/icon/icon.svg" />
+            </Helmet>
 
-			<MainContent>
-				{/* next/previous series post buttons */}
-				{pageType == PageType.SERIES && (
-					<SeriesControlButtons
-						seriesHome={pageData.seriesHome}
-						prevURL={pageData.prev}
-						nextURL={pageData.next}
-					/>
-				)}
+            <MainContent>
+                {/* next/previous series post buttons */}
+                {pageType == PageType.SERIES && (
+                    <SeriesControlButtons
+                        seriesHome={pageData.seriesHome}
+                        prevURL={pageData.prev}
+                        nextURL={pageData.next}
+                    />
+                )}
 
-				<StyledTitle>{pageData.title}</StyledTitle>
+                <StyledTitle>{pageData.title}</StyledTitle>
 
-				<small>
-					{/* Post tags */}
-					{pageData.tags.length > 0 && (
-						<TagList direction="left">
-							{pageData.tags.map((tag) => {
-								return (
-									<div key={pageData?.title + tag}>
-										<Tag text={tag} />
-									</div>
-								)
-							})}
-						</TagList>
-					)}
+                <small>
+                    {/* Post tags */}
+                    {pageData.tags.length > 0 && (
+                        <TagList direction="left">
+                            {pageData.tags.map((tag) => {
+                                return (
+                                    <div key={pageData?.title + tag}>
+                                        <Tag text={tag} />
+                                    </div>
+                                )
+                            })}
+                        </TagList>
+                    )}
 
-					<br />
+                    <br />
 
-					{/* Post metadata */}
-					{[PageType.POST, PageType.SERIES, PageType.SERIES_HOME].includes(
-						pageType
-					) && <Meta fetchedPage={pageData} />}
-				</small>
+                    {/* Post metadata */}
+                    {[
+                        PageType.POST,
+                        PageType.SERIES,
+                        PageType.SERIES_HOME,
+                    ].includes(pageType) && <Meta fetchedPage={pageData} />}
+                </small>
 
-				<hr />
+                <hr />
 
-				{/* add table of contents if it exists */}
-				<Toc data={pageData.toc} />
+                {/* add table of contents if it exists */}
+                <Toc data={pageData.toc} />
 
-				{/* page content */}
-				<div
-					dangerouslySetInnerHTML={{
-						__html: pageData.content,
-					}}
-				/>
-			</MainContent>
+                {/* page content */}
+                <div
+                    dangerouslySetInnerHTML={{
+                        __html: pageData.content,
+                    }}
+                />
+            </MainContent>
 
-			{/* series post list */}
+            {/* series post list */}
 
-			{pageType == PageType.SERIES_HOME &&
-				pageData.order.map((post) => {
-					return (
-						<PostCard
-							key={post}
-							postData={{
-								content_id: post,
-								...contentMap.posts[post],
-							}}
-						/>
-					)
-				})}
-		</>
-	)
+            {pageType == PageType.SERIES_HOME &&
+                pageData.order.map((post) => {
+                    return (
+                        <PostCard
+                            key={post}
+                            postData={{
+                                content_id: post,
+                                ...contentMap.posts[post],
+                            }}
+                        />
+                    )
+                })}
+        </>
+    )
 }

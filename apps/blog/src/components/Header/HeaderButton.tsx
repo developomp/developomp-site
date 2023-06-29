@@ -5,39 +5,39 @@
 import styled, { css } from "styled-components"
 
 export const HeaderButtonCSS = css`
-	/* style */
+    /* style */
 
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	justify-content: center;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
 
-	/* size */
+    /* size */
 
-	height: 100%;
-	min-width: 2.5rem;
-	margin: 0;
-	padding: 0 1rem 0 1rem;
+    height: 100%;
+    min-width: 2.5rem;
+    margin: 0;
+    padding: 0 1rem 0 1rem;
 
-	/* text */
+    /* text */
 
-	text-decoration: none;
+    text-decoration: none;
 
-	/* color */
+    /* color */
 
-	color: ${({ theme }) => theme.theme.color.text.default};
-	background-color: ${({ theme }) =>
-		theme.theme.component.ui.color.background.default};
+    color: ${({ theme }) => theme.theme.color.text.default};
+    background-color: ${({ theme }) =>
+        theme.theme.component.ui.color.background.default};
 
-	/* animation */
+    /* animation */
 
-	transition: transform 0.1s linear;
-	&:hover {
-		background-color: ${({ theme }) =>
-			theme.theme.component.ui.color.background.hover};
-	}
+    transition: transform 0.1s linear;
+    &:hover {
+        background-color: ${({ theme }) =>
+            theme.theme.component.ui.color.background.hover};
+    }
 `
 
 export default styled.div`
-	${HeaderButtonCSS}
+    ${HeaderButtonCSS}
 `

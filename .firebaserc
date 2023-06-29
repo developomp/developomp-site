@@ -11,7 +11,7 @@
         "blog": [
           "developomp-site-blog"
         ],
-		"portfolio": [
+        "portfolio": [
           "developomp-site-portfolio"
         ]
       }

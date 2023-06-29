@@ -1,40 +1,40 @@
 {
-	"hosting": [
-		{
-			"target": "main",
-			"cleanUrls": true,
-			"public": "apps/main/build",
-			"rewrites": [
-				{
-					"source": "**",
-					"destination": "/index.html"
-				}
-			],
-			"ignore": ["**/.*"]
-		},
-		{
-			"target": "blog",
-			"cleanUrls": true,
-			"public": "apps/blog/build",
-			"rewrites": [
-				{
-					"source": "**",
-					"destination": "/index.html"
-				}
-			],
-			"ignore": ["**/.*"]
-		},
-		{
-			"target": "portfolio",
-			"cleanUrls": true,
-			"public": "apps/portfolio/dist",
-			"rewrites": [
-				{
-					"source": "**",
-					"destination": "/index.html"
-				}
-			],
-			"ignore": ["**/.*"]
-		}
-	]
+    "hosting": [
+        {
+            "target": "main",
+            "cleanUrls": true,
+            "public": "apps/main/build",
+            "rewrites": [
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "ignore": ["**/.*"]
+        },
+        {
+            "target": "blog",
+            "cleanUrls": true,
+            "public": "apps/blog/build",
+            "rewrites": [
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "ignore": ["**/.*"]
+        },
+        {
+            "target": "portfolio",
+            "cleanUrls": true,
+            "public": "apps/portfolio/dist",
+            "rewrites": [
+                {
+                    "source": "**",
+                    "destination": "/index.html"
+                }
+            ],
+            "ignore": ["**/.*"]
+        }
+    ]
 }

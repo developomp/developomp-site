@@ -5,23 +5,23 @@ import { faHashtag } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 const Tag = styled.div`
-	text-align: center;
+    text-align: center;
 
-	margin-right: 0.8rem;
-	border-radius: 10px;
+    margin-right: 0.8rem;
+    border-radius: 10px;
 
-	color: ${({ theme }) => theme.theme.color.text.gray};
+    color: ${({ theme }) => theme.theme.color.text.gray};
 `
 
 interface Props {
-	text: string
-	onClick?: (event: MouseEvent<never>) => void
+    text: string
+    onClick?: (event: MouseEvent<never>) => void
 }
 
 export default (props: Props) => {
-	return (
-		<Tag onClick={props.onClick || undefined}>
-			<FontAwesomeIcon icon={faHashtag} /> &nbsp;{props.text}
-		</Tag>
-	)
+    return (
+        <Tag onClick={props.onClick || undefined}>
+            <FontAwesomeIcon icon={faHashtag} /> &nbsp;{props.text}
+        </Tag>
+    )
 }

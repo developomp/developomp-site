@@ -16,19 +16,19 @@ import postProcess from "./postProcess"
 import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
 
 export const contentMap: ContentMap = {
-	date: {},
-	tags: {},
-	meta: {
-		tags: [],
-	},
-	posts: {},
-	series: {},
-	unsearchable: {},
+    date: {},
+    tags: {},
+    meta: {
+        tags: [],
+    },
+    posts: {},
+    series: {},
+    unsearchable: {},
 }
 export const seriesMap: SeriesMap = {}
 export const portfolioData: PortfolioData = {
-	skills: new Set(),
-	projects: {},
+    skills: new Set(),
+    projects: {},
 }
 
 /**
@@ -36,8 +36,8 @@ export const portfolioData: PortfolioData = {
  */
 
 try {
-	fs.rmSync("dist", { recursive: true })
-	// eslint-disable-next-line no-empty
+    fs.rmSync("dist", { recursive: true })
+    // eslint-disable-next-line no-empty
 } catch (err) {}
 
 /**
@@ -45,16 +45,16 @@ try {
  */
 
 if (!fs.lstatSync(markdownPath).isDirectory())
-	throw Error("Invalid markdown path")
+    throw Error("Invalid markdown path")
 
 if (!fs.lstatSync(markdownPath + "/posts").isDirectory())
-	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
+    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
 if (!fs.lstatSync(markdownPath + "/unsearchable").isDirectory())
-	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
+    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
 if (!fs.lstatSync(markdownPath + "/series").isDirectory())
-	throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
+    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
 /**
  * Parse
@@ -77,11 +77,11 @@ postProcess()
 
 fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
 fs.writeFileSync(
-	portfolioFilePath,
-	JSON.stringify({
-		...portfolioData,
-		skills: Array.from(portfolioData.skills),
-	})
+    portfolioFilePath,
+    JSON.stringify({
+        ...portfolioData,
+        skills: Array.from(portfolioData.skills),
+    })
 )
 
 saveIndex()

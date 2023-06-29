@@ -1,9 +1,9 @@
 svg {
-	/* from github */
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
-		sans-serif, Apple Color Emoji, Segoe UI Emoji;
-	font-size: 14px;
-	color: #777777;
+    /* from github */
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+        sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    font-size: 14px;
+    color: #777777;
 }
 
 h1,
@@ -12,50 +12,50 @@ h3,
 h4,
 h5,
 h6 {
-	text-align: center;
+    text-align: center;
 }
 
 .items-wrapper {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
 
-	column-gap: 10px;
-	row-gap: 15px;
+    column-gap: 10px;
+    row-gap: 15px;
 }
 
 .badge {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
-	justify-content: center;
-	align-items: center;
-	text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-	gap: 5px;
+    gap: 5px;
 }
 
 .badge-box {
-	display: flex;
+    display: flex;
 
-	justify-content: center;
-	align-items: center;
+    justify-content: center;
+    align-items: center;
 
-	border-radius: 7px;
+    border-radius: 7px;
 
-	width: 70px;
-	height: 70px;
+    width: 70px;
+    height: 70px;
 }
 
 .icon-container > svg {
-	height: 40px !important;
+    height: 40px !important;
 }
 
 .white {
-	color: white;
-	fill: white;
+    color: white;
+    fill: white;
 }
 
 .black {
-	color: black;
-	fill: black;
+    color: black;
+    fill: black;
 }

@@ -1,9 +1,9 @@
 {
-	"compilerOptions": {
-		"types": ["node"],
-		"moduleResolution": "Node",
-		"esModuleInterop": true
-	},
-	"include": ["src"],
-	"exclude": ["dist", "node_modules"]
+    "compilerOptions": {
+        "types": ["node"],
+        "moduleResolution": "Node",
+        "esModuleInterop": true
+    },
+    "include": ["src"],
+    "exclude": ["dist", "node_modules"]
 }

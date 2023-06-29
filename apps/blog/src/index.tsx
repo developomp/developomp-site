@@ -12,11 +12,11 @@ import App from "./App"
 const container = document.getElementById("root") as HTMLElement
 const root = createRoot(container)
 root.render(
-	<GlobalStore>
-		<BrowserRouter>
-			<HelmetProvider>
-				<App />
-			</HelmetProvider>
-		</BrowserRouter>
-	</GlobalStore>
+    <GlobalStore>
+        <BrowserRouter>
+            <HelmetProvider>
+                <App />
+            </HelmetProvider>
+        </BrowserRouter>
+    </GlobalStore>
 )

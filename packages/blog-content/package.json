@@ -1,41 +1,41 @@
 {
-	"name": "@developomp-site/blog-content",
-	"version": "0.0.0",
-	"license": "MIT",
-	"files": [
-		"dist/**"
-	],
-	"scripts": {
-		"build": "ts-node --experimental-specifier-resolution=node ./src",
-		"clean": "rm -rf .turbo node_modules dist"
-	},
-	"dependencies": {
-		"@developomp-site/tsconfig": "workspace:*",
-		"@types/ejs": "^3.1.1",
-		"@types/katex": "^0.14.0",
-		"@types/markdown-it": "^12.2.3",
-		"@types/read-time-estimate": "^0.0.0",
-		"@types/svgo": "^3.0.0",
-		"@types/tinycolor2": "^1.4.3",
-		"canvas": "^2.11.2",
-		"ejs": "^3.1.8",
-		"gray-matter": "^4.0.3",
-		"markdown-it": "^13.0.1",
-		"markdown-it-anchor": "^8.6.5",
-		"markdown-it-attrs": "^4.1.4",
-		"markdown-it-footnote": "^3.0.3",
-		"markdown-it-highlight-lines": "^1.0.2",
-		"markdown-it-mark": "^3.0.1",
-		"markdown-it-sub": "^1.0.0",
-		"markdown-it-sup": "^1.0.0",
-		"markdown-it-task-checkbox": "^1.0.6",
-		"markdown-it-texmath": "^1.0.0",
-		"markdown-toc": "^1.2.0",
-		"read-time-estimate": "^0.0.3",
-		"simple-icons": "^7.21.0",
-		"slugify": "^1.6.6",
-		"svgo": "^3.0.2",
-		"tinycolor2": "^1.4.2",
-		"typescript": "^4.9.4"
-	}
+    "name": "@developomp-site/blog-content",
+    "version": "0.0.0",
+    "license": "MIT",
+    "files": [
+        "dist/**"
+    ],
+    "scripts": {
+        "build": "ts-node --experimental-specifier-resolution=node ./src",
+        "clean": "rm -rf .turbo node_modules dist"
+    },
+    "dependencies": {
+        "@developomp-site/tsconfig": "workspace:*",
+        "@types/ejs": "^3.1.1",
+        "@types/katex": "^0.14.0",
+        "@types/markdown-it": "^12.2.3",
+        "@types/read-time-estimate": "^0.0.0",
+        "@types/svgo": "^3.0.0",
+        "@types/tinycolor2": "^1.4.3",
+        "canvas": "^2.11.2",
+        "ejs": "^3.1.8",
+        "gray-matter": "^4.0.3",
+        "markdown-it": "^13.0.1",
+        "markdown-it-anchor": "^8.6.5",
+        "markdown-it-attrs": "^4.1.4",
+        "markdown-it-footnote": "^3.0.3",
+        "markdown-it-highlight-lines": "^1.0.2",
+        "markdown-it-mark": "^3.0.1",
+        "markdown-it-sub": "^1.0.0",
+        "markdown-it-sup": "^1.0.0",
+        "markdown-it-task-checkbox": "^1.0.6",
+        "markdown-it-texmath": "^1.0.0",
+        "markdown-toc": "^1.2.0",
+        "read-time-estimate": "^0.0.3",
+        "simple-icons": "^7.21.0",
+        "slugify": "^1.6.6",
+        "svgo": "^3.0.2",
+        "tinycolor2": "^1.4.2",
+        "typescript": "^4.9.4"
+    }
 }

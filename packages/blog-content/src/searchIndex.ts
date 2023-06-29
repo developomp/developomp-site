@@ -8,19 +8,19 @@ import elasticlunr from "elasticlunr"
 import { searchIndexFilePath } from "./config"
 
 const elasticlunrIndex = elasticlunr(function () {
-	this.addField("title" as never)
-	this.addField("body" as never)
-	this.setRef("url" as never)
+    this.addField("title" as never)
+    this.addField("body" as never)
+    this.setRef("url" as never)
 })
 
 export function addDocument(doc: {
-	title?: unknown
-	body?: string
-	url?: string
+    title?: unknown
+    body?: string
+    url?: string
 }) {
-	elasticlunrIndex.addDoc(doc)
+    elasticlunrIndex.addDoc(doc)
 }
 
 export function saveIndex() {
-	fs.writeFileSync(searchIndexFilePath, JSON.stringify(elasticlunrIndex))
+    fs.writeFileSync(searchIndexFilePath, JSON.stringify(elasticlunrIndex))
 }

@@ -14,44 +14,44 @@ import markCSS from "./mark"
 import katexCSS from "./katex"
 
 const globalCSS = css`
-	body {
-		overflow-x: hidden;
-		overflow-y: scroll;
-	}
+    body {
+        overflow-x: hidden;
+        overflow-y: scroll;
+    }
 
-	html,
-	body,
-	#root {
-		/* size */
+    html,
+    body,
+    #root {
+        /* size */
 
-		min-height: 100vh;
-		margin: 0;
+        min-height: 100vh;
+        margin: 0;
 
-		/* style */
+        /* style */
 
-		display: flex;
-		flex-flow: column;
+        display: flex;
+        flex-flow: column;
 
-		/* text */
+        /* text */
 
-		line-height: 2rem;
-		font-size: 1rem;
-		font-family: ${({ theme }) => theme.theme.font.sansSerif};
-		font-weight: 400;
-		-webkit-font-smoothing: antialiased;
-		text-rendering: optimizeLegibility;
+        line-height: 2rem;
+        font-size: 1rem;
+        font-family: ${({ theme }) => theme.theme.font.sansSerif};
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
 
-		/* color */
+        /* color */
 
-		background-color: ${({ theme }) => theme.theme.color.background};
-		color: ${({ theme }) => theme.theme.color.text.default};
-	}
+        background-color: ${({ theme }) => theme.theme.color.background};
+        color: ${({ theme }) => theme.theme.color.text.default};
+    }
 
-	* {
-		transition: color 0.1s linear;
-		scroll-behavior: smooth;
-		scroll-margin: 4rem;
-	}
+    * {
+        transition: color 0.1s linear;
+        scroll-behavior: smooth;
+        scroll-margin: 4rem;
+    }
 `
 
 /**

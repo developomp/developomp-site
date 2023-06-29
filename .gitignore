@@ -8,10 +8,10 @@ node_modules
 *.log
 .next
 dist
+build
 dist-ssr
 *.local
 .env
 .cache
-server/dist
-public/dist
 storybook-static/
+.svelte-kit/

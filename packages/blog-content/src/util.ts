@@ -9,9 +9,9 @@ import { markdownPath } from "./config"
  * @param {string} pathToConvert
  */
 export function path2URL(pathToConvert: string): string {
-	return `/${relative(markdownPath, pathToConvert)}`
-		.replace(/\.[^/.]+$/, "") // remove the file extension
-		.replace(/ /g, "-") // replace all space with a dash
+    return `/${relative(markdownPath, pathToConvert)}`
+        .replace(/\.[^/.]+$/, "") // remove the file extension
+        .replace(/ /g, "-") // replace all space with a dash
 }
 
 /**
@@ -20,33 +20,34 @@ export function path2URL(pathToConvert: string): string {
  * @param {string} inputPath - path to parse
  */
 export function path2FileOrFolderName(inputPath: string): string {
-	// remove trailing slash
-	if (inputPath[-1] == "/") inputPath = inputPath.slice(0, inputPath.length - 1)
+    // remove trailing slash
+    if (inputPath[-1] == "/")
+        inputPath = inputPath.slice(0, inputPath.length - 1)
 
-	// get the last section
-	return inputPath.slice(inputPath.lastIndexOf("/") + 1)
+    // get the last section
+    return inputPath.slice(inputPath.lastIndexOf("/") + 1)
 }
 
 // gets the nth occurance of a pattern in string
 // returns -1 if nothing is found
 // https://stackoverflow.com/a/14482123/12979111
 export function nthIndex(str: string, pat: string, n: number) {
-	let i = -1
+    let i = -1
 
-	while (n-- && i++ < str.length) {
-		i = str.indexOf(pat, i)
-		if (i < 0) break
-	}
+    while (n-- && i++ < str.length) {
+        i = str.indexOf(pat, i)
+        if (i < 0) break
+    }
 
-	return i
+    return i
 }
 
 export function writeToFile(filePath: string, dataToWrite: string) {
-	// create directory to put the files
-	fs.mkdirSync(filePath.slice(0, filePath.lastIndexOf("/")), {
-		recursive: true,
-	})
+    // create directory to put the files
+    fs.mkdirSync(filePath.slice(0, filePath.lastIndexOf("/")), {
+        recursive: true,
+    })
 
-	// write content to the file
-	fs.writeFileSync(filePath, dataToWrite)
+    // write content to the file
+    fs.writeFileSync(filePath, dataToWrite)
 }

@@ -1,13 +1,13 @@
 {
-	"recommendations": [
-		"esbenp.prettier-vscode",
-		"dbaeumer.vscode-eslint",
-		"naumovs.color-highlight",
-		"streetsidesoftware.code-spell-checker",
-		"aaron-bond.better-comments",
-		"styled-components.vscode-styled-components",
-		"bradlc.vscode-tailwindcss",
-		"unifiedjs.vscode-mdx",
-		"svelte.svelte-vscode"
-	]
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "naumovs.color-highlight",
+        "streetsidesoftware.code-spell-checker",
+        "aaron-bond.better-comments",
+        "styled-components.vscode-styled-components",
+        "bradlc.vscode-tailwindcss",
+        "unifiedjs.vscode-mdx",
+        "svelte.svelte-vscode"
+    ]
 }

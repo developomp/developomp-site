@@ -3,16 +3,16 @@ import styled from "styled-components"
 import buttonStyle from "../../styles/button"
 
 const Button = styled.button`
-	${buttonStyle}
+    ${buttonStyle}
 
-	/* center div */
+    /* center div */
 	margin: 0 auto;
 `
 
 interface Props {
-	action(): void
+    action(): void
 }
 
 export default (props: Props) => {
-	return <Button onClick={props.action}>Show more posts</Button>
+    return <Button onClick={props.action}>Show more posts</Button>
 }

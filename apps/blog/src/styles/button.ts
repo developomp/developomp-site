@@ -1,37 +1,37 @@
 import { css } from "styled-components"
 
 export default css`
-	/* style */
+    /* style */
 
-	display: flex;
-	cursor: pointer;
-	align-items: center;
-	justify-content: center;
-	border: none;
-	border-radius: 0.5rem;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 0.5rem;
 
-	/* size */
+    /* size */
 
-	height: 3rem;
-	min-width: 2.5rem;
-	margin: 0;
-	padding: 0 1rem 0 1rem;
+    height: 3rem;
+    min-width: 2.5rem;
+    margin: 0;
+    padding: 0 1rem 0 1rem;
 
-	/* text */
+    /* text */
 
-	text-decoration: none;
+    text-decoration: none;
 
-	/* color */
+    /* color */
 
-	color: ${({ theme }) => theme.theme.color.text.default};
-	background-color: ${({ theme }) =>
-		theme.theme.component.ui.color.background.default};
-	&:hover {
-		background-color: ${({ theme }) =>
-			theme.theme.component.ui.color.background.hover};
-	}
+    color: ${({ theme }) => theme.theme.color.text.default};
+    background-color: ${({ theme }) =>
+        theme.theme.component.ui.color.background.default};
+    &:hover {
+        background-color: ${({ theme }) =>
+            theme.theme.component.ui.color.background.hover};
+    }
 
-	/* animation */
+    /* animation */
 
-	transition: transform 0.1s linear;
+    transition: transform 0.1s linear;
 `
