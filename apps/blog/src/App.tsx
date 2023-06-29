@@ -4,7 +4,7 @@ import lightTheme from "@developomp-site/theme/dist/light.json"
 import { useContext, useEffect, useState } from "react"
 import { Routes, Route } from "react-router-dom"
 import styled, { ThemeProvider } from "styled-components"
-import { Helmet } from "react-helmet-async"
+import { useTitleTemplate, useTitle, useMeta } from "hoofd"
 import { isIE } from "react-device-detect"
 
 import Loading from "./components/Loading"
@@ -36,8 +36,11 @@ const StyledContentContainer = styled.div`
 
 export default function App() {
     const { globalState } = useContext(globalContext)
-
     const [isLoading, setIsLoading] = useState(true)
+
+    useTitleTemplate("pomp's blog | %s")
+    useTitle("Home")
+    useMeta({ property: "og:title", content: "Home" })
 
     useEffect(() => {
         // set loading to false if all fonts are loaded
@@ -68,13 +71,6 @@ export default function App() {
                         : lightTheme,
             }}
         >
-            <Helmet>
-                <meta property="og:site_name" content="developomp" />
-                <meta property="og:title" content="Home" />
-                <meta property="og:description" content="developomp's blog" />
-                <meta name="description" content="developomp's blog" />
-            </Helmet>
-
             <GlobalStyle />
 
             <Header />

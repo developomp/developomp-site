@@ -10,6 +10,7 @@ import Project from "@/routes/Project"
 
 const App: FC = () => {
     useTitleTemplate("Portfolio | %s")
+    // no need to set title and meta tags here
 
     return (
         <>

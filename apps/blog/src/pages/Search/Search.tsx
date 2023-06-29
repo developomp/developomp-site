@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react"
 import styled from "styled-components"
 import { useSearchParams } from "react-router-dom"
-import { Helmet } from "react-helmet-async"
+import { useTitle, useMeta } from "hoofd"
 import { Range } from "react-date-range"
 
 import elasticlunr from "elasticlunr" // search engine
@@ -104,6 +104,9 @@ const Search = () => {
     const [searchInput, setSearchInput] = useState("")
 
     const [postCards, setPostCards] = useState<JSX.Element[]>([])
+
+    useTitle("Search")
+    useMeta({ property: "og:title", content: "Search" })
 
     const doSearch = useCallback(() => {
         try {
@@ -218,10 +221,6 @@ const Search = () => {
 
     return (
         <>
-            <Helmet>
-                <title>pomp | Search</title>
-            </Helmet>
-
             <StyledSearch>
                 <h1>Search</h1>
 

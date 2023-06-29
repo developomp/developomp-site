@@ -2,7 +2,7 @@ import "./style.scss"
 
 import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
 import type { PortfolioProject } from "@developomp-site/blog-content/src/types/types"
-import { useTitle } from "hoofd"
+import { useMeta, useTitle } from "hoofd"
 import { type FC } from "react"
 
 import Badge from "@/components/Badge"
@@ -29,6 +29,7 @@ for (const projectID in portfolio.projects) {
 
 const Home: FC = () => {
     useTitle("Home")
+    useMeta({ property: "og:title", content: "Home" })
 
     return (
         <>

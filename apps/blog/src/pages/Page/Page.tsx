@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Helmet } from "react-helmet-async"
+import { useTitle, useMeta } from "hoofd"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
@@ -37,6 +37,9 @@ export default function Page() {
     const [pageType, setPageType] = useState<PageType>(PageType.POST)
     const [isLoading, setIsLoading] = useState(true)
 
+    useTitle(pageData?.title || "Loading")
+    useMeta({ property: "og:title", content: pageData?.title })
+
     // this code runs if either the url or the locale changes
     useEffect(() => {
         const content_id = pathname.replace(/\/$/, "") // remove trailing slash
@@ -62,14 +65,6 @@ export default function Page() {
 
     return (
         <>
-            <Helmet>
-                <title>pomp | {pageData.title}</title>
-
-                <meta property="og:title" content={pageData.title} />
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="/icon/icon.svg" />
-            </Helmet>
-
             <MainContent>
                 {/* next/previous series post buttons */}
                 {pageType == PageType.SERIES && (

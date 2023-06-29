@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { Helmet } from "react-helmet-async"
+import { useTitle, useMeta } from "hoofd"
 
 import MainContent from "../components/MainContent"
 
@@ -12,21 +12,11 @@ const Styled404 = styled.h1`
 `
 
 const NotFound = () => {
+    useTitle("404")
+    useMeta({ property: "og:title", content: "Page Not Found" })
+
     return (
         <>
-            <Helmet>
-                <title>pomp | 404</title>
-
-                <meta property="og:title" content="Page Not Found" />
-                <meta property="og:type" content="website" />
-                <meta property="og:url" content="http://blog.developomp.com" />
-                <meta
-                    property="og:image"
-                    content="http://blog.developomp.com/icon/icon.svg"
-                />
-                <meta property="og:description" content="Page does not exist" />
-            </Helmet>
-
             <StyledNotFound>
                 <Styled404>404</Styled404>
                 <br />

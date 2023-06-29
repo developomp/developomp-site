@@ -4,7 +4,7 @@
  */
 
 import { useCallback, useEffect, useState } from "react"
-import { Helmet } from "react-helmet-async"
+import { useTitle, useMeta } from "hoofd"
 import styled from "styled-components"
 
 import PostCard from "../../components/PostCard"
@@ -24,6 +24,9 @@ export default () => {
     const [howMany, setHowMany] = useState(5)
     const [postsLength, setPostsLength] = useState(0)
     const [postCards, setPostCards] = useState<JSX.Element[]>([])
+
+    useTitle("Home")
+    useMeta({ property: "og:title", content: "Home" })
 
     const loadPostCards = useCallback(() => {
         let postCount = 0
@@ -62,13 +65,6 @@ export default () => {
 
     return (
         <>
-            <Helmet>
-                <title>pomp | Home</title>
-
-                <meta property="og:type" content="website" />
-                <meta property="og:image" content="/icon/icon.svg" />
-            </Helmet>
-
             <PostList>
                 <h1>Recent Posts</h1>
 
