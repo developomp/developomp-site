@@ -38,3 +38,10 @@ h6 {
         @apply dark:text-dark-anchor-header;
     }
 }
+
+ul,
+ol {
+    list-style: circle;
+    padding-left: 2.5rem;
+    list-style-position: inside;
+}

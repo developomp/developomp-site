@@ -17,13 +17,6 @@ const StyledCollapseContainer = styled.div`
     * {
         transition: height 200ms ease-out;
     }
-
-    ul,
-    ol {
-        list-style: circle;
-        padding-left: 2.5rem;
-        list-style-position: inside;
-    }
 `
 
 const Toc: FC<{ data?: string }> = (props) => {
