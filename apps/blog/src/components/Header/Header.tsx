@@ -48,7 +48,7 @@ export default () => {
         <Header>
             <Container>
                 <Link to="/" aria-label="homepage">
-                    <Icon src="/icon/icon_circle.svg" alt="logo" />
+                    <Icon width={40} height={40} src="/icon/icon_circle.svg" alt="logo" />
                 </Link>
                 <Nav />
                 <Buttons />
