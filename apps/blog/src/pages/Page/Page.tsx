@@ -3,12 +3,10 @@ import { Helmet } from "react-helmet-async"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
-import GithubLinkIcon from "../../components/GithubLinkIcon"
 import MainContent from "../../components/MainContent"
 import PostCard from "../../components/PostCard"
 import Loading from "../../components/Loading"
 import TagList from "../../components/TagList"
-import Badge from "../../components/Badge"
 import Tag from "../../components/Tag"
 import NotFound from "../NotFound"
 
@@ -26,21 +24,10 @@ import type { PageData } from "@developomp-site/blog-content/src/types/types"
 
 import contentMap from "../../contentMap"
 
-const StyledTitle = styled.h1<{ pageType: PageType }>`
+const StyledTitle = styled.h1`
 	margin-bottom: 1rem;
 
 	word-wrap: break-word;
-
-	${(props) => {
-		if (props.pageType == PageType.PORTFOLIO_PROJECT) {
-			return "margin-right: 3rem;"
-		}
-	}}
-`
-
-const PortfolioGithubLinkContainer = styled.div`
-	float: right;
-	margin-top: 1rem;
 `
 
 const ProjectImage = styled.img`
@@ -97,17 +84,7 @@ export default function Page() {
 					/>
 				)}
 
-				{pageType == PageType.PORTFOLIO_PROJECT && pageData.repo && (
-					<PortfolioGithubLinkContainer>
-						<GithubLinkIcon link={pageData.repo} />
-					</PortfolioGithubLinkContainer>
-				)}
-				<StyledTitle pageType={PageType.PORTFOLIO_PROJECT}>
-					{pageData.title}
-				</StyledTitle>
-
-				{pageType == PageType.PORTFOLIO_PROJECT &&
-					pageData.badges.map((badge) => <Badge key={badge} slug={badge} />)}
+				<StyledTitle>{pageData.title}</StyledTitle>
 
 				<small>
 					{/* Post tags */}
@@ -135,10 +112,6 @@ export default function Page() {
 
 				{/* add table of contents if it exists */}
 				<Toc data={pageData.toc} />
-
-				{pageType == PageType.PORTFOLIO_PROJECT && (
-					<ProjectImage src={pageData.image} alt="project example image" />
-				)}
 
 				{/* page content */}
 				<div

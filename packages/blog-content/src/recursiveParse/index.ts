@@ -7,7 +7,7 @@ import parseMarkdown from "../parseMarkdown"
 import parsePost from "./parsePost"
 import parseSeries from "./parseSeries"
 import parseUnsearchable from "./parseUnsearchable"
-import parsePortfolio from "./parsePortfolio"
+import parseProjects from "./parseProjects"
 
 import { ParseMode } from "../types/types"
 
@@ -102,7 +102,7 @@ function parseFile(mode: ParseMode, path: string): void {
 			break
 
 		case ParseMode.PORTFOLIO:
-			parsePortfolio(dataToPass)
+			parseProjects(dataToPass)
 			break
 	}
 }

@@ -19,10 +19,10 @@ const NotFound = () => {
 
 				<meta property="og:title" content="Page Not Found" />
 				<meta property="og:type" content="website" />
-				<meta property="og:url" content="http://developomp.com" />
+				<meta property="og:url" content="http://blog.developomp.com" />
 				<meta
 					property="og:image"
-					content="http://developomp.com/icon/icon.svg"
+					content="http://blog.developomp.com/icon/icon.svg"
 				/>
 				<meta property="og:description" content="Page does not exist" />
 			</Helmet>

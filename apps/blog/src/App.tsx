@@ -15,7 +15,6 @@ import Home from "./pages/Home"
 import Search from "./pages/Search"
 import Page from "./pages/Page"
 import NotFound from "./pages/NotFound"
-import Portfolio from "./pages/Portfolio"
 
 import GlobalStyle from "./styles/globalStyle"
 
@@ -83,7 +82,6 @@ export default function App() {
 					<Routes>
 						<Route index element={<Home />} />
 						<Route path="search" element={<Search />} />
-						<Route path="portfolio" element={<Portfolio />} />
 						<Route path="404" element={<NotFound />} />
 						<Route path="loading" element={<Loading />} />
 						<Route path="*" element={<Page />} />

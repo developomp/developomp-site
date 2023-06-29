@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    @apply scroll-m-16;
+}
+
+html {
+    @apply bg-dark-ui-bg font-noto-sans text-dark-text-default;
+}
+
+body {
+    @apply flex min-h-screen w-full flex-col items-center;
+}
+
+#root {
+    @apply m-0 flex h-full w-full scroll-m-16 flex-col items-center p-0;
+}
+
+a {
+    @apply text-anchor visited:text-anchor hover:text-anchor-accent active:text-anchor-accent;
+}
+
+img {
+    @apply w-fit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    @apply font-bold;
+
+    a {
+        @apply dark:text-dark-anchor-header;
+    }
+}

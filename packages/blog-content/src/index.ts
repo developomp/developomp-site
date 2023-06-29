@@ -63,7 +63,7 @@ if (!fs.lstatSync(markdownPath + "/series").isDirectory())
 recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
 recursiveParse(ParseMode.UNSEARCHABLE, markdownPath + "/unsearchable")
 recursiveParse(ParseMode.SERIES, markdownPath + "/series")
-recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/portfolio")
+recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
 
 /**
  * Post-process

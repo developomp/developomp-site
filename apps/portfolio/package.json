@@ -1,0 +1,49 @@
+{
+    "name": "@developomp-site/portfolio",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview",
+        "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+    },
+    "dependencies": {
+        "@fontsource/noto-sans-kr": "^5.0.3",
+        "@fontsource/source-code-pro": "^5.0.3",
+        "@linaria/core": "^4.2.10",
+        "@linaria/react": "^4.3.8",
+        "hoofd": "^1.7.0",
+        "react": "^18.2.0",
+        "react-collapse": "^5.1.1",
+        "react-dom": "^18.2.0",
+        "wouter": "^2.11.0"
+    },
+    "devDependencies": {
+        "@developomp-site/blog-content": "workspace:*",
+        "@linaria/babel-preset": "^4.4.5",
+        "@linaria/vite": "^4.2.11",
+        "@types/react": "^18.2.14",
+        "@types/react-dom": "^18.2.6",
+        "@typescript-eslint/eslint-plugin": "^5.60.1",
+        "@typescript-eslint/parser": "^5.60.1",
+        "@vitejs/plugin-react": "^4.0.1",
+        "autoprefixer": "^10.4.14",
+        "eslint": "^8.43.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.1",
+        "eslint-plugin-simple-import-sort": "^10.0.0",
+        "postcss": "^8.4.24",
+        "prettier": "^2.8.8",
+        "prettier-plugin-tailwindcss": "^0.3.0",
+        "tailwindcss": "^3.3.2",
+        "typescript": "^5.1.5",
+        "vite": "^4.3.9",
+        "vite-plugin-dynamic-import": "^1.4.1",
+        "vite-tsconfig-paths": "^4.2.0"
+    }
+}
