@@ -334,6 +334,9 @@ importers:
       '@types/markdown-it':
         specifier: ^12.2.3
         version: 12.2.3
+      '@types/read-time-estimate':
+        specifier: ^0.0.0
+        version: 0.0.0
       '@types/svgo':
         specifier: ^3.0.0
         version: 3.0.0
@@ -388,6 +391,9 @@ importers:
       simple-icons:
         specifier: ^7.21.0
         version: 7.21.0
+      slugify:
+        specifier: ^1.6.6
+        version: 1.6.6
       svgo:
         specifier: ^3.0.2
         version: 3.0.2
@@ -397,10 +403,6 @@ importers:
       typescript:
         specifier: ^4.9.4
         version: 4.9.4
-    devDependencies:
-      '@types/read-time-estimate':
-        specifier: ^0.0.0
-        version: 0.0.0
 
   packages/eslint-config:
     devDependencies:
@@ -5304,7 +5306,7 @@ packages:
 
   /@types/read-time-estimate@0.0.0:
     resolution: {integrity: sha512-lmVkVzFLBrnXuLBIio2cgDQBRvDL0/QAKWFtnzRk0URD+0/wUHgzIh2U61dksOj/mW3Z+DkijIfNHgmUiYP7dQ==}
-    dev: true
+    dev: false
 
   /@types/resolve@1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -14017,6 +14019,11 @@ packages:
   /slash@4.0.0:
     resolution: {integrity: sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==}
     engines: {node: '>=12'}
+    dev: false
+
+  /slugify@1.6.6:
+    resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
     dev: false
 
   /sockjs@0.3.24:

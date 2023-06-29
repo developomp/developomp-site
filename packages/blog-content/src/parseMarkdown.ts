@@ -9,6 +9,7 @@ import markdownItFootnote from "markdown-it-footnote" // markdown footnote
 
 import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
 
+import slugify from "slugify"
 import matter from "gray-matter"
 import toc from "markdown-toc" // table of contents generation
 import hljs from "highlight.js" // code block syntax highlighting
@@ -19,6 +20,8 @@ import { JSDOM } from "jsdom" // HTML DOM parsing
 
 import { nthIndex } from "./util"
 import { MarkdownData, ParseMode } from "./types/types"
+
+const slugifyIt = (s: string) => slugify(s, { lower: true, strict: true })
 
 const md = markdownIt({
 	// https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
@@ -42,7 +45,9 @@ const md = markdownIt({
 		permalink: markdownItAnchor.permalink.ariaHidden({
 			placement: "before",
 			symbol: "#",
+			renderHref: (s) => `#${slugifyIt(s)}`,
 		}),
+		slugify: slugifyIt,
 	})
 	.use(markdownItTaskCheckbox)
 	.use(markDownItMark)
@@ -122,5 +127,7 @@ export default function parseMarkdown(
 }
 
 export function generateToc(markdownRaw: string): string {
-	return md.render(toc(markdownRaw).content)
+	return md.render(toc(markdownRaw).content, {
+		slugify: slugifyIt,
+	})
 }

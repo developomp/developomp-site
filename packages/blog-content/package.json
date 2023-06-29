@@ -14,6 +14,7 @@
 		"@types/ejs": "^3.1.1",
 		"@types/katex": "^0.14.0",
 		"@types/markdown-it": "^12.2.3",
+		"@types/read-time-estimate": "^0.0.0",
 		"@types/svgo": "^3.0.0",
 		"@types/tinycolor2": "^1.4.3",
 		"canvas": "^2.11.2",
@@ -32,11 +33,9 @@
 		"markdown-toc": "^1.2.0",
 		"read-time-estimate": "^0.0.3",
 		"simple-icons": "^7.21.0",
+		"slugify": "^1.6.6",
 		"svgo": "^3.0.2",
 		"tinycolor2": "^1.4.2",
 		"typescript": "^4.9.4"
-	},
-	"devDependencies": {
-		"@types/read-time-estimate": "^0.0.0"
 	}
 }
