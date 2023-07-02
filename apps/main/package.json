@@ -15,6 +15,7 @@
     },
     "devDependencies": {
         "@developomp-site/theme": "workspace:*",
+        "@developomp-site/tailwind-config": "workspace:*",
         "@emotion/css": "^11.11.2",
         "@fontsource/noto-sans-kr": "^5.0.3",
         "@inqling/svelte-icons": "^3.3.2",
@@ -28,11 +29,13 @@
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-simple-import-sort": "^10.0.0",
         "eslint-plugin-svelte": "^2.32.2",
+        "postcss": "^8.4.24",
         "prettier": "^2.8.8",
         "prettier-plugin-svelte": "^2.10.1",
         "sass": "^1.63.6",
         "svelte": "^4.0.1",
         "svelte-check": "^3.4.4",
+        "tailwindcss": "^3.3.2",
         "tslib": "^2.6.0",
         "typescript": "^5.1.6",
         "vite": "^4.3.9"

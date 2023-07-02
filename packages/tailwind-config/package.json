@@ -2,7 +2,10 @@
     "name": "@developomp-site/tailwind-config",
     "version": "0.0.0",
     "private": true,
-    "main": "index.js",
+    "main": "tailwind.config.js",
+    "files": [
+        "tailwind.config.js"
+    ],
     "scripts": {
         "clean": "rm -rf node_modules"
     },
