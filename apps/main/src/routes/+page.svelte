@@ -121,3 +121,22 @@
         <YouTube />
     </a>
 </div>
+
+<style>
+    .logo {
+        aspect-ratio: auto 1 / 1;
+        border-radius: 50%;
+        margin: 5rem auto;
+    }
+
+    .socials-and-profiles {
+        margin-top: 3rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+    }
+
+    .note {
+        color: #ffffffcc;
+    }
+</style>
