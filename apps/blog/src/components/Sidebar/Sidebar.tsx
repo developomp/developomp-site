@@ -1,15 +1,13 @@
-import { useCallback, useState } from "react"
-import styled from "styled-components"
-import ReactTooltip from "react-tooltip"
-import { isMobile } from "react-device-detect"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faEllipsisV, faTimes } from "@fortawesome/free-solid-svg-icons"
-
-import SubMenu from "./SubMenu"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useCallback, useState } from "react"
+import { isMobile } from "react-device-detect"
+import ReactTooltip from "react-tooltip"
+import styled from "styled-components"
 
 import NavbarData from "../../data/NavbarData"
 import { HeaderButtonCSS } from "../Header/HeaderButton"
+import SubMenu from "./SubMenu"
 
 const SidebarOpenButton = styled.div`
     ${HeaderButtonCSS}

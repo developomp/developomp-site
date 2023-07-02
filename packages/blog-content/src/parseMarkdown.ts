@@ -1,25 +1,23 @@
+import "katex/contrib/mhchem" // chemical formula
+
+import matter from "gray-matter"
+import hljs from "highlight.js" // code block syntax highlighting
+import { JSDOM } from "jsdom" // HTML DOM parsing
+import katex from "katex" // rendering mathematical expression
 import markdownIt from "markdown-it" // rendering markdown
-import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
 import markdownItAnchor from "markdown-it-anchor" // markdown anchor
-import markdownItTaskCheckbox from "markdown-it-task-checkbox" // a TODO list checkboxes
+import markdownItFootnote from "markdown-it-footnote" // markdown footnote
+import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
 import markDownItMark from "markdown-it-mark" // text highlighting
 import markdownItSub from "markdown-it-sub" // markdown subscript
 import markdownItSup from "markdown-it-sup" // markdown superscript
-import markdownItFootnote from "markdown-it-footnote" // markdown footnote
-
-import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
-
-import slugify from "slugify"
-import matter from "gray-matter"
+import markdownItTaskCheckbox from "markdown-it-task-checkbox" // a TODO list checkboxes
+import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
 import toc from "markdown-toc" // table of contents generation
-import hljs from "highlight.js" // code block syntax highlighting
-import katex from "katex" // rendering mathematical expression
-import "katex/contrib/mhchem" // chemical formula
+import slugify from "slugify"
 
-import { JSDOM } from "jsdom" // HTML DOM parsing
-
-import { nthIndex } from "./util"
 import { MarkdownData, ParseMode } from "./types/types"
+import { nthIndex } from "./util"
 
 const slugifyIt = (s: string) => slugify(s, { lower: true, strict: true })
 

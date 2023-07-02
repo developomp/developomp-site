@@ -1,11 +1,11 @@
-import styled from "styled-components"
+import { type FC } from "react"
 import { Link } from "react-router-dom"
-
-import HeaderButton from "./HeaderButton"
+import styled from "styled-components"
 
 import NavbarData from "../../data/NavbarData"
+import HeaderButton from "./HeaderButton"
 
-const Nav = styled.div`
+const StyledNav = styled.div`
     display: flex;
     height: 100%;
 
@@ -15,20 +15,22 @@ const Nav = styled.div`
     }
 `
 
-export default () => {
+const Nav: FC = () => {
     return (
-        <Nav>
+        <StyledNav>
             {NavbarData.map(({ path, title }, index) => {
                 return path.at(0) === "/" ? (
                     <Link key={index} to={path}>
                         <HeaderButton>{title}</HeaderButton>
                     </Link>
                 ) : (
-                    <a key={index} target="_blank" href={path}>
+                    <a key={index} target="_blank" href={path} rel="noreferrer">
                         <HeaderButton>{title}</HeaderButton>
                     </a>
                 )
             })}
-        </Nav>
+        </StyledNav>
     )
 }
+
+export default Nav

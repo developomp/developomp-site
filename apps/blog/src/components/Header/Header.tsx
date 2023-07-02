@@ -1,14 +1,13 @@
+import { type FC } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import ReadProgress from "./ReadProgress"
-
-import Nav from "./Nav"
 
 import Sidebar from "../Sidebar"
-
 import Buttons from "./Buttons"
+import Nav from "./Nav"
+import ReadProgress from "./ReadProgress"
 
-const Header = styled.header`
+const StyledHeader = styled.header`
     /* set z index to arbitrarily high value to prevent other components from drawing over it */
     z-index: 9999;
 
@@ -43,18 +42,25 @@ const Icon = styled.img`
     margin: 1rem;
 `
 
-export default () => {
+const Header: FC = () => {
     return (
-        <Header>
+        <StyledHeader>
             <Container>
                 <Link to="/" aria-label="homepage">
-                    <Icon width={40} height={40} src="/icon/icon_circle.svg" alt="logo" />
+                    <Icon
+                        width={40}
+                        height={40}
+                        src="/icon/icon_circle.svg"
+                        alt="logo"
+                    />
                 </Link>
                 <Nav />
                 <Buttons />
                 <Sidebar />
             </Container>
             <ReadProgress />
-        </Header>
+        </StyledHeader>
     )
 }
+
+export default Header

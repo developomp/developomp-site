@@ -2,12 +2,11 @@
  * @file Submenu item for sidebar
  */
 
-import type { Item } from "../../data/NavbarData"
-
 import { useCallback, useState } from "react"
 import { Link } from "react-router-dom"
 import styled, { css } from "styled-components"
 
+import type { Item } from "../../data/NavbarData"
 import button from "../../styles/button"
 
 const sharedStyle = css`

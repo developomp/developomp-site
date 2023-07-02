@@ -1,6 +1,6 @@
-import type { Theme } from "../.."
-
 import { readFileSync } from "fs"
+
+import type { Theme } from "../.."
 
 export default {
     font: {

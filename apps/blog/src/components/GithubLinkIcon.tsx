@@ -1,8 +1,7 @@
-import { ReactNode } from "react"
-import styled from "styled-components"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { FC, ReactNode } from "react"
+import styled from "styled-components"
 
 const StyledGithubLink = styled.a<{ size?: string }>`
     font-size: ${(props) => props.size || "2.5rem"};
@@ -20,7 +19,7 @@ interface Props {
     children?: ReactNode
 }
 
-export default ({ link, size, children }: Props) => {
+const GithubLinkIcon: FC<Props> = ({ link, size, children }) => {
     return (
         <StyledGithubLink
             aria-label="GitHub repository"
@@ -33,3 +32,5 @@ export default ({ link, size, children }: Props) => {
         </StyledGithubLink>
     )
 }
+
+export default GithubLinkIcon

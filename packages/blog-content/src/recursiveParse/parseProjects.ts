@@ -1,11 +1,11 @@
-import tinycolor from "tinycolor2"
-import icons from "simple-icons/icons"
 import { SimpleIcon } from "simple-icons"
+import icons from "simple-icons/icons"
+import tinycolor from "tinycolor2"
 
+import { portfolioData } from ".."
 import { contentDirectoryPath, iconsDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
 import { writeToFile } from "../util"
-import { portfolioData } from ".."
 import { DataToPass } from "."
 
 export default function parseProjects(data: DataToPass): void {
@@ -15,6 +15,7 @@ export default function parseProjects(data: DataToPass): void {
         ;(markdownData.badges as string[]).forEach((slug) => {
             // todo: handle cases when icon is not on simple-icons
             const icon: SimpleIcon =
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
                 // @ts-ignore
                 icons["si" + slug[0].toUpperCase() + slug.slice(1)]
 

@@ -1,20 +1,18 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-
 import { PostData } from "@developomp-site/blog-content/src/types/types"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
     faBook,
     faCalendar,
     faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
+import MainContent from "./MainContent"
 import Tag from "./Tag"
 import TagList from "./TagList"
-import MainContent from "./MainContent"
 
-const PostCard = styled(MainContent)`
+const StyledPostCard = styled(MainContent)`
     box-shadow: 0 4px 10px rgb(0 0 0 / 10%);
     text-align: left;
     margin-bottom: 2rem;
@@ -56,12 +54,12 @@ interface Props {
     postData: PostCardData
 }
 
-export default (props: Props) => {
+const PostCard = (props: Props) => {
     const { postData } = props
     const { content_id, wordCount, date, readTime, title, tags } = postData
 
     return (
-        <PostCard>
+        <StyledPostCard>
             <PostCardContainer to={content_id}>
                 <Title>
                     {title || "No title"}
@@ -94,6 +92,7 @@ export default (props: Props) => {
                         : "unknown length"}
                 </MetaContainer>
             </PostCardContainer>
-        </PostCard>
+        </StyledPostCard>
     )
 }
+export default PostCard

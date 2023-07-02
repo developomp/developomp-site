@@ -1,9 +1,8 @@
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import storage from "local-storage-fallback"
 import { useEffect, useState } from "react"
 import { Collapse } from "react-collapse"
-import storage from "local-storage-fallback"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
 import styled from "styled-components"
 
 const StyledTocToggleButton = styled.button`

@@ -1,7 +1,8 @@
+import { type FC } from "react"
 import styled from "styled-components"
 
-import ThemeToggleButton from "./ThemeToggleButton"
 import SearchButton from "./SearchButton"
+import ThemeToggleButton from "./ThemeToggleButton"
 
 const RightButtons = styled.div`
     display: flex;
@@ -9,7 +10,7 @@ const RightButtons = styled.div`
     margin-left: auto;
 `
 
-export default () => {
+const Buttons: FC = () => {
     return (
         <RightButtons>
             <ThemeToggleButton />
@@ -17,3 +18,5 @@ export default () => {
         </RightButtons>
     )
 }
+
+export default Buttons

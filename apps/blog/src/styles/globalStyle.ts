@@ -1,17 +1,18 @@
-import { createGlobalStyle, css } from "styled-components"
 import "katex/dist/katex.min.css"
 
+import { createGlobalStyle, css } from "styled-components"
+
 import anchorCSS from "./anchor"
-import scrollbarCSS from "./scrollbar"
+import blockquoteCSS from "./blockQuote"
 import checkbox from "./checkbox"
 import codeCSS from "./code"
-import kbdCSS from "./kbd"
-import tableCSS from "./table"
-import blockquoteCSS from "./blockQuote"
-import hrCSS from "./hr"
 import headerCSS from "./header"
-import markCSS from "./mark"
+import hrCSS from "./hr"
 import katexCSS from "./katex"
+import kbdCSS from "./kbd"
+import markCSS from "./mark"
+import scrollbarCSS from "./scrollbar"
+import tableCSS from "./table"
 
 const globalCSS = css`
     body {

@@ -1,7 +1,7 @@
+import { contentMap } from ".."
 import { contentDirectoryPath } from "../config"
 import { addDocument } from "../searchIndex"
 import { writeToFile } from "../util"
-import { contentMap } from ".."
 import { DataToPass } from "."
 
 export default function parseUnsearchable(data: DataToPass): void {

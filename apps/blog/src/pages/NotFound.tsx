@@ -1,5 +1,5 @@
+import { useMeta, useTitle } from "hoofd"
 import styled from "styled-components"
-import { useTitle, useMeta } from "hoofd"
 
 import MainContent from "../components/MainContent"
 

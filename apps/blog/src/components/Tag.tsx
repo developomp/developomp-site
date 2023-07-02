@@ -1,10 +1,9 @@
-import { MouseEvent } from "react"
-import styled from "styled-components"
-
 import { faHashtag } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { FC, MouseEvent } from "react"
+import styled from "styled-components"
 
-const Tag = styled.div`
+const StyledTag = styled.div`
     text-align: center;
 
     margin-right: 0.8rem;
@@ -18,10 +17,12 @@ interface Props {
     onClick?: (event: MouseEvent<never>) => void
 }
 
-export default (props: Props) => {
+const Tag: FC<Props> = (props) => {
     return (
-        <Tag onClick={props.onClick || undefined}>
+        <StyledTag onClick={props.onClick || undefined}>
             <FontAwesomeIcon icon={faHashtag} /> &nbsp;{props.text}
-        </Tag>
+        </StyledTag>
     )
 }
+
+export default Tag

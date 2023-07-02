@@ -3,14 +3,13 @@
  * show posts in recent order
  */
 
-import { useCallback, useEffect, useState } from "react"
-import { useTitle, useMeta } from "hoofd"
+import { useMeta, useTitle } from "hoofd"
+import { type FC, useCallback, useEffect, useState } from "react"
 import styled from "styled-components"
 
 import PostCard from "../../components/PostCard"
-import ShowMoreButton from "./ShowMoreButton"
-
 import contentMap from "../../contentMap"
+import ShowMoreButton from "./ShowMoreButton"
 
 const PostList = styled.div`
     flex-direction: column;
@@ -20,7 +19,7 @@ const PostList = styled.div`
     color: ${({ theme }) => theme.theme.color.text.default};
 `
 
-export default () => {
+const Home: FC = () => {
     const [howMany, setHowMany] = useState(5)
     const [postsLength, setPostsLength] = useState(0)
     const [postCards, setPostCards] = useState<JSX.Element[]>([])
@@ -81,3 +80,5 @@ export default () => {
         </>
     )
 }
+
+export default Home

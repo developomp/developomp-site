@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import styled from "styled-components"
 import Select from "react-select"
+import styled from "styled-components"
 
 import contentMap from "../../contentMap"
 import { globalContext } from "../../globalContext"

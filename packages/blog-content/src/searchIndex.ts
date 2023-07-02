@@ -2,8 +2,8 @@
  * @file generate index for searching
  */
 
-import fs from "fs"
 import elasticlunr from "elasticlunr"
+import fs from "fs"
 
 import { searchIndexFilePath } from "./config"
 

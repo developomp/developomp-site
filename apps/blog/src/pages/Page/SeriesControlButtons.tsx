@@ -1,12 +1,11 @@
-import styled from "styled-components"
-import { Link } from "react-router-dom"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
     faArrowLeft,
     faArrowRight,
     faListUl,
 } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Link } from "react-router-dom"
+import styled from "styled-components"
 
 import buttonStyle from "../../styles/button"
 

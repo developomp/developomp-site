@@ -1,10 +1,9 @@
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useContext } from "react"
-import styled from "styled-components"
 import { isMobile } from "react-device-detect"
 import ReactTooltip from "react-tooltip"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
+import styled from "styled-components"
 
 import { ActionsEnum, globalContext } from "../../../globalContext"
 import { HeaderButtonCSS } from "../HeaderButton"

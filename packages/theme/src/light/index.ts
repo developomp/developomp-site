@@ -1,9 +1,8 @@
-import type { Theme } from "../.."
-
 import { readFileSync } from "fs"
 import merge from "merge-deep"
 import { DeepPartial } from "utility-types"
 
+import type { Theme } from "../.."
 import BaseTheme from "../dark"
 
 export default merge<Theme, DeepPartial<Theme>>(BaseTheme, {

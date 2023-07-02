@@ -1,15 +1,13 @@
 import fs from "fs"
 import readTimeEstimate from "read-time-estimate" // post read time estimation
 
-import { path2FileOrFolderName, path2URL } from "../util"
 import parseMarkdown from "../parseMarkdown"
-
+import { ParseMode } from "../types/types"
+import { path2FileOrFolderName, path2URL } from "../util"
 import parsePost from "./parsePost"
+import parseProjects from "./parseProjects"
 import parseSeries from "./parseSeries"
 import parseUnsearchable from "./parseUnsearchable"
-import parseProjects from "./parseProjects"
-
-import { ParseMode } from "../types/types"
 
 /**
  * Data that's passed from {@link parseFile} to other function

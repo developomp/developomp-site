@@ -1,4 +1,4 @@
-import { writeFileSync, mkdirSync, existsSync } from "fs"
+import { existsSync, mkdirSync, writeFileSync } from "fs"
 
 import dark from "./src/dark"
 import light from "./src/light"

@@ -1,25 +1,21 @@
-import { useCallback, useEffect, useState } from "react"
-import styled from "styled-components"
-import { useSearchParams } from "react-router-dom"
-import { useTitle, useMeta } from "hoofd"
-import { Range } from "react-date-range"
-
-import elasticlunr from "elasticlunr" // search engine
-
-import searchData from "@developomp-site/blog-content/dist/search.json"
-
-import Loading from "../../components/Loading"
-import PostCard from "../../components/PostCard"
-import MainContent from "../../components/MainContent"
-
-import SearchBar from "./SearchBar"
-import TagSelect, { TagsData } from "./TagSelect"
-import { ClearDateButton, DateRangeControl, StyledDateRange } from "./DateRange"
-
-import contentMap from "../../contentMap"
-
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
+
+import searchData from "@developomp-site/blog-content/dist/search.json"
+import elasticlunr from "elasticlunr" // search engine
+import { useMeta, useTitle } from "hoofd"
+import { useCallback, useEffect, useState } from "react"
+import { Range } from "react-date-range"
+import { useSearchParams } from "react-router-dom"
+import styled from "styled-components"
+
+import Loading from "../../components/Loading"
+import MainContent from "../../components/MainContent"
+import PostCard from "../../components/PostCard"
+import contentMap from "../../contentMap"
+import { ClearDateButton, DateRangeControl, StyledDateRange } from "./DateRange"
+import SearchBar from "./SearchBar"
+import TagSelect, { TagsData } from "./TagSelect"
 
 const searchIndex = elasticlunr.Index.load(searchData as never)
 

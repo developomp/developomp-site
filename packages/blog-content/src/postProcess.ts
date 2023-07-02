@@ -1,14 +1,12 @@
 import ejs from "ejs"
-import { optimize } from "svgo"
-import { readFileSync, writeFileSync } from "fs"
+import { readFileSync } from "fs"
 import icons from "simple-icons/icons"
+import { optimize } from "svgo"
 import tinycolor from "tinycolor2"
 
 import { contentMap, seriesMap } from "."
-
-import { Badge } from "./types/types"
-
 import skills from "./portfolio/skills.json"
+import { Badge } from "./types/types"
 import { writeToFile } from "./util"
 
 export default function postProcess() {
@@ -124,6 +122,7 @@ function parseBadge(badgeRaw: string): Badge {
     const words = badgeRaw.split(" ")
     const slug = words[0]
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const icon = icons["si" + slug[0].toUpperCase() + slug.slice(1)]
 

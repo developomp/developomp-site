@@ -1,9 +1,9 @@
+import { faSearch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
 import ReactTooltip from "react-tooltip"
 
 import HeaderButton from "../HeaderButton"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSearch } from "@fortawesome/free-solid-svg-icons"
 
 const SearchButton = () => {
     return (

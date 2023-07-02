@@ -1,5 +1,4 @@
 import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
-
 import type { PageData } from "@developomp-site/blog-content/src/types/types"
 
 import contentMap from "../../contentMap"

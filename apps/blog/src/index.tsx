@@ -4,9 +4,9 @@ import "@fontsource/source-code-pro"
 
 import { createRoot } from "react-dom/client"
 import { BrowserRouter } from "react-router-dom"
-import { GlobalStore } from "./globalContext"
 
 import App from "./App"
+import { GlobalStore } from "./globalContext"
 
 const container = document.getElementById("root") as HTMLElement
 const root = createRoot(container)

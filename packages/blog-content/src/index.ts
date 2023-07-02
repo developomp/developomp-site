@@ -9,10 +9,9 @@
 import fs from "fs"
 
 import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
+import postProcess from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
-import postProcess from "./postProcess"
-
 import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
 
 export const contentMap: ContentMap = {

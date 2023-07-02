@@ -1,24 +1,20 @@
 import darkTheme from "@developomp-site/theme/dist/dark.json"
 import lightTheme from "@developomp-site/theme/dist/light.json"
-
+import { useMeta, useTitle, useTitleTemplate } from "hoofd"
 import { useContext, useEffect, useState } from "react"
-import { Routes, Route } from "react-router-dom"
-import styled, { ThemeProvider } from "styled-components"
-import { useTitleTemplate, useTitle, useMeta } from "hoofd"
 import { isIE } from "react-device-detect"
+import { Route, Routes } from "react-router-dom"
+import styled, { ThemeProvider } from "styled-components"
 
-import Loading from "./components/Loading"
-import Header from "./components/Header"
 import Footer from "./components/Footer"
-
-import Home from "./pages/Home"
-import Search from "./pages/Search"
-import Page from "./pages/Page"
-import NotFound from "./pages/NotFound"
-
-import GlobalStyle from "./styles/globalStyle"
-
+import Header from "./components/Header"
+import Loading from "./components/Loading"
 import { globalContext } from "./globalContext"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
+import Page from "./pages/Page"
+import Search from "./pages/Search"
+import GlobalStyle from "./styles/globalStyle"
 
 const IENotSupported = styled.p`
     margin: auto;

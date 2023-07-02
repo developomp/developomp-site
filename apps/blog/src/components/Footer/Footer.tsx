@@ -1,3 +1,4 @@
+import { type FC } from "react"
 import styled from "styled-components"
 
 import GithubLinkIcon from "../GithubLinkIcon"
@@ -28,7 +29,7 @@ const StyledFooterContainer = styled.div`
     max-width: ${({ theme }) => theme.theme.maxDisplayWidth.desktop};
 `
 
-export default () => {
+const Footer: FC = () => {
     return (
         <StyledFooter>
             <StyledFooterContainer>
@@ -41,3 +42,5 @@ export default () => {
         </StyledFooter>
     )
 }
+
+export default Footer

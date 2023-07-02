@@ -1,10 +1,9 @@
-import type { Dispatch, ReactNode, ReactElement } from "react"
 import type { Theme } from "@developomp-site/theme"
-
 import darkTheme from "@developomp-site/theme/dist/dark.json"
 import lightTheme from "@developomp-site/theme/dist/light.json"
-import { createContext, useEffect, useReducer } from "react"
 import storage from "local-storage-fallback"
+import type { Dispatch, ReactElement, ReactNode } from "react"
+import { createContext, useEffect, useReducer } from "react"
 
 export type SiteTheme = "dark" | "light"
 

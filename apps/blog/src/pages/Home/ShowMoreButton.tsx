@@ -1,3 +1,4 @@
+import { type FC } from "react"
 import styled from "styled-components"
 
 import buttonStyle from "../../styles/button"
@@ -13,6 +14,8 @@ interface Props {
     action(): void
 }
 
-export default (props: Props) => {
+const ShowMoreButton: FC<Props> = (props) => {
     return <Button onClick={props.action}>Show more posts</Button>
 }
+
+export default ShowMoreButton

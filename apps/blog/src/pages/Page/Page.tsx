@@ -1,16 +1,16 @@
-import { useState, useEffect } from "react"
-import { useTitle, useMeta } from "hoofd"
+import type { PageData } from "@developomp-site/blog-content/src/types/types"
+import { useMeta, useTitle } from "hoofd"
+import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"
 import styled from "styled-components"
 
+import Loading from "../../components/Loading"
 import MainContent from "../../components/MainContent"
 import PostCard from "../../components/PostCard"
-import Loading from "../../components/Loading"
-import TagList from "../../components/TagList"
 import Tag from "../../components/Tag"
+import TagList from "../../components/TagList"
+import contentMap from "../../contentMap"
 import NotFound from "../NotFound"
-
-import SeriesControlButtons from "./SeriesControlButtons"
 import {
     categorizePageType,
     fetchContent,
@@ -18,11 +18,8 @@ import {
     parsePageData,
 } from "./helper"
 import Meta from "./Meta"
+import SeriesControlButtons from "./SeriesControlButtons"
 import Toc from "./Toc"
-
-import type { PageData } from "@developomp-site/blog-content/src/types/types"
-
-import contentMap from "../../contentMap"
 
 const StyledTitle = styled.h1`
     margin-bottom: 1rem;
