@@ -64,6 +64,7 @@
         "YYYYMMDD"
     ],
     "eslint.workingDirectories": [{ "mode": "auto" }],
+    "eslint.validate": ["javascript", "typescript", "svelte"],
     "[svg]": {
         "editor.defaultFormatter": "jock.svg"
     },
