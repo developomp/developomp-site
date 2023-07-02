@@ -20,7 +20,13 @@ const Badge: FC<BadgeProps> = ({ slug }) => {
         })()
     }, [slug])
 
-    if (!badgeData) return <></>
+    if (!badgeData)
+        return (
+            <div className="mb-2 mr-2 flex w-fit items-center px-2 py-1 text-xs">
+                <div className="badge mr-1 inline-block w-6 align-middle" />
+                <span>Loading...</span>
+            </div>
+        )
 
     return (
         <div
