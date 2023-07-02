@@ -24,6 +24,7 @@
         "plugin:prettier/recommended"
     ],
     "rules": {
+        "prettier/prettier": "error",
         "react-refresh/only-export-components": "warn",
         "simple-import-sort/imports": "error",
         "simple-import-sort/exports": "error"

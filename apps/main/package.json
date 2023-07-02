@@ -10,12 +10,13 @@
         "preview": "vite preview",
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-        "lint": "prettier --plugin-search-dir . --check . && eslint .",
+        "lint": "eslint .",
         "format": "prettier --plugin-search-dir . --write ."
     },
     "devDependencies": {
-        "@developomp-site/theme": "workspace:*",
+        "@developomp-site/eslint-config": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",
+        "@developomp-site/theme": "workspace:*",
         "@emotion/css": "^11.11.2",
         "@fontsource/noto-sans-kr": "^5.0.3",
         "@inqling/svelte-icons": "^3.3.2",
@@ -32,6 +33,7 @@
         "postcss": "^8.4.24",
         "prettier": "^2.8.8",
         "prettier-plugin-svelte": "^2.10.1",
+        "prettier-plugin-tailwindcss": "^0.3.0",
         "sass": "^1.63.6",
         "svelte": "^4.0.1",
         "svelte-check": "^3.4.4",

@@ -7,6 +7,7 @@
     ],
     "scripts": {
         "build": "ts-node --experimental-specifier-resolution=node ./src",
+        "lint": "eslint .",
         "clean": "rm -rf .turbo node_modules dist"
     },
     "dependencies": {
@@ -37,5 +38,10 @@
         "svgo": "^3.0.2",
         "tinycolor2": "^1.4.2",
         "typescript": "^4.9.4"
+    },
+    "devDependencies": {
+        "@developomp-site/eslint-config": "workspace:*",
+        "eslint": "^8.44.0",
+        "prettier": "^2.8.8"
     }
 }

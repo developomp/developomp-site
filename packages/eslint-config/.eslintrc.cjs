@@ -1,14 +1,17 @@
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
     root: true,
+    env: {
+        node: true,
+    },
     extends: [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "prettier",
+        "plugin:prettier/recommended",
         "turbo",
     ],
     parser: "@typescript-eslint/parser",
-    plugins: ["@typescript-eslint", "simple-import-sort"],
+    plugins: ["@typescript-eslint", "import", "simple-import-sort"],
     rules: {
         // import related
         "simple-import-sort/imports": "error",
