@@ -11,16 +11,20 @@
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
     import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
 
-    const today = new Date()
-    const birthDay = new Date(2002, 7, 30)
+    function myAge() {
+        const now = new Date()
+        const birth = new Date("2002-07-30") // my birthday :D
 
-    const month = today.getMonth() + 1
-    const birthMonth = birthDay.getMonth() + 1
+        const age = now.getFullYear() - birth.getFullYear()
 
-    let age = today.getFullYear() - birthDay.getFullYear()
+        let month = now.getMonth()
+        let birthMonth = birth.getMonth()
 
-    if (birthMonth > month || (birthMonth === month && birthDay.getDate() >= today.getDate())) {
-        age--
+        if (birthMonth > month || (birthMonth === month && birth.getDate() >= now.getDate())) {
+            return age - 1
+        }
+
+        return age
     }
 </script>
 
@@ -40,8 +44,7 @@
 <h2>Who am I?</h2>
 
 <span>
-    I am a <b>{new Date().getFullYear() - 2002} years old</b> college student studying computer science
-    in Seoul, South Korea.
+    I am a <b>{myAge()} years old</b> college student studying computer science in Seoul, South Korea.
 </span>
 
 <h2>Contact</h2>
