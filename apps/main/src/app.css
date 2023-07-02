@@ -10,9 +10,17 @@ body {
     margin: 0;
 }
 
+#root {
+    /* color */
+    @apply font-noto-sans dark:bg-dark-ui-bg dark:text-dark-text-default;
+}
+
 main {
-    display: flex;
-    width: calc(100% - 2rem);
+    /* style */
+    @apply flex;
+
+    width: 100%;
+    padding: 0 2rem;
     max-width: 64rem;
     flex-direction: column;
     padding-bottom: 5rem;
@@ -29,15 +37,26 @@ main {
 }
 
 h1 {
-    font-size: 2rem;
-    text-align: center;
+    @apply my-5 text-center text-4xl;
 }
 
 h2 {
-    margin-top: 5rem;
+    /* color */
+    @apply dark:bg-dark-text-default dark:text-dark-ui-bg;
 
-    font-weight: 700;
-    font-size: 1.6rem;
+    /* text */
+    @apply text-3xl font-bold;
+
+    /* spacing */
+    @apply mb-5 mt-20 px-4 py-1;
+}
+
+a {
+    /* style */
+    @apply no-underline hover:underline;
+
+    /* color */
+    @apply text-anchor hover:text-anchor-accent;
 }
 
 p {
@@ -51,30 +70,39 @@ b {
 /* table */
 
 table {
+    @apply table-fixed;
     border-collapse: collapse;
     border-spacing: 1rem 0;
 
     margin-bottom: 1rem;
 }
 
-th {
-    background-color: #ffffff22;
-    font-weight: 700;
-}
-
-th,
 td {
     padding: 8px;
-    text-align: center;
     width: 10rem;
 }
 
-th:nth-child(1),
+/* 1st column */
 td:nth-child(1) {
     text-align: right;
 }
 
-th:nth-child(3),
-td:nth-child(3) {
+/* 2nd column */
+td:nth-child(2) {
     text-align: left;
+}
+
+.social-profile {
+    * {
+        color: #888888;
+        transition: color 0.15s ease-out;
+    }
+
+    svg {
+        width: 2.5rem;
+    }
+
+    :hover {
+        color: #ffffff;
+    }
 }
