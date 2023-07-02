@@ -1,6 +1,7 @@
 <script>
-    import { page } from "$app/stores"
     import { css } from "@emotion/css"
+
+    import { page } from "$app/stores"
 </script>
 
 <nav

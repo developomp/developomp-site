@@ -1,10 +1,11 @@
 <script>
     import "../app.css"
 
-    import { browser } from "$app/environment"
-
     import darkTheme from "@developomp-site/theme/dist/dark.json"
     import { css } from "@emotion/css"
+
+    import { browser } from "$app/environment"
+
     import Navbar from "../components/Navbar.svelte"
 </script>
 

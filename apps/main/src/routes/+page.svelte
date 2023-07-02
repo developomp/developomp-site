@@ -1,15 +1,15 @@
 <script>
-    import { css } from "@emotion/css"
     import darkTheme from "@developomp-site/theme/dist/dark.json"
+    import { css } from "@emotion/css"
+    import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
+    import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
+    import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
+    import Twitter from "@inqling/svelte-icons/simple-icons/twitter.svelte"
+    import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
+
     import HandWave from "../components/HandWave.svelte"
     import { discordInviteLink } from "../constants"
     import { SocialProfile } from "../theme"
-
-    import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
-    import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
-    import Twitter from "@inqling/svelte-icons/simple-icons/twitter.svelte"
-    import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
-    import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
 
     function myAge() {
         const now = new Date()
