@@ -183,9 +183,6 @@ importers:
       '@developomp-site/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
-      '@developomp-site/theme':
-        specifier: workspace:*
-        version: link:../../packages/theme
       '@fontsource/noto-sans-kr':
         specifier: ^5.0.3
         version: 5.0.3

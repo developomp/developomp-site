@@ -16,7 +16,6 @@
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",
-        "@developomp-site/theme": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.3",
         "@inqling/svelte-icons": "^3.3.2",
         "@sveltejs/adapter-static": "^2.0.2",
