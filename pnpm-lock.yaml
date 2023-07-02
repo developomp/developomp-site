@@ -552,36 +552,6 @@ importers:
         specifier: ^2.8.8
         version: 2.8.8
 
-  packages/utils:
-    devDependencies:
-      '@developomp-site/eslint-config':
-        specifier: workspace:*
-        version: link:../eslint-config
-      '@developomp-site/tsconfig':
-        specifier: workspace:*
-        version: link:../tsconfig
-      '@types/react':
-        specifier: ^18.0.26
-        version: 18.2.14
-      '@types/react-dom':
-        specifier: ^18.0.9
-        version: 18.2.6
-      eslint:
-        specifier: ^8.29.0
-        version: 8.44.0
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      react:
-        specifier: ^18.2.0
-        version: 18.2.0
-      tsup:
-        specifier: ^5.12.9
-        version: 5.12.9(typescript@4.9.4)
-      typescript:
-        specifier: ^4.9.4
-        version: 4.9.4
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -12543,41 +12513,6 @@ packages:
       sucrase: 3.32.0
       tree-kill: 1.2.2
       typescript: 5.1.6
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-    dev: true
-
-  /tsup@5.12.9(typescript@4.9.4):
-    resolution: {integrity: sha512-dUpuouWZYe40lLufo64qEhDpIDsWhRbr2expv5dHEMjwqeKJS2aXA/FPqs1dxO4T6mBojo7rvo3jP9NNzaKyDg==}
-    hasBin: true
-    peerDependencies:
-      '@swc/core': ^1
-      postcss: ^8.4.12
-      typescript: ^4.1.0
-    peerDependenciesMeta:
-      '@swc/core':
-        optional: true
-      postcss:
-        optional: true
-      typescript:
-        optional: true
-    dependencies:
-      bundle-require: 3.1.2(esbuild@0.14.54)
-      cac: 6.7.14
-      chokidar: 3.5.3
-      debug: 4.3.4(supports-color@5.5.0)
-      esbuild: 0.14.54
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.24)(ts-node@10.9.1)
-      resolve-from: 5.0.0
-      rollup: 2.79.1
-      source-map: 0.8.0-beta.0
-      sucrase: 3.32.0
-      tree-kill: 1.2.2
-      typescript: 4.9.4
     transitivePeerDependencies:
       - supports-color
       - ts-node
