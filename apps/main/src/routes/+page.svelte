@@ -1,6 +1,7 @@
 <script>
     import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
+    import Gmail from "@inqling/svelte-icons/simple-icons/gmail.svelte"
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
     import Twitter from "@inqling/svelte-icons/simple-icons/twitter.svelte"
     import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
@@ -39,37 +40,7 @@
     Seoul, South Korea.
 </span>
 
-<h2>Contact</h2>
-
-<table>
-    <tr>
-        <th>Platform</th>
-        <th>ID</th>
-        <th>Response Time</th>
-    </tr>
-    <tr>
-        <td>Discord</td>
-        <td>@developomp</td>
-        <td>~ 2 days</td>
-    </tr>
-    <tr>
-        <td>Gmail</td>
-        <td><a href="mailto: developomp@gmail.com">developomp@gmail.com</a></td>
-        <td>2 ~ 4 days</td>
-    </tr>
-    <tr>
-        <td>Mastodon</td>
-        <td><a href="https://mastodon.social/@developomp">@developomp</a></td>
-        <td>2 ~ 4 days</td>
-    </tr>
-</table>
-
-<i class="note">
-    *Note that I may not be able to read your messages if you reach out to me
-    using methods not listed above.
-</i>
-
-<div class="socials-and-profiles">
+<div class="mt-12 flex flex-wrap gap-6">
     <a
         class="social-profile"
         target="_blank"
@@ -105,6 +76,14 @@
     <a
         class="social-profile"
         target="_blank"
+        href="mailto: developomp@gmail.com"
+        aria-label="YouTube link"
+    >
+        <Gmail />
+    </a>
+    <a
+        class="social-profile"
+        target="_blank"
         href="https://youtube.com/@developomp"
         aria-label="YouTube link"
     >
@@ -116,13 +95,5 @@
     .logo {
         @apply mx-auto my-20 aspect-square rounded-full shadow-dark-text-gray;
         box-shadow: 0 0 40px 20px;
-    }
-
-    .socials-and-profiles {
-        @apply mt-12 flex flex-wrap gap-6;
-    }
-
-    .note {
-        color: #ffffffcc;
     }
 </style>
