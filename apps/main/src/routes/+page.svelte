@@ -29,7 +29,13 @@
     }
 </script>
 
-<img class="logo" src="/favicon.svg" alt="logo" width="200" height="200" />
+<img
+    class="mx-auto my-20 aspect-square rounded-full shadow-[0_0_40px_20px] shadow-dark-text-gray"
+    src="/favicon.svg"
+    alt="logo"
+    width="200"
+    height="200"
+/>
 
 <h1><HandWave />Hello! I am <b>developomp</b></h1>
 
@@ -90,10 +96,3 @@
         <YouTube />
     </a>
 </div>
-
-<style lang="scss">
-    .logo {
-        @apply mx-auto my-20 aspect-square rounded-full shadow-dark-text-gray;
-        box-shadow: 0 0 40px 20px;
-    }
-</style>
