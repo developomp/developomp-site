@@ -1,39 +1,9 @@
 # developomp-site
 
 [![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://portfolio.developomp.com/project/developomp-site)
+[![contributing](https://img.shields.io/badge/contributing-yellow?style=for-the-badge)](./CONTRIBUTING.md)
 
 A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portfolio, resume, etc.
-
-## Usage
-
-1. Clone this git repository
-2. Install [NodeJS](https://nodejs.org) and [pnpm](https://pnpm.io/installation)
-3. Install Dependencies
-   ```
-   pnpm install
-   ```
-4. Run whatever command you need
-   - `pnpm build` - Build all apps and packages
-     - blog: http://localhost:3000
-     - main: http://localhost:5173
-     - portfolio: http://localhost:5174
-   - `pnpm dev` - Run all apps and packages locally
-   - `pnpm lint` - Lint all apps and packages
-   - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
-
-## Project Structure
-
-- `aps`
-  - `main` - https://developomp.com
-  - `blog` - https://blog.developomp.com
-  - `portfolio` - https://portfolio.developomp.com
-- `packages` - packages prefixed with `@developomp-site/`
-  - `blog-content` - Contents for the blog
-  - `eslint-config` - ESLint configuration files
-  - `tailwind-config` -tailwindCSS configuration files
-  - `theme` - universal developomp theme
-  - `tsconfig` - TSConfig files
-  - `utils` - Utility functions
 
 ## Special thanks
 
