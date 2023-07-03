@@ -23,6 +23,7 @@ import Toc from "./Toc"
 
 const StyledTitle = styled.h1`
     margin-bottom: 1rem;
+    line-height: 2.5rem;
 
     word-wrap: break-word;
 `
