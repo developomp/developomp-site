@@ -2,9 +2,7 @@ import { type FC } from "react"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
 
-import Sidebar from "../Sidebar"
 import Buttons from "./Buttons"
-import Nav from "./Nav"
 import ReadProgress from "./ReadProgress"
 
 const StyledHeader = styled.header`
@@ -54,9 +52,7 @@ const Header: FC = () => {
                         alt="logo"
                     />
                 </Link>
-                <Nav />
                 <Buttons />
-                <Sidebar />
             </Container>
             <ReadProgress />
         </StyledHeader>
