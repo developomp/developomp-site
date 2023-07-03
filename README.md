@@ -3,7 +3,7 @@
 [![what's this?](https://img.shields.io/badge/what's_this%3F-grey?style=for-the-badge)](https://portfolio.developomp.com/project/developomp-site)
 [![contributing](https://img.shields.io/badge/contributing-yellow?style=for-the-badge)](./CONTRIBUTING.md)
 
-A monorepo ([Turborepo](https://turbo.build)) of my websites for blogging, portfolio, resume, etc.
+A collection of "pomp-branded" websites for blogging, portfolio, resume, etc...
 
 ## Special thanks
 
