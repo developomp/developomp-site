@@ -46,7 +46,7 @@
     Seoul, South Korea.
 </span>
 
-<div class="mt-12 flex flex-wrap justify-center gap-6">
+<div class="mt-12 flex flex-wrap justify-center">
     <a
         class="social-profile"
         target="_blank"

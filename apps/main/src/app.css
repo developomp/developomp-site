@@ -58,6 +58,8 @@ b {
 }
 
 .social-profile {
+    @apply p-5;
+
     * {
         @apply text-[#888888] duration-150 ease-out;
     }
@@ -66,7 +68,11 @@ b {
         @apply w-10;
     }
 
-    :hover {
-        @apply text-white;
+    &:hover {
+        @apply rounded-2xl bg-dark-ui-hover;
+
+        * {
+            @apply text-white;
+        }
     }
 }
