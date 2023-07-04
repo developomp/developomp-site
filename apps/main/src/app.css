@@ -7,7 +7,7 @@
 
 body {
     /* SvelteKit has 8px margin by default for some reason */
-    margin: 0;
+    @apply m-0;
 }
 
 #root {
@@ -17,23 +17,13 @@ body {
 
 main {
     /* style */
-    @apply flex;
+    @apply flex flex-col items-center;
 
-    width: 100%;
-    padding: 0 2rem;
-    max-width: 64rem;
-    flex-direction: column;
-    padding-bottom: 5rem;
-    align-items: center;
-    text-align: center;
-    min-height: 100vh;
+    /* spacing */
+    @apply mx-auto my-0 min-h-screen w-full max-w-5xl px-8 py-0 pb-20;
 
-    /* center main horizontally */
-    margin: 0 auto;
-}
-
-* {
-    font-weight: 400;
+    /* text */
+    @apply text-center font-normal;
 }
 
 h1 {
@@ -60,24 +50,23 @@ a {
 }
 
 p {
-    line-height: 1.5;
+    @apply leading-6;
 }
 
 b {
-    font-weight: 700;
+    @apply font-bold;
 }
 
 .social-profile {
     * {
-        color: #888888;
-        transition: color 0.15s ease-out;
+        @apply text-[#888888] duration-150 ease-out;
     }
 
     svg {
-        width: 2.5rem;
+        @apply w-10;
     }
 
     :hover {
-        color: #ffffff;
+        @apply text-white;
     }
 }
