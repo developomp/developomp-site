@@ -8,6 +8,7 @@
         "styled-components.vscode-styled-components",
         "bradlc.vscode-tailwindcss",
         "unifiedjs.vscode-mdx",
-        "svelte.svelte-vscode"
+        "svelte.svelte-vscode",
+        "redhat.vscode-xml"
     ]
 }
