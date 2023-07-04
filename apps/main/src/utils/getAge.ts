@@ -3,6 +3,9 @@ const birthYear = 2002
 const birthMonth = 7
 const birthDate = 30
 
+/**
+ * Gets developomp's age with decimal precision
+ */
 export default function getAge(): number {
     const now = Date.now()
     const date = new Date()
