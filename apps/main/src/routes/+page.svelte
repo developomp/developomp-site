@@ -1,32 +1,57 @@
-<script>
+<script lang="ts">
     import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
     import Gmail from "@inqling/svelte-icons/simple-icons/gmail.svelte"
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
     import Twitter from "@inqling/svelte-icons/simple-icons/twitter.svelte"
     import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
+    import { onMount } from "svelte"
 
     import HandWave from "../components/HandWave.svelte"
-    import { discordInviteLink } from "../constants"
+    import {
+        birthDate,
+        birthMonth,
+        birthYear,
+        discordInviteLink,
+    } from "../constants"
 
-    function myAge() {
-        const now = new Date()
-        const birth = new Date("2002-07-30") // my birthday :D
+    let age = 0
 
-        const age = now.getFullYear() - birth.getFullYear()
+    function updateAge() {
+        const now = Date.now()
+        const date = new Date()
+        const year = date.getFullYear()
 
-        let month = now.getMonth()
-        let birthMonth = birth.getMonth()
+        // integer calculation
 
-        if (
-            birthMonth > month ||
-            (birthMonth === month && birth.getDate() >= now.getDate())
-        ) {
-            return age - 1
-        }
+        const isOverBirthDay =
+            birthMonth > date.getMonth() + 1 ||
+            (birthMonth === date.getMonth() + 1 && birthDate >= date.getDate())
+        const ageInt = year - birthYear - (isOverBirthDay ? 1 : 0)
 
-        return age
+        // decimal calculation
+
+        const msThisYear = Date.UTC(year, 0, 0)
+        const msThisBD = Date.UTC(year, birthMonth - 1, birthDate)
+        // number of milliseconds since the beginning of this year
+        const msSinceThisYear = now - msThisYear
+        // number of milliseconds from the beginning of this year to my birthday
+        const msToBD = msThisBD - msThisYear
+        const ageDecimal = msSinceThisYear / msToBD
+
+        age = ageInt + ageDecimal
     }
+
+    updateAge() // run immediately the first time
+    onMount(() => {
+        const interval = setInterval(() => {
+            updateAge() // first called after the delay
+        }, 50)
+
+        return () => {
+            clearInterval(interval)
+        }
+    })
 </script>
 
 <img
@@ -42,8 +67,8 @@
 <h2>Who am I?</h2>
 
 <span>
-    I am a <b>{myAge()} years old</b> college student studying computer science in
-    Seoul, South Korea.
+    I am a <b>{age.toFixed(8)} years old</b> college student studying computer science
+    in Seoul, South Korea.
 </span>
 
 <div class="mt-12 flex flex-wrap justify-center">
