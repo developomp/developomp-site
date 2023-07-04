@@ -2,3 +2,4 @@
 User-agent: *
 Allow: /
 Disallow:
+Sitemap: https://developomp.com/sitemap.xml
