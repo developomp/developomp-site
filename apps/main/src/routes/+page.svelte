@@ -8,44 +8,14 @@
     import { onMount } from "svelte"
 
     import HandWave from "../components/HandWave.svelte"
-    import {
-        birthDate,
-        birthMonth,
-        birthYear,
-        discordInviteLink,
-    } from "../constants"
+    import { discordInviteLink } from "../constants"
+    import getAge from "../utils/getAge"
 
-    let age = 0
+    let age = getAge() // run immediately the first time
 
-    function updateAge() {
-        const now = Date.now()
-        const date = new Date()
-        const year = date.getFullYear()
-
-        // integer calculation
-
-        const isOverBirthDay =
-            birthMonth > date.getMonth() + 1 ||
-            (birthMonth === date.getMonth() + 1 && birthDate >= date.getDate())
-        const ageInt = year - birthYear - (isOverBirthDay ? 1 : 0)
-
-        // decimal calculation
-
-        const msThisYear = Date.UTC(year, 0, 0)
-        const msThisBD = Date.UTC(year, birthMonth - 1, birthDate)
-        // number of milliseconds since the beginning of this year
-        const msSinceThisYear = now - msThisYear
-        // number of milliseconds from the beginning of this year to my birthday
-        const msToBD = msThisBD - msThisYear
-        const ageDecimal = msSinceThisYear / msToBD
-
-        age = ageInt + ageDecimal
-    }
-
-    updateAge() // run immediately the first time
     onMount(() => {
         const interval = setInterval(() => {
-            updateAge() // first called after the delay
+            age = getAge() // first called after the delay
         }, 50)
 
         return () => {
