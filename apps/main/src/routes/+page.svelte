@@ -59,7 +59,7 @@
         class="social-profile"
         target="_blank"
         href={discordInviteLink}
-        aria-label="GitHub link"
+        aria-label="Discord link"
     >
         <Discord />
     </a>
@@ -83,7 +83,7 @@
         class="social-profile"
         target="_blank"
         href="mailto: developomp@gmail.com"
-        aria-label="YouTube link"
+        aria-label="Gmail link"
     >
         <Gmail />
     </a>
