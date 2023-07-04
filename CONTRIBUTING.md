@@ -46,3 +46,10 @@
      - portfolio - http://localhost:5174
    - `pnpm lint` - Lint all apps and packages
    - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
+
+## Testing
+
+Use following services to test & benchmark different aspects of the site
+
+- https://seoptimer.com
+- https://gtmetrix.com
