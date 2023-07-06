@@ -5,6 +5,16 @@
 <nav
     class="mx-auto flex h-14 max-w-screen-mobile flex-col items-center justify-between px-4 xs:flex-row"
 >
+    <!-- only show home button when not in home -->
+    <a
+        href="/"
+        aria-current={$page.url.pathname === "/" ? "page" : undefined}
+        class="left-0"
+        style={$page.url.pathname === "/" ? "visibility: hidden;" : ""}
+    >
+        Home
+    </a>
+
     <ul class="flex list-none gap-4 no-underline">
         <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
             <a target="_blank" href="https://blog.developomp.com">Blog</a>
