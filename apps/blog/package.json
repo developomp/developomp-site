@@ -40,7 +40,6 @@
     },
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
-        "@developomp-site/tsconfig": "workspace:*",
         "@styled/typescript-styled-plugin": "^1.0.0",
         "@types/elasticlunr": "^0.9.5",
         "@types/highlight.js": "^10.1.0",

@@ -1,16 +1,14 @@
 {
-    "extends": "@developomp-site/tsconfig/node16.json",
     "include": ["src"],
     "ts-node": {
         "esm": true
     },
     "compilerOptions": {
         "moduleResolution": "Node",
-        "isolatedModules": false,
         "noImplicitAny": false,
+        "resolveJsonModule": true,
         "esModuleInterop": true,
-        "allowJs": true,
-        "resolveJsonModule": true
+        "strict": true
     },
     "exclude": ["dist", "node_modules"]
 }

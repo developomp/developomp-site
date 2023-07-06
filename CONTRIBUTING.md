@@ -18,7 +18,6 @@
   - `eslint-config` - ESLint configuration files
   - `tailwind-config` -tailwindCSS configuration files
   - `theme` - universal developomp theme
-  - `tsconfig` - TSConfig files
 
 ## Setting Up
 
