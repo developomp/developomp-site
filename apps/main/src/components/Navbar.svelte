@@ -2,8 +2,10 @@
     import { page } from "$app/stores"
 </script>
 
-<nav>
-    <ul>
+<nav
+    class="mx-auto flex h-14 max-w-screen-mobile flex-col items-center justify-between px-4 xs:flex-row"
+>
+    <ul class="flex list-none gap-4 no-underline">
         <li aria-current={$page.url.pathname === "/" ? "page" : undefined}>
             <a target="_blank" href="https://blog.developomp.com">Blog</a>
         </li>
@@ -17,14 +19,6 @@
 </nav>
 
 <style lang="postcss">
-    nav {
-        @apply flex h-14 w-full items-center justify-end;
-    }
-
-    ul {
-        @apply mr-4 flex list-none gap-4 p-0 no-underline;
-    }
-
     li {
         @apply inline;
     }

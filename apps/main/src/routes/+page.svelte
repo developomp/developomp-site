@@ -32,9 +32,15 @@
     height="200"
 />
 
-<h1><HandWave />Hello! I am <b>developomp</b></h1>
+<h1 class="my-5 text-center text-4xl">
+    <HandWave />Hello! I am <b>developomp</b>
+</h1>
 
-<h2>Who am I?</h2>
+<h2
+    class="mb-5 mt-20 px-4 py-1 text-3xl font-bold dark:bg-dark-text-default dark:text-dark-ui-bg"
+>
+    Who am I?
+</h2>
 
 <span>
     I am a <b>{age.toFixed(8)} years old</b> college student studying computer science
