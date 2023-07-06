@@ -1,7 +1,7 @@
 import "react-date-range/dist/styles.css"
 import "react-date-range/dist/theme/default.css"
 
-import searchData from "@developomp-site/blog-content/dist/search.json"
+import searchData from "@developomp-site/content/dist/search.json"
 import elasticlunr from "elasticlunr" // search engine
 import { useMeta, useTitle } from "hoofd"
 import { useCallback, useEffect, useState } from "react"

@@ -22,7 +22,7 @@
         "wouter": "^2.11.0"
     },
     "devDependencies": {
-        "@developomp-site/blog-content": "workspace:*",
+        "@developomp-site/content": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",
         "@linaria/babel-preset": "^4.4.5",
         "@linaria/vite": "^4.2.11",

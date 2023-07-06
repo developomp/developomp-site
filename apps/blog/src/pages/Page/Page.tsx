@@ -1,4 +1,4 @@
-import type { PageData } from "@developomp-site/blog-content/src/types/types"
+import type { PageData } from "@developomp-site/content/src/types/types"
 import { useMeta, useTitle } from "hoofd"
 import { useEffect, useState } from "react"
 import { useLocation } from "react-router-dom"

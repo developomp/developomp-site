@@ -1,5 +1,5 @@
-import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
-import type { PageData } from "@developomp-site/blog-content/src/types/types"
+import portfolio from "@developomp-site/content/dist/portfolio.json"
+import type { PageData } from "@developomp-site/content/src/types/types"
 
 import contentMap from "../../contentMap"
 
@@ -15,11 +15,11 @@ export async function fetchContent(pageType: PageType, url: string) {
     try {
         if (pageType == PageType.UNSEARCHABLE) {
             return await import(
-                `@developomp-site/blog-content/dist/content/unsearchable${url}.json`
+                `@developomp-site/content/dist/content/unsearchable${url}.json`
             )
         } else {
             return await import(
-                `@developomp-site/blog-content/dist/content${url}.json`
+                `@developomp-site/content/dist/content${url}.json`
             )
         }
     } catch (err) {

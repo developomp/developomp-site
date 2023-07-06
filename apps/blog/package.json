@@ -3,7 +3,7 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "cp": "cp -a ../../packages/blog-content/dist/public/. ./public",
+        "cp": "cp -a ../../packages/content/dist/public/. ./public",
         "dev": "pnpm cp && react-scripts start",
         "build": "pnpm cp && react-scripts build",
         "lint": "eslint .",
@@ -11,7 +11,7 @@
         "clean": "rm -rf .turbo build node_modules"
     },
     "dependencies": {
-        "@developomp-site/blog-content": "workspace:*",
+        "@developomp-site/content": "workspace:*",
         "@developomp-site/theme": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.3",
         "@fontsource/source-code-pro": "^5.0.3",

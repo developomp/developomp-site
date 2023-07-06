@@ -1,6 +1,6 @@
 import "./style.scss"
 
-import { type Badge as BadgeType } from "@developomp-site/blog-content/src/types/types"
+import { type Badge as BadgeType } from "@developomp-site/content/src/types/types"
 import { type FC, useEffect, useState } from "react"
 
 interface BadgeProps {
@@ -13,9 +13,7 @@ const Badge: FC<BadgeProps> = ({ slug }) => {
     useEffect(() => {
         ;(async () => {
             setBadgeData(
-                await import(
-                    `@developomp-site/blog-content/dist/icons/${slug}.json`
-                )
+                await import(`@developomp-site/content/dist/icons/${slug}.json`)
             )
         })()
     }, [slug])

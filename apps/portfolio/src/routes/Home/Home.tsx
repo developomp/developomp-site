@@ -1,7 +1,7 @@
 import "./style.scss"
 
-import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
-import type { PortfolioProject } from "@developomp-site/blog-content/src/types/types"
+import portfolio from "@developomp-site/content/dist/portfolio.json"
+import type { PortfolioProject } from "@developomp-site/content/src/types/types"
 import { useMeta, useTitle } from "hoofd"
 import { type FC } from "react"
 

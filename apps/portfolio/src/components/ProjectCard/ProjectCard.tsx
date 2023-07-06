@@ -1,6 +1,6 @@
 import "./style.scss"
 
-import { PortfolioProject } from "@developomp-site/blog-content/src/types/types"
+import { PortfolioProject } from "@developomp-site/content/src/types/types"
 import { type FC, useEffect, useState } from "react"
 
 import Badge from "@/components/Badge"

@@ -1,4 +1,4 @@
-import { PostData } from "@developomp-site/blog-content/src/types/types"
+import { PostData } from "@developomp-site/content/src/types/types"
 import {
     faBook,
     faCalendar,

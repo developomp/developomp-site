@@ -26,9 +26,9 @@ importers:
 
   apps/blog:
     dependencies:
-      '@developomp-site/blog-content':
+      '@developomp-site/content':
         specifier: workspace:*
-        version: link:../../packages/blog-content
+        version: link:../../packages/content
       '@developomp-site/theme':
         specifier: workspace:*
         version: link:../../packages/theme
@@ -283,9 +283,9 @@ importers:
         specifier: ^2.11.0
         version: 2.11.0(react@18.2.0)
     devDependencies:
-      '@developomp-site/blog-content':
+      '@developomp-site/content':
         specifier: workspace:*
-        version: link:../../packages/blog-content
+        version: link:../../packages/content
       '@developomp-site/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -356,7 +356,7 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0(typescript@5.1.6)(vite@4.3.9)
 
-  packages/blog-content:
+  packages/content:
     dependencies:
       '@developomp-site/tsconfig':
         specifier: workspace:*

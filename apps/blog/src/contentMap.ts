@@ -1,5 +1,5 @@
-import contentMapJson from "@developomp-site/blog-content/dist/map.json"
-import { ContentMap } from "@developomp-site/blog-content/src/types/types"
+import contentMapJson from "@developomp-site/content/dist/map.json"
+import { ContentMap } from "@developomp-site/content/src/types/types"
 
 const contentMap: ContentMap = contentMapJson
 

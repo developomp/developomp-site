@@ -1,6 +1,6 @@
 import "./style.scss"
 
-import portfolio from "@developomp-site/blog-content/dist/portfolio.json"
+import portfolio from "@developomp-site/content/dist/portfolio.json"
 import { useMeta, useTitle } from "hoofd"
 import { type FC, useEffect, useState } from "react"
 import { useRoute } from "wouter"
@@ -42,7 +42,7 @@ const Project: FC = () => {
                     ]
 
                 const fetched_content = await import(
-                    `@developomp-site/blog-content/dist/content/projects/${params.id}.json`
+                    `@developomp-site/content/dist/content/projects/${params.id}.json`
                 )
 
                 setPageData({
