@@ -7,7 +7,7 @@ export default {
                 // UI
                 /***/ "dark-ui": "#202225",
                 /**/ "light-ui": "#FFFFFF",
-                /***/ "dark-ui-hover": "#3F3F46",
+                /***/ "dark-ui-hover": "#3F3F46", // zinc-700
                 /**/ "light-ui-hover": "#EEEEEE",
                 /***/ "dark-ui-bg": "#36393F",
                 /**/ "light-ui-bg": "#F7F7F7",
@@ -79,7 +79,7 @@ export default {
                 /**/ "light-input-border": "#CCCCCC",
                 /***/ "dark-input-border-hover": "#808080",
                 /**/ "light-input-border-hover": "#808080",
-                /***/ "dark-input-border-focus": "#A3A3A3",
+                /***/ "dark-input-border-focus": "#A3A3A3", // neutral-400
                 /**/ "light-input-border-focus": "#000000",
                 /***/ "dark-input-placeholder": "#A9A9A9",
                 /**/ "light-input-placeholder": "#777777",
@@ -109,8 +109,8 @@ export default {
                 /**/ "light-scrollbar-thumb": "#DDDDDD",
 
                 // scroll progress
-                /***/ "dark-scroll-progress-bg": "#52525B",
-                /**/ "light-scroll-progress-bg": "#D4D4D8",
+                /***/ "dark-scroll-progress-bg": "#52525B", // zinc-600
+                /**/ "light-scroll-progress-bg": "#D4D4D8", // zinc-300
                 /***/ "dark-scroll-progress-fg": "#D4D4D8",
                 /**/ "light-scroll-progress-fg": "#52525B",
 
@@ -119,6 +119,11 @@ export default {
                 /**/ "light-table-border": "#DDD",
                 /***/ "dark-table-alt": "#21272E",
                 /**/ "light-table-alt": "#F2F2F2",
+            },
+            screens: {
+                xs: "350px",
+                mobile: "1024px", // max-w-screen-lg
+                desktop: "1536px", // max-w-screen-2xl
             },
             fontFamily: {
                 "noto-sans": ['"Noto Sans KR"', "sans-serif"],
