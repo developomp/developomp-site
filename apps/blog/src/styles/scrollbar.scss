@@ -1,0 +1,14 @@
+body::-webkit-scrollbar {
+    @apply w-2;
+}
+
+body::-webkit-scrollbar-track {
+    @apply bg-light-scrollbar-track dark:bg-dark-scrollbar-track;
+}
+
+body::-webkit-scrollbar-thumb {
+    @apply rounded-full;
+
+    /* color */
+    @apply bg-light-scrollbar-thumb dark:bg-dark-scrollbar-thumb;
+}

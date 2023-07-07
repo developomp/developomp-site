@@ -1,0 +1,13 @@
+a {
+    @apply text-anchor no-underline hover:text-anchor-accent active:text-anchor-accent;
+}
+
+/* The "#" thingy used beside headers */
+a.header-anchor {
+    @apply inline-block text-light-anchor-header dark:text-dark-anchor-header;
+}
+
+/* footnote anchors */
+a[id^="fnref"] {
+    @apply inline;
+}

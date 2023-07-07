@@ -6,15 +6,10 @@ import {
     faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import styled from "styled-components"
 
-const StyledMetaContainer = styled.div`
-    color: ${({ theme }) => theme.theme.color.text.gray};
-`
-
-const Meta = (props: { fetchedPage: PageData }) => {
+export default function Meta(props: { fetchedPage: PageData }) {
     return (
-        <StyledMetaContainer>
+        <div className="text-light-text-gray dark:text-dark-text-gray">
             {/* posts count */}
             {props.fetchedPage.length > 0 && (
                 <>
@@ -45,8 +40,6 @@ const Meta = (props: { fetchedPage: PageData }) => {
                   " word" +
                   (props.fetchedPage.wordCount > 1 && "s")
                 : "unknown words"}
-        </StyledMetaContainer>
+        </div>
     )
 }
-
-export default Meta

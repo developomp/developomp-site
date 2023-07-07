@@ -1,0 +1,20 @@
+/* https://www.rgagnon.com/jsdetails/js-nice-effect-the-KBD-tag.html */
+kbd {
+    margin: 0px 0.1em;
+    padding: 0.1em 0.6em;
+    border-radius: 3px;
+    line-height: 1.4;
+    font-size: 13.5px;
+    display: inline-block;
+    border: 1px solid;
+
+    box-shadow: 0px 1px 0px #00000033, inset 0px 0px 0px 2px white;
+
+    @apply border-light-kbd-border bg-light-kbd-bg text-light-kbd-text dark:border-dark-kbd-border dark:bg-dark-kbd-bg dark:text-dark-kbd-text;
+}
+
+:is(.dark) {
+    kbd {
+        box-shadow: 0px 1px 0px #ffffff4d, inset 0px 0px 0px 2px black;
+    }
+}

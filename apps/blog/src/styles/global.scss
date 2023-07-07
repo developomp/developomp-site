@@ -1,0 +1,28 @@
+html,
+body,
+#root {
+    /* style */
+
+    @apply flex flex-col;
+
+    /* spacing */
+
+    @apply m-0 min-h-screen;
+
+    /* text */
+
+    @apply font-noto-sans text-base font-normal leading-8 antialiased;
+
+    /* color */
+
+    @apply bg-light-ui-bg fill-light-text-default text-light-text-default dark:bg-dark-ui-bg dark:fill-dark-text-default dark:text-dark-text-default;
+}
+
+* {
+    /* transitions */
+    transition: background-color 0.1s, transform 0.1s;
+
+    /* scrolling */
+
+    @apply scroll-m-16 scroll-smooth;
+}

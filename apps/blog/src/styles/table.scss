@@ -1,0 +1,13 @@
+table {
+    @apply w-full border-collapse border-spacing-0;
+
+    td,
+    th {
+        @apply border border-light-table-border p-2 dark:border-dark-table-border;
+    }
+
+    /* table alternating color */
+    tr:nth-child(even) {
+        @apply bg-light-table-alt dark:bg-dark-table-alt;
+    }
+}

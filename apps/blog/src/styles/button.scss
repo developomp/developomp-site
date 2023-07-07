@@ -1,0 +1,29 @@
+.button {
+    /* style */
+
+    @apply flex items-center justify-center rounded-lg border-none;
+
+    /* spacing */
+
+    @apply m-0 h-12 px-4;
+
+    min-width: 4.5rem;
+
+    /* text */
+
+    @apply no-underline;
+
+    /* color */
+
+    @apply bg-light-ui text-light-text-default hover:bg-light-ui-hover dark:bg-dark-ui dark:text-dark-text-default dark:hover:bg-dark-ui-hover;
+
+    /* animation */
+
+    transition: transform 0.1s linear;
+}
+
+.button-disabled {
+    @extend .button;
+
+    @apply cursor-default text-gray-500 hover:bg-light-ui dark:text-gray-500 dark:hover:bg-dark-ui;
+}

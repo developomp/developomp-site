@@ -1,46 +1,29 @@
-/**
- * PostList.tsx
- * show posts in recent order
- */
+import { useTitle } from "hoofd"
+import { type ReactNode, useEffect, useState } from "react"
 
-import { useMeta, useTitle } from "hoofd"
-import { type FC, useCallback, useEffect, useState } from "react"
-import styled from "styled-components"
+import PostCard from "@/components/PostCard"
+import contentMap from "@/contentMap"
 
-import PostCard from "../../components/PostCard"
-import contentMap from "../../contentMap"
 import ShowMoreButton from "./ShowMoreButton"
 
-const PostList = styled.div`
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+const totalPosts = Object.keys(contentMap.posts).length
 
-    color: ${({ theme }) => theme.theme.color.text.default};
-`
-
-const Home: FC = () => {
+export default function Home() {
     const [howMany, setHowMany] = useState(5)
-    const [postsLength, setPostsLength] = useState(0)
-    const [postCards, setPostCards] = useState<JSX.Element[]>([])
+    const [postCards, setPostCards] = useState<ReactNode[]>([])
 
     useTitle("Home")
-    useMeta({ property: "og:title", content: "Home" })
 
-    const loadPostCards = useCallback(() => {
-        let postCount = 0
-        const postCards = [] as JSX.Element[]
+    useEffect(() => {
+        const postCards: ReactNode[] = []
 
         for (const date of Object.keys(contentMap.date).reverse()) {
-            if (postCount >= howMany) break
+            if (postCards.length >= howMany) break
 
-            const length = contentMap.date[date].length
+            for (let i = contentMap.date[date].length - 1; i >= 0; i--) {
+                if (postCards.length >= howMany) break
 
-            for (let i = 0; i < length; i++) {
-                if (postCount >= howMany) break
-
-                postCount++
-                const content_id = contentMap.date[date][length - i - 1]
+                const content_id = contentMap.date[date][i]
 
                 postCards.push(
                     <PostCard
@@ -55,30 +38,19 @@ const Home: FC = () => {
         }
 
         setPostCards(postCards)
-    }, [howMany, postCards])
-
-    useEffect(() => {
-        loadPostCards()
-        setPostsLength(Object.keys(contentMap.posts).length)
     }, [howMany])
 
     return (
-        <>
-            <PostList>
-                <h1>Recent Posts</h1>
+        <div className="flex h-full w-full flex-col items-center gap-8">
+            <h1>Recent Posts</h1>
 
-                {postCards}
+            {postCards}
 
-                {postsLength > howMany && (
-                    <ShowMoreButton
-                        action={() => {
-                            setHowMany((prev) => prev + 5)
-                        }}
-                    />
-                )}
-            </PostList>
-        </>
+            {totalPosts > howMany && (
+                <ShowMoreButton
+                    action={() => setHowMany((prev) => prev + 10)}
+                />
+            )}
+        </div>
     )
 }
-
-export default Home

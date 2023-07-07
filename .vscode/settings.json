@@ -38,6 +38,7 @@
         "inqling",
         "Jimin",
         "katex",
+        "kunukn",
         "Librewolf",
         "linaria",
         "nodedotjs",
@@ -63,7 +64,8 @@
         "wbtimeline",
         "webassembly",
         "wouter",
-        "YYYYMMDD"
+        "YYYYMMDD",
+        "zustand"
     ],
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "eslint.validate": ["javascript", "typescript", "svelte"],
@@ -82,5 +84,6 @@
     },
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
-    }
+    },
+    "typescript.tsdk": "node_modules/typescript/lib"
 }

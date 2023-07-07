@@ -1,15 +1,17 @@
+import "./Page.scss"
+
 import type { PageData } from "@developomp-site/content/src/types/types"
 import { useMeta, useTitle } from "hoofd"
 import { useEffect, useState } from "react"
-import { useLocation } from "react-router-dom"
-import styled from "styled-components"
+import { useLocation } from "wouter"
 
-import Loading from "../../components/Loading"
-import MainContent from "../../components/MainContent"
-import PostCard from "../../components/PostCard"
-import Tag from "../../components/Tag"
-import TagList from "../../components/TagList"
-import contentMap from "../../contentMap"
+import Card from "@/components/Card"
+import Loading from "@/components/Loading"
+import PostCard from "@/components/PostCard"
+import Tag from "@/components/Tag"
+import TagList from "@/components/TagList"
+import contentMap from "@/contentMap"
+
 import NotFound from "../NotFound"
 import {
     categorizePageType,
@@ -21,41 +23,32 @@ import Meta from "./Meta"
 import SeriesControlButtons from "./SeriesControlButtons"
 import Toc from "./Toc"
 
-const StyledTitle = styled.h1`
-    margin-bottom: 1rem;
-    line-height: 2.5rem;
-
-    word-wrap: break-word;
-`
-
 export default function Page() {
-    const { pathname } = useLocation()
-
+    const [location] = useLocation()
     const [pageData, setPageData] = useState<PageData | undefined>(undefined)
     const [pageType, setPageType] = useState<PageType>(PageType.POST)
-    const [isLoading, setIsLoading] = useState(true)
+    const [isLoading, setLoading] = useState(true)
 
     useTitle(pageData?.title || "Loading")
     useMeta({ property: "og:title", content: pageData?.title })
 
-    // this code runs if either the url or the locale changes
     useEffect(() => {
-        const content_id = pathname.replace(/\/$/, "") // remove trailing slash
-        const pageType = categorizePageType(content_id)
+        const content_id = location.replace(/\/$/, "") // remove trailing slash
 
-        fetchContent(pageType, content_id).then((fetched_content) => {
-            if (!fetched_content) {
-                // stop loading without fetching pageData so 404 page will display
-                setIsLoading(false)
+        fetchContent(content_id).then((fetched_content) => {
+            const pageType = categorizePageType(content_id)
 
+            // stop loading without setting pageData so 404 page will display
+            if (!fetched_content || pageType === undefined) {
+                setLoading(false)
                 return
             }
 
             setPageData(parsePageData(fetched_content, pageType, content_id))
             setPageType(pageType)
-            setIsLoading(false)
+            setLoading(false)
         })
-    }, [pathname])
+    }, [location])
 
     if (isLoading) return <Loading />
 
@@ -63,7 +56,7 @@ export default function Page() {
 
     return (
         <>
-            <MainContent>
+            <Card className="page">
                 {/* next/previous series post buttons */}
                 {pageType == PageType.SERIES && (
                     <SeriesControlButtons
@@ -73,12 +66,12 @@ export default function Page() {
                     />
                 )}
 
-                <StyledTitle>{pageData.title}</StyledTitle>
+                <h1 className="mb-4 leading-10">{pageData.title}</h1>
 
                 <small>
                     {/* Post tags */}
                     {pageData.tags.length > 0 && (
-                        <TagList direction="left">
+                        <TagList>
                             {pageData.tags.map((tag) => {
                                 return (
                                     <div key={pageData?.title + tag}>
@@ -110,7 +103,7 @@ export default function Page() {
                         __html: pageData.content,
                     }}
                 />
-            </MainContent>
+            </Card>
 
             {/* series post list */}
 

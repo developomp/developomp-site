@@ -1,0 +1,12 @@
+ul,
+ol {
+    @apply pl-11;
+}
+
+ul {
+    @apply list-disc;
+}
+
+ol {
+    @apply list-decimal;
+}

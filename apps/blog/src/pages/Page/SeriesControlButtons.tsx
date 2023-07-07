@@ -4,26 +4,7 @@ import {
     faListUl,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
-
-import buttonStyle from "../../styles/button"
-
-const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-`
-
-const Button = styled.div`
-    ${buttonStyle}
-`
-
-const DisabledButton = styled.div`
-    ${buttonStyle}
-
-    color: grey;
-    cursor: default;
-`
+import { Link } from "wouter"
 
 interface Props {
     seriesHome: string
@@ -31,40 +12,42 @@ interface Props {
     nextURL?: string
 }
 
-function SeriesControlButtons({ prevURL, seriesHome, nextURL }: Props) {
+export default function SeriesControlButtons({
+    prevURL,
+    seriesHome,
+    nextURL,
+}: Props) {
     return (
-        <Container>
+        <div className="mb-5 flex justify-between">
             {prevURL ? (
                 <Link to={prevURL}>
-                    <Button>
+                    <button className="button">
                         <FontAwesomeIcon icon={faArrowLeft} />
-                    </Button>
+                    </button>
                 </Link>
             ) : (
-                <DisabledButton>
+                <button className="button-disabled">
                     <FontAwesomeIcon icon={faArrowLeft} />
-                </DisabledButton>
+                </button>
             )}
 
             <Link to={seriesHome}>
-                <Button>
+                <button className="button">
                     <FontAwesomeIcon icon={faListUl} />
-                </Button>
+                </button>
             </Link>
 
             {nextURL ? (
                 <Link to={nextURL}>
-                    <Button>
+                    <button className="button">
                         <FontAwesomeIcon icon={faArrowRight} />
-                    </Button>
+                    </button>
                 </Link>
             ) : (
-                <DisabledButton>
+                <button className="button-disabled">
                     <FontAwesomeIcon icon={faArrowRight} />
-                </DisabledButton>
+                </button>
             )}
-        </Container>
+        </div>
     )
 }
-
-export default SeriesControlButtons

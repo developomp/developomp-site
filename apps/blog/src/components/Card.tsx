@@ -1,24 +1,16 @@
-import styled, { css } from "styled-components"
+import { ReactNode } from "react"
 
-export const cardCSS = css`
-    margin: auto;
-    background-color: ${({ theme }) =>
-        theme.currentTheme
-            ? theme.theme.component.card.color.background
-            : "white"};
-    padding: 2rem;
-    border-radius: 6px;
-    box-shadow: ${({ theme }) =>
-        theme.currentTheme === "dark"
-            ? "0 4px 10px rgb(0 0 0 / 30%), 0 0 1px rgb(0 0 0 / 30%)"
-            : "0 4px 10px rgb(0 0 0 / 5%), 0 0 1px rgb(0 0 0 / 10%)"};
+interface Props {
+    children?: ReactNode
+    className?: string
+}
 
-    @media screen and (max-width: ${({ theme }) =>
-            theme.theme.maxDisplayWidth.mobile}) {
-        padding: 1rem;
-    }
-`
-
-export default styled.div`
-    ${cardCSS}
-`
+export default function Card({ children, className }: Props) {
+    return (
+        <div
+            className={`${className} flex h-fit w-full max-w-screen-mobile flex-col rounded-md bg-light-card-bg p-8 shadow-lg dark:bg-dark-card-bg`}
+        >
+            {children}
+        </div>
+    )
+}

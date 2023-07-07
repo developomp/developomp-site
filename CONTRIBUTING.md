@@ -14,10 +14,9 @@
   - `blog` - https://blog.developomp.com
   - `portfolio` - https://portfolio.developomp.com
 - `packages` - shared stuff used across different packages
-  - `content` - Contents for the blog
+  - `content` - Shared content
   - `eslint-config` - ESLint configuration files
-  - `tailwind-config` -tailwindCSS configuration files
-  - `theme` - universal developomp theme
+  - `tailwind-config` -tailwind configuration with pomp-specific extensions
 
 ## Setting Up
 

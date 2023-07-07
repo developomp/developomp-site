@@ -1,35 +1,25 @@
-import portfolio from "@developomp-site/content/dist/portfolio.json"
 import type { PageData } from "@developomp-site/content/src/types/types"
 
-import contentMap from "../../contentMap"
+import contentMap from "@/contentMap"
 
 export enum PageType {
     POST,
     SERIES,
     SERIES_HOME,
-    PORTFOLIO_PROJECT,
-    UNSEARCHABLE,
 }
 
-export async function fetchContent(pageType: PageType, url: string) {
+export async function fetchContent(content_id: string) {
     try {
-        if (pageType == PageType.UNSEARCHABLE) {
-            return await import(
-                `@developomp-site/content/dist/content/unsearchable${url}.json`
-            )
-        } else {
-            return await import(
-                `@developomp-site/content/dist/content${url}.json`
-            )
-        }
+        return await import(
+            `@developomp-site/content/dist/content${content_id}.json`
+        )
     } catch (err) {
         return
     }
 }
 
-export function categorizePageType(content_id: string): PageType {
+export function categorizePageType(content_id: string): PageType | undefined {
     if (content_id.startsWith("/post")) return PageType.POST
-    if (content_id.startsWith("/portfolio")) return PageType.PORTFOLIO_PROJECT
     if (content_id.startsWith("/series")) {
         // if the URL looks like /series/series-title (if the url has two slashes)
         if ([...(content_id.match(/\//g) || [])].length == 2)
@@ -38,8 +28,6 @@ export function categorizePageType(content_id: string): PageType {
         // if the URL looks like /series/series-title/post-title (if the url does not have 2 slashes)
         return PageType.SERIES
     }
-
-    return PageType.UNSEARCHABLE
 }
 
 export function parsePageData(
@@ -69,7 +57,7 @@ export function parsePageData(
         order: [],
         length: 0,
 
-        // portfolio
+        // portfolio (unused)
 
         image: "",
         overview: "",
@@ -134,31 +122,6 @@ export function parsePageData(
             pageData.wordCount = seriesData.wordCount
             pageData.order = seriesData.order
             pageData.length = seriesData.length
-
-            break
-        }
-
-        case PageType.PORTFOLIO_PROJECT: {
-            const data =
-                portfolio.projects[
-                    content_id as keyof typeof portfolio.projects
-                ]
-
-            pageData.content = fetched_content.content
-            pageData.toc = fetched_content.toc
-
-            pageData.title = data.name
-            pageData.image = data.image
-            pageData.overview = data.overview
-            pageData.badges = data.badges
-            pageData.repo = data.repo
-
-            break
-        }
-
-        case PageType.UNSEARCHABLE: {
-            pageData.title = contentMap.unsearchable[content_id].title
-            pageData.content = fetched_content.content
 
             break
         }

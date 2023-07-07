@@ -1,0 +1,73 @@
+.loading-card {
+    animation: fade-in 2s;
+
+    svg {
+        display: block;
+        margin: 1rem;
+        margin-bottom: 4.5rem;
+
+        transform: scale(2);
+
+        #teabag {
+            transform-origin: top center;
+            transform: rotate(3deg);
+            animation: swingAnimation 2s infinite;
+        }
+
+        #steamL {
+            stroke-dasharray: 13;
+            stroke-dashoffset: 13;
+            animation: steamLargeAnimation 2s infinite;
+        }
+
+        #steamR {
+            stroke-dasharray: 9;
+            stroke-dashoffset: 9;
+            animation: steamSmallAnimation 2s infinite;
+        }
+    }
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes swingAnimation {
+    50% {
+        transform: rotate(-3deg);
+    }
+}
+
+@keyframes steamLargeAnimation {
+    0% {
+        stroke-dashoffset: 13;
+        opacity: 0.6;
+    }
+    100% {
+        stroke-dashoffset: 39;
+        opacity: 0;
+    }
+}
+
+@keyframes steamSmallAnimation {
+    10% {
+        stroke-dashoffset: 9;
+        opacity: 0.6;
+    }
+    80% {
+        stroke-dashoffset: 27;
+        opacity: 0;
+    }
+    100% {
+        stroke-dashoffset: 27;
+        opacity: 0;
+    }
+}

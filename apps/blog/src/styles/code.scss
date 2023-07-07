@@ -1,0 +1,39 @@
+:not(.dark) {
+    @import "highlight.js/styles/default";
+}
+
+:is(.dark) {
+    @import "highlight.js/styles/atom-one-dark-reasonable";
+}
+
+code {
+    @apply border font-source-code-pro;
+}
+
+/* inline code */
+:not(pre) > code {
+    word-wrap: break-word;
+    border-radius: 3px;
+    padding: 0 3px;
+
+    @apply border-[1px] border-solid;
+
+    /* color */
+
+    @apply border-light-inline-code-border bg-light-inline-code-bg text-light-inline-code-text dark:border-dark-inline-code-border dark:bg-dark-inline-code-bg dark:text-dark-inline-code-text;
+}
+
+/* code block */
+pre > code {
+    @apply border-light-block-code-border dark:border-dark-block-code-border;
+}
+
+/* // todo: fix highlight not working properly when scrolled horizontally // */
+.highlighted-line {
+    @apply bg-light-block-code-highlight dark:bg-dark-block-code-highlight;
+
+    display: block;
+    min-width: min-content;
+    margin: 0 -1rem;
+    padding: 0 1rem;
+}
