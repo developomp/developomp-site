@@ -33,6 +33,9 @@ export default function Page() {
     useMeta({ property: "og:title", content: pageData?.title })
 
     useEffect(() => {
+        setPageData(undefined)
+        setLoading(true)
+
         const content_id = location.replace(/\/$/, "") // remove trailing slash
 
         fetchContent(content_id).then((fetched_content) => {
