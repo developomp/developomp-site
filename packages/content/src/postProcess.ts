@@ -112,7 +112,7 @@ function generatePortfolioSVGs() {
     )
 
     writeToFile(
-        "./dist/public/img/skills.svg",
+        "./dist/skills.svg",
         optimize(renderedSVG, { multipass: true }).data
     )
 }

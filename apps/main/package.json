@@ -5,7 +5,7 @@
     "private": true,
     "scripts": {
         "dev": "vite dev",
-        "build": "vite build",
+        "build": "cp ../../packages/content/dist/skills.svg static && vite build",
         "clean": "rm -rf .svelte-kit .turbo build node_modules vite.config.ts.timestamp-*",
         "preview": "vite preview",
         "lint": "eslint ."
