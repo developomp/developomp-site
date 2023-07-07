@@ -24,9 +24,9 @@ export default function PostCard({ postData, className }: Props) {
     const { content_id, wordCount, date, readTime, title, tags } = postData
 
     return (
-        <Link href={content_id}>
-            <a className={`${className} w-full`}>
-                <Card className="cursor-pointer fill-light-text-gray text-light-text-gray hover:shadow-glow dark:fill-dark-text-gray dark:text-dark-text-gray">
+        <Link href={content_id} className={`${className} w-full`}>
+            <a className="w-full">
+                <Card className="w-full cursor-pointer fill-light-text-gray text-light-text-gray hover:shadow-glow dark:fill-dark-text-gray dark:text-dark-text-gray">
                     <h2 className="mb-8 text-3xl">
                         {title}
                         {/* show "(series)" for urls that matches regex "/series/<series-title>" */}

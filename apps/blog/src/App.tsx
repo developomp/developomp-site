@@ -14,7 +14,7 @@ function App() {
     return (
         <>
             <Header />
-            <main className="mb-8 mt-20 flex w-screen grow flex-col items-center gap-8 px-8">
+            <main className="mx-auto mb-8 mt-20 flex w-full max-w-screen-mobile grow flex-col items-center gap-8 px-8">
                 <Switch>
                     <Route path="/">
                         <Home />
