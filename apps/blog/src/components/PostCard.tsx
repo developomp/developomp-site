@@ -40,17 +40,23 @@ export default function PostCard({ postData, className }: Props) {
                                 ))}
                         </TagList>
                         <hr />
-                        <div className="flex items-center gap-2">
-                            <FontAwesomeIcon icon={faCalendar} />
-                            {date || "Unknown date"}
-                            <FontAwesomeIcon icon={faBook} />
-                            {readTime
-                                ? readTime + " read"
-                                : "unknown read time"}
-                            <FontAwesomeIcon icon={faHourglass} />
-                            {typeof wordCount === "number"
-                                ? wordCount + " words"
-                                : "unknown length"}
+                        <div className="flex flex-wrap items-center gap-2">
+                            <div className="flex items-center gap-2 whitespace-nowrap">
+                                <FontAwesomeIcon icon={faCalendar} />
+                                {date || "Unknown date"}
+                            </div>
+                            <div className="flex items-center gap-2 whitespace-nowrap">
+                                <FontAwesomeIcon icon={faBook} />
+                                {readTime
+                                    ? readTime + " read"
+                                    : "unknown read time"}
+                            </div>
+                            <div className="flex items-center gap-2 whitespace-nowrap">
+                                <FontAwesomeIcon icon={faHourglass} />
+                                {typeof wordCount === "number"
+                                    ? wordCount + " words"
+                                    : "unknown length"}
+                            </div>
                         </div>
                     </small>
                 </Card>
