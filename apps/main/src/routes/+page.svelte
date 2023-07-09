@@ -3,7 +3,6 @@
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
     import Gmail from "@inqling/svelte-icons/simple-icons/gmail.svelte"
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
-    import Twitter from "@inqling/svelte-icons/simple-icons/twitter.svelte"
     import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
     import { onMount } from "svelte"
 
@@ -63,14 +62,6 @@
         aria-label="Discord link"
     >
         <Discord />
-    </a>
-    <a
-        class="social-profile"
-        target="_blank"
-        href="https://twitter.com/developomp"
-        aria-label="Twitter link"
-    >
-        <Twitter />
     </a>
     <a
         class="social-profile"
