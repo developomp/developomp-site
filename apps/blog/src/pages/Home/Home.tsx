@@ -42,7 +42,7 @@ export default function Home() {
 
     return (
         <div className="flex h-full w-full flex-col items-center gap-8">
-            <h1>Recent Posts</h1>
+            <h1 className="text-center">Recent Posts</h1>
 
             {postCards}
 
