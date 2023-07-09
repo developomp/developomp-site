@@ -1,6 +1,6 @@
 import ejs from "ejs"
 import { readFileSync } from "fs"
-import icons from "simple-icons/icons"
+import * as icons from "simple-icons"
 import { optimize } from "svgo"
 import tinycolor from "tinycolor2"
 

@@ -1,5 +1,4 @@
-import { SimpleIcon } from "simple-icons"
-import icons from "simple-icons/icons"
+import icons, { SimpleIcon } from "simple-icons"
 import tinycolor from "tinycolor2"
 
 import { portfolioData } from ".."
