@@ -10,6 +10,7 @@ module.exports = {
         "plugin:prettier/recommended",
         "turbo",
     ],
+    ignorePatterns: ["dist/", "build/"],
     parser: "@typescript-eslint/parser",
     plugins: ["@typescript-eslint", "import", "simple-import-sort"],
     rules: {
