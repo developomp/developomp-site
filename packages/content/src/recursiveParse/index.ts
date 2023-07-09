@@ -7,7 +7,6 @@ import { path2FileOrFolderName, path2URL } from "../util"
 import parsePost from "./parsePost"
 import parseProjects from "./parseProjects"
 import parseSeries from "./parseSeries"
-import parseUnsearchable from "./parseUnsearchable"
 
 /**
  * Data that's passed from {@link parseFile} to other function
@@ -93,10 +92,6 @@ function parseFile(mode: ParseMode, path: string): void {
 
         case ParseMode.SERIES:
             parseSeries(dataToPass)
-            break
-
-        case ParseMode.UNSEARCHABLE:
-            parseUnsearchable(dataToPass)
             break
 
         case ParseMode.PORTFOLIO:

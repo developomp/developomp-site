@@ -23,10 +23,6 @@ export interface ContentMap {
 
     // series posts have "previous post" and "next post" button so they need to be ordered
     series: { [key: string]: Series }
-
-    // urls of unsearchable posts
-    // it is here to quickly check if a post exists or not
-    unsearchable: { [key: string]: { title: string } }
 }
 
 /**
@@ -36,7 +32,6 @@ export interface ContentMap {
 export enum ParseMode {
     POSTS,
     SERIES,
-    UNSEARCHABLE,
     PORTFOLIO,
 }
 

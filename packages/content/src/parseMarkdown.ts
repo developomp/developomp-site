@@ -77,7 +77,7 @@ export default function parseMarkdown(
             if (!frontMatter.title)
                 throw Error(`Title is not defined in file: ${path}`)
 
-            if (mode != ParseMode.UNSEARCHABLE && !frontMatter.date)
+            if (!frontMatter.date)
                 throw Error(`Date is not defined in file: ${path}`)
         }
 

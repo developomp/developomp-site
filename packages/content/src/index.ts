@@ -22,7 +22,6 @@ export const contentMap: ContentMap = {
     },
     posts: {},
     series: {},
-    unsearchable: {},
 }
 export const seriesMap: SeriesMap = {}
 export const portfolioData: PortfolioData = {
@@ -49,9 +48,6 @@ if (!fs.lstatSync(markdownPath).isDirectory())
 if (!fs.lstatSync(markdownPath + "/posts").isDirectory())
     throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
-if (!fs.lstatSync(markdownPath + "/unsearchable").isDirectory())
-    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
-
 if (!fs.lstatSync(markdownPath + "/series").isDirectory())
     throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
@@ -60,7 +56,6 @@ if (!fs.lstatSync(markdownPath + "/series").isDirectory())
  */
 
 recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
-recursiveParse(ParseMode.UNSEARCHABLE, markdownPath + "/unsearchable")
 recursiveParse(ParseMode.SERIES, markdownPath + "/series")
 recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
 
