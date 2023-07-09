@@ -88,11 +88,7 @@ export default function Page() {
                     <br />
 
                     {/* Post metadata */}
-                    {[
-                        PageType.POST,
-                        PageType.SERIES,
-                        PageType.SERIES_HOME,
-                    ].includes(pageType) && <Meta fetchedPage={pageData} />}
+                    <Meta fetchedPage={pageData} />
                 </small>
 
                 <hr />
