@@ -1,13 +1,1 @@
-{
-    "tabWidth": 4,
-    "semi": false,
-    "trailingComma": "es5",
-    "overrides": [
-        {
-            "files": "*.md",
-            "options": {
-                "tabWidth": 2
-            }
-        }
-    ]
-}
+"@developomp-site/prettier-config"

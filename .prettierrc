@@ -1,18 +1,1 @@
-{
-    "tabWidth": 4,
-    "semi": false,
-    "overrides": [
-        {
-            "files": "*.md",
-            "options": {
-                "tabWidth": 2
-            }
-        },
-        {
-            "files": ".firebaserc",
-            "options": {
-                "tabWidth": 2
-            }
-        }
-    ]
-}
+"@developomp-site/prettier-config"

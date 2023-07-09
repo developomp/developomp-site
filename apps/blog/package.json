@@ -28,6 +28,7 @@
     },
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/prettier-config": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",
         "@types/highlight.js": "^10.1.0",
         "@types/katex": "^0.16.0",

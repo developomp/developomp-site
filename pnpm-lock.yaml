@@ -72,6 +72,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@developomp-site/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -132,6 +135,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@developomp-site/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -235,6 +241,9 @@ importers:
       '@developomp-site/content':
         specifier: workspace:*
         version: link:../../packages/content
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../../packages/prettier-config
       '@developomp-site/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
@@ -392,6 +401,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
       '@types/elasticlunr':
         specifier: ^0.9.5
         version: 0.9.5
@@ -413,6 +425,9 @@ importers:
 
   packages/eslint-config:
     devDependencies:
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.61.0
         version: 5.61.0(@typescript-eslint/parser@5.61.0)(eslint@8.44.0)(typescript@5.1.6)
@@ -444,11 +459,16 @@ importers:
         specifier: ^5.1.6
         version: 5.1.6
 
+  packages/prettier-config: {}
+
   packages/tailwind-config:
     devDependencies:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:../prettier-config
       eslint:
         specifier: ^8.44.0
         version: 8.44.0

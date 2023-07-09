@@ -41,6 +41,7 @@
     },
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/prettier-config": "workspace:*",
         "@types/elasticlunr": "^0.9.5",
         "@types/jsdom": "^21.1.1",
         "@types/node": "^20.4.1",
