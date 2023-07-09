@@ -101,7 +101,7 @@ export default function Page() {
                 <Toc data={pageData.toc} />
 
                 {/* page content */}
-                <div
+                <article
                     dangerouslySetInnerHTML={{
                         __html: pageData.content,
                     }}
