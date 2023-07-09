@@ -11,6 +11,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
+      '@developomp-site/prettier-config':
+        specifier: workspace:*
+        version: link:packages/prettier-config
       eslint:
         specifier: ^8.44.0
         version: 8.44.0
