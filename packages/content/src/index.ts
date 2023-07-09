@@ -9,7 +9,12 @@
 import fs from "fs"
 
 import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
-import postProcess from "./postProcess"
+import {
+    fillTags,
+    generatePortfolioSVGs,
+    parseSeries,
+    sortDates,
+} from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
 import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
@@ -55,15 +60,15 @@ if (!fs.lstatSync(markdownPath + "/series").isDirectory())
  * Parse
  */
 
+// parse markdown
 recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
 recursiveParse(ParseMode.SERIES, markdownPath + "/series")
 recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
 
-/**
- * Post-process
- */
-
-postProcess()
+sortDates()
+fillTags()
+parseSeries()
+generatePortfolioSVGs()
 
 /**
  * Save results

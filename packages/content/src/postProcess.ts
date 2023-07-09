@@ -9,14 +9,7 @@ import skills from "./portfolio/skills.json"
 import { Badge } from "./types/types"
 import { writeToFile } from "./util"
 
-export default function postProcess() {
-    sortDates()
-    fillTags()
-    parseSeries()
-    generatePortfolioSVGs()
-}
-
-function sortDates() {
+export function sortDates() {
     const TmpDate = contentMap.date
     contentMap.date = {}
     Object.keys(TmpDate)
@@ -26,11 +19,11 @@ function sortDates() {
         })
 }
 
-function fillTags() {
+export function fillTags() {
     contentMap.meta.tags = Object.keys(contentMap.tags)
 }
 
-function parseSeries() {
+export function parseSeries() {
     // sort series map
     for (const seriesURL in seriesMap) {
         seriesMap[seriesURL].sort((a, b) => {
@@ -50,7 +43,7 @@ function parseSeries() {
     }
 }
 
-function generatePortfolioSVGs() {
+export function generatePortfolioSVGs() {
     /**
      * render skills.svg
      */
