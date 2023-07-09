@@ -40,7 +40,7 @@ export default function PostCard({ postData, className }: Props) {
                                 ))}
                         </TagList>
                         <hr />
-                        <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex flex-wrap items-center gap-x-4">
                             <div className="flex items-center gap-2 whitespace-nowrap">
                                 <FontAwesomeIcon icon={faCalendar} />
                                 {date || "Unknown date"}
