@@ -22,11 +22,18 @@ function getStoredThemeSetting(): Theme {
         !storedTheme ||
         (storedTheme != Theme.Dark && storedTheme != Theme.Light)
     ) {
-        localStorage.setItem(themeKey, Theme.Dark)
+        setTheme(Theme.Dark)
         return Theme.Dark
     }
 
     return storedTheme
+}
+
+/**
+ * Sets theme setting without applying them
+ */
+function setTheme(targetTheme: Theme) {
+    localStorage.setItem(themeKey, targetTheme)
 }
 
 /**
@@ -43,10 +50,15 @@ function applyTheme() {
 export const useTheme = create<ThemeState>()((set) => {
     applyTheme()
 
+    addEventListener("storage", () => {
+        setTheme(getStoredThemeSetting())
+        applyTheme()
+    })
+
     return {
         theme: getStoredThemeSetting(),
         setTheme: (themeSetting: Theme) => {
-            localStorage.setItem(themeKey, themeSetting)
+            setTheme(themeSetting)
             applyTheme()
             set((state) => ({
                 ...state,
