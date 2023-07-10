@@ -1,9 +1,8 @@
 <script>
     import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
 
+    import { discordInviteLink } from "$/constants"
     import { browser } from "$app/environment"
-
-    import { discordInviteLink } from "../../constants"
 
     // redirect to developomp's discord server
     if (browser) {

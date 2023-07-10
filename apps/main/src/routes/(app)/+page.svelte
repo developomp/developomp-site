@@ -6,9 +6,9 @@
     import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
     import { onMount } from "svelte"
 
-    import HandWave from "../components/HandWave.svelte"
-    import { discordInviteLink } from "../constants"
-    import getAge from "../utils/getAge"
+    import HandWave from "$/components/HandWave.svelte"
+    import { discordInviteLink } from "$/constants"
+    import getAge from "$/utils/getAge"
 
     let age = getAge() // run immediately the first time
 
