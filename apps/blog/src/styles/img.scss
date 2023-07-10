@@ -5,3 +5,11 @@ img {
 table img {
     max-width: fit-content;
 }
+
+figure {
+    @apply my-4 text-center italic text-light-text-gray dark:text-dark-text-gray;
+
+    img {
+        @apply mx-auto;
+    }
+}

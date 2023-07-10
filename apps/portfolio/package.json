@@ -22,6 +22,7 @@
         "wouter": "^2.11.0"
     },
     "devDependencies": {
+        "@developomp-site/blog": "workspace:*",
         "@developomp-site/content": "workspace:*",
         "@developomp-site/prettier-config": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",

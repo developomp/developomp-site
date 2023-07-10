@@ -3,8 +3,15 @@ a {
 }
 
 /* The "#" thingy used beside headers */
-a.header-anchor {
-    @apply inline-block text-light-anchor-header dark:text-dark-anchor-header;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    a {
+        @apply mr-2 inline-block text-light-anchor-header dark:text-dark-anchor-header;
+    }
 }
 
 /* footnote anchors */

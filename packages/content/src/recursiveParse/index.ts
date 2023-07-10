@@ -29,7 +29,10 @@ export interface DataToPass {
  * @param {ParseMode} mode - parse mode
  * @param {string} path - path of file or folder
  */
-export function recursiveParse(mode: ParseMode, path: string): void {
+export async function recursiveParse(
+    mode: ParseMode,
+    path: string
+): Promise<void> {
     // get name of the file or folder that's currently being parsed
     const fileOrFolderName = path2FileOrFolderName(path)
 
@@ -41,11 +44,11 @@ export function recursiveParse(mode: ParseMode, path: string): void {
     // if it's a directory, call this function to every files/directories in it
     // if it's a file, parse it and then save it to file
     if (stats.isDirectory()) {
-        fs.readdirSync(path).map((childPath) => {
-            recursiveParse(mode, `${path}/${childPath}`)
-        })
+        for (const childPath of fs.readdirSync(path)) {
+            await recursiveParse(mode, `${path}/${childPath}`)
+        }
     } else if (stats.isFile()) {
-        parseFile(mode, path)
+        await parseFile(mode, path)
     }
 }
 
@@ -55,7 +58,7 @@ export function recursiveParse(mode: ParseMode, path: string): void {
  * @param {ParseMode} mode - decides which function to use to parse the file
  * @param {string} path - path of the markdown file
  */
-function parseFile(mode: ParseMode, path: string): void {
+async function parseFile(mode: ParseMode, path: string): Promise<void> {
     // stop if it is not a markdown file
     if (!path.endsWith(".md")) {
         console.log(`Ignoring non markdown file at: ${path}`)
@@ -67,8 +70,10 @@ function parseFile(mode: ParseMode, path: string): void {
      */
 
     const markdownRaw = fs.readFileSync(path, "utf8")
-    const markdownData = parseMarkdown(markdownRaw, path, mode)
-    const { humanizedDuration, totalWords } = readTimeEstimate(
+    const markdownData = await parseMarkdown(markdownRaw, path, mode)
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const { humanizedDuration, totalWords } = readTimeEstimate.default(
         markdownData.content,
         275,
         12,
@@ -87,15 +92,15 @@ function parseFile(mode: ParseMode, path: string): void {
 
     switch (mode) {
         case ParseMode.POSTS:
-            parsePost(dataToPass)
+            await parsePost(dataToPass)
             break
 
         case ParseMode.SERIES:
-            parseSeries(dataToPass)
+            await parseSeries(dataToPass)
             break
 
         case ParseMode.PORTFOLIO:
-            parseProjects(dataToPass)
+            await parseProjects(dataToPass)
             break
     }
 }

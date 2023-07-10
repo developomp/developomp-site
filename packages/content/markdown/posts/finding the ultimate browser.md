@@ -24,11 +24,12 @@ When I was old enough to understand language, my father introduced me to my firs
 At the time, it was everything I wished for and more, but little did I know,
 IE was already on the decline while another browser was quietly climbing up the market share.
 
-<p align="center">
-	<img alt="browser market share" src="/img/posts/linux-setup-script/browser-market-share-trend.avif" style="max-width: 100%;" />
-	<br />
-	source: <a href="https://gs.statcounter.com/browser-market-share/desktop/worldwide/#monthly-200901-202203" target="_blank">statcounter.com</a>
-</p>
+<figure>
+	<img title="browser market share" alt="browser market share" src="/img/posts/linux-setup-script/browser-market-share-trend.avif">
+	<figcaption>
+		source: <a href="https://gs.statcounter.com/browser-market-share/desktop/worldwide/#monthly-200901-202203" target="_blank">statcounter.com</a>
+	</figcaption>
+</figure>
 
 One day, probably after my father upgraded the PC to Windows 7,
 the default browser was changed to some colorful ball looking thing.

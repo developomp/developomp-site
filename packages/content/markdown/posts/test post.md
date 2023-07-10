@@ -15,7 +15,7 @@ This post exists to test various features such as markdown-to-html conversion, t
 
 ## Image
 
-<img src="/icon/icon.svg" alt="developomp icon" width="100">
+![alt text](/icon/icon.svg "title")
 
 ## Video
 
@@ -51,15 +51,15 @@ This post exists to test various features such as markdown-to-html conversion, t
 
 ## Footnote
 
-css only causes pain[^css_bad] and python is overrated[^python_is_overrated].
+everyone should use tailwind[^use_tailwind] and pineapple belongs on pizza[^pineapple_pizza_truth].
 
 ## Code
 
-Here's a `code`.
+Here's a `code`. Here are color chips `#FFFFFF` `#E06C75` `#61AFEF` `#E5C07B`.
 
-```python {7,12,14-15}
+```python
 print("And here's a language-specific code block")
-# with comments and line highlighting!
+# with comments!
 
 x = 256
 y = 256
@@ -81,13 +81,58 @@ print(z is w) # False. id(z) is not equal to id(w)
 >
 > > nested blockquote
 
-**bold**<br />
-_italic_<br />
-~~strikethrough~~<br />
-<u>underlined</u><br />
-==marked==<br />
-this is a ^superscript^ (soon^TM^)<br />
-and this is a ~subscript~ (H~2~O)
+**bold**
+_italic_
+~~strikethrough~~
+<u>underlined</u>
+==marked==
+=a=marked with color amber==
+=b=blue==
+=c=cyan==
+=d=brown==
+=f=fuchsia==
+=g=green==
+=h=hotpink==
+=l=lime==
+=m=magenta==
+=n=navyblue==
+=o=orange==
+=p=purple==
+=q=pink==
+=r=red==
+=s=silver==
+=t=teal==
+=v=violet==
+=x=gray==
+=y=yellow==.
+
+This is a ^superscript^ (soon^TM^) and this is a ~subscript~ (H~2~O)
+
+## Callouts & Directives
+
+:::note
+Some **content** with _Markdown_ `syntax`.
+:::
+
+:::commend
+Some **content** with _Markdown_ `syntax`.
+:::
+
+:::warn
+Some **content** with _Markdown_ `syntax`.
+:::
+
+:::deter
+Some **content** with _Markdown_ `syntax`.
+:::
+
+:::assert
+Some **content** with _Markdown_ `syntax`.
+:::
+
+:::note{title="Custom <u>title</u> using **directives**"}
+Some **content** with _Markdown_ `syntax`.
+:::
 
 ## CSS styling
 
@@ -144,5 +189,5 @@ Lorem ipsum blah blah.
 
 <!-- Footnotes -->
 
-[^css_bad]: Based on my experience building this website, Dec 2021.
-[^python_is_overrated]: Based on my infinite wisdom, Dec 2021.
+[^use_tailwind]: Based on my experience building this website
+[^pineapple_pizza_truth]: Based on my infinite wisdom

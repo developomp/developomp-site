@@ -1,58 +1,48 @@
-import "katex/contrib/mhchem" // chemical formula
+import "katex/contrib/mhchem" // chemical formula, https://katex.org/docs/node.html#using-mhchem-extension
 
+import remarkCalloutDirectives from "@microflash/remark-callout-directives"
 import matter from "gray-matter"
-import hljs from "highlight.js" // code block syntax highlighting
-import { JSDOM } from "jsdom" // HTML DOM parsing
-import katex from "katex" // rendering mathematical expression
-import markdownIt from "markdown-it" // rendering markdown
-import markdownItAnchor from "markdown-it-anchor" // markdown anchor
-import markdownItFootnote from "markdown-it-footnote" // markdown footnote
-import highlightLines from "markdown-it-highlight-lines" // highlighting specific lines in code blocks
-import markDownItMark from "markdown-it-mark" // text highlighting
-import markdownItSub from "markdown-it-sub" // markdown subscript
-import markdownItSup from "markdown-it-sup" // markdown superscript
-import markdownItTaskCheckbox from "markdown-it-task-checkbox" // a TODO list checkboxes
-import markdownItTexMath from "markdown-it-texmath" // rendering mathematical expression
-import toc from "markdown-toc" // table of contents generation
-import slugify from "slugify"
+import { JSDOM } from "jsdom"
+import toc from "markdown-toc"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
+import rehypeColorChips from "rehype-color-chips"
+import rehypeHighlight from "rehype-highlight"
+import rehypeKatex from "rehype-katex"
+import rehypeRaw from "rehype-raw"
+import rehypeSlug from "rehype-slug"
+import rehypeStringify from "rehype-stringify"
+import rehypeTitleFigure from "rehype-title-figure"
+import remarkDirective from "remark-directive"
+import remarkFlexibleMarkers from "remark-flexible-markers"
+import remarkFrontmatter from "remark-frontmatter"
+import remarkGfm from "remark-gfm"
+import remarkMath from "remark-math"
+import remarkParse from "remark-parse"
+import remarkRehype from "remark-rehype"
+import supersub from "remark-supersub"
+import { unified } from "unified"
 
 import { MarkdownData, ParseMode } from "./types/types"
 import { nthIndex } from "./util"
 
-const slugifyIt = (s: string) => slugify(s, { lower: true, strict: true })
-
-const md = markdownIt({
-    // https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
-    highlight: (str, lang) => {
-        if (lang && hljs.getLanguage(lang)) {
-            try {
-                return hljs.highlight(str, { language: lang }).value
-                // eslint-disable-next-line no-empty
-            } catch (error) {}
-        }
-
-        return "" // use external default escaping
-    },
-    html: true,
-})
-    .use(markdownItTexMath, {
-        engine: katex,
-        delimiters: "dollars",
-    })
-    .use(markdownItAnchor, {
-        permalink: markdownItAnchor.permalink.ariaHidden({
-            placement: "before",
-            symbol: "#",
-            renderHref: (s) => `#${slugifyIt(s)}`,
-        }),
-        slugify: slugifyIt,
-    })
-    .use(markdownItTaskCheckbox)
-    .use(markDownItMark)
-    .use(markdownItSub)
-    .use(markdownItSup)
-    .use(highlightLines)
-    .use(markdownItFootnote)
+const processor = unified() // interface for remark and rehype
+    .use(remarkParse) // markdown to AST
+    .use(remarkGfm, { singleTilde: false }) // https://github.com/remarkjs/remark-gfm
+    .use(supersub) // https://github.com/Symbitic/remark-plugins/tree/master/packages/remark-supersub
+    .use(remarkDirective) // https://github.com/remarkjs/remark-directive
+    .use(remarkCalloutDirectives) // https://github.com/Microflash/remark-callout-directives
+    .use(remarkMath) // https://github.com/remarkjs/remark-math
+    .use(remarkFlexibleMarkers) // https://github.com/ipikuka/remark-flexible-markers
+    .use(remarkFrontmatter, ["yaml", "toml"]) // https://github.com/remarkjs/remark-frontmatter
+    .use(remarkRehype, { allowDangerousHtml: true }) // markdown to HTML
+    .use(rehypeRaw) // https://github.com/rehypejs/rehype-raw
+    .use(rehypeSlug) // https://github.com/rehypejs/rehype-slug
+    .use(rehypeTitleFigure) // https://github.com/y-temp4/rehype-title-figure
+    .use(rehypeAutolinkHeadings, { content: { type: "text", value: "#" } }) // https://github.com/rehypejs/rehype-autolink-headings
+    .use(rehypeHighlight) // https://github.com/rehypejs/rehype-highlight
+    .use(rehypeKatex) // math and formula and stuff
+    .use(rehypeColorChips) // https://github.com/shreshthmohan/rehype-color-chips
+    .use(rehypeStringify) // syntax tree (hast) to HTML
 
 /**
  * parse the front matter if it exists
@@ -61,11 +51,11 @@ const md = markdownIt({
  * @param {string} path - filename of the markdown file
  * @param {ParseMode} mode
  */
-export default function parseMarkdown(
+export default async function parseMarkdown(
     markdownRaw: string,
     path: string,
     mode: ParseMode
-): MarkdownData {
+): Promise<MarkdownData> {
     const fileHasFrontMatter = markdownRaw.startsWith("---")
 
     const frontMatter = fileHasFrontMatter
@@ -83,31 +73,24 @@ export default function parseMarkdown(
 
         if (mode === ParseMode.PORTFOLIO) {
             if (frontMatter.overview) {
-                frontMatter.overview = md.render(frontMatter.overview)
+                frontMatter.overview = String(
+                    processor.processSync(frontMatter.overview)
+                )
             }
         }
     }
 
-    //
-    // work with rendered DOM
-    //
-
-    const dom = new JSDOM(
-        md.render(
-            fileHasFrontMatter
-                ? markdownRaw.slice(nthIndex(markdownRaw, "---", 2) + 3)
-                : markdownRaw
-        ) || ""
+    frontMatter.content = touchupHTML(
+        String(processor.processSync(markdownRaw))
     )
 
-    // add .hljs class to all block codes
+    return frontMatter as MarkdownData
+}
 
-    dom.window.document.querySelectorAll("pre > code").forEach((item) => {
-        item.classList.add("hljs")
-    })
+function touchupHTML(html: string): string {
+    const dom = new JSDOM(html)
 
     // add parent div to tables (horizontally scroll table on small displays)
-
     dom.window.document.querySelectorAll("table").forEach((item) => {
         // `element` is the element you want to wrap
         const parent = item.parentNode
@@ -119,13 +102,27 @@ export default function parseMarkdown(
         wrapper.appendChild(item)
     })
 
-    frontMatter.content = dom.window.document.documentElement.innerHTML
+    // add hr before footnotes
+    dom.window.document.querySelectorAll(".footnotes").forEach((item) => {
+        item.parentNode?.insertBefore(
+            dom.window.document.createElement("hr"),
+            item
+        )
+    })
 
-    return frontMatter as MarkdownData
+    // https://developer.chrome.com/docs/lighthouse/best-practices/external-anchors-use-rel-noopener/
+    // https://github.com/cure53/DOMPurify/issues/317#issuecomment-698800327
+    dom.window.document.querySelectorAll("a").forEach((item) => {
+        if ("target" in item && item["target"] === "_blank")
+            item.setAttribute("rel", "noopener")
+    })
+
+    return dom.window.document.documentElement.innerHTML
 }
 
-export function generateToc(markdownRaw: string): string {
-    return md.render(toc(markdownRaw).content, {
-        slugify: slugifyIt,
-    })
+/**
+ * Generate Table of Contents as a HTML string
+ */
+export async function generateToc(markdownRaw: string): Promise<string> {
+    return String(processor.processSync(toc(markdownRaw).content))
 }

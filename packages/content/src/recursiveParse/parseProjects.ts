@@ -1,4 +1,5 @@
-import icons, { SimpleIcon } from "simple-icons"
+import type { SimpleIcon } from "simple-icons"
+import * as icons from "simple-icons"
 import tinycolor from "tinycolor2"
 
 import { portfolioData } from ".."
@@ -7,9 +8,11 @@ import { generateToc } from "../parseMarkdown"
 import { writeToFile } from "../util"
 import { DataToPass } from "."
 
-export default function parseProjects(data: DataToPass): void {
-    const { urlPath, markdownRaw, markdownData } = data
-
+export default async function parseProjects({
+    urlPath,
+    markdownRaw,
+    markdownData,
+}: DataToPass): Promise<void> {
     if (markdownData.badges) {
         ;(markdownData.badges as string[]).forEach((slug) => {
             // todo: handle cases when icon is not on simple-icons
@@ -48,7 +51,7 @@ export default function parseProjects(data: DataToPass): void {
         `${contentDirectoryPath}${urlPath}.json`,
         JSON.stringify({
             content: markdownData.content,
-            toc: generateToc(markdownRaw),
+            toc: await generateToc(markdownRaw),
         })
     )
 }

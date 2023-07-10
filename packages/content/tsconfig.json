@@ -1,13 +1,15 @@
 {
     "include": ["src"],
-    "ts-node": {
-        "esm": true
-    },
     "compilerOptions": {
+        "outDir": "build",
+        "target": "ES2022",
+        "module": "ESNext",
         "moduleResolution": "Node",
         "noImplicitAny": false,
-        "resolveJsonModule": true,
         "esModuleInterop": true,
+        "skipLibCheck": true,
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true,
         "strict": true
     },
     "exclude": ["dist", "node_modules"]

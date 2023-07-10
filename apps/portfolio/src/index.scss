@@ -18,27 +18,6 @@ body {
     @apply m-0 flex h-full w-full scroll-m-16 flex-col items-center p-0;
 }
 
-a {
-    @apply text-anchor visited:text-anchor hover:text-anchor-accent active:text-anchor-accent;
-}
-
-img {
-    @apply w-fit;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    @apply font-bold;
-
-    a {
-        @apply dark:text-dark-anchor-header;
-    }
-}
-
 ul,
 ol {
     list-style: circle;

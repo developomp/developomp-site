@@ -6,7 +6,7 @@ import { PostData } from "../types/types"
 import { writeToFile } from "../util"
 import { DataToPass } from "."
 
-export default function parsePost(data: DataToPass): void {
+export default async function parsePost(data: DataToPass): Promise<void> {
     const {
         urlPath,
         markdownRaw,
@@ -70,7 +70,7 @@ export default function parsePost(data: DataToPass): void {
         `${contentDirectoryPath}${urlPath}.json`,
         JSON.stringify({
             content: markdownData.content,
-            toc: generateToc(markdownRaw),
+            toc: await generateToc(markdownRaw),
         })
     )
 }

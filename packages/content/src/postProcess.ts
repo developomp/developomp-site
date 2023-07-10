@@ -5,7 +5,7 @@ import { optimize } from "svgo"
 import tinycolor from "tinycolor2"
 
 import { contentMap, seriesMap } from "."
-import skills from "./portfolio/skills.json"
+import skills from "./portfolio/skills.json" assert { type: "json" }
 import { Badge } from "./types/types"
 import { writeToFile } from "./util"
 

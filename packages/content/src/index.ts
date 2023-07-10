@@ -34,53 +34,57 @@ export const portfolioData: PortfolioData = {
     projects: {},
 }
 
-/**
- * Delete previously generated files
- */
+async function main() {
+    /**
+     * Delete previously generated files
+     */
 
-try {
-    fs.rmSync("dist", { recursive: true })
-    // eslint-disable-next-line no-empty
-} catch (err) {}
+    try {
+        fs.rmSync("dist", { recursive: true })
+        // eslint-disable-next-line no-empty
+    } catch (err) {}
 
-/**
- * Checking
- */
+    /**
+     * Checking
+     */
 
-if (!fs.lstatSync(markdownPath).isDirectory())
-    throw Error("Invalid markdown path")
+    if (!fs.lstatSync(markdownPath).isDirectory())
+        throw Error("Invalid markdown path")
 
-if (!fs.lstatSync(markdownPath + "/posts").isDirectory())
-    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
+    if (!fs.lstatSync(markdownPath + "/posts").isDirectory())
+        throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
-if (!fs.lstatSync(markdownPath + "/series").isDirectory())
-    throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
+    if (!fs.lstatSync(markdownPath + "/series").isDirectory())
+        throw Error(`Cannot find directory: ${markdownPath + "/posts"}`)
 
-/**
- * Parse
- */
+    /**
+     * Parse
+     */
 
-// parse markdown
-recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
-recursiveParse(ParseMode.SERIES, markdownPath + "/series")
-recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
+    // parse markdown
+    await recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
+    await recursiveParse(ParseMode.SERIES, markdownPath + "/series")
+    await recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
 
-sortDates()
-fillTags()
-parseSeries()
-generatePortfolioSVGs()
+    sortDates()
+    fillTags()
+    parseSeries()
+    generatePortfolioSVGs()
 
-/**
- * Save results
- */
+    /**
+     * Save results
+     */
 
-fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
-fs.writeFileSync(
-    portfolioFilePath,
-    JSON.stringify({
-        ...portfolioData,
-        skills: Array.from(portfolioData.skills),
-    })
-)
+    fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
+    fs.writeFileSync(
+        portfolioFilePath,
+        JSON.stringify({
+            ...portfolioData,
+            skills: Array.from(portfolioData.skills),
+        })
+    )
 
-saveIndex()
+    saveIndex()
+}
+
+main()

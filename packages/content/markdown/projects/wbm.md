@@ -26,16 +26,12 @@ The War Brokers Mods (WBM) is a mod for the game
   different aspects of the game
 - [OBS overlay][overlays] - Customizable overlays for [OBS studio](https://github.com/obsproject/obs-studio)
 
-<p align="center">
-	<img alt="Overlay image" src="/img/portfolio/wbm-overlays.avif" />
-</p>
+![Overlay image](/img/portfolio/wbm-overlays.avif "Overlay image")
 
 - [installer][installer] - Utility for installing updating the mod. Built with [tauri][tauri],
   [rust][rust], [svelte][svelte], and [tailwind css][tailwindcss].
 
-<p align="center">
-	<img alt="Installer image" src="/img/portfolio/wbm-installer.avif" />
-</p>
+![Installer image](/img/portfolio/wbm-installer.avif "Installer image")
 
 [mod]: https://github.com/War-Brokers-Mods/WBM
 [overlays]: https://github.com/War-Brokers-Mods/WBM-Overlays
