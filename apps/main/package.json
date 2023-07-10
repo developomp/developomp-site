@@ -4,8 +4,9 @@
     "type": "module",
     "private": true,
     "scripts": {
+        "cp": "cp ../../packages/content/dist/skills.svg ../../packages/content/dist/resume.pdf static",
         "dev": "vite dev",
-        "build": "cp ../../packages/content/dist/skills.svg static && vite build",
+        "build": "pnpm cp && vite build",
         "clean": "rm -rf .svelte-kit .turbo build node_modules vite.config.ts.timestamp-*",
         "preview": "vite preview",
         "lint": "eslint ."

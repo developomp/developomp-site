@@ -13,6 +13,9 @@
         ],
         "portfolio": [
           "developomp-site-portfolio"
+        ],
+        "resume": [
+          "developomp-site-resume"
         ]
       }
     }

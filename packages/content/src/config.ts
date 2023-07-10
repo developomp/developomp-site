@@ -6,3 +6,4 @@ export const iconsDirectoryPath = `${outPath}/icons`
 export const mapFilePath = `${outPath}/map.json`
 export const portfolioFilePath = `${outPath}/portfolio.json`
 export const searchIndexFilePath = `${outPath}/search.json`
+export const resumeFilePath = `${outPath}/resume.pdf`

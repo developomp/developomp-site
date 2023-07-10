@@ -32,8 +32,9 @@ developomp-site is a monorepo managed by [turborepo](https://turbo.build/repo)
 and pnpm workspace.
 
 - https://developomp.com - about me, built with **SvelteKit**
-- https://blog.developomp.com - Blogging site, built with **React + CRA**
+- https://blog.developomp.com - Blogging site, built with **React + Vite**
 - https://portfolio.developomp.com - Portfolio, built with **React + Vite**
+- https://resume.developomp.com - Portfolio, simply redirects to https://developomp.com/resume
 
 The following services/technologies are used by the project:
 

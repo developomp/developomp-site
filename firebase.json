@@ -35,6 +35,19 @@
                 }
             ],
             "ignore": ["**/.*"]
+        },
+        {
+            "target": "resume",
+            "cleanUrls": true,
+            "public": "apps/resume/dist",
+            "rewrites": [
+                {
+                    "source": "**",
+                    "destination": "https://developomp.com/resume",
+                    "type": 301
+                }
+            ],
+            "ignore": ["**/.*"]
         }
     ]
 }
