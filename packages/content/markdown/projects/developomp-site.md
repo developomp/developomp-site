@@ -15,7 +15,6 @@ badges:
   - react
   - svelte
   - vite
-  - createreactapp
   - eslint
   - prettier
   - html5
