@@ -4,15 +4,13 @@ overview: An attempt to bring together community projects related to War Brokers
 image: /img/portfolio/wbp.avif
 repo: https://github.com/War-Brokers
 badges:
-  - firebase
-  - githubactions
-  - godotengine
   - csharp
   - dotnet
-  - javascript
   - typescript
+  - godotengine
   - express
   - swagger
+  - firebase
 ---
 
 ## Introduction

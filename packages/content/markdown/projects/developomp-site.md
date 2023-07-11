@@ -4,25 +4,10 @@ overview: my websites for blogging, portfolio, resume, etc.
 image: /img/portfolio/developomp-site.avif
 repo: https://github.com/developomp/developomp-site
 badges:
-  - githubactions
-  - turborepo
   - typescript
-  - javascript
-  - nodedotjs
-  - pnpm
-  - firebase
-  - amazonaws
+  - tailwindcss
   - react
   - svelte
-  - vite
-  - eslint
-  - prettier
-  - html5
-  - markdown
-  - tailwindcss
-  - postcss
-  - css3
-  - sass
 ---
 
 ## Introduction
@@ -34,12 +19,6 @@ and pnpm workspace.
 - https://blog.developomp.com - Blogging site, built with **React + Vite**
 - https://portfolio.developomp.com - Portfolio, built with **React + Vite**
 - https://resume.developomp.com - Portfolio, simply redirects to https://developomp.com/resume
-
-The following services/technologies are used by the project:
-
-- **Google Firebase** - site hosting & CDN
-- **GitHub Action** - Automated Building & Deployment
-- **AWS Route 53** - Domain Management
 
 ## Interesting Stuff
 

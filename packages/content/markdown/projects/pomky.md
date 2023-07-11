@@ -7,6 +7,7 @@ badges:
   - rust
   - gtk
   - cairographics
+  - linux
 ---
 
 ## Introduction

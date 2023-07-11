@@ -4,12 +4,10 @@ overview: My Arch Linux desktop setup
 image: /img/portfolio/pompup.avif
 repo: https://github.com/developomp/pompup
 badges:
-  - githubactions
-  - githubpages
-  - gnubash
   - go
-  - linux
   - python
+  - gnubash
+  - linux
 ---
 
 ## Introduction

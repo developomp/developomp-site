@@ -4,16 +4,12 @@ overview: A game mod for a unity game. Provides in-game UI and OBS overlays.
 image: /img/portfolio/wbm.avif
 repo: https://github.com/War-Brokers-Mods
 badges:
-  - githubactions
-  - unity
+  - rust
   - csharp
   - dotnet
-  - javascript
-  - html5
-  - css3
   - svelte
   - tailwindcss
-  - rust
+  - unity
   - tauri
 ---
 

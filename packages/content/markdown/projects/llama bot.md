@@ -4,9 +4,8 @@ overview: A discord bot.
 image: /img/portfolio/llama-bot.avif
 repo: https://github.com/developomp/llama-bot
 badges:
-  - nodedotjs
-  - javascript
   - typescript
+  - firebase
 ---
 
 ## Introduction
