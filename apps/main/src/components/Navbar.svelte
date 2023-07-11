@@ -24,7 +24,6 @@
                 Portfolio
             </a>
         </li>
-        <li class="text-dark-footer-text">Resume (WIP)</li>
     </ul>
 </nav>
 
