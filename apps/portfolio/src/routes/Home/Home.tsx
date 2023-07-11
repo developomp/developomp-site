@@ -33,7 +33,7 @@ const Home: FC = () => {
 
     return (
         <>
-            <h1 className="mb-8 text-5xl">developomp's Portfolio</h1>
+            <h1 className="mb-8">developomp's Portfolio</h1>
             <hr />
             <div className="my-4 flex flex-wrap">{skills}</div>
             <div className="projects">{projects}</div>

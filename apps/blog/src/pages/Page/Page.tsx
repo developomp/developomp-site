@@ -69,7 +69,7 @@ export default function Page() {
                     />
                 )}
 
-                <h1 className="mb-4 leading-10">{pageData.title}</h1>
+                <h1 className="mb-4">{pageData.title}</h1>
 
                 <small>
                     {/* Post tags */}
