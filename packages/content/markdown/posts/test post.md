@@ -168,23 +168,27 @@ $$
 
 # h1
 
+content
+
 ## h2
+
+content
 
 ### h3
 
-Lorem ipsum blah blah.
+content
 
 #### h4
 
-Lorem ipsum blah blah.
+content
 
 ##### h5
 
-Lorem ipsum blah blah.
+content
 
 ###### h6
 
-Lorem ipsum blah blah.
+content
 
 <!-- Footnotes -->
 
