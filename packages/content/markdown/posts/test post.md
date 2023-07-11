@@ -11,7 +11,7 @@ This post exists to test various features such as markdown-to-html conversion, t
 
 ## Link
 
-<a href="/search">Go to search</a>
+<a href="/">Go to Homepage</a>
 
 ## Image
 
@@ -75,11 +75,13 @@ print(z is w) # False. id(z) is not equal to id(w)
 # All integers between -5 and 256 share the same id.
 ```
 
-## Text styling
+## block quotes
 
 > blockquote
 >
 > > nested blockquote
+
+## Text styling
 
 **bold**
 _italic_
@@ -108,6 +110,14 @@ _italic_
 
 This is a ^superscript^ (soon^TM^) and this is a ~subscript~ (H~2~O)
 
+<p align="center">
+	centered paragraph
+</p>
+
+<p style="color:rgb(255,0,0)">
+	RED
+</p>
+
 ## Callouts & Directives
 
 :::note
@@ -134,16 +144,6 @@ Some **content** with _Markdown_ `syntax`.
 Some **content** with _Markdown_ `syntax`.
 :::
 
-## CSS styling
-
-<p align="center">
-	centered paragraph
-</p>
-
-<p style="color:rgb(255,0,0)">
-	RED
-</p>
-
 ## Key
 
 Do you remember the first time you pressed <kbd>Ctrl</kbd>+<kbd>C</kbd> in terminal?
@@ -166,10 +166,9 @@ $$
 
 ## headers
 
-Headers have different size and indentation depending on their level.
+# h1
 
-- Post title: `h1`
-- this section: `h2`
+## h2
 
 ### h3
 
