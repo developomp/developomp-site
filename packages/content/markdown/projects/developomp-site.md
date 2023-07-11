@@ -1,7 +1,7 @@
 ---
 name: developomp-site
 overview: my websites for blogging, portfolio, resume, etc.
-image: /img/portfolio/developomp.com.avif
+image: /img/portfolio/developomp-site.avif
 repo: https://github.com/developomp/developomp-site
 badges:
   - githubactions
