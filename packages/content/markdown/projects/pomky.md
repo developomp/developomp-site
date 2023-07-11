@@ -1,6 +1,6 @@
 ---
 name: pomky
-overview: A gtk-based, [conky](https://github.com/brndnmtthws/conky)-like system monitor written in rust.
+overview: A gtk-based, conky-like system monitor written in rust.
 image: /img/portfolio/pomky.avif
 repo: https://github.com/developomp/pomky
 badges:
