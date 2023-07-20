@@ -5,25 +5,28 @@
 @tailwind components;
 @tailwind utilities;
 
+html,
+body,
+#root {
+    @apply overflow-x-hidden;
+}
+
+html,
+body {
+    @apply h-screen;
+}
+
 body {
     /* SvelteKit has 8px margin by default for some reason */
     @apply m-0;
 }
 
 #root {
+    /* spacing */
+    @apply h-full;
+
     /* color */
     @apply font-noto-sans dark:bg-dark-ui-bg dark:text-dark-text-default;
-}
-
-main {
-    /* style */
-    @apply flex flex-col items-center;
-
-    /* spacing */
-    @apply mx-auto my-0 min-h-screen w-full max-w-5xl px-8 py-0 pb-20;
-
-    /* text */
-    @apply text-center font-normal;
 }
 
 a {
@@ -43,19 +46,17 @@ b {
 }
 
 .social-profile {
-    @apply p-5;
+    @apply hover:rounded-2xl hover:bg-dark-ui-hover;
 
     * {
         @apply text-[#888888] duration-150 ease-out;
     }
 
     svg {
-        @apply w-10;
+        @apply m-5 w-10;
     }
 
     &:hover {
-        @apply rounded-2xl bg-dark-ui-hover;
-
         * {
             @apply text-white;
         }
