@@ -6,7 +6,6 @@ repo: https://github.com/War-Brokers-Mods
 badges:
   - rust
   - csharp
-  - dotnet
   - svelte
   - tailwindcss
   - unity

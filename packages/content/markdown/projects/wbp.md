@@ -5,9 +5,7 @@ image: /img/portfolio/wbp.avif
 repo: https://github.com/War-Brokers
 badges:
   - csharp
-  - dotnet
   - typescript
-  - godotengine
   - express
   - swagger
   - firebase
