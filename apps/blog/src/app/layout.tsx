@@ -65,7 +65,12 @@ export default function RootLayout({
             <body className="overflow-x-hidden overflow-y-scroll">
                 <noscript>
                     <figure>
-                        <Image src="/img/nojs.avif" alt="No javascript?" />
+                        <Image
+                            src="/img/nojs.avif"
+                            height={500}
+                            width={544}
+                            alt="No javascript?"
+                        />
                         <figcaption>
                             Image compressed down to 4.5kB because you probably
                             have potato internet :D
