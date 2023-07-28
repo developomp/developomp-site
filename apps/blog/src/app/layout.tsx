@@ -57,7 +57,7 @@ export default function RootLayout({
                 <link
                     rel="shortcut icon"
                     type="image/svg+xml"
-                    href="favicon.svg"
+                    href="/favicon.svg"
                 />
                 <meta name="theme-color" content="#000000" />
             </head>
