@@ -3,7 +3,7 @@ import "./Page.scss"
 import { type Metadata } from "next"
 import { type ParsedUrlQuery } from "querystring"
 
-import NotFound, { metadata as notFoundMetadata } from "@/app/not-found"
+import { metadata as notFoundMetadata } from "@/app/not-found"
 import Card from "@/components/Card"
 import PostCard from "@/components/PostCard"
 import Tag from "@/components/Tag"
@@ -57,9 +57,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-    if (params.category != "posts" && params.category != "series")
-        return <NotFound />
-
     const { pageData, pageType } = await getData(params)
 
     return (
