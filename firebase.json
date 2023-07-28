@@ -4,12 +4,6 @@
             "target": "main",
             "cleanUrls": true,
             "public": "apps/main/build",
-            "rewrites": [
-                {
-                    "source": "**",
-                    "destination": "/index.html"
-                }
-            ],
             "ignore": ["**/.*"]
         },
         {
