@@ -25,7 +25,10 @@ export default function Toc({ data }: Props) {
 
     return (
         <>
-            <button onClick={() => setIsTocOpened((prev) => !prev)}>
+            <button
+                className="w-full"
+                onClick={() => setIsTocOpened((prev) => !prev)}
+            >
                 <strong>
                     Table of Contents{" "}
                     <FontAwesomeIcon
