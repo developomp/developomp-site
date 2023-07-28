@@ -4,10 +4,19 @@ input[type="checkbox"] {
     height: 13px;
 }
 
-input[type="checkbox"][disabled][checked] {
-    filter: invert(100%) brightness(5);
+:not(.dark) {
+    input[type="checkbox"][disabled] {
+        filter: invert(20%);
+    }
+
+    input[type="checkbox"][disabled][checked] {
+        filter: invert(97%) brightness(2);
+    }
 }
 
-input[type="checkbox"][disabled] {
-    filter: invert(100%) brightness(5);
+:is(.dark) {
+    input[type="checkbox"][disabled],
+    input[type="checkbox"][disabled][checked] {
+        filter: invert(100%) brightness(5);
+    }
 }
