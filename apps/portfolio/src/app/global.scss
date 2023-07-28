@@ -11,11 +11,7 @@ html {
 }
 
 body {
-    @apply flex min-h-screen w-full flex-col items-center;
-}
-
-#root {
-    @apply m-0 flex h-full w-full scroll-m-16 flex-col items-center p-0;
+    @apply m-0 flex h-full min-h-screen w-full scroll-m-16 flex-col items-center p-0;
 }
 
 ul,

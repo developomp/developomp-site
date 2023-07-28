@@ -1,5 +1,5 @@
+import Link from "next/link"
 import { type FC } from "react"
-import { Link } from "wouter"
 
 const Header: FC = () => {
     return (
@@ -7,9 +7,10 @@ const Header: FC = () => {
             <div className="my-0 flex h-16 w-full max-w-5xl items-center">
                 <Link
                     className="flex items-center"
-                    to="/"
+                    href="/"
                     aria-label="homepage"
                 >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                         className="m-4 block h-10 cursor-pointer"
                         src="/favicon.svg"

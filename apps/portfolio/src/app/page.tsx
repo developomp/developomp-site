@@ -1,9 +1,6 @@
-import "./style.scss"
-
 import portfolio from "@developomp-site/content/dist/portfolio.json"
 import type { PortfolioProject } from "@developomp-site/content/src/types/types"
-import { useMeta, useTitle } from "hoofd"
-import { type FC } from "react"
+import { Metadata } from "next"
 
 import Badge from "@/components/Badge"
 import ProjectCard from "@/components/ProjectCard"
@@ -27,10 +24,12 @@ for (const projectID in portfolio.projects) {
     )
 }
 
-const Home: FC = () => {
-    useTitle("Home")
-    useMeta({ property: "og:title", content: "Home" })
+export const metadata: Metadata = {
+    metadataBase: new URL("https://blog.developomp.com"),
+    title: "pomp's portfolio | Home",
+}
 
+export default function Page() {
     return (
         <>
             <h1 className="mb-8">developomp's Portfolio</h1>
@@ -40,5 +39,3 @@ const Home: FC = () => {
         </>
     )
 }
-
-export default Home

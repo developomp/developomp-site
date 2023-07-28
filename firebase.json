@@ -22,12 +22,6 @@
             "target": "portfolio",
             "cleanUrls": true,
             "public": "apps/portfolio/dist",
-            "rewrites": [
-                {
-                    "source": "**",
-                    "destination": "/index.html"
-                }
-            ],
             "ignore": ["**/.*"]
         }
     ]

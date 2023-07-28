@@ -1,3 +1,5 @@
+"use client"
+
 import "./style.scss"
 
 import { type Badge as BadgeType } from "@developomp-site/content/src/types/types"
