@@ -8,6 +8,7 @@ badges:
   - tailwindcss
   - react
   - svelte
+  - nextdotjs
 ---
 
 ## Introduction
