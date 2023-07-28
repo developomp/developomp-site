@@ -6,7 +6,7 @@
         "dev": "open-cli http://localhost:3000 && next dev",
         "build": "next build",
         "lint": "next lint",
-        "clean": "rm -rf .turbo build node_modules"
+        "clean": "rm -rf .next .turbo build node_modules"
     },
     "devDependencies": {
         "@developomp-site/content": "workspace:*",
