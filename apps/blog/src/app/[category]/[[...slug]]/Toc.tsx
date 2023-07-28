@@ -1,3 +1,5 @@
+"use client"
+
 import "./Toc.scss"
 
 import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons"
@@ -10,8 +12,9 @@ interface Props {
 }
 
 export default function Toc({ data }: Props) {
-    const [isTocOpened, setIsTocOpened] = useState(
-        localStorage.getItem("isTocOpened") === "true"
+    const [isTocOpened, setIsTocOpened] = useState<boolean>(
+        typeof window !== "undefined" &&
+            localStorage.getItem("isTocOpened") === "true"
     )
 
     useEffect(() => {

@@ -1,19 +1,21 @@
-import { useCallback, useEffect, useState } from "react"
-import { useLocation } from "wouter"
+"use client"
 
-const st = "scrollTop"
-const sh = "scrollHeight"
-const h = document.documentElement
-const b = document.body
+import { usePathname } from "next/navigation"
+import { useCallback, useEffect, useState } from "react"
 
 // https://stackoverflow.com/a/8028584/12979111
 function calculateScrollPercent() {
+    const st = "scrollTop"
+    const sh = "scrollHeight"
+    const h = document.documentElement
+    const b = document.body
+
     return ((h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight)) * 100
 }
 
 export default function ReadProgress() {
     const [scroll, setScroll] = useState(0)
-    const [location] = useLocation()
+    const pathname = usePathname()
     const scrollHandler = useCallback(() => {
         setScroll(calculateScrollPercent())
     }, [])
@@ -43,7 +45,7 @@ export default function ReadProgress() {
         setTimeout(() => {
             scrollHandler()
         }, 100)
-    }, [location])
+    }, [pathname])
 
     return (
         <div className="h-1 bg-light-scroll-progress-bg dark:bg-dark-scroll-progress-bg">

@@ -2,27 +2,47 @@ import type { PageData } from "@developomp-site/content/src/types/types"
 
 import contentMap from "@/contentMap"
 
+import { Params } from "./page"
+
 export enum PageType {
     POST,
     SERIES,
     SERIES_HOME,
 }
 
-export async function fetchContent(content_id: string) {
+export interface Data {
+    pageData: PageData
+    pageType: PageType
+}
+
+export async function getData(params: Params): Promise<Data> {
+    const contentID = `/${params.category}/${params.slug.join("/")}`
+
+    const content = await fetchContent(contentID)
+    const pageType = categorizePageType(contentID) || PageType.POST
+    const pageData = parsePageData(content, pageType, contentID)
+
+    return {
+        pageData,
+        pageType,
+    }
+}
+
+export async function fetchContent(contentID: string) {
     try {
         return await import(
-            `@developomp-site/content/dist/content${content_id}.json`
+            `@developomp-site/content/dist/content${contentID}.json`
         )
     } catch (err) {
         return
     }
 }
 
-export function categorizePageType(content_id: string): PageType | undefined {
-    if (content_id.startsWith("/post")) return PageType.POST
-    if (content_id.startsWith("/series")) {
+export function categorizePageType(contentID: string): PageType | undefined {
+    if (contentID.startsWith("/post")) return PageType.POST
+    if (contentID.startsWith("/series")) {
         // if the URL looks like /series/series-title (if the url has two slashes)
-        if ([...(content_id.match(/\//g) || [])].length == 2)
+        if ([...(contentID.match(/\//g) || [])].length == 2)
             return PageType.SERIES_HOME
 
         // if the URL looks like /series/series-title/post-title (if the url does not have 2 slashes)

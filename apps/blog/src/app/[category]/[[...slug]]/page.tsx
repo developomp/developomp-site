@@ -1,61 +1,66 @@
 import "./Page.scss"
 
-import type { PageData } from "@developomp-site/content/src/types/types"
-import { useMeta, useTitle } from "hoofd"
-import { useEffect, useState } from "react"
-import { useLocation } from "wouter"
+import { type Metadata } from "next"
+import { type ParsedUrlQuery } from "querystring"
 
+import NotFound, { metadata as notFoundMetadata } from "@/app/not-found"
 import Card from "@/components/Card"
-import Loading from "@/components/Loading"
 import PostCard from "@/components/PostCard"
 import Tag from "@/components/Tag"
 import TagList from "@/components/TagList"
 import contentMap from "@/contentMap"
 
-import NotFound from "../NotFound"
-import {
-    categorizePageType,
-    fetchContent,
-    PageType,
-    parsePageData,
-} from "./helper"
+import { getData, PageType } from "./helper"
 import Meta from "./Meta"
 import SeriesControlButtons from "./SeriesControlButtons"
 import Toc from "./Toc"
 
-export default function Page() {
-    const [location] = useLocation()
-    const [pageData, setPageData] = useState<PageData | undefined>(undefined)
-    const [pageType, setPageType] = useState<PageType>(PageType.POST)
-    const [isLoading, setLoading] = useState(true)
+export interface Params extends ParsedUrlQuery {
+    category: "posts" | "series"
+    slug: string[]
+}
 
-    useTitle(pageData?.title || "Loading")
-    useMeta({ property: "og:title", content: pageData?.title })
+interface Props {
+    params: Params
+}
 
-    useEffect(() => {
-        setPageData(undefined)
-        setLoading(true)
+export async function generateStaticParams(): Promise<Params[]> {
+    return Object.keys(contentMap.posts).map((key) => {
+        const contentID = key.replace(/\/$/, "") // remove trailing slash
+        const parts = contentID
+            .split("/") // /a/b/c/ => ['', 'a', 'b', 'c', '']
+            .filter((x) => x) // ['', 'a', 'b', 'c', ''] => ['a', 'b', 'c']
 
-        const content_id = location.replace(/\/$/, "") // remove trailing slash
+        const category = parts[0]
+        if (category !== "posts" && category !== "series")
+            throw "Invalid Page Type"
 
-        fetchContent(content_id).then((fetched_content) => {
-            const pageType = categorizePageType(content_id)
+        const slug = parts.slice(1) // ['a', 'b', 'c'] => ['b', 'c']
 
-            // stop loading without setting pageData so 404 page will display
-            if (!fetched_content || pageType === undefined) {
-                setLoading(false)
-                return
-            }
+        return { category, slug }
+    })
+}
 
-            setPageData(parsePageData(fetched_content, pageType, content_id))
-            setPageType(pageType)
-            setLoading(false)
-        })
-    }, [location])
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    if (params.category != "posts" && params.category != "series")
+        return notFoundMetadata
 
-    if (isLoading) return <Loading />
+    const { pageData } = await getData(params)
 
-    if (!pageData) return <NotFound />
+    return {
+        metadataBase: new URL("https://blog.developomp.com"),
+        title: pageData.title,
+        openGraph: {
+            title: pageData.title,
+        },
+    }
+}
+
+export default async function Page({ params }: Props) {
+    if (params.category != "posts" && params.category != "series")
+        return <NotFound />
+
+    const { pageData, pageType } = await getData(params)
 
     return (
         <>

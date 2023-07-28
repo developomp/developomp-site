@@ -1,3 +1,5 @@
+"use client"
+
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -15,7 +17,7 @@ export default function ThemeToggleButton() {
             aria-label="theme toggle"
         >
             {theme === Theme.Dark ? (
-                <FontAwesomeIcon icon={faMoon} />
+                <FontAwesomeIcon icon={faMoon} size={"1x"} />
             ) : (
                 <FontAwesomeIcon icon={faSun} />
             )}

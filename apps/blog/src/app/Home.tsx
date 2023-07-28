@@ -1,18 +1,16 @@
-import { useTitle } from "hoofd"
+"use client"
+
 import { type ReactNode, useEffect, useState } from "react"
 
 import PostCard from "@/components/PostCard"
+import ShowMoreButton from "@/components/ShowMoreButton"
 import contentMap from "@/contentMap"
-
-import ShowMoreButton from "./ShowMoreButton"
 
 const totalPosts = Object.keys(contentMap.posts).length
 
 export default function Home() {
     const [howMany, setHowMany] = useState(5)
     const [postCards, setPostCards] = useState<ReactNode[]>([])
-
-    useTitle("Home")
 
     useEffect(() => {
         const postCards: ReactNode[] = []

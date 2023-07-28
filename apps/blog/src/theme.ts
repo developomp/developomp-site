@@ -1,3 +1,5 @@
+"use client"
+
 import { create } from "zustand"
 
 const themeKey = "theme"
@@ -15,6 +17,8 @@ export type ThemeState = {
  * Reads site theme setting from local storage
  */
 function getStoredThemeSetting(): Theme {
+    if (typeof window === "undefined") return Theme.Dark
+
     const storedTheme = localStorage.getItem(themeKey)
 
     // fix invalid values
@@ -40,6 +44,8 @@ function setTheme(targetTheme: Theme) {
  * Applies tailwind theme using classes based on current theme setting
  */
 function applyTheme() {
+    if (typeof window === "undefined") return
+
     if (getStoredThemeSetting() === Theme.Dark) {
         document.documentElement.classList.add("dark")
     } else {
@@ -48,12 +54,14 @@ function applyTheme() {
 }
 
 export const useTheme = create<ThemeState>()((set) => {
-    applyTheme()
-
-    addEventListener("storage", () => {
-        setTheme(getStoredThemeSetting())
+    if (typeof window !== "undefined") {
         applyTheme()
-    })
+
+        addEventListener("storage", () => {
+            setTheme(getStoredThemeSetting())
+            applyTheme()
+        })
+    }
 
     return {
         theme: getStoredThemeSetting(),

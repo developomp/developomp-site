@@ -16,12 +16,6 @@
             "target": "blog",
             "cleanUrls": true,
             "public": "apps/blog/build",
-            "rewrites": [
-                {
-                    "source": "**",
-                    "destination": "/index.html"
-                }
-            ],
             "ignore": ["**/.*"]
         },
         {

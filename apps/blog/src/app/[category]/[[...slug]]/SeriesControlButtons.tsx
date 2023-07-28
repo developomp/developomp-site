@@ -4,7 +4,7 @@ import {
     faListUl,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { Link } from "wouter"
+import Link from "next/link"
 
 interface Props {
     seriesHome: string
@@ -20,7 +20,7 @@ export default function SeriesControlButtons({
     return (
         <div className="mb-5 flex justify-between">
             {prevURL ? (
-                <Link to={prevURL}>
+                <Link href={prevURL}>
                     <button className="button">
                         <FontAwesomeIcon icon={faArrowLeft} />
                     </button>
@@ -31,14 +31,14 @@ export default function SeriesControlButtons({
                 </button>
             )}
 
-            <Link to={seriesHome}>
+            <Link href={seriesHome}>
                 <button className="button">
                     <FontAwesomeIcon icon={faListUl} />
                 </button>
             </Link>
 
             {nextURL ? (
-                <Link to={nextURL}>
+                <Link href={nextURL}>
                     <button className="button">
                         <FontAwesomeIcon icon={faArrowRight} />
                     </button>
