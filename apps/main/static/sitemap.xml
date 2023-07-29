@@ -2,7 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://developomp.com</loc>
-		<lastmod>2023-07-11</lastmod>
 		<changefreq>always</changefreq>
 		<priority>1.0</priority>
 	</url>
@@ -18,7 +17,6 @@
 	</url>
 	<url>
 		<loc>https://developomp.com/resume</loc>
-		<lastmod>2023-07-11</lastmod>
 		<changefreq>always</changefreq>
 		<priority>0.4</priority>
 	</url>
