@@ -35,6 +35,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@developomp-site/playwright-config':
+        specifier: workspace:*
+        version: link:../../packages/playwright-config
       '@developomp-site/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
@@ -143,6 +146,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@developomp-site/playwright-config':
+        specifier: workspace:*
+        version: link:../../packages/playwright-config
       '@developomp-site/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
@@ -230,6 +236,9 @@ importers:
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
+      '@developomp-site/playwright-config':
+        specifier: workspace:*
+        version: link:../../packages/playwright-config
       '@developomp-site/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
@@ -491,6 +500,12 @@ importers:
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
+
+  packages/playwright-config:
+    devDependencies:
+      '@playwright/test':
+        specifier: ^1.36.2
+        version: 1.36.2
 
   packages/prettier-config: {}
 

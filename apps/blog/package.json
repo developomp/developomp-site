@@ -13,6 +13,7 @@
     "devDependencies": {
         "@developomp-site/content": "workspace:*",
         "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/playwright-config": "workspace:*",
         "@developomp-site/prettier-config": "workspace:*",
         "@developomp-site/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
