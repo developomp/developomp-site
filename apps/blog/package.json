@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "open-cli http://localhost:3000 && next dev",
         "build": "next build",
+        "postbuild": "next-sitemap",
         "serve": "serve build --listen 3000",
         "lint": "next lint",
         "test:e2e": "playwright test",
@@ -38,6 +39,7 @@
         "highlight.js": "^11.8.0",
         "katex": "^0.16.8",
         "next": "13.4.12",
+        "next-sitemap": "^4.1.8",
         "open-cli": "^7.2.0",
         "postcss": "8.4.27",
         "prettier": "^2.8.8",

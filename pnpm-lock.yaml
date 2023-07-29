@@ -110,6 +110,9 @@ importers:
       next:
         specifier: 13.4.12
         version: 13.4.12(react-dom@18.2.0)(react@18.2.0)
+      next-sitemap:
+        specifier: ^4.1.8
+        version: 4.1.8(next@13.4.12)
       open-cli:
         specifier: ^7.2.0
         version: 7.2.0
@@ -314,6 +317,9 @@ importers:
       next:
         specifier: 13.4.12
         version: 13.4.12(react-dom@18.2.0)(react@18.2.0)
+      next-sitemap:
+        specifier: ^4.1.8
+        version: 4.1.8(next@13.4.12)
       open-cli:
         specifier: ^7.2.0
         version: 7.2.0
@@ -578,6 +584,10 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.13.11
+    dev: true
+
+  /@corex/deepmerge@4.0.43:
+    resolution: {integrity: sha512-N8uEMrMPL0cu/bdboEWpQYb/0i2K5Qn8eCsxzOmxSggJbbQte7ljMRoXm917AbntqTGOzdTu+vP3KOOzoC70HQ==}
     dev: true
 
   /@esbuild/android-arm64@0.18.11:
@@ -5393,6 +5403,20 @@ packages:
   /negotiator@0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /next-sitemap@4.1.8(next@13.4.12):
+    resolution: {integrity: sha512-XAXpBHX4o89JfMgvrm0zimlZwpu2iBPXHpimJMUrqOZSc4C2oB1Lv89mxuVON9IE8HOezaM+w4GjJxcYCuGPTQ==}
+    engines: {node: '>=14.18'}
+    hasBin: true
+    peerDependencies:
+      next: '*'
+    dependencies:
+      '@corex/deepmerge': 4.0.43
+      '@next/env': 13.4.12
+      fast-glob: 3.3.1
+      minimist: 1.2.8
+      next: 13.4.12(react-dom@18.2.0)(react@18.2.0)
     dev: true
 
   /next@13.4.12(react-dom@18.2.0)(react@18.2.0):
