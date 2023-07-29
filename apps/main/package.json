@@ -6,7 +6,9 @@
     "scripts": {
         "cp": "cp ../../packages/content/dist/skills.svg ../../packages/content/dist/resume.pdf static",
         "dev": "vite dev",
+        "dev:headless": "vite dev --open false",
         "build": "pnpm cp && vite build",
+        "test:e2e": "playwright test",
         "clean": "rm -rf .turbo .svelte-kit build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
     },
@@ -17,6 +19,7 @@
         "@developomp-site/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@inqling/svelte-icons": "^3.3.2",
+        "@playwright/test": "^1.36.2",
         "@sveltejs/adapter-static": "^2.0.2",
         "@sveltejs/kit": "^1.22.1",
         "@typescript-eslint/eslint-plugin": "^5.61.0",
