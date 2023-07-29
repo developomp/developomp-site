@@ -1,5 +1,4 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test"
-import path from "path"
 
 const baseURL = "http://localhost:5174"
 
@@ -9,7 +8,7 @@ const config: PlaywrightTestConfig = {
     timeout: 30 * 1000,
 
     // Test directory
-    testDir: path.join(__dirname, "e2e"),
+    testDir: "e2e",
 
     // Artifacts folder where screenshots, videos, and traces are stored.
     outputDir: "test-results/",

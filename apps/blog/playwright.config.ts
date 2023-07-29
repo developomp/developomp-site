@@ -1,5 +1,4 @@
 import { devices, PlaywrightTestConfig } from "@playwright/test"
-import path from "path"
 
 const baseURL = "http://localhost:3000"
 
@@ -9,7 +8,7 @@ const config: PlaywrightTestConfig = {
     timeout: 30 * 1000,
 
     // Test directory
-    testDir: path.join(__dirname, "e2e"),
+    testDir: "e2e",
 
     // Artifacts folder where screenshots, videos, and traces are stored.
     outputDir: "test-results/",
@@ -17,7 +16,7 @@ const config: PlaywrightTestConfig = {
     // Run your local dev server before starting the tests:
     // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
     webServer: {
-        command: "pnpm dev:headless",
+        command: "pnpm build && pnpm serve",
         url: baseURL,
         timeout: 120 * 1000,
         // eslint-disable-next-line turbo/no-undeclared-env-vars
