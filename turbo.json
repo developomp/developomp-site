@@ -8,9 +8,6 @@
             "cache": false,
             "dependsOn": ["^build"]
         },
-        "preview": {
-            "cache": false
-        },
         "lint": {
             "cache": false
         },

@@ -4,7 +4,6 @@
     "scripts": {
         "build": "turbo run build",
         "dev": "turbo run dev --parallel --continue",
-        "preview": "turbo run preview --parallel --continue",
         "lint": "turbo run lint",
         "clean": "turbo run clean && rm -rf node_modules"
     },
