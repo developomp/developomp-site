@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const data = await getData(params.id)
     return {
         metadataBase: new URL("https://portfolio.developomp.com"),
-        title: `pomp's portfolio | ${data.title}`,
+        title: data.title,
         openGraph: {
             title: `pomp's portfolio | ${data.title}`,
         },
