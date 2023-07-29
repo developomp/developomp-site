@@ -2,7 +2,7 @@ import { type Metadata } from "next"
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://portfolio.developomp.com"),
-    title: "404",
+    title: "pomp's portfolio | Page Not Found",
     openGraph: {
         title: "pomp's portfolio | Page Not Found",
     },
