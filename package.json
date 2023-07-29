@@ -4,6 +4,7 @@
     "scripts": {
         "dev": "turbo run dev --parallel --continue",
         "build": "turbo run build",
+        "serve": "turbo run serve",
         "test:e2e": "turbo run test:e2e --parallel --continue",
         "lint": "turbo run lint",
         "clean": "turbo run clean && rm -rf node_modules"
