@@ -47,7 +47,19 @@
 
 ## Testing
 
-Use following services to test & benchmark different aspects of the site
+1. Build site
 
-- https://seoptimer.com
-- https://gtmetrix.com
+   ```
+   pnpm build
+   ```
+
+2. Run E2E Tests
+
+   ```
+   pnpm test:e2e
+   ```
+
+3. Benchmark deployed sites using the following services:
+
+   - https://seoptimer.com
+   - https://gtmetrix.com
