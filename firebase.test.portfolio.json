@@ -1,0 +1,19 @@
+{
+    "hosting": {
+        "cleanUrls": true,
+        "trailingSlash": false,
+        "public": "apps/portfolio/dist",
+        "ignore": ["**/.*"]
+    },
+
+    "emulators": {
+        "hub": {
+            "name": "hub",
+            "host": "localhost",
+            "port": 4402
+        },
+        "hosting": {
+            "port": 5174
+        }
+    }
+}

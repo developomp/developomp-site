@@ -4,8 +4,8 @@
     "private": true,
     "scripts": {
         "dev": "open-cli http://localhost:3000 && next dev",
-        "dev:headless": "next dev",
         "build": "next build",
+        "serve": "cd ../.. && firebase emulators:start --only hosting --config=firebase.test.blog.json",
         "lint": "next lint",
         "test:e2e": "playwright test",
         "clean": "rm -rf .next .turbo build node_modules test-results"

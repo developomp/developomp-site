@@ -6,8 +6,8 @@
     "scripts": {
         "cp": "cp ../../packages/content/dist/skills.svg ../../packages/content/dist/resume.pdf static",
         "dev": "vite dev",
-        "dev:headless": "vite dev --open false",
         "build": "pnpm cp && vite build",
+        "serve": "cd ../.. && firebase emulators:start --only hosting --config=firebase.test.main.json",
         "test:e2e": "playwright test",
         "clean": "rm -rf .turbo .svelte-kit build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
