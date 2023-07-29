@@ -5,7 +5,7 @@
     "scripts": {
         "build": "rm -rf build && tsc && node --es-module-specifier-resolution=node build/index.js",
         "lint": "eslint .",
-        "clean": "rm -rf .turbo node_modules dist build"
+        "clean": "rm -rf .turbo build dist node_modules"
     },
     "dependencies": {
         "@developomp-site/eslint-config": "workspace:^",

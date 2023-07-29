@@ -5,7 +5,7 @@
     "main": ".eslintrc.cjs",
     "scripts": {
         "lint": "eslint .eslintrc.cjs",
-        "clean": "rm -rf node_modules"
+        "clean": "rm -rf .turbo node_modules"
     },
     "devDependencies": {
         "@developomp-site/prettier-config": "workspace:*",

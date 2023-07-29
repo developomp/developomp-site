@@ -7,7 +7,7 @@
         "cp": "cp ../../packages/content/dist/skills.svg ../../packages/content/dist/resume.pdf static",
         "dev": "vite dev",
         "build": "pnpm cp && vite build",
-        "clean": "rm -rf .svelte-kit .turbo build node_modules vite.config.ts.timestamp-*",
+        "clean": "rm -rf .turbo .svelte-kit build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
     },
     "devDependencies": {

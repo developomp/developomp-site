@@ -8,7 +8,7 @@
     ],
     "scripts": {
         "lint": "eslint .",
-        "clean": "rm -rf node_modules"
+        "clean": "rm -rf .turbo node_modules"
     },
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
