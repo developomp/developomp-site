@@ -22,7 +22,7 @@ export function createConfig(config: Config): PlaywrightTestConfig {
         webServer: {
             command: "pnpm serve",
             url: baseURL,
-            timeout: 120 * 1000,
+            timeout: 30 * 1000,
             // eslint-disable-next-line turbo/no-undeclared-env-vars
             reuseExistingServer: !process.env.CI,
         },
