@@ -4,8 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "open-cli http://localhost:3000 && next dev",
+        "dev:headless": "next dev",
         "build": "next build",
         "lint": "next lint",
+        "test:e2e": "playwright test",
         "clean": "rm -rf .next .turbo build node_modules"
     },
     "devDependencies": {
@@ -19,6 +21,7 @@
         "@fortawesome/free-solid-svg-icons": "^6.4.0",
         "@fortawesome/react-fontawesome": "^0.2.0",
         "@kunukn/react-collapse": "^2.2.10",
+        "@playwright/test": "^1.36.2",
         "@types/highlight.js": "^10.1.0",
         "@types/katex": "^0.16.2",
         "@types/node": "20.4.5",

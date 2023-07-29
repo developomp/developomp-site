@@ -1,11 +1,11 @@
-# Deploy sites in firebase.json
-
-name: Deploy pages
+name: Test
 on:
-    workflow_run:
-        workflows: ["Test"]
-        types:
-            - completed
+    push:
+        branches:
+            - master
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
 jobs:
     deploy:
         if: ${{ github.repository_owner == 'developomp' }}
@@ -28,12 +28,14 @@ jobs:
             - name: Install dependencies
               run: pnpm install
 
-            - name: Build
-              run: pnpm build
+            - name: Install playwright browsers
+              run: npx playwright install --with-deps
 
-            - name: Deploy to Firebase
-              uses: w9jds/firebase-action@master
+            - name: Run tests
+              run: pnpm test:e2e
+
+            - uses: actions/upload-artifact@v3
               with:
-                  args: deploy
-              env:
-                  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+                  name: playwright-report
+                  path: |
+                      apps/*/playwright-report

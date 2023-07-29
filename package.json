@@ -2,8 +2,9 @@
     "private": true,
     "packageManager": "^pnpm@7.0.0",
     "scripts": {
-        "build": "turbo run build",
         "dev": "turbo run dev --parallel --continue",
+        "build": "turbo run build",
+        "test:e2e": "turbo run test:e2e --parallel --continue",
         "lint": "turbo run lint",
         "clean": "turbo run clean && rm -rf node_modules"
     },
