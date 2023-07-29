@@ -4,7 +4,7 @@ import Card from "@/components/Card"
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://blog.developomp.com"),
-    title: "Page Not Found",
+    title: "pomp's blog | Page Not Found",
     openGraph: {
         title: "pomp's blog | Page Not Found",
     },
