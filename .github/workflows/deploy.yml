@@ -1,11 +1,11 @@
-# Deploy sites in firebase.json
-
-name: Deploy pages
+name: Build, Test, and Deploy
 on:
-    workflow_run:
-        workflows: ["Test"]
-        types:
-            - completed
+    push:
+        branches:
+            - master
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
 jobs:
     deploy:
         if: ${{ github.repository_owner == 'developomp' }}
@@ -25,11 +25,37 @@ jobs:
                   node-version: 18
                   cache: pnpm
 
+            - name: Store Playwright's Version
+              run: |
+                  PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
+                  echo "Playwright's Version: $PLAYWRIGHT_VERSION"
+                  echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+
+            - name: Cache Playwright Browsers for Playwright's Version
+              id: cache-playwright-browsers
+              uses: actions/cache@v3
+              with:
+                  path: ~/.cache/ms-playwright
+                  key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+
             - name: Install dependencies
               run: pnpm install
 
+            - name: Install playwright browsers
+              if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
+              run: npx playwright install --with-deps
+
             - name: Build
               run: pnpm build
+
+            - name: Run tests
+              run: pnpm test:e2e
+
+            - uses: actions/upload-artifact@v3
+              with:
+                  name: test-results
+                  path: |
+                      apps/*/test-results
 
             - name: Deploy to Firebase
               uses: w9jds/firebase-action@master
