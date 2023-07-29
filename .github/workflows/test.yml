@@ -36,6 +36,6 @@ jobs:
 
             - uses: actions/upload-artifact@v3
               with:
-                  name: playwright-report
+                  name: test-results
                   path: |
-                      apps/*/playwright-report
+                      apps/*/test-results
