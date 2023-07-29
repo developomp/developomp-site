@@ -3,18 +3,21 @@
         {
             "target": "main",
             "cleanUrls": true,
+            "trailingSlash": false,
             "public": "apps/main/build",
             "ignore": ["**/.*"]
         },
         {
             "target": "blog",
             "cleanUrls": true,
+            "trailingSlash": false,
             "public": "apps/blog/build",
             "ignore": ["**/.*"]
         },
         {
             "target": "portfolio",
             "cleanUrls": true,
+            "trailingSlash": false,
             "public": "apps/portfolio/dist",
             "ignore": ["**/.*"]
         }
