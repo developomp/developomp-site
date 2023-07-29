@@ -31,6 +31,7 @@
         "eslint-plugin-import": "^2.27.5",
         "eslint-plugin-simple-import-sort": "^10.0.0",
         "eslint-plugin-svelte": "^2.32.2",
+        "firebase-tools": "^12.4.6",
         "postcss": "^8.4.25",
         "prettier-plugin-svelte": "^2.10.1",
         "prettier-plugin-tailwindcss": "^0.3.0",
