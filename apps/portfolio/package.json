@@ -5,7 +5,7 @@
     "scripts": {
         "dev": "open-cli http://localhost:5174 && next dev -p 5174",
         "build": "next build",
-        "serve": "cd ../.. && firebase emulators:start --only hosting --config=firebase.test.portfolio.json",
+        "serve": "serve dist --listen 5174",
         "test:e2e": "playwright test",
         "lint": "next lint",
         "clean": "rm -rf .next .turbo dist node_modules test-results"
@@ -35,7 +35,6 @@
         "autoprefixer": "10.4.14",
         "eslint": "8.45.0",
         "eslint-config-next": "13.4.12",
-        "firebase-tools": "^12.4.6",
         "highlight.js": "^11.8.0",
         "katex": "^0.16.8",
         "next": "13.4.12",
@@ -46,6 +45,7 @@
         "react": "18.2.0",
         "react-collapse": "^5.1.1",
         "react-dom": "18.2.0",
+        "serve": "^14.2.0",
         "tailwindcss": "3.3.3",
         "typescript": "5.1.6"
     }
