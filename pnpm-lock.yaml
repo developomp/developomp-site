@@ -251,6 +251,9 @@ importers:
       '@kunukn/react-collapse':
         specifier: ^2.2.10
         version: 2.2.10(react-dom@18.2.0)(react@18.2.0)
+      '@playwright/test':
+        specifier: ^1.36.2
+        version: 1.36.2
       '@types/highlight.js':
         specifier: ^10.1.0
         version: 10.1.0
