@@ -15,7 +15,7 @@
     onMount(() => {
         const interval = setInterval(() => {
             age = getAge() // first called after the delay
-        }, 50)
+        }, 100)
 
         return () => {
             clearInterval(interval)
