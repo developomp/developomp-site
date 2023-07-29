@@ -9,6 +9,7 @@ badges:
   - react
   - svelte
   - nextdotjs
+  - firebase
 ---
 
 ## Introduction
