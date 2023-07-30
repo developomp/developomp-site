@@ -48,7 +48,10 @@ jobs:
             - name: Build
               run: pnpm build
 
-            - name: Run tests
+            - name: Run unit tests
+              run: pnpm test:unit
+
+            - name: Run E2E tests
               run: pnpm test:e2e
 
             - uses: actions/upload-artifact@v3
