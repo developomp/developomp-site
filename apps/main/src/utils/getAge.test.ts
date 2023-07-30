@@ -1,7 +1,6 @@
 import { testing } from "./getAge"
 
-const { birth, dateFormatOption, getAge, ageInt, ageDecimal, isOverBirthDay } =
-    testing
+const { birth, getAge, ageInt, ageDecimal, isOverBirthDay } = testing
 
 describe("getAge tests", () => {
     test("birthday to be 2002-07-30", () => {
@@ -71,15 +70,6 @@ describe("getAge tests", () => {
         expect(date.getMonth()).toEqual(testData.monthIndex)
         expect(date.getDate()).toEqual(testData.date)
         expect(isOverBirthDay(date)).toEqual(testData.overBD)
-    })
-
-    test("dateFormatOption to work properly", () => {
-        expect(
-            new Date("2002-07-30, 00:00:00.000 +09:00").toLocaleString(
-                "en-US",
-                dateFormatOption
-            )
-        ).toEqual("7/30/2002, 00:00:00.000 GMT+09:00")
     })
 
     test("ageInt to work", () => {

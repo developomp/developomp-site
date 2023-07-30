@@ -1,32 +1,12 @@
-const dateFormatOption: Intl.DateTimeFormatOptions = {
-    timeZone: "Asia/Seoul",
-    timeZoneName: "longOffset",
-    hourCycle: "h23",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    fractionalSecondDigits: 3,
-}
-
 // my birthday in KST :D
-const birth = new Date(
-    new Date("2002-07-30, 00:00:00.000 +09:00").toLocaleString(
-        "en-US",
-        dateFormatOption
-    )
-)
+const birth = new Date("2002-07-30, 00:00:00.000 +09:00")
 
 /**
  * Gets developomp's age with decimal precision
  *
  * @param now - current `Date` in KST
  */
-export default function getAge(
-    now: Date = new Date(new Date().toLocaleString("en-US", dateFormatOption))
-): number {
+export default function getAge(now: Date = new Date()): number {
     return ageInt(now) + ageDecimal(now)
 }
 
@@ -76,7 +56,6 @@ function isOverBirthDay(now: Date): boolean {
 
 export const testing = {
     birth,
-    dateFormatOption,
     getAge,
     ageInt,
     ageDecimal,
