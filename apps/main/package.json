@@ -8,7 +8,7 @@
         "dev": "vite dev",
         "build": "pnpm cp && vite build",
         "serve": "serve build --listen 5173",
-        "test:unit": "jest",
+        "test:unit": "TZ=UTC jest",
         "test:e2e": "playwright test",
         "clean": "rm -rf .turbo .svelte-kit build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
