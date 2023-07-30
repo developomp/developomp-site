@@ -9,37 +9,72 @@ describe("getAge tests", () => {
     })
 
     test("isOverBirthDay to work", () => {
-        expect(
-            isOverBirthDay(new Date("2022-12-31, 00:00:00.000 +09:00"))
-        ).toEqual(true)
+        const testCases: {
+            timestamp: string
+            overBD: boolean
+            year: number
+            monthIndex: number
+            date: number
+        }[] = [
+            {
+                timestamp: "2022-12-31, 00:00:00.000 +09:00",
+                overBD: true,
+                year: 2022,
+                monthIndex: 11,
+                date: 31,
+            },
+            {
+                timestamp: "2023-01-01, 00:00:00.000 +09:00",
+                overBD: false,
+                year: 2023,
+                monthIndex: 0,
+                date: 1,
+            },
+            {
+                timestamp: "2023-07-29, 00:00:00.000 +09:00",
+                overBD: false,
+                year: 2023,
+                monthIndex: 6,
+                date: 29,
+            },
+            {
+                timestamp: "2023-07-30, 00:00:00.000 +09:00",
+                overBD: true,
+                year: 2023,
+                monthIndex: 6,
+                date: 30,
+            },
+            {
+                timestamp: "2023-07-31, 00:00:00.000 +09:00",
+                overBD: true,
+                year: 2023,
+                monthIndex: 6,
+                date: 31,
+            },
+            {
+                timestamp: "2023-12-31, 00:00:00.000 +09:00",
+                overBD: true,
+                year: 2023,
+                monthIndex: 11,
+                date: 31,
+            },
+            {
+                timestamp: "2024-01-01, 00:00:00.000 +09:00",
+                overBD: false,
+                year: 2024,
+                monthIndex: 0,
+                date: 1,
+            },
+        ]
 
-        expect(
-            isOverBirthDay(new Date("2023-01-01, 00:00:00.000 +09:00"))
-        ).toEqual(false)
+        for (const testCase of testCases) {
+            const date = new Date(testCase.timestamp)
 
-        //
-
-        expect(
-            isOverBirthDay(new Date("2023-07-29, 00:00:00.000 +09:00"))
-        ).toEqual(false)
-
-        expect(
-            isOverBirthDay(new Date("2023-07-30, 00:00:00.000 +09:00"))
-        ).toEqual(true)
-
-        expect(
-            isOverBirthDay(new Date("2023-07-31, 00:00:00.000 +09:00"))
-        ).toEqual(true)
-
-        //
-
-        expect(
-            isOverBirthDay(new Date("2023-12-31, 00:00:00.000 +09:00"))
-        ).toEqual(true)
-
-        expect(
-            isOverBirthDay(new Date("2024-01-01, 00:00:00.000 +09:00"))
-        ).toEqual(false)
+            expect(date.getFullYear()).toEqual(testCase.year)
+            expect(date.getMonth()).toEqual(testCase.monthIndex)
+            expect(date.getDate()).toEqual(testCase.date)
+            expect(isOverBirthDay(date)).toEqual(testCase.overBD)
+        }
     })
 
     test("dateFormatOption to work properly", () => {
