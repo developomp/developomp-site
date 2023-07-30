@@ -1,32 +1,79 @@
-// my birthday :D
-const birthYear = 2002
-const birthMonth = 7
-const birthDate = 30
+// my birthday in KST :D
+const birth = new Date("2002-07-30, 00:00:00.000 +09:00")
+
+const dateFormatOption: Intl.DateTimeFormatOptions = {
+    timeZone: "Asia/Seoul",
+    timeZoneName: "longOffset",
+    hourCycle: "h23",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    fractionalSecondDigits: 3,
+}
 
 /**
  * Gets developomp's age with decimal precision
+ *
+ * @param now - current `Date` in KST
  */
-export default function getAge(): number {
-    const now = Date.now()
-    const date = new Date()
-    const year = date.getFullYear()
+export default function getAge(
+    now: Date = new Date(new Date().toLocaleString("en-US", dateFormatOption))
+): number {
+    return ageInt(now) + ageDecimal(now)
+}
 
-    // integer calculation
+/**
+ * Calculates the integer component of the age
+ */
+function ageInt(now: Date): number {
+    return (
+        now.getFullYear() - birth.getFullYear() - (isOverBirthDay(now) ? 0 : 1)
+    )
+}
 
-    const isOverBirthDay =
-        birthMonth > date.getMonth() + 1 ||
-        (birthMonth === date.getMonth() + 1 && birthDate >= date.getDate())
-    const ageInt = year - birthYear - (isOverBirthDay ? 1 : 0)
+/**
+ * Calculates the decimal component of the age
+ */
+function ageDecimal(now: Date): number {
+    // millisecond timestamp of my last birthday
+    const BDPrev = new Date(birth).setFullYear(
+        now.getFullYear() - (isOverBirthDay(now) ? 0 : 1)
+    )
 
-    // decimal calculation
+    // millisecond timestamp of my upcoming birthday
+    const BDNext = new Date(birth).setFullYear(
+        now.getFullYear() + (isOverBirthDay(now) ? 1 : 0)
+    )
 
-    const msThisYear = Date.UTC(year, 0, 0)
-    const msThisBD = Date.UTC(year, birthMonth - 1, birthDate)
-    // number of milliseconds since the beginning of this year
-    const msSinceThisYear = now - msThisYear
-    // number of milliseconds from the beginning of this year to my birthday
-    const msToBD = msThisBD - msThisYear
-    const ageDecimal = msSinceThisYear / msToBD
+    // milliseconds since my last birthday
+    const msSinceLastBD = now.getTime() - BDPrev
 
-    return ageInt + ageDecimal
+    return msSinceLastBD / (BDNext - BDPrev)
+}
+
+/**
+ * tests if today is at or after this year's birthday
+ *
+ * ...| Dec 31 | Jan 1 | ... | July 29 | Jul 30 | July 31 | ... | Dec 31 | Jan 1 | ...
+ * ...|  true  | false | ... |  false  |  true  |  true   | ... |  true  | false | ...
+ */
+function isOverBirthDay(now: Date): boolean {
+    if (birth.getMonth() < now.getMonth()) return true
+
+    if (birth.getMonth() === now.getMonth() && birth.getDate() <= now.getDate())
+        return true
+
+    return false
+}
+
+export const testing = {
+    birth,
+    dateFormatOption,
+    getAge,
+    ageInt,
+    ageDecimal,
+    isOverBirthDay,
 }
