@@ -89,6 +89,8 @@ describe("getAge tests", () => {
         ["2023-07-31 00:00:00.000+09:00", 0.00273224043715847],
     ])("ageDecimal to work for '%s'", (date, expected) => {
         expect(ageDecimal(dayjs(date))).toEqual(expected)
+        expect(ageDecimal(dayjs(date))).toBeGreaterThanOrEqual(0.0)
+        expect(ageDecimal(dayjs(date))).toBeLessThan(1.0)
     })
 
     test.each<[string, number]>([
