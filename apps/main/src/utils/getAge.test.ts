@@ -4,7 +4,7 @@ const { birth, dateFormatOption, getAge, ageInt, ageDecimal, isOverBirthDay } =
     testing
 
 describe("getAge tests", () => {
-    test("birthday should be 2002-07-30", () => {
+    test("birthday to be 2002-07-30", () => {
         expect(birth).toEqual(new Date("2002-07-30, 00:00:00.000 +09:00"))
     })
 
@@ -42,7 +42,7 @@ describe("getAge tests", () => {
         ).toEqual(false)
     })
 
-    test("dateFormatOption should work properly", () => {
+    test("dateFormatOption to work properly", () => {
         expect(
             new Date("2002-07-30, 00:00:00.000 +09:00").toLocaleString(
                 "en-US",
