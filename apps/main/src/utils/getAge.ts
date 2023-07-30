@@ -1,14 +1,21 @@
 import dayjs, { type Dayjs } from "dayjs"
+import timezone from "dayjs/plugin/timezone"
+import utc from "dayjs/plugin/utc"
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+
+dayjs.tz.setDefault("Asia/Seoul")
 
 // my birthday in KST :D
-const birth = dayjs("2002-07-30 00:00:00.000+09:00")
+const birth = dayjs.tz("2002-07-30")
 
 /**
  * Gets developomp's age with decimal precision
  *
  * @param now - current `Date` in KST
  */
-export default function getAge(now: Dayjs = dayjs()): number {
+export default function getAge(now: Dayjs = dayjs.tz()): number {
     return ageInt(now) + ageDecimal(now)
 }
 
