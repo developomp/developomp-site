@@ -74,31 +74,29 @@ describe("getAge tests", () => {
         expect(isOverBirthDay(date)).toEqual(testData.overBD)
     })
 
-    test("ageInt to work", () => {
-        expect(ageInt(birth)).toEqual(0)
-        expect(ageInt(dayjs("2023-07-29"))).toEqual(20)
-        expect(ageInt(dayjs("2023-07-30"))).toEqual(21)
-        expect(ageInt(dayjs("2023-07-31"))).toEqual(21)
+    test.each<[string, number]>([
+        ["2002-07-30 00:00:00.000+09:00", 0],
+        ["2023-07-29 00:00:00.000+09:00", 20],
+        ["2023-07-30 00:00:00.000+09:00", 21],
+        ["2023-07-31 00:00:00.000+09:00", 21],
+    ])("ageInt to work for '%s'", (date, expected) => {
+        expect(ageInt(dayjs(date))).toEqual(expected)
     })
 
-    test("ageDecimal to work", () => {
-        expect(ageDecimal(dayjs("2023-07-29 00:00:00.000+09:00"))).toEqual(
-            0.9972602739726028
-        )
-        expect(ageDecimal(dayjs("2023-07-30 00:00:00.000+09:00"))).toEqual(0)
-        expect(ageDecimal(dayjs("2023-07-31 00:00:00.000+09:00"))).toEqual(
-            0.00273224043715847
-        )
+    test.each<[string, number]>([
+        ["2023-07-29 00:00:00.000+09:00", 0.9972602739726028],
+        ["2023-07-30 00:00:00.000+09:00", 0.0],
+        ["2023-07-31 00:00:00.000+09:00", 0.00273224043715847],
+    ])("ageDecimal to work for '%s'", (date, expected) => {
+        expect(ageDecimal(dayjs(date))).toEqual(expected)
     })
 
-    test("getAge to work", () => {
-        expect(getAge(dayjs("2002-07-30 00:00:00.000+09:00"))).toEqual(0.0)
-        expect(getAge(dayjs("2023-07-29 00:00:00.000+09:00"))).toEqual(
-            20.997260273972604
-        )
-        expect(getAge(dayjs("2023-07-30 00:00:00.000+09:00"))).toEqual(21.0)
-        expect(getAge(dayjs("2023-07-31 00:00:00.000+09:00"))).toEqual(
-            21.002732240437158
-        )
+    test.each<[string, number]>([
+        ["2002-07-30 00:00:00.000+09:00", 0.0],
+        ["2023-07-29 00:00:00.000+09:00", 20.997260273972604],
+        ["2023-07-30 00:00:00.000+09:00", 21.0],
+        ["2023-07-31 00:00:00.000+09:00", 21.002732240437158],
+    ])("getAge to work for '%s'", (date, expected) => {
+        expect(getAge(dayjs(date))).toEqual(expected)
     })
 })
