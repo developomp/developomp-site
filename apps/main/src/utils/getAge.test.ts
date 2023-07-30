@@ -8,73 +8,69 @@ describe("getAge tests", () => {
         expect(birth).toEqual(new Date("2002-07-30, 00:00:00.000 +09:00"))
     })
 
-    test("isOverBirthDay to work", () => {
-        const testCases: {
-            timestamp: string
-            overBD: boolean
-            year: number
-            monthIndex: number
-            date: number
-        }[] = [
-            {
-                timestamp: "2022-12-31, 00:00:00.000 +09:00",
-                overBD: true,
-                year: 2022,
-                monthIndex: 11,
-                date: 31,
-            },
-            {
-                timestamp: "2023-01-01, 00:00:00.000 +09:00",
-                overBD: false,
-                year: 2023,
-                monthIndex: 0,
-                date: 1,
-            },
-            {
-                timestamp: "2023-07-29, 00:00:00.000 +09:00",
-                overBD: false,
-                year: 2023,
-                monthIndex: 6,
-                date: 29,
-            },
-            {
-                timestamp: "2023-07-30, 00:00:00.000 +09:00",
-                overBD: true,
-                year: 2023,
-                monthIndex: 6,
-                date: 30,
-            },
-            {
-                timestamp: "2023-07-31, 00:00:00.000 +09:00",
-                overBD: true,
-                year: 2023,
-                monthIndex: 6,
-                date: 31,
-            },
-            {
-                timestamp: "2023-12-31, 00:00:00.000 +09:00",
-                overBD: true,
-                year: 2023,
-                monthIndex: 11,
-                date: 31,
-            },
-            {
-                timestamp: "2024-01-01, 00:00:00.000 +09:00",
-                overBD: false,
-                year: 2024,
-                monthIndex: 0,
-                date: 1,
-            },
-        ]
+    test.each<{
+        timestamp: string
+        overBD: boolean
+        year: number
+        monthIndex: number
+        date: number
+    }>([
+        {
+            timestamp: "2022-12-31, 00:00:00.000 +09:00",
+            overBD: true,
+            year: 2022,
+            monthIndex: 11,
+            date: 31,
+        },
+        {
+            timestamp: "2023-01-01, 00:00:00.000 +09:00",
+            overBD: false,
+            year: 2023,
+            monthIndex: 0,
+            date: 1,
+        },
+        {
+            timestamp: "2023-07-29, 00:00:00.000 +09:00",
+            overBD: false,
+            year: 2023,
+            monthIndex: 6,
+            date: 29,
+        },
+        {
+            timestamp: "2023-07-30, 00:00:00.000 +09:00",
+            overBD: true,
+            year: 2023,
+            monthIndex: 6,
+            date: 30,
+        },
+        {
+            timestamp: "2023-07-31, 00:00:00.000 +09:00",
+            overBD: true,
+            year: 2023,
+            monthIndex: 6,
+            date: 31,
+        },
+        {
+            timestamp: "2023-12-31, 00:00:00.000 +09:00",
+            overBD: true,
+            year: 2023,
+            monthIndex: 11,
+            date: 31,
+        },
+        {
+            timestamp: "2024-01-01, 00:00:00.000 +09:00",
+            overBD: false,
+            year: 2024,
+            monthIndex: 0,
+            date: 1,
+        },
+    ])("isOverBirthDay to work ($timestamp)", (testData) => {
+        const date = new Date(testData.timestamp)
 
-        for (const testCase of testCases) {
-            const date = new Date(testCase.timestamp)
-
-            expect(date.getFullYear()).toEqual(testCase.year)
-            expect(date.getMonth()).toEqual(testCase.monthIndex)
-            expect(date.getDate()).toEqual(testCase.date)
-            expect(isOverBirthDay(date)).toEqual(testCase.overBD)
-        }
+        expect(date.getFullYear()).toEqual(testData.year)
+        expect(date.getMonth()).toEqual(testData.monthIndex)
+        expect(date.getDate()).toEqual(testData.date)
+        expect(isOverBirthDay(date)).toEqual(testData.overBD)
     })
 
     test("dateFormatOption to work properly", () => {
