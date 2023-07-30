@@ -1,6 +1,3 @@
-// my birthday in KST :D
-const birth = new Date("2002-07-30, 00:00:00.000 +09:00")
-
 const dateFormatOption: Intl.DateTimeFormatOptions = {
     timeZone: "Asia/Seoul",
     timeZoneName: "longOffset",
@@ -13,6 +10,14 @@ const dateFormatOption: Intl.DateTimeFormatOptions = {
     second: "numeric",
     fractionalSecondDigits: 3,
 }
+
+// my birthday in KST :D
+const birth = new Date(
+    new Date("2002-07-30, 00:00:00.000 +09:00").toLocaleString(
+        "en-US",
+        dateFormatOption
+    )
+)
 
 /**
  * Gets developomp's age with decimal precision
