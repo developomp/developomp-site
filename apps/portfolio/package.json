@@ -5,6 +5,7 @@
     "scripts": {
         "dev": "open-cli http://localhost:5174 && next dev -p 5174",
         "build": "next build",
+        "postbuild": "next-sitemap",
         "serve": "serve dist --listen 5174",
         "test:e2e": "playwright test",
         "lint": "next lint",
