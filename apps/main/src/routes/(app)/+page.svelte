@@ -3,7 +3,6 @@
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
     import Gmail from "@inqling/svelte-icons/simple-icons/gmail.svelte"
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
-    import YouTube from "@inqling/svelte-icons/simple-icons/youtube.svelte"
     import { onMount } from "svelte"
 
     import HandWave from "$/components/HandWave.svelte"
@@ -72,13 +71,5 @@
         aria-label="Gmail link"
     >
         <Gmail />
-    </a>
-    <a
-        class="social-profile"
-        target="_blank"
-        href="https://youtube.com/@developomp"
-        aria-label="YouTube link"
-    >
-        <YouTube />
     </a>
 </div>
