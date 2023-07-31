@@ -4,7 +4,7 @@
     "type": "module",
     "private": true,
     "scripts": {
-        "cp": "cp ../../packages/content/dist/skills.svg ../../packages/content/dist/resume.pdf static",
+        "cp": "cp ../../packages/content/dist/resume.pdf static",
         "dev": "vite dev",
         "build": "pnpm cp && vite build",
         "serve": "serve build --listen 5173",

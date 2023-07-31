@@ -82,8 +82,6 @@
     "css.lint.unknownAtRules": "ignore",
     "less.lint.unknownAtRules": "ignore",
     "scss.lint.unknownAtRules": "ignore",
-    // for .ejs files
-    "html.validate.styles": false,
     "color-highlight.markerType": "outline",
     "[dotenv]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"

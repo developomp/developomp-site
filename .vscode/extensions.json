@@ -9,7 +9,6 @@
         "bradlc.vscode-tailwindcss",
         "unifiedjs.vscode-mdx",
         "svelte.svelte-vscode",
-        "redhat.vscode-xml",
-        "digitalbrainstem.javascript-ejs-support"
+        "redhat.vscode-xml"
     ]
 }

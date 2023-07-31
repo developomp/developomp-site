@@ -14,12 +14,7 @@ import {
     portfolioFilePath,
     resumeFilePath,
 } from "./config"
-import {
-    fillTags,
-    generatePortfolioSVGs,
-    parseSeries,
-    sortDates,
-} from "./postProcess"
+import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
 import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
@@ -74,7 +69,6 @@ async function main() {
     sortDates()
     fillTags()
     parseSeries()
-    generatePortfolioSVGs()
 
     /**
      * Save results
