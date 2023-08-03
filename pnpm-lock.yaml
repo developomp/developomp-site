@@ -146,9 +146,6 @@ importers:
 
   apps/main:
     devDependencies:
-      '@developomp-site/content':
-        specifier: workspace:*
-        version: link:../../packages/content
       '@developomp-site/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
