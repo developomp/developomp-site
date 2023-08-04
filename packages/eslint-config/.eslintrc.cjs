@@ -22,6 +22,7 @@ module.exports = {
         "import/no-duplicates": "error",
 
         // typescript stuff
-        "@typescript-eslint/no-non-null-assertion": "off",
+        "@typescript-eslint/no-non-null-assertion": "off", // https://typescript-eslint.io/rules/no-non-null-assertion
+        "@typescript-eslint/consistent-type-imports": "error", // https://typescript-eslint.io/rules/consistent-type-imports
     },
 }

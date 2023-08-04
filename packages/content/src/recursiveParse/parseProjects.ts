@@ -6,7 +6,7 @@ import { portfolioData } from ".."
 import { contentDirectoryPath, iconsDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
 import { writeToFile } from "../util"
-import { DataToPass } from "."
+import type { DataToPass } from "."
 
 export default async function parseProjects({
     urlPath,

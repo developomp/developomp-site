@@ -12,7 +12,8 @@ import { mapFilePath, markdownPath, outPath, portfolioFilePath } from "./config"
 import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
-import { ContentMap, ParseMode, PortfolioData, SeriesMap } from "./types/types"
+import type { ContentMap, PortfolioData, SeriesMap } from "./types/types"
+import { ParseMode } from "./types/types"
 
 export const contentMap: ContentMap = {
     date: {},

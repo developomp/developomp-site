@@ -1,6 +1,6 @@
 import portfolio from "@developomp-site/content/dist/portfolio.json"
 import type { PortfolioProject } from "@developomp-site/content/src/types/types"
-import { Metadata } from "next"
+import type { Metadata } from "next"
 
 import Badge from "@/components/Badge"
 import ProjectCard from "@/components/ProjectCard"

@@ -2,9 +2,9 @@ import { contentMap, seriesMap } from ".."
 import { contentDirectoryPath } from "../config"
 import { generateToc } from "../parseMarkdown"
 import { addDocument } from "../searchIndex"
-import { PostData } from "../types/types"
+import type { PostData } from "../types/types"
 import { writeToFile } from "../util"
-import { DataToPass } from "."
+import type { DataToPass } from "."
 
 export default async function parseSeries(data: DataToPass): Promise<void> {
     const {

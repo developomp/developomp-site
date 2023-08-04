@@ -2,7 +2,7 @@ import type { PageData } from "@developomp-site/content/src/types/types"
 
 import contentMap from "@/contentMap"
 
-import { Params } from "./page"
+import type { Params } from "./page"
 
 export enum PageType {
     POST,

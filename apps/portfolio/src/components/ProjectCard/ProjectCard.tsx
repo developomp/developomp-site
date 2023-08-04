@@ -1,6 +1,6 @@
 import "./style.scss"
 
-import { PortfolioProject } from "@developomp-site/content/src/types/types"
+import type { PortfolioProject } from "@developomp-site/content/src/types/types"
 import Link from "next/link"
 
 import Badge from "@/components/Badge"

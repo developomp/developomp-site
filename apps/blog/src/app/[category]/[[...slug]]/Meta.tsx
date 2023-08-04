@@ -1,4 +1,4 @@
-import { PageData } from "@developomp-site/content/src/types/types"
+import type { PageData } from "@developomp-site/content/src/types/types"
 import {
     faBook,
     faCalendar,

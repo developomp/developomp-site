@@ -22,7 +22,8 @@ import remarkRehype from "remark-rehype"
 import supersub from "remark-supersub"
 import { unified } from "unified"
 
-import { MarkdownData, ParseMode } from "./types/types"
+import type { MarkdownData } from "./types/types"
+import { ParseMode } from "./types/types"
 import { nthIndex } from "./util"
 
 const processor = unified() // interface for remark and rehype
