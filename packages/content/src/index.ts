@@ -8,7 +8,7 @@
 
 import fs from "fs"
 
-import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
+import { mapFilePath, markdownPath, outPath, portfolioFilePath } from "./config"
 import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
@@ -35,7 +35,7 @@ async function main() {
      */
 
     try {
-        fs.rmSync("dist", { recursive: true })
+        fs.rmSync(outPath, { recursive: true })
         // eslint-disable-next-line no-empty
     } catch (err) {}
 
