@@ -8,12 +8,7 @@
 
 import fs from "fs"
 
-import {
-    mapFilePath,
-    markdownPath,
-    portfolioFilePath,
-    resumeFilePath,
-} from "./config"
+import { mapFilePath, markdownPath, portfolioFilePath } from "./config"
 import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
@@ -74,7 +69,6 @@ async function main() {
      * Save results
      */
 
-    fs.copyFileSync("resume/resume.pdf", resumeFilePath)
     fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
     fs.writeFileSync(
         portfolioFilePath,
