@@ -42,6 +42,7 @@
         "next-sitemap": "^4.1.8",
         "open-cli": "^7.2.0",
         "postcss": "8.4.27",
+        "postcss-load-config": "^4.0.1",
         "prettier": "^2.8.8",
         "prettier-plugin-tailwindcss": "^0.4.1",
         "react": "18.2.0",
