@@ -83,6 +83,8 @@
     "less.lint.unknownAtRules": "ignore",
     "scss.lint.unknownAtRules": "ignore",
     "color-highlight.markerType": "outline",
+    // https://github.com/tailwindlabs/tailwindcss-intellisense#tailwindcssclassattributes
+    "tailwindCSS.classAttributes": ["class", "className", ".*Styles*"],
     "[dotenv]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
