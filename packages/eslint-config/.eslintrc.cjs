@@ -19,6 +19,7 @@ module.exports = {
         "simple-import-sort/exports": "error",
         "import/first": "error",
         "import/newline-after-import": "error",
+        "import/no-anonymous-default-export": "off",
         "import/no-duplicates": "error",
 
         // typescript stuff
