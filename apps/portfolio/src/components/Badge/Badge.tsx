@@ -6,7 +6,7 @@ interface BadgeProps {
     slug: string
 }
 
-const sharedBadgeStyles = "mb-2 mr-2 flex w-fit items-center px-2 py-1 text-xs"
+const sharedBadgeStyles = "flex w-fit items-center px-2 py-1 text-xs"
 const sharedInnerBadgeStyles = "badge mr-1 inline-block w-6 align-middle"
 
 export default async function Badge({ slug }: BadgeProps) {

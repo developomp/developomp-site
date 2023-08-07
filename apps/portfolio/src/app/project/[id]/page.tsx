@@ -76,7 +76,7 @@ export default async function Project({ params }: Props) {
                     <FontAwesomeIcon className="h-12" icon={faGithub} />
                 </Link>
             </div>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-2">
                 {data.badges.map((slug) => {
                     return <Badge key={slug} slug={slug} />
                 })}

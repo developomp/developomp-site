@@ -22,7 +22,7 @@ export default function ProjectCard({ projectID, project }: ProjectCardProps) {
                     alt="project thumbnail"
                 />
 
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap gap-2">
                     {project.badges.map((badge) => (
                         <Badge key={badge} slug={badge} />
                     ))}
