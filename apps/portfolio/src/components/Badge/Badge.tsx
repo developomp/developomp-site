@@ -1,24 +1,15 @@
-"use client"
-
 import "./style.scss"
 
 import { type Badge as BadgeType } from "@developomp-site/content/src/types/types"
-import { type FC, useEffect, useState } from "react"
 
 interface BadgeProps {
     slug: string
 }
 
-const Badge: FC<BadgeProps> = ({ slug }) => {
-    const [badgeData, setBadgeData] = useState<BadgeType | undefined>(undefined)
-
-    useEffect(() => {
-        ;(async () => {
-            setBadgeData(
-                await import(`@developomp-site/content/dist/icons/${slug}.json`)
-            )
-        })()
-    }, [slug])
+export default async function Badge({ slug }: BadgeProps) {
+    const badgeData: BadgeType = await import(
+        `@developomp-site/content/dist/icons/${slug}.json`
+    )
 
     if (!badgeData)
         return (
@@ -47,5 +38,3 @@ const Badge: FC<BadgeProps> = ({ slug }) => {
         </div>
     )
 }
-
-export default Badge
