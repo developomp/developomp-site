@@ -6,6 +6,9 @@ interface BadgeProps {
     slug: string
 }
 
+const sharedBadgeStyles = "mb-2 mr-2 flex w-fit items-center px-2 py-1 text-xs"
+const sharedInnerBadgeStyles = "badge mr-1 inline-block w-6 align-middle"
+
 export default async function Badge({ slug }: BadgeProps) {
     const badgeData: BadgeType = await import(
         `@developomp-site/content/dist/icons/${slug}.json`
@@ -13,8 +16,8 @@ export default async function Badge({ slug }: BadgeProps) {
 
     if (!badgeData)
         return (
-            <div className="mb-2 mr-2 flex w-fit items-center px-2 py-1 text-xs">
-                <div className="badge mr-1 inline-block w-6 align-middle" />
+            <div className={sharedBadgeStyles}>
+                <div className={sharedInnerBadgeStyles} />
                 <span>Loading...</span>
             </div>
         )
@@ -22,16 +25,16 @@ export default async function Badge({ slug }: BadgeProps) {
     return (
         <div
             style={{ backgroundColor: badgeData.hex }}
-            className={`mb-2 mr-2 flex w-fit items-center px-2 py-1 text-xs ${
+            className={`${sharedBadgeStyles} ${
                 badgeData.isDark
                     ? "text-dark-text-default"
                     : "text-light-text-default"
             }`}
         >
             <div
-                className={`${
+                className={`${sharedInnerBadgeStyles} ${
                     badgeData.isDark ? "dark-badge" : "light-badge"
-                } badge mr-1 inline-block w-6 align-middle`}
+                }`}
                 dangerouslySetInnerHTML={{ __html: badgeData.svg }}
             />
             <span>{badgeData.title}</span>
