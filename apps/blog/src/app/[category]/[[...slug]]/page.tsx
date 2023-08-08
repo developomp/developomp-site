@@ -1,5 +1,6 @@
 import "./Page.scss"
 
+import contentMap from "@developomp-site/content/exports/contentMap"
 import { type Metadata } from "next"
 import { type ParsedUrlQuery } from "querystring"
 
@@ -8,7 +9,6 @@ import Card from "@/components/Card"
 import PostCard from "@/components/PostCard"
 import Tag from "@/components/Tag"
 import TagList from "@/components/TagList"
-import contentMap from "@/contentMap"
 
 import { getData, PageType } from "./helper"
 import Meta from "./Meta"

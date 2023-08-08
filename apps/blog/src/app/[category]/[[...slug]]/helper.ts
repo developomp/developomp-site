@@ -1,6 +1,5 @@
+import contentMap from "@developomp-site/content/exports/contentMap"
 import type { PageData } from "@developomp-site/content/src/types/types"
-
-import contentMap from "@/contentMap"
 
 import type { Params } from "./page"
 

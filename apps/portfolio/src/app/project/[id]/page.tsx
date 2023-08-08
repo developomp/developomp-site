@@ -1,7 +1,8 @@
 import "./style.scss"
 
 import Toc from "@developomp-site/blog/src/app/[category]/[[...slug]]/Toc"
-import portfolio from "@developomp-site/content/dist/portfolio.json"
+import type { ProjectKey } from "@developomp-site/content/exports/portfolio"
+import portfolio from "@developomp-site/content/exports/portfolio"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { type Metadata } from "next"
@@ -21,14 +22,14 @@ interface Data {
 }
 
 interface Params {
-    id: keyof typeof portfolio.projects
+    id: ProjectKey
 }
 
 interface Props {
     params: Params
 }
 
-async function getData(id: keyof typeof portfolio.projects): Promise<Data> {
+async function getData(id: ProjectKey): Promise<Data> {
     const content = await import(
         `@developomp-site/content/dist/content/projects/${id}.json`
     )
@@ -46,9 +47,9 @@ async function getData(id: keyof typeof portfolio.projects): Promise<Data> {
 }
 
 export async function generateStaticParams(): Promise<Params[]> {
-    return (
-        Object.keys(portfolio.projects) as (keyof typeof portfolio.projects)[]
-    ).map((id) => ({ id }))
+    return (Object.keys(portfolio.projects) as ProjectKey[]).map((id) => ({
+        id,
+    }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

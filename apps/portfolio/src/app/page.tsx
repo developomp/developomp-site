@@ -1,5 +1,5 @@
-import portfolio from "@developomp-site/content/dist/portfolio.json"
-import type { PortfolioProject } from "@developomp-site/content/src/types/types"
+import type { ProjectKey } from "@developomp-site/content/exports/portfolio"
+import portfolio from "@developomp-site/content/exports/portfolio"
 import type { Metadata } from "next"
 
 import Badge from "@/components/Badge"
@@ -12,23 +12,15 @@ function getSkills(): JSX.Element[] {
 }
 
 function getProjects(): JSX.Element[] {
-    const projects = []
-
-    for (const projectID in portfolio.projects) {
-        projects.push(
+    return (Object.keys(portfolio.projects) as ProjectKey[]).map(
+        (projectID) => (
             <ProjectCard
                 key={projectID}
                 projectID={projectID}
-                project={
-                    portfolio.projects[
-                        projectID as keyof typeof portfolio.projects
-                    ] as PortfolioProject
-                }
+                project={portfolio.projects[projectID]}
             />
         )
-    }
-
-    return projects
+    )
 }
 
 export const metadata: Metadata = {

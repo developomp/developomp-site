@@ -1,10 +1,10 @@
 "use client"
 
+import contentMap from "@developomp-site/content/exports/contentMap"
 import { type ReactNode, useEffect, useState } from "react"
 
 import PostCard from "@/components/PostCard"
 import ShowMoreButton from "@/components/ShowMoreButton"
-import contentMap from "@/contentMap"
 
 const totalPosts = Object.keys(contentMap.posts).length
 
