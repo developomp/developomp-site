@@ -5,10 +5,10 @@
         "naumovs.color-highlight",
         "streetsidesoftware.code-spell-checker",
         "aaron-bond.better-comments",
-        "styled-components.vscode-styled-components",
         "bradlc.vscode-tailwindcss",
         "unifiedjs.vscode-mdx",
         "svelte.svelte-vscode",
-        "redhat.vscode-xml"
+        "redhat.vscode-xml",
+        "github.vscode-github-actions"
     ]
 }
