@@ -19,6 +19,7 @@ import "@developomp-site/blog/src/styles/mark.scss"
 import "@developomp-site/blog/src/styles/scrollbar.scss"
 import "@developomp-site/blog/src/styles/subSup.scss"
 import "@developomp-site/blog/src/styles/table.scss"
+import "@developomp-site/blog/src/styles/theme-visibility.scss"
 import "./global.scss"
 
 import { type Metadata } from "next"

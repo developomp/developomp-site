@@ -1,0 +1,17 @@
+.dark-element {
+    display: none;
+}
+
+.light-element {
+    display: block;
+}
+
+:is(.dark) {
+    .dark-element {
+        display: block;
+    }
+
+    .light-element {
+        display: none;
+    }
+}

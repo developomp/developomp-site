@@ -22,6 +22,7 @@ import "../styles/mark.scss"
 import "../styles/scrollbar.scss"
 import "../styles/subSup.scss"
 import "../styles/table.scss"
+import "../styles/theme-visibility.scss"
 
 import { type Metadata } from "next"
 import Image from "next/image"
