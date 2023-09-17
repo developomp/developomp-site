@@ -1,6 +1,6 @@
 ---
 title: An open letter to the War Brokers community
-date: 2023-09-18
+date: 2023-09-17
 ---
 
 ## Timeline
