@@ -1,68 +1,68 @@
 name: Build, Test, and Deploy
 on:
-    push:
-        branches:
-            - master
+  push:
+    branches:
+      - master
 concurrency:
-    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-    cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 jobs:
-    deploy:
-        if: ${{ github.repository_owner == 'developomp' }}
-        name: Deploy
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout Repo
-              uses: actions/checkout@master
+  deploy:
+    if: ${{ github.repository_owner == 'developomp' }}
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
 
-            - uses: pnpm/action-setup@v2
-              with:
-                  version: 8
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-            - name: Setup Node
-              uses: actions/setup-node@v3
-              with:
-                  node-version: 18
-                  cache: pnpm
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: pnpm
 
-            - name: Store Playwright's Version
-              run: |
-                  PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
-                  echo "Playwright's Version: $PLAYWRIGHT_VERSION"
-                  echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
+      - name: Store Playwright's Version
+        run: |
+          PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
+          echo "Playwright's Version: $PLAYWRIGHT_VERSION"
+          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
 
-            - name: Cache Playwright Browsers for Playwright's Version
-              id: cache-playwright-browsers
-              uses: actions/cache@v3
-              with:
-                  path: ~/.cache/ms-playwright
-                  key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
+      - name: Cache Playwright Browsers for Playwright's Version
+        id: cache-playwright-browsers
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
 
-            - name: Install dependencies
-              run: pnpm install
+      - name: Install dependencies
+        run: pnpm install
 
-            - name: Install playwright browsers
-              if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
-              run: npx playwright install --with-deps
+      - name: Install playwright browsers
+        if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
+        run: npx playwright install --with-deps
 
-            - name: Build
-              run: pnpm build
+      - name: Build
+        run: pnpm build
 
-            - name: Run unit tests
-              run: pnpm test:unit
+      - name: Run unit tests
+        run: pnpm test:unit
 
-            - name: Run E2E tests
-              run: pnpm test:e2e
+      - name: Run E2E tests
+        run: pnpm test:e2e
 
-            - uses: actions/upload-artifact@v3
-              with:
-                  name: test-results
-                  path: |
-                      apps/*/test-results
+      - uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: |
+            apps/*/test-results
 
-            - name: Deploy to Firebase
-              uses: w9jds/firebase-action@master
-              with:
-                  args: deploy
-              env:
-                  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
