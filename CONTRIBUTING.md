@@ -36,7 +36,11 @@
    ```
    pnpm install
    ```
-4. Run whatever command you need either in project root or in individual packages
+4. Setup husky
+   ```
+   pnpm husky install
+   ```
+5. Run whatever command you need either in project root or in individual packages
    - `pnpm build` - Build all apps and packages
    - `pnpm dev` - Run all apps and packages locally
      - blog - http://localhost:3000
