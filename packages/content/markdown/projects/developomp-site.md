@@ -10,6 +10,7 @@ badges:
   - svelte
   - nextdotjs
   - firebase
+  - terraform
 ---
 
 ## Introduction
