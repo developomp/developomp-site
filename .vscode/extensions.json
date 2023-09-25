@@ -9,6 +9,7 @@
         "unifiedjs.vscode-mdx",
         "svelte.svelte-vscode",
         "redhat.vscode-xml",
-        "github.vscode-github-actions"
+        "github.vscode-github-actions",
+        "4ops.terraform"
     ]
 }

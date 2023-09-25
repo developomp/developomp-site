@@ -2,3 +2,6 @@ root = true
 
 [*]
 indent_style = space
+
+[*.tf]
+tab_width = 2

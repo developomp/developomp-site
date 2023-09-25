@@ -32,6 +32,7 @@
 2. Install the following
    - [NodeJS](https://nodejs.org)
    - [pnpm](https://pnpm.io/installation)
+   - [terraform CLI](https://developer.hashicorp.com/terraform/downloads)
 3. Install Dependencies
    ```
    pnpm install
