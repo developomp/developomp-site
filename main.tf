@@ -21,59 +21,59 @@ data "aws_route53_zone" "developomp_com" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "main" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = data.aws_route53_zone.developomp_com.name
-  type    = "A"
-  ttl     = 60
-  records = ["151.101.1.195", "151.101.65.195"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = data.aws_route53_zone.developomp_com.name
+  type            = "A"
+  ttl             = 60
+  records         = ["151.101.1.195", "151.101.65.195"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "main_acme_challenge" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = "_acme-challenge.${data.aws_route53_zone.developomp_com.name}"
-  type    = "TXT"
-  ttl     = 60
-  records = ["FCcgOpnrCBEMv1m4Z9NRqa4FlOW78CUVrfUQgGfb14o"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = "_acme-challenge.${data.aws_route53_zone.developomp_com.name}"
+  type            = "TXT"
+  ttl             = 60
+  records         = ["FCcgOpnrCBEMv1m4Z9NRqa4FlOW78CUVrfUQgGfb14o"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "blog" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = "blog.${data.aws_route53_zone.developomp_com.name}"
-  type    = "A"
-  ttl     = 60
-  records = ["199.36.158.100"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = "blog.${data.aws_route53_zone.developomp_com.name}"
+  type            = "A"
+  ttl             = 60
+  records         = ["199.36.158.100"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "blog_acme_challenge" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = "_acme-challenge.blog.${data.aws_route53_zone.developomp_com.name}"
-  type    = "TXT"
-  ttl     = 60
-  records = ["RXaOhzFg2U4ZtEU_Dj_2ylAX3D8xXpdRCq1KjoaB9Sc"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = "_acme-challenge.blog.${data.aws_route53_zone.developomp_com.name}"
+  type            = "TXT"
+  ttl             = 60
+  records         = ["RXaOhzFg2U4ZtEU_Dj_2ylAX3D8xXpdRCq1KjoaB9Sc"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "portfolio" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = "portfolio.${data.aws_route53_zone.developomp_com.name}"
-  type    = "A"
-  ttl     = 60
-  records = ["199.36.158.100"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = "portfolio.${data.aws_route53_zone.developomp_com.name}"
+  type            = "A"
+  ttl             = 60
+  records         = ["199.36.158.100"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
 resource "aws_route53_record" "portfolio_acme_challenge" {
   allow_overwrite = true
-  zone_id = data.aws_route53_zone.developomp_com.zone_id
-  name    = "_acme-challenge.portfolio.${data.aws_route53_zone.developomp_com.name}"
-  type    = "TXT"
-  ttl     = 60
-  records = ["YxFtDJ-Qf1yE8KX2mzf4cbfkPBR74IbbWX_0l5gGnLg"]
+  zone_id         = data.aws_route53_zone.developomp_com.zone_id
+  name            = "_acme-challenge.portfolio.${data.aws_route53_zone.developomp_com.name}"
+  type            = "TXT"
+  ttl             = 60
+  records         = ["YxFtDJ-Qf1yE8KX2mzf4cbfkPBR74IbbWX_0l5gGnLg"]
 }
