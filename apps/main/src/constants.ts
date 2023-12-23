@@ -1,1 +1,1 @@
-export const discordInviteLink = "https://discord.gg/aQqamSCUcS"
+export const discordInviteLink = "https://dsc.gg/developomp"
