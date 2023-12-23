@@ -1,8 +1,8 @@
 <script lang="ts">
     import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
-    import Gmail from "@inqling/svelte-icons/simple-icons/gmail.svelte"
     import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
+    import ProtonMail from "@inqling/svelte-icons/simple-icons/protonmail.svelte"
     import { onMount } from "svelte"
 
     import HandWave from "$/components/HandWave.svelte"
@@ -70,9 +70,9 @@ October 2023 ~ April 2025
     <a
         class="social-profile"
         target="_blank"
-        href="mailto: developomp@gmail.com"
-        aria-label="Gmail link"
+        href="mailto: developomp@protonmail.com"
+        aria-label="Email link (ProtonMail)"
     >
-        <Gmail />
+        <ProtonMail />
     </a>
 </div>
