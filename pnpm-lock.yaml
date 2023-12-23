@@ -174,8 +174,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       '@inqling/svelte-icons':
-        specifier: ^3.3.2
-        version: 3.3.2(svelte@4.0.5)
+        specifier: ^4.0.2
+        version: 4.0.2(svelte@4.0.5)
       '@playwright/test':
         specifier: ^1.36.2
         version: 1.36.2
@@ -1399,10 +1399,10 @@ packages:
   /@humanwhocodes/object-schema@1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
 
-  /@inqling/svelte-icons@3.3.2(svelte@4.0.5):
-    resolution: {integrity: sha512-VPlMkWn0Vi5U5CRkw+dpEu1IElZG0ZdTR7Ji18ZVi5v1dNfo90ilCHeq9Caq8R2ViQOtxdPlCwDuU6gLxB+H4g==}
+  /@inqling/svelte-icons@4.0.2(svelte@4.0.5):
+    resolution: {integrity: sha512-K1a8Ta8j4DvBjmthowxJ81Fn1Vgqq1i7YpwxBAX1BoXPmgU5k4bEtseR6ArU9xzz2PwSLTc/mb7SMssM7gqZqg==}
     peerDependencies:
-      svelte: '>=3.00.0'
+      svelte: '>=3.0.0'
     dependencies:
       svelte: 4.0.5
     dev: true
