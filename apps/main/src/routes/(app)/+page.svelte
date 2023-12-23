@@ -1,7 +1,6 @@
 <script lang="ts">
     import Discord from "@inqling/svelte-icons/simple-icons/discord.svelte"
     import GitHub from "@inqling/svelte-icons/simple-icons/github.svelte"
-    import Mastodon from "@inqling/svelte-icons/simple-icons/mastodon.svelte"
     import ProtonMail from "@inqling/svelte-icons/simple-icons/protonmail.svelte"
     import { onMount } from "svelte"
 
@@ -58,14 +57,6 @@ October 2023 ~ April 2025
         aria-label="Discord link"
     >
         <Discord />
-    </a>
-    <a
-        class="social-profile"
-        target="_blank"
-        href="https://mastodon.social/@developomp"
-        aria-label="Mastodon link"
-    >
-        <Mastodon />
     </a>
     <a
         class="social-profile"
