@@ -13,8 +13,8 @@
     "devDependencies": {
         "@commitlint/cli": "^18.4.3",
         "@commitlint/config-conventional": "^18.4.3",
-        "@developomp-site/eslint-config": "workspace:^",
-        "@developomp-site/prettier-config": "workspace:^",
+        "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/prettier-config": "workspace:*",
         "eslint": "^8.56.0",
         "eslint-plugin-turbo": "^1.10.7",
         "husky": "^8.0.3",

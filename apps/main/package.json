@@ -13,10 +13,10 @@
         "lint": "eslint ."
     },
     "devDependencies": {
-        "@developomp-site/eslint-config": "workspace:^",
-        "@developomp-site/playwright-config": "workspace:^",
-        "@developomp-site/prettier-config": "workspace:^",
-        "@developomp-site/tailwind-config": "workspace:^",
+        "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/playwright-config": "workspace:*",
+        "@developomp-site/prettier-config": "workspace:*",
+        "@developomp-site/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@inqling/svelte-icons": "^4.0.2",
         "@playwright/test": "^1.36.2",

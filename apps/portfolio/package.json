@@ -12,12 +12,12 @@
         "clean": "rm -rf .next .turbo dist node_modules test-results"
     },
     "devDependencies": {
-        "@developomp-site/blog": "workspace:^",
-        "@developomp-site/content": "workspace:^",
-        "@developomp-site/eslint-config": "workspace:^",
-        "@developomp-site/playwright-config": "workspace:^",
-        "@developomp-site/prettier-config": "workspace:^",
-        "@developomp-site/tailwind-config": "workspace:^",
+        "@developomp-site/blog": "workspace:*",
+        "@developomp-site/content": "workspace:*",
+        "@developomp-site/eslint-config": "workspace:*",
+        "@developomp-site/playwright-config": "workspace:*",
+        "@developomp-site/prettier-config": "workspace:*",
+        "@developomp-site/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@fontsource/source-code-pro": "^5.0.5",
         "@fortawesome/free-brands-svg-icons": "^6.4.0",
