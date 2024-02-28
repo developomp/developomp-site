@@ -30,7 +30,7 @@ export default function Home() {
                             content_id: content_id,
                             ...contentMap.posts[content_id],
                         }}
-                    />
+                    />,
                 )
             }
         }

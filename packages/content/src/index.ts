@@ -76,7 +76,7 @@ async function main() {
         JSON.stringify({
             ...portfolioData,
             skills: Array.from(portfolioData.skills),
-        })
+        }),
     )
 
     saveIndex()

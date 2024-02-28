@@ -110,8 +110,8 @@ export default async function parseSeries(data: DataToPass): Promise<void> {
                 const index = parseInt(
                     _urlPath.slice(
                         _urlPath.lastIndexOf("/") + 1,
-                        _urlPath.lastIndexOf("_")
-                    )
+                        _urlPath.lastIndexOf("_"),
+                    ),
                 )
 
                 if (isNaN(index))
@@ -142,6 +142,6 @@ export default async function parseSeries(data: DataToPass): Promise<void> {
         JSON.stringify({
             content: markdownData.content,
             toc: await generateToc(markdownRaw),
-        })
+        }),
     )
 }

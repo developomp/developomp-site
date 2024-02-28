@@ -19,7 +19,7 @@ function getProjects(): JSX.Element[] {
                 projectID={projectID}
                 project={portfolio.projects[projectID]}
             />
-        )
+        ),
     )
 }
 

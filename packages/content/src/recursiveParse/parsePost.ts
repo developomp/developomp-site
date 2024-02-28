@@ -71,6 +71,6 @@ export default async function parsePost(data: DataToPass): Promise<void> {
         JSON.stringify({
             content: markdownData.content,
             toc: await generateToc(markdownRaw),
-        })
+        }),
     )
 }

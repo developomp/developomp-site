@@ -31,7 +31,7 @@ export interface DataToPass {
  */
 export async function recursiveParse(
     mode: ParseMode,
-    path: string
+    path: string,
 ): Promise<void> {
     // get name of the file or folder that's currently being parsed
     const fileOrFolderName = path2FileOrFolderName(path)
@@ -78,7 +78,7 @@ async function parseFile(mode: ParseMode, path: string): Promise<void> {
         275,
         12,
         500,
-        ["img", "Image"]
+        ["img", "Image"],
     )
 
     const dataToPass: DataToPass = {

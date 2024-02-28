@@ -29,7 +29,7 @@ export function parseSeries() {
     for (const seriesURL in seriesMap) {
         contentMap.series[seriesURL].length = seriesMap[seriesURL].length
         contentMap.series[seriesURL].order = seriesMap[seriesURL].map(
-            (item) => item.url
+            (item) => item.url,
         )
     }
 }

@@ -33,7 +33,7 @@ export default async function parseProjects({
                     hex: color.toHexString(),
                     isDark: color.isDark(),
                     title: icon.title,
-                })
+                }),
             )
         })
     }
@@ -52,6 +52,6 @@ export default async function parseProjects({
         JSON.stringify({
             content: markdownData.content,
             toc: await generateToc(markdownRaw),
-        })
+        }),
     )
 }

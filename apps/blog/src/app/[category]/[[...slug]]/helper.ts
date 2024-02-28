@@ -53,7 +53,7 @@ export function parsePageData(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     fetched_content: any,
     pageType: PageType,
-    content_id: string
+    content_id: string,
 ): PageData {
     // page date to be saved as a react state
     const pageData: PageData = {

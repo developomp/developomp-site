@@ -55,7 +55,7 @@ const processor = unified() // interface for remark and rehype
 export default async function parseMarkdown(
     markdownRaw: string,
     path: string,
-    mode: ParseMode
+    mode: ParseMode,
 ): Promise<MarkdownData> {
     const fileHasFrontMatter = markdownRaw.startsWith("---")
 
@@ -75,14 +75,14 @@ export default async function parseMarkdown(
         if (mode === ParseMode.PORTFOLIO) {
             if (frontMatter.overview) {
                 frontMatter.overview = String(
-                    processor.processSync(frontMatter.overview)
+                    processor.processSync(frontMatter.overview),
                 )
             }
         }
     }
 
     frontMatter.content = touchupHTML(
-        String(processor.processSync(markdownRaw))
+        String(processor.processSync(markdownRaw)),
     )
 
     return frontMatter as MarkdownData
@@ -107,7 +107,7 @@ function touchupHTML(html: string): string {
     dom.window.document.querySelectorAll(".footnotes").forEach((item) => {
         item.parentNode?.insertBefore(
             dom.window.document.createElement("hr"),
-            item
+            item,
         )
     })
 

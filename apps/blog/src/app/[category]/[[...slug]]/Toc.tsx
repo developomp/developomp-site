@@ -14,7 +14,7 @@ interface Props {
 export default function Toc({ data }: Props) {
     const [isTocOpened, setIsTocOpened] = useState<boolean>(
         typeof window !== "undefined" &&
-            localStorage.getItem("isTocOpened") === "true"
+            localStorage.getItem("isTocOpened") === "true",
     )
 
     useEffect(() => {
