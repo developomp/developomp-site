@@ -4,9 +4,8 @@ const prefix = "developomp | "
 
 test("should have proper title", async ({ page }) => {
     await page.goto("/")
-    expect(await page.title()).toEqual("developomp")
+    await expect(page).toHaveTitle("developomp")
 
     await page.goto("/404")
-    await page.waitForTimeout(1000)
-    expect(await page.title()).toEqual(`${prefix}Page Not Found`)
+    await expect(page).toHaveTitle(`${prefix}Page Not Found`)
 })
