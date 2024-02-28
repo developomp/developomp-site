@@ -10,6 +10,7 @@
         "svelte.svelte-vscode",
         "redhat.vscode-xml",
         "github.vscode-github-actions",
-        "4ops.terraform"
+        "4ops.terraform",
+        "foxundermoon.shell-format"
     ]
 }

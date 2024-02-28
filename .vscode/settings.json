@@ -74,11 +74,12 @@
         "YYYYMMDD",
         "zustand"
     ],
+
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "eslint.validate": ["javascript", "typescript", "svelte"],
-    "[svg]": {
-        "editor.defaultFormatter": "jock.svg"
-    },
+
+    "typescript.tsdk": "node_modules/typescript/lib",
+
     // prevent tailwind-related warnings
     "css.lint.unknownAtRules": "ignore",
     "less.lint.unknownAtRules": "ignore",
@@ -86,11 +87,33 @@
     "color-highlight.markerType": "outline",
     // https://github.com/tailwindlabs/tailwindcss-intellisense#tailwindcssclassattributes
     "tailwindCSS.classAttributes": ["class", "className", ".*Styles*"],
+
+    // file format settings
+    "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[svg]": {
+        "editor.defaultFormatter": "jock.svg"
+    },
     "[dotenv]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
     "[xml]": {
         "editor.defaultFormatter": "redhat.vscode-xml"
     },
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "[svelte]": {
+        "editor.defaultFormatter": "svelte.svelte-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[shellscript]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
+    "[ignore]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    }
 }
