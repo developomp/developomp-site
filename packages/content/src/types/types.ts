@@ -32,7 +32,6 @@ export interface ContentMap {
 export enum ParseMode {
     POSTS,
     SERIES,
-    PORTFOLIO,
 }
 
 export interface MarkdownData {
@@ -67,13 +66,6 @@ export interface PageData {
 
     order: string[]
     length: number
-
-    // portfolio
-
-    image: string // image url
-    overview: string
-    badges: string[]
-    repo: string
 }
 
 export interface Badge {
@@ -105,32 +97,4 @@ export interface SeriesMap {
 export interface SeriesEntry {
     index: number
     url: string
-}
-
-/**
- * Portfolio
- */
-
-export interface PortfolioData {
-    // a set of valid simple icons slug
-    skills: Set<string>
-
-    // key: url
-    projects: {
-        [key: string]: PortfolioProject
-    }
-}
-
-export interface PortfolioOverview {
-    // link to my github
-    github: string
-    description: string
-}
-
-export interface PortfolioProject {
-    name: string
-    image: string // url to the image
-    overview: string
-    badges: string[] // array of valid simpleIcons slug
-    repo: string // url of the git repository
 }

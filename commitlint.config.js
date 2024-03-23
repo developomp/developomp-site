@@ -14,7 +14,6 @@ module.exports = {
                 // apps
                 "blog",
                 "main",
-                "portfolio",
 
                 // packages
                 "content",

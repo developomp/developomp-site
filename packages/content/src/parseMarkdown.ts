@@ -23,7 +23,6 @@ import supersub from "remark-supersub"
 import { unified } from "unified"
 
 import type { MarkdownData } from "./types/types"
-import { ParseMode } from "./types/types"
 import { nthIndex } from "./util"
 
 const processor = unified() // interface for remark and rehype
@@ -50,12 +49,10 @@ const processor = unified() // interface for remark and rehype
  *
  * @param {string} markdownRaw - raw unparsed text data of the markdown file
  * @param {string} path - filename of the markdown file
- * @param {ParseMode} mode
  */
 export default async function parseMarkdown(
     markdownRaw: string,
     path: string,
-    mode: ParseMode,
 ): Promise<MarkdownData> {
     const fileHasFrontMatter = markdownRaw.startsWith("---")
 
@@ -64,21 +61,11 @@ export default async function parseMarkdown(
         : {}
 
     if (fileHasFrontMatter) {
-        if (mode != ParseMode.PORTFOLIO) {
-            if (!frontMatter.title)
-                throw Error(`Title is not defined in file: ${path}`)
+        if (!frontMatter.title)
+            throw Error(`Title is not defined in file: ${path}`)
 
-            if (!frontMatter.date)
-                throw Error(`Date is not defined in file: ${path}`)
-        }
-
-        if (mode === ParseMode.PORTFOLIO) {
-            if (frontMatter.overview) {
-                frontMatter.overview = String(
-                    processor.processSync(frontMatter.overview),
-                )
-            }
-        }
+        if (!frontMatter.date)
+            throw Error(`Date is not defined in file: ${path}`)
     }
 
     frontMatter.content = touchupHTML(

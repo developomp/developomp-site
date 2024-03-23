@@ -5,7 +5,6 @@ import parseMarkdown from "../parseMarkdown"
 import { ParseMode } from "../types/types"
 import { path2FileOrFolderName, path2URL } from "../util"
 import parsePost from "./parsePost"
-import parseProjects from "./parseProjects"
 import parseSeries from "./parseSeries"
 
 /**
@@ -97,10 +96,6 @@ async function parseFile(mode: ParseMode, path: string): Promise<void> {
 
         case ParseMode.SERIES:
             await parseSeries(dataToPass)
-            break
-
-        case ParseMode.PORTFOLIO:
-            await parseProjects(dataToPass)
             break
     }
 }

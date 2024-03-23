@@ -12,7 +12,6 @@
 - `apps`
   - `main` - https://developomp.com
   - `blog` - https://blog.developomp.com
-  - `portfolio` - https://portfolio.developomp.com
 - `packages` - shared stuff used across different packages
   - `content` - Shared content
   - `eslint-config` - ESLint configuration files
@@ -46,7 +45,6 @@
    - `pnpm dev` - Run all apps and packages locally
      - blog - http://localhost:3000
      - main - http://localhost:5173
-     - portfolio - http://localhost:5174
    - `pnpm lint` - Lint all apps and packages
    - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
 

@@ -140,6 +140,9 @@ importers:
       react:
         specifier: 18.2.0
         version: 18.2.0
+      react-collapse:
+        specifier: ^5.1.1
+        version: 5.1.1(react@18.2.0)
       react-dom:
         specifier: 18.2.0
         version: 18.2.0(react@18.2.0)
@@ -260,126 +263,6 @@ importers:
       vite:
         specifier: ^5.0.10
         version: 5.0.10(@types/node@18.19.3)(sass@1.69.5)
-
-  apps/portfolio:
-    devDependencies:
-      '@developomp-site/blog':
-        specifier: workspace:*
-        version: link:../blog
-      '@developomp-site/content':
-        specifier: workspace:*
-        version: link:../../packages/content
-      '@developomp-site/eslint-config':
-        specifier: workspace:*
-        version: link:../../packages/eslint-config
-      '@developomp-site/playwright-config':
-        specifier: workspace:*
-        version: link:../../packages/playwright-config
-      '@developomp-site/prettier-config':
-        specifier: workspace:*
-        version: link:../../packages/prettier-config
-      '@developomp-site/tailwind-config':
-        specifier: workspace:*
-        version: link:../../packages/tailwind-config
-      '@fontsource/noto-sans-kr':
-        specifier: ^5.0.5
-        version: 5.0.5
-      '@fontsource/source-code-pro':
-        specifier: ^5.0.5
-        version: 5.0.5
-      '@fortawesome/free-brands-svg-icons':
-        specifier: ^6.4.0
-        version: 6.4.0
-      '@fortawesome/free-solid-svg-icons':
-        specifier: ^6.4.0
-        version: 6.4.0
-      '@fortawesome/react-fontawesome':
-        specifier: ^0.2.0
-        version: 0.2.0(@fortawesome/fontawesome-svg-core@6.5.1)(react@18.2.0)
-      '@kunukn/react-collapse':
-        specifier: ^2.2.10
-        version: 2.2.10(react-dom@18.2.0)(react@18.2.0)
-      '@playwright/test':
-        specifier: ^1.36.2
-        version: 1.36.2
-      '@types/highlight.js':
-        specifier: ^10.1.0
-        version: 10.1.0
-      '@types/katex':
-        specifier: ^0.16.7
-        version: 0.16.7
-      '@types/node':
-        specifier: ^20.10.5
-        version: 20.10.5
-      '@types/react':
-        specifier: 18.2.17
-        version: 18.2.17
-      '@types/react-collapse':
-        specifier: ^5.0.1
-        version: 5.0.1
-      '@types/react-dom':
-        specifier: 18.2.7
-        version: 18.2.7
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^6.15.0
-        version: 6.15.0(@typescript-eslint/parser@6.15.0)(eslint@8.56.0)(typescript@5.3.3)
-      '@typescript-eslint/parser':
-        specifier: ^6.15.0
-        version: 6.15.0(eslint@8.56.0)(typescript@5.3.3)
-      autoprefixer:
-        specifier: ^10.4.16
-        version: 10.4.16(postcss@8.4.32)
-      eslint:
-        specifier: ^8.56.0
-        version: 8.56.0
-      eslint-config-next:
-        specifier: 13.4.12
-        version: 13.4.12(eslint@8.56.0)(typescript@5.3.3)
-      highlight.js:
-        specifier: ^11.8.0
-        version: 11.8.0
-      katex:
-        specifier: ^0.16.8
-        version: 0.16.8
-      next:
-        specifier: 13.4.12
-        version: 13.4.12(react-dom@18.2.0)(react@18.2.0)
-      next-sitemap:
-        specifier: ^4.1.8
-        version: 4.1.8(next@13.4.12)
-      open-cli:
-        specifier: ^7.2.0
-        version: 7.2.0
-      postcss:
-        specifier: ^8.4.32
-        version: 8.4.32
-      postcss-load-config:
-        specifier: ^4.0.1
-        version: 4.0.1(postcss@8.4.32)
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
-      prettier-plugin-tailwindcss:
-        specifier: ^0.5.9
-        version: 0.5.9(prettier-plugin-svelte@3.1.2)(prettier@3.2.5)
-      react:
-        specifier: 18.2.0
-        version: 18.2.0
-      react-collapse:
-        specifier: ^5.1.1
-        version: 5.1.1(react@18.2.0)
-      react-dom:
-        specifier: 18.2.0
-        version: 18.2.0(react@18.2.0)
-      serve:
-        specifier: ^14.2.0
-        version: 14.2.0
-      tailwindcss:
-        specifier: ^3.4.0
-        version: 3.4.0
-      typescript:
-        specifier: ^5.3.3
-        version: 5.3.3
 
   packages/content:
     dependencies:

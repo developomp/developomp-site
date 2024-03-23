@@ -8,11 +8,11 @@
 
 import fs from "fs"
 
-import { mapFilePath, markdownPath, outPath, portfolioFilePath } from "./config"
+import { mapFilePath, markdownPath, outPath } from "./config"
 import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
 import { saveIndex } from "./searchIndex"
-import type { ContentMap, PortfolioData, SeriesMap } from "./types/types"
+import type { ContentMap, SeriesMap } from "./types/types"
 import { ParseMode } from "./types/types"
 
 export const contentMap: ContentMap = {
@@ -25,10 +25,6 @@ export const contentMap: ContentMap = {
     series: {},
 }
 export const seriesMap: SeriesMap = {}
-export const portfolioData: PortfolioData = {
-    skills: new Set(),
-    projects: {},
-}
 
 async function main() {
     /**
@@ -60,7 +56,6 @@ async function main() {
     // parse markdown
     await recursiveParse(ParseMode.POSTS, markdownPath + "/posts")
     await recursiveParse(ParseMode.SERIES, markdownPath + "/series")
-    await recursiveParse(ParseMode.PORTFOLIO, markdownPath + "/projects")
 
     sortDates()
     fillTags()
@@ -71,14 +66,6 @@ async function main() {
      */
 
     fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
-    fs.writeFileSync(
-        portfolioFilePath,
-        JSON.stringify({
-            ...portfolioData,
-            skills: Array.from(portfolioData.skills),
-        }),
-    )
-
     saveIndex()
 }
 

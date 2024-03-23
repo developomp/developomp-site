@@ -75,13 +75,6 @@ export function parsePageData(
 
         order: [],
         length: 0,
-
-        // portfolio (unused)
-
-        image: "",
-        overview: "",
-        badges: [],
-        repo: "",
     }
 
     // load and parse content differently depending on the content type
