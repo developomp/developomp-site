@@ -1,12 +1,5 @@
 # Contribution Guide
 
-## Things to get familiar with
-
-- pnpm - package manager & monorepo
-- React - Front-end framework
-- Svelte - Front-end framework
-- SvelteKit - Svelte meta-framework
-
 ## Project Structure
 
 - `apps`
