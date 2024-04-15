@@ -61,6 +61,12 @@ export default function RootLayout({
                     href="/favicon.svg"
                 />
                 <meta name="theme-color" content="#000000" />
+                <script
+                    async
+                    defer
+                    src="https://eu.umami.is/script.js"
+                    data-website-id="aa2eb701-74e2-4d81-ad27-9de6850b7f50"
+                ></script>
             </head>
 
             <body className="overflow-x-hidden overflow-y-scroll">
@@ -80,7 +86,7 @@ export default function RootLayout({
                 </noscript>
 
                 <Header />
-                <main className="mx-auto mb-8 mt-20 flex w-full max-w-screen-mobile grow flex-col items-center gap-8 px-4">
+                <main className="max-w-screen-mobile mx-auto mb-8 mt-20 flex w-full grow flex-col items-center gap-8 px-4">
                     {children}
                 </main>
                 <Footer />

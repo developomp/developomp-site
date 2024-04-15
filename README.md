@@ -21,6 +21,7 @@ A collection of "pomp-branded" websites.
 ![SvelteKit](https://img.shields.io/badge/sveltekit-222?style=for-the-badge&logo=svelte)
 ![OpenTofu](https://img.shields.io/badge/opentofu-222?style=for-the-badge&logo=opentofu)
 ![Firebase](https://img.shields.io/badge/firebase-222?style=for-the-badge&logo=firebase)
+![umami](https://img.shields.io/badge/umamu-222?style=for-the-badge&logo=umami)
 
 ## Special thanks
 
