@@ -43,7 +43,7 @@
 ## Setting up for deployment
 
 1. Install the following
-   - [terraform CLI](https://developer.hashicorp.com/terraform/downloads)
+   - [OpenTofu CLI](https://opentofu.org/docs/cli)
    - [AWS CLI](https://aws.amazon.com/cli)
 2. Setup AWS credentials
    ```

@@ -19,7 +19,7 @@ A collection of "pomp-branded" websites.
 ![Next.js](https://img.shields.io/badge/next.js-222?style=for-the-badge&logo=nextdotjs)
 ![Svelte](https://img.shields.io/badge/svelte-222?style=for-the-badge&logo=svelte)
 ![SvelteKit](https://img.shields.io/badge/sveltekit-222?style=for-the-badge&logo=svelte)
-![Terraform](https://img.shields.io/badge/terraform-222?style=for-the-badge&logo=terraform)
+![OpenTofu](https://img.shields.io/badge/opentofu-222?style=for-the-badge&logo=opentofu)
 ![Firebase](https://img.shields.io/badge/firebase-222?style=for-the-badge&logo=firebase)
 
 ## Special thanks
