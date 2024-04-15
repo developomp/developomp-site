@@ -8,7 +8,7 @@
         "test:unit": "turbo run test:unit --parallel --continue",
         "test:e2e": "turbo run test:e2e --parallel --continue",
         "lint": "turbo run lint",
-        "clean": "turbo run clean && rm -rf node_modules"
+        "clean": "turbo run clean && rm -rf node_modules .turbo .terraform terraform.tfstate"
     },
     "devDependencies": {
         "@commitlint/cli": "^18.4.3",

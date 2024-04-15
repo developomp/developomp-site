@@ -24,7 +24,6 @@
 2. Install the following
    - [NodeJS](https://nodejs.org)
    - [pnpm](https://pnpm.io/installation)
-   - [terraform CLI](https://developer.hashicorp.com/terraform/downloads)
 3. Install Dependencies
    ```
    pnpm install
@@ -40,6 +39,16 @@
      - main - http://localhost:5173
    - `pnpm lint` - Lint all apps and packages
    - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
+
+## Setting up for deployment
+
+1. Install the following
+   - [terraform CLI](https://developer.hashicorp.com/terraform/downloads)
+   - [AWS CLI](https://aws.amazon.com/cli)
+2. Setup AWS credentials
+   ```
+   aws configure
+   ```
 
 ## Testing
 
