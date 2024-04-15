@@ -86,7 +86,7 @@ export default function RootLayout({
                 </noscript>
 
                 <Header />
-                <main className="max-w-screen-mobile mx-auto mb-8 mt-20 flex w-full grow flex-col items-center gap-8 px-4">
+                <main className="mx-auto mb-8 mt-20 flex w-full max-w-screen-mobile grow flex-col items-center gap-8 px-4">
                     {children}
                 </main>
                 <Footer />
