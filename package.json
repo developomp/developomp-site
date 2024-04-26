@@ -19,6 +19,6 @@
         "eslint-plugin-turbo": "^1.10.7",
         "husky": "^8.0.3",
         "prettier": "^3.2.5",
-        "turbo": "^1.11.2"
+        "turbo": "^1.13.3"
     }
 }
