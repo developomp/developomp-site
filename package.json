@@ -1,6 +1,5 @@
 {
     "private": true,
-    "packageManager": "^pnpm@8.0.0",
     "scripts": {
         "dev": "turbo run dev --parallel --continue",
         "build": "turbo run build",
@@ -11,14 +10,17 @@
         "clean": "turbo run clean && rm -rf node_modules .turbo .terraform terraform.tfstate"
     },
     "devDependencies": {
-        "@commitlint/cli": "^18.4.3",
-        "@commitlint/config-conventional": "^18.4.3",
         "@developomp-site/eslint-config": "workspace:*",
         "@developomp-site/prettier-config": "workspace:*",
+        "@commitlint/cli": "^19.3.0",
+        "@commitlint/config-conventional": "^19.2.2",
         "eslint": "^8.56.0",
-        "eslint-plugin-turbo": "^1.10.7",
-        "husky": "^8.0.3",
+        "eslint-plugin-turbo": "^1.11.2",
+        "husky": "^9.0.11",
         "prettier": "^3.2.5",
         "turbo": "^1.13.3"
+    },
+    "engines": {
+        "pnpm": ">=9"
     }
 }
