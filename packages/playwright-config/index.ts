@@ -20,7 +20,7 @@ export function createConfig(config: Config): PlaywrightTestConfig {
         // Run your local dev server before starting the tests:
         // https://playwright.dev/docs/test-advanced#launching-a-development-web-server-during-the-tests
         webServer: {
-            command: "pnpm serve",
+            command: "pnpm dev:headless",
             url: baseURL,
             timeout: 30 * 1000,
             // eslint-disable-next-line turbo/no-undeclared-env-vars

@@ -8,9 +8,6 @@
             "cache": false,
             "dependsOn": ["^build"]
         },
-        "serve": {
-            "cache": false
-        },
         "test:unit": {
             "cache": false
         },
