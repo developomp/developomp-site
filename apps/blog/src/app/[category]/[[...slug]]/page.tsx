@@ -4,12 +4,12 @@ import contentMap from "@developomp-site/content/exports/contentMap"
 import { type Metadata } from "next"
 import { type ParsedUrlQuery } from "querystring"
 
-import { titlePrefix } from "@/app/layout"
 import { metadata as notFoundMetadata } from "@/app/not-found"
 import Card from "@/components/Card"
 import PostCard from "@/components/PostCard"
 import Tag from "@/components/Tag"
 import TagList from "@/components/TagList"
+import titlePrefix from "@/titlePrefix"
 
 import { getData, PageType } from "./helper"
 import Meta from "./Meta"

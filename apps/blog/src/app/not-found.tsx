@@ -1,8 +1,7 @@
 import { type Metadata } from "next"
 
 import Card from "@/components/Card"
-
-import { titlePrefix } from "./layout"
+import titlePrefix from "@/titlePrefix"
 
 export const metadata: Metadata = {
     metadataBase: new URL("https://blog.developomp.com"),
