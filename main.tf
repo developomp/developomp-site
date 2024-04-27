@@ -25,17 +25,17 @@ resource "aws_route53_record" "main" {
   name            = data.aws_route53_zone.developomp_com.name
   type            = "A"
   ttl             = 60
-  records         = ["151.101.1.195", "151.101.65.195"]
+  records         = ["76.76.21.21"]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
-resource "aws_route53_record" "main_acme_challenge" {
+resource "aws_route53_record" "main_www" {
   allow_overwrite = true
   zone_id         = data.aws_route53_zone.developomp_com.zone_id
-  name            = "_acme-challenge.${data.aws_route53_zone.developomp_com.name}"
-  type            = "TXT"
+  name            = "www.${data.aws_route53_zone.developomp_com.name}"
+  type            = "CNAME"
   ttl             = 60
-  records         = ["FCcgOpnrCBEMv1m4Z9NRqa4FlOW78CUVrfUQgGfb14o"]
+  records         = ["cname.vercel-dns.com."]
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
@@ -43,17 +43,7 @@ resource "aws_route53_record" "blog" {
   allow_overwrite = true
   zone_id         = data.aws_route53_zone.developomp_com.zone_id
   name            = "blog.${data.aws_route53_zone.developomp_com.name}"
-  type            = "A"
+  type            = "CNAME"
   ttl             = 60
-  records         = ["199.36.158.100"]
-}
-
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/route53_record
-resource "aws_route53_record" "blog_acme_challenge" {
-  allow_overwrite = true
-  zone_id         = data.aws_route53_zone.developomp_com.zone_id
-  name            = "_acme-challenge.blog.${data.aws_route53_zone.developomp_com.name}"
-  type            = "TXT"
-  ttl             = 60
-  records         = ["RXaOhzFg2U4ZtEU_Dj_2ylAX3D8xXpdRCq1KjoaB9Sc"]
+  records         = ["cname.vercel-dns.com."]
 }
