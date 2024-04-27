@@ -3,6 +3,5 @@
 module.exports = {
     siteUrl: "https://blog.developomp.com",
     generateRobotsTxt: true,
-    outDir: "build",
     priority: 0.8,
 }
