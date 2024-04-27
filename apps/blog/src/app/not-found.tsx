@@ -2,11 +2,13 @@ import { type Metadata } from "next"
 
 import Card from "@/components/Card"
 
+import { titlePrefix } from "./layout"
+
 export const metadata: Metadata = {
     metadataBase: new URL("https://blog.developomp.com"),
-    title: "pomp's blog | Page Not Found",
+    title: "Page Not Found",
     openGraph: {
-        title: "pomp's blog | Page Not Found",
+        title: titlePrefix + "Page Not Found",
     },
 }
 

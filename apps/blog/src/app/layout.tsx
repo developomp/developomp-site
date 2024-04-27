@@ -30,10 +30,12 @@ import Image from "next/image"
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
 
+export const titlePrefix = "pomp's blog | "
+
 export const metadata: Metadata = {
     metadataBase: new URL("https://blog.developomp.com"),
     title: {
-        template: "pomp's blog | %s",
+        template: `${titlePrefix}%s`,
         default: "",
     },
     description: "developomp's Blog",

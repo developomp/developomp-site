@@ -4,6 +4,7 @@ import contentMap from "@developomp-site/content/exports/contentMap"
 import { type Metadata } from "next"
 import { type ParsedUrlQuery } from "querystring"
 
+import { titlePrefix } from "@/app/layout"
 import { metadata as notFoundMetadata } from "@/app/not-found"
 import Card from "@/components/Card"
 import PostCard from "@/components/PostCard"
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         metadataBase: new URL("https://blog.developomp.com"),
         title: pageData.title,
         openGraph: {
-            title: pageData.title,
+            title: titlePrefix + pageData.title,
         },
     }
 }
