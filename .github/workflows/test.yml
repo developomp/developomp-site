@@ -1,15 +1,11 @@
-name: Build, Test, and Deploy
+name: Test
 on:
   push:
     branches:
       - master
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 jobs:
-  deploy:
-    if: ${{ github.repository_owner == 'developomp' }}
-    name: Deploy
+  test:
+    name: Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -59,10 +55,3 @@ jobs:
           name: test-results
           path: |
             apps/*/test-results
-
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
