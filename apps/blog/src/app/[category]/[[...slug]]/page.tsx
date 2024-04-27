@@ -24,6 +24,14 @@ interface Props {
     params: Params
 }
 
+/**
+ * https://nextjs.org/docs/app/api-reference/file-conventions/route-segment-config#dynamicparams
+ */
+export const dynamicParams = false
+
+/**
+ * https://nextjs.org/docs/app/api-reference/functions/generate-static-params
+ */
 export async function generateStaticParams(): Promise<Params[]> {
     return Object.keys(contentMap.posts).map((key) => {
         const contentID = key.replace(/\/$/, "") // remove trailing slash
