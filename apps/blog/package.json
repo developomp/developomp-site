@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev": "open-cli http://localhost:3000 && next dev",
+        "dev": "open-cli http://localhost:3000 && pnpm dev:headless",
+        "dev:headless": "next dev",
         "build": "next build",
         "postbuild": "next-sitemap",
         "serve": "serve build --listen 3000",
