@@ -9,7 +9,7 @@
         "build": "vite build",
         "test:unit": "TZ=UTC jest",
         "test:e2e": "playwright test",
-        "clean": "rm -rf .turbo .svelte-kit build node_modules vite.config.ts.timestamp-*",
+        "clean": "rm -rf .turbo .svelte-kit .vercel test-results build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
     },
     "devDependencies": {
