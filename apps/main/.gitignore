@@ -2,6 +2,3 @@
 
 # testing
 /test-results
-
-# Sentry Config File
-.sentryclirc
