@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+    paths:
+      - main.tf
+      - .terraform.lock.hcl
 
 permissions:
   contents: read
