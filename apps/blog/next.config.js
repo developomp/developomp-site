@@ -5,7 +5,7 @@ const nextConfig = {
         return [
             {
                 source: "/stats/:match*",
-                destination: "https://analytics.umami.is/:match*",
+                destination: "https://umami.developomp.com/:match*",
             },
         ]
     },

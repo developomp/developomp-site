@@ -66,7 +66,7 @@ export default function RootLayout({
                     async
                     defer
                     src="/stats/script.js"
-                    data-website-id="aa2eb701-74e2-4d81-ad27-9de6850b7f50"
+                    data-website-id="361a9f07-a09b-49a0-b7e4-f1fc7caff9e2"
                 ></script>
             </head>
 
