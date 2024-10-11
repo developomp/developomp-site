@@ -10,7 +10,6 @@
         "svelte.svelte-vscode",
         "redhat.vscode-xml",
         "github.vscode-github-actions",
-        "gamunu.opentofu",
         "foxundermoon.shell-format"
     ]
 }

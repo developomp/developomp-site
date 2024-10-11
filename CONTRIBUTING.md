@@ -40,16 +40,6 @@
    - `pnpm lint` - Lint all apps and packages
    - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
 
-## Setting up for deployment
-
-1. Install the following
-   - [OpenTofu CLI](https://opentofu.org/docs/cli)
-   - [AWS CLI](https://aws.amazon.com/cli)
-2. Setup AWS credentials
-   ```
-   aws configure
-   ```
-
 ## Testing
 
 1. Build site
