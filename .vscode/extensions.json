@@ -10,6 +10,7 @@
         "svelte.svelte-vscode",
         "redhat.vscode-xml",
         "github.vscode-github-actions",
-        "foxundermoon.shell-format"
+        "foxundermoon.shell-format",
+        "editorconfig.editorconfig"
     ]
 }
