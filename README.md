@@ -19,7 +19,6 @@ A collection of "pomp-branded" websites.
 ![Next.js](https://img.shields.io/badge/next.js-222?style=for-the-badge&logo=nextdotjs)
 ![Svelte](https://img.shields.io/badge/svelte-222?style=for-the-badge&logo=svelte)
 ![SvelteKit](https://img.shields.io/badge/sveltekit-222?style=for-the-badge&logo=svelte)
-![OpenTofu](https://img.shields.io/badge/opentofu-222?style=for-the-badge&logo=opentofu)
 ![Vercel](https://img.shields.io/badge/vercel-222?style=for-the-badge&logo=vercel)
 ![umami](https://img.shields.io/badge/umamu-222?style=for-the-badge&logo=umami)
 
