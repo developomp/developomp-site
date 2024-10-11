@@ -38,7 +38,7 @@
      - blog - http://localhost:3000
      - main - http://localhost:5173
    - `pnpm lint` - Lint all apps and packages
-   - `pnpm clean` - Remove all auto-generated content such as `node_modules` and `dist`.
+   - `pnpm i_am_sure_i_want_to_nuke_gitignored_files` - Remove all auto-generated content such as `node_modules` and `dist`.
 
 ## Testing
 

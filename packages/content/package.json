@@ -5,7 +5,7 @@
     "scripts": {
         "build": "rm -rf dist build && tsup && node build/index.js",
         "lint": "eslint .",
-        "clean": "rm -rf .turbo build dist node_modules"
+        "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .turbo build dist node_modules"
     },
     "dependencies": {
         "@developomp-site/eslint-config": "workspace:*",

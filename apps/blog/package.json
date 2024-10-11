@@ -9,7 +9,7 @@
         "postbuild": "next-sitemap",
         "lint": "next lint",
         "test:e2e": "playwright test",
-        "clean": "rm -rf .next .turbo build node_modules test-results"
+        "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .next .turbo build node_modules test-results"
     },
     "devDependencies": {
         "@developomp-site/content": "workspace:*",

@@ -6,7 +6,7 @@
         "test:unit": "turbo run test:unit --parallel --continue",
         "test:e2e": "turbo run test:e2e --parallel --continue",
         "lint": "turbo run lint",
-        "clean": "turbo run clean && rm -rf node_modules .turbo"
+        "i_am_sure_i_want_to_nuke_gitignored_files": "turbo run i_am_sure_i_want_to_nuke_gitignored_files && rm -rf node_modules .turbo .devenv .direnv .devenv.flake.nix"
     },
     "devDependencies": {
         "@developomp-site/eslint-config": "workspace:*",
