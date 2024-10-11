@@ -117,7 +117,7 @@
     "[ignore]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "[terraform]": {
-        "editor.defaultFormatter": "gamunu.opentofu"
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }
