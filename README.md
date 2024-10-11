@@ -19,7 +19,7 @@ A collection of "pomp-branded" websites.
 ![Next.js](https://img.shields.io/badge/next.js-222?style=for-the-badge&logo=nextdotjs)
 ![Svelte](https://img.shields.io/badge/svelte-222?style=for-the-badge&logo=svelte)
 ![SvelteKit](https://img.shields.io/badge/sveltekit-222?style=for-the-badge&logo=svelte)
-![umami](https://img.shields.io/badge/umamu-222?style=for-the-badge&logo=umami)
+![umami](https://img.shields.io/badge/umami-222?style=for-the-badge&logo=umami)
 
 ## Special thanks
 
