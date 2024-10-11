@@ -63,9 +63,8 @@ export default function RootLayout({
                 />
                 <meta name="theme-color" content="#000000" />
                 <script
-                    async
                     defer
-                    src="/stats/script.js"
+                    src="https://umami.developomp.com/script.js"
                     data-website-id="361a9f07-a09b-49a0-b7e4-f1fc7caff9e2"
                 ></script>
             </head>
