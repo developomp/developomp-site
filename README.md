@@ -24,10 +24,3 @@ A collection of "pomp-branded" websites.
 ![SvelteKit](https://img.shields.io/badge/sveltekit-222?style=for-the-badge&logo=svelte)
 ![playwright](https://img.shields.io/badge/playwright-222?style=for-the-badge)
 ![umami](https://img.shields.io/badge/umami-222?style=for-the-badge&logo=umami)
-
-## Special thanks
-
-- My dear friend [Aditya Prakash](https://github.com/AdityaPrakash-26) for extensive testing and wonderful suggestions
-- [Ruipeng Zhang](https://github.com/ppoffice) for design inspiration ([hexo-icarus-theme](https://github.com/ppoffice/hexo-theme-icarus))
-- [Artem Golubin](https://github.com/rushter) for design inspiration ([his blog](https://rushter.com/blog))
-- [discord](http://discord.com) for dark theme color palette (before the [rebranding of May 2021](https://blog.discord.com/how-were-making-discord-more-welcoming-for-everyone-ee152f198c60))
