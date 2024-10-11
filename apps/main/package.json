@@ -9,7 +9,7 @@
         "build": "vite build",
         "test:unit": "TZ=UTC jest",
         "test:e2e": "playwright test",
-        "clean": "rm -rf .turbo .svelte-kit .vercel test-results build node_modules vite.config.ts.timestamp-*",
+        "clean": "rm -rf .turbo .svelte-kit test-results build node_modules vite.config.ts.timestamp-*",
         "lint": "eslint ."
     },
     "devDependencies": {
@@ -20,7 +20,7 @@
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@inqling/svelte-icons": "^3.5.0",
         "@playwright/test": "^1.36.2",
-        "@sveltejs/adapter-vercel": "^5.3.0",
+        "@sveltejs/adapter-static": "^3.0.5",
         "@sveltejs/kit": "^2.5.7",
         "@sveltejs/vite-plugin-svelte": "^3.1.0",
         "@types/jest": "^29.5.12",
