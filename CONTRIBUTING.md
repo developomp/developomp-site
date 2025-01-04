@@ -1,60 +1,39 @@
 # Contribution Guide
 
-## Project Structure
+## Project overview
 
-- `apps`
-  - `main` - https://developomp.com
-  - `blog` - https://blog.developomp.com
-- `packages` - shared stuff used across different packages
-  - `content` - Shared content
-  - `eslint-config` - ESLint configuration files
-  - `tailwind-config` -tailwind configuration with pomp-specific extensions
+This project is largely managed by the following tools:
 
-## Setting Up
+- [devenv](https://devenv.sh) - for development shell and dependencies. Think of [Docker](https://docker.com) but better.
+- [turborepo](https://turbo.build) - for JS/TS monorepo management. Understanding it is required to make sense of the project file structure.
 
-> **If you are a Windows user:**
->
-> - Do **NOT** use the Command Prompt (cmd)
-> - Do **NOT** use Windows PowerShell
-> - Run these commands from PowerShell or a Linux terminal such as WSL or Git Bash
->
-> PowerShell and Windows PowerShell are [different applications](https://learn.microsoft.com/en-us/powershell/scripting/whats-new/differences-from-windows-powershell?view=powershell-7.3).
+You need at least basic level understanding of the tools above to effectively work on this project.
 
-1. Clone this git repository
-2. Install the following
-   - [NodeJS](https://nodejs.org)
-   - [pnpm](https://pnpm.io/installation)
-3. Install Dependencies
-   ```
-   pnpm install
-   ```
-4. Setup husky
-   ```
-   pnpm husky install
-   ```
-5. Run whatever command you need either in project root or in individual packages
-   - `pnpm build` - Build all apps and packages
-   - `pnpm dev` - Run all apps and packages locally
-     - blog - http://localhost:3000
-     - main - http://localhost:5173
-   - `pnpm lint` - Lint all apps and packages
-   - `pnpm i_am_sure_i_want_to_nuke_gitignored_files` - Remove all auto-generated content such as `node_modules` and `dist`.
+## Setting up
+
+1. Install the following
+   - [devenv](https://devenv.sh/getting-started)
+   - [direnv](https://direnv.net/docs/installation.html)
+2. Clone this git repository
+3. Start coding!
+
+## Building
+
+must build the dependencies first
+
+```
+pnpm build
+```
 
 ## Testing
 
-1. Build site
-
-   ```
-   pnpm build
-   ```
-
-2. Run E2E Tests
+1. Run E2E Tests
 
    ```
    pnpm test:e2e
    ```
 
-3. Benchmark deployed sites using the following services:
+2. Benchmark deployed sites using the following services:
 
    - https://seoptimer.com
    - https://gtmetrix.com

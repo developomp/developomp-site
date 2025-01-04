@@ -18,6 +18,8 @@
         "deno",
         "developomp",
         "developomp's",
+        "devenv",
+        "direnv",
         "dompurify",
         "elasticlunr",
         "Exyle",
@@ -43,6 +45,7 @@
         "Librewolf",
         "mhchem",
         "microflash",
+        "nixpkgs",
         "nodedotjs",
         "nojs",
         "noopener",
@@ -74,6 +77,10 @@
         "YYYYMMDD",
         "zustand"
     ],
+
+    "nix.formatterPath": "nixfmt",
+    "nix.enableLanguageServer": true,
+    "nix.serverPath": "nixd",
 
     "eslint.workingDirectories": [{ "mode": "auto" }],
     "eslint.validate": ["javascript", "typescript", "svelte"],
@@ -118,5 +125,8 @@
     },
     "[markdown]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[nix]": {
+        "editor.defaultFormatter": "jnoortheen.nix-ide"
     }
 }

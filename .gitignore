@@ -5,6 +5,16 @@ build
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml
+
 # Created by https://www.toptal.com/developers/gitignore/api/node,macos,turbo
 # Edit at https://www.toptal.com/developers/gitignore?templates=node,macos,turbo
 

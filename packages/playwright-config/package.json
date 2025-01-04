@@ -1,8 +1,9 @@
 {
     "name": "@developomp-site/playwright-config",
     "version": "0.0.0",
+    "type": "module",
     "main": "index.ts",
     "devDependencies": {
-        "@playwright/test": "^1.36.2"
+        "@playwright/test": "1.47.0"
     }
 }

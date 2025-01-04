@@ -11,6 +11,9 @@
         "redhat.vscode-xml",
         "github.vscode-github-actions",
         "foxundermoon.shell-format",
-        "editorconfig.editorconfig"
+        "editorconfig.editorconfig",
+        "redhat.vscode-yaml",
+        "jnoortheen.nix-ide",
+        "mkhl.direnv"
     ]
 }
