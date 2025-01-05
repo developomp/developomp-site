@@ -1,5 +1,7 @@
+import myPreset from "@developomp-site/tailwind-config/tailwind.config.js"
+
 /** @type {import('tailwindcss').Config} */
 export default {
-    presets: [require("@developomp-site/tailwind-config/tailwind.config.js")],
+    presets: [myPreset],
     content: ["./src/**/*.{html,js,svelte,ts}"],
 }
