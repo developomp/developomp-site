@@ -1,54 +1,30 @@
+# https://devenv.sh/integrations/github-actions
 name: Test
 on:
   push:
     branches:
       - master
+  workflow_dispatch:
 jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
+    permissions:
+      # permissions required for nix caching to work properly
+      id-token: write
+      contents: read
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
+      - uses: actions/checkout@v4
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 9
+      - name: Install devenv.sh
+        run: nix profile install nixpkgs#devenv
 
-      - name: Setup Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: pnpm
+      - name: Cache turbo build
+        uses: dtinth/setup-github-actions-caching-for-turbo@v1
 
-      - name: Store Playwright's Version
-        run: |
-          PLAYWRIGHT_VERSION=$(npm ls @playwright/test | grep @playwright | sed 's/.*@//')
-          echo "Playwright's Version: $PLAYWRIGHT_VERSION"
-          echo "PLAYWRIGHT_VERSION=$PLAYWRIGHT_VERSION" >> $GITHUB_ENV
-
-      - name: Cache Playwright Browsers for Playwright's Version
-        id: cache-playwright-browsers
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/ms-playwright
-          key: playwright-browsers-${{ env.PLAYWRIGHT_VERSION }}
-
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Install playwright browsers
-        if: steps.cache-playwright-browsers.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps
-
-      - name: Build
-        run: pnpm build
-
-      - name: Run unit tests
-        run: pnpm test:unit
-
-      - name: Run E2E tests
-        run: pnpm test:e2e
+      - run: devenv test
 
       - uses: actions/upload-artifact@v3
         with:
