@@ -10,9 +10,4 @@
         <changefreq>always</changefreq>
         <priority>0.8</priority>
     </url>
-    <url>
-        <loc>https://developomp.com/resume</loc>
-        <changefreq>always</changefreq>
-        <priority>0.4</priority>
-    </url>
 </urlset>

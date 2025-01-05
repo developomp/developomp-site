@@ -1,5 +1,5 @@
 <script>
-    import "$/routes/(app)/app.css"
+    import "$/routes/app.css"
 </script>
 
 <svelte:head>
