@@ -161,7 +161,8 @@ $e=mc^2$ is actually $e^2=(mc^2)^2 + (pc)^2$.
 ### Block
 
 $$
-	\ce{6 CO2 + 6 H2O <=>[{photosynthesis}][{respiration}] C6H12O6 + 6 O2}
+    \text{The formula for normal distribution is} \space
+    f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{1}{2}(\frac{x-\mu}{\sigma})^2}
 $$
 
 ## headers

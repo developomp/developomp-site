@@ -1,5 +1,3 @@
-import "katex/contrib/mhchem" // chemical formula, https://katex.org/docs/node.html#using-mhchem-extension
-
 import remarkCalloutDirectives from "@microflash/remark-callout-directives"
 import matter from "gray-matter"
 import { JSDOM } from "jsdom"
