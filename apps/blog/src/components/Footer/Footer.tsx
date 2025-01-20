@@ -1,4 +1,6 @@
 import GithubLinkIcon from "../GithubLinkIcon"
+import { faRss } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 export default function Footer() {
     return (
@@ -7,7 +9,15 @@ export default function Footer() {
                 <div>
                     Created by <b>developomp</b>
                 </div>
-                <GithubLinkIcon href="https://github.com/developomp/developomp-site" />
+                <div className="flex items-center gap-2">
+                    <a
+                        href="/rss.xml"
+                        className="text-3xl text-light-footer-text transition-colors duration-75 hover:text-light-text-high-contrast dark:text-dark-footer-text dark:hover:text-dark-text-high-contrast"
+                    >
+                        <FontAwesomeIcon icon={faRss} />
+                    </a>
+                    <GithubLinkIcon href="https://github.com/developomp/developomp-site" />
+                </div>
             </div>
         </footer>
     )

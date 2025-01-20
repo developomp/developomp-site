@@ -8,9 +8,10 @@
 
 import fs from "fs"
 
-import { mapFilePath, markdownPath, outPath } from "./config"
+import { mapFilePath, markdownPath, outPath, rssFilePath } from "./config"
 import { fillTags, parseSeries, sortDates } from "./postProcess"
 import { recursiveParse } from "./recursiveParse"
+import { buildFeed } from "./rss"
 import { saveIndex } from "./searchIndex"
 import type { ContentMap, SeriesMap } from "./types/types"
 import { ParseMode } from "./types/types"
@@ -66,6 +67,7 @@ async function main() {
      */
 
     fs.writeFileSync(mapFilePath, JSON.stringify(contentMap))
+    fs.writeFileSync(rssFilePath, buildFeed(contentMap))
     saveIndex()
 }
 
