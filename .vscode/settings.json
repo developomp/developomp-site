@@ -83,7 +83,13 @@
     "nix.serverPath": "nixd",
 
     "eslint.workingDirectories": [{ "mode": "auto" }],
-    "eslint.validate": ["javascript", "typescript", "svelte"],
+    "eslint.validate": [
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "svelte"
+    ],
 
     "typescript.tsdk": "node_modules/typescript/lib",
 

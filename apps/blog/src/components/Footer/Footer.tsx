@@ -1,6 +1,7 @@
-import GithubLinkIcon from "../GithubLinkIcon"
 import { faRss } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import GithubLinkIcon from "../GithubLinkIcon"
 
 export default function Footer() {
     return (
