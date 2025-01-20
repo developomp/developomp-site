@@ -69,7 +69,7 @@ async function parseFile(mode: ParseMode, path: string): Promise<void> {
      */
 
     const markdownRaw = fs.readFileSync(path, "utf8")
-    const markdownData = await parseMarkdown(markdownRaw, path, mode)
+    const markdownData = await parseMarkdown(markdownRaw, path)
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     const { humanizedDuration, totalWords } = readTimeEstimate.default(
