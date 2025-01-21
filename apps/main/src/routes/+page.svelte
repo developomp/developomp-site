@@ -30,7 +30,7 @@
 />
 
 <h1 class="mb-16 px-4 py-2 text-center text-4xl">
-    <HandWave />Hello! I am <b>developomp</b>
+    <HandWave />Hello, I am <b>pomp</b>!
 </h1>
 
 <span>
