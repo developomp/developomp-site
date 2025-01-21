@@ -152,8 +152,6 @@ Do you remember the first time you pressed <kbd>Ctrl</kbd>+<kbd>C</kbd> in termi
 
 [$KaTeX$](https://katex.org/docs/supported.html) syntax is supported.
 
-using [mhchem](https://mhchem.github.io/MathJax-mhchem) for chemical formula.
-
 ### Inline
 
 $e=mc^2$ is actually $e^2=(mc^2)^2 + (pc)^2$.
