@@ -15,7 +15,6 @@
         "@types/elasticlunr": "^0.9.9",
         "@types/jsdom": "^21.1.6",
         "@types/katex": "^0.16.7",
-        "@types/markdown-it": "^14.0.1",
         "@types/node": "^20.10.5",
         "@types/read-time-estimate": "^0.0.2",
         "@types/rss": "^0.0.32",

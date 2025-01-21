@@ -281,9 +281,6 @@ importers:
       '@types/katex':
         specifier: ^0.16.7
         version: 0.16.7
-      '@types/markdown-it':
-        specifier: ^14.0.1
-        version: 14.0.1
       '@types/node':
         specifier: ^20.10.5
         version: 20.10.5
@@ -1439,17 +1436,8 @@ packages:
   '@types/katex@0.16.7':
     resolution: {integrity: sha512-HMwFiRujE5PjrgwHQ25+bsLJgowjGjm5Z8FVSf0N6PwgJrwxH0QxzHYDcKsTfV3wva0vzrpqMTJS2jXPr5BMEQ==}
 
-  '@types/linkify-it@3.0.2':
-    resolution: {integrity: sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==}
-
-  '@types/markdown-it@14.0.1':
-    resolution: {integrity: sha512-6WfOG3jXR78DW8L5cTYCVVGAsIFZskRHCDo5tbqa+qtKVt4oDRVH7hyIWu1SpDQJlmIoEivNQZ5h+AGAOrgOtQ==}
-
   '@types/mdast@4.0.3':
     resolution: {integrity: sha512-LsjtqsyF+d2/yFOYaN22dHZI1Cpwkrj+g06G8+qtUKlhovPW89YhqSnfKtMbkgmEtYpH2gydRNULd6y8mciAFg==}
-
-  '@types/mdurl@1.0.2':
-    resolution: {integrity: sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==}
 
   '@types/ms@0.7.31':
     resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
@@ -6164,18 +6152,9 @@ snapshots:
 
   '@types/katex@0.16.7': {}
 
-  '@types/linkify-it@3.0.2': {}
-
-  '@types/markdown-it@14.0.1':
-    dependencies:
-      '@types/linkify-it': 3.0.2
-      '@types/mdurl': 1.0.2
-
   '@types/mdast@4.0.3':
     dependencies:
       '@types/unist': 3.0.0
-
-  '@types/mdurl@1.0.2': {}
 
   '@types/ms@0.7.31': {}
 
