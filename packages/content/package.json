@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
+        "dev": "nodemon -e md --watch markdown --exec pnpm build",
         "build": "rm -rf dist build && tsup && node build/index.js",
         "lint": "eslint .",
         "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .turbo build dist node_modules"
@@ -47,5 +48,8 @@
         "tsup": "^8.0.2",
         "typescript": "^5.3.3",
         "unified": "^11.0.4"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9"
     }
 }
