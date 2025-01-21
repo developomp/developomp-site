@@ -17,7 +17,7 @@ import remarkGfm from "remark-gfm"
 import remarkMath from "remark-math"
 import remarkParse from "remark-parse"
 import remarkRehype from "remark-rehype"
-import supersub from "remark-supersub"
+import remarkSupersub from "remark-supersub"
 import { unified } from "unified"
 
 import type { MarkdownData } from "./types/types"
@@ -26,7 +26,7 @@ import { nthIndex } from "./util"
 const processor = unified() // interface for remark and rehype
     .use(remarkParse) // markdown to AST
     .use(remarkGfm, { singleTilde: false }) // https://github.com/remarkjs/remark-gfm
-    .use(supersub) // https://github.com/Symbitic/remark-plugins/tree/master/packages/remark-supersub
+    .use(remarkSupersub) // https://github.com/Symbitic/remark-plugins/tree/master/packages/remark-supersub
     .use(remarkDirective) // https://github.com/remarkjs/remark-directive
     .use(remarkCalloutDirectives) // https://github.com/Microflash/remark-callout-directives
     .use(remarkMath) // https://github.com/remarkjs/remark-math
