@@ -1,6 +1,6 @@
 import "./Page.scss"
 
-import contentMap from "@developomp-site/content/exports/contentMap"
+import contentMap from "@pompydev/content/exports/contentMap"
 import { type Metadata } from "next"
 import { type ParsedUrlQuery } from "querystring"
 
@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const { pageData } = await getData(params)
 
     return {
-        metadataBase: new URL("https://blog.developomp.com"),
+        metadataBase: new URL("https://blog.pompy.dev"),
         title: pageData.title,
         openGraph: {
             title: titlePrefix + pageData.title,

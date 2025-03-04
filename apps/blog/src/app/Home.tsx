@@ -1,6 +1,6 @@
 "use client"
 
-import contentMap from "@developomp-site/content/exports/contentMap"
+import contentMap from "@pompydev/content/exports/contentMap"
 import { type ReactNode, useEffect, useState } from "react"
 
 import PostCard from "@/components/PostCard"

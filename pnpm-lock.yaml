@@ -14,10 +14,10 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^19.2.2
         version: 19.2.2
-      '@developomp-site/eslint-config':
+      '@pompydev/eslint-config':
         specifier: workspace:*
         version: link:packages/eslint-config
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:packages/prettier-config
       eslint:
@@ -38,19 +38,19 @@ importers:
 
   apps/blog:
     devDependencies:
-      '@developomp-site/content':
+      '@pompydev/content':
         specifier: workspace:*
         version: link:../../packages/content
-      '@developomp-site/eslint-config':
+      '@pompydev/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@developomp-site/playwright-config':
+      '@pompydev/playwright-config':
         specifier: workspace:*
         version: link:../../packages/playwright-config
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
-      '@developomp-site/tailwind-config':
+      '@pompydev/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
       '@fontsource/noto-sans-kr':
@@ -158,16 +158,16 @@ importers:
 
   apps/main:
     devDependencies:
-      '@developomp-site/eslint-config':
+      '@pompydev/eslint-config':
         specifier: workspace:*
         version: link:../../packages/eslint-config
-      '@developomp-site/playwright-config':
+      '@pompydev/playwright-config':
         specifier: workspace:*
         version: link:../../packages/playwright-config
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:../../packages/prettier-config
-      '@developomp-site/tailwind-config':
+      '@pompydev/tailwind-config':
         specifier: workspace:*
         version: link:../../packages/tailwind-config
       '@fontsource/noto-sans-kr':
@@ -260,10 +260,10 @@ importers:
 
   packages/content:
     dependencies:
-      '@developomp-site/eslint-config':
+      '@pompydev/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:../prettier-config
       '@microflash/remark-callout-directives':
@@ -384,7 +384,7 @@ importers:
 
   packages/eslint-config:
     devDependencies:
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:../prettier-config
       '@typescript-eslint/eslint-plugin':
@@ -428,10 +428,10 @@ importers:
 
   packages/tailwind-config:
     devDependencies:
-      '@developomp-site/eslint-config':
+      '@pompydev/eslint-config':
         specifier: workspace:*
         version: link:../eslint-config
-      '@developomp-site/prettier-config':
+      '@pompydev/prettier-config':
         specifier: workspace:*
         version: link:../prettier-config
       eslint:

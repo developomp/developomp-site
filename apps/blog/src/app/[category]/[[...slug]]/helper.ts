@@ -1,5 +1,5 @@
-import contentMap from "@developomp-site/content/exports/contentMap"
-import type { PageData } from "@developomp-site/content/src/types/types"
+import contentMap from "@pompydev/content/exports/contentMap"
+import type { PageData } from "@pompydev/content/src/types/types"
 
 import type { Params } from "./page"
 
@@ -29,9 +29,7 @@ export async function getData(params: Params): Promise<Data> {
 
 export async function fetchContent(contentID: string) {
     try {
-        return await import(
-            `@developomp-site/content/dist/content${contentID}.json`
-        )
+        return await import(`@pompydev/content/dist/content${contentID}.json`)
     } catch (err) {
         return
     }

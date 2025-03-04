@@ -4,7 +4,7 @@ import Card from "@/components/Card"
 import titlePrefix from "@/titlePrefix"
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://blog.developomp.com"),
+    metadataBase: new URL("https://blog.pompy.dev"),
     title: "Page Not Found",
     openGraph: {
         title: titlePrefix + "Page Not Found",

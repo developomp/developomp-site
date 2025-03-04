@@ -1,4 +1,4 @@
-import { createConfig } from "@developomp-site/playwright-config"
+import { createConfig } from "@pompydev/playwright-config"
 
 export default createConfig({
     port: 5173,

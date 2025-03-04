@@ -1,20 +1,20 @@
 {
     "root": true,
-    "extends": ["@developomp-site/eslint-config", "plugin:svelte/recommended"],
+    "extends": ["@pompydev/eslint-config", "plugin:svelte/recommended"],
     "parserOptions": {
         "sourceType": "module",
         "ecmaVersion": 2020,
-        "extraFileExtensions": [".svelte"]
+        "extraFileExtensions": [".svelte"],
     },
     "env": {
         "browser": true,
         "es2017": true,
-        "node": true
+        "node": true,
     },
     "overrides": [
         {
             "files": ["*.svelte"],
-            "parser": "svelte-eslint-parser"
-        }
-    ]
+            "parser": "svelte-eslint-parser",
+        },
+    ],
 }

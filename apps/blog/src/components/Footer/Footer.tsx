@@ -17,7 +17,7 @@ export default function Footer() {
                     >
                         <FontAwesomeIcon icon={faRss} />
                     </a>
-                    <GithubLinkIcon href="https://github.com/developomp/developomp-site" />
+                    <GithubLinkIcon href="https://github.com/pompydev/pompy.dev" />
                 </div>
             </div>
         </footer>

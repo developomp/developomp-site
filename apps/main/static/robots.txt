@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 Disallow:
-Sitemap: https://developomp.com/sitemap.xml
+Sitemap: https://pompy.dev/sitemap.xml

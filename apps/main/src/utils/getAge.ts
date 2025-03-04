@@ -11,7 +11,7 @@ dayjs.tz.setDefault("Asia/Seoul")
 const birth = dayjs.tz("2002-07-30")
 
 /**
- * Gets developomp's age with decimal precision
+ * Gets pomp's age with decimal precision
  *
  * @param now - current `Date` in KST
  */

@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>developomp | Page Not Found</title>
+    <title>pomp | Page Not Found</title>
 </svelte:head>
 
 <h1 class="mx-auto mt-10 text-center text-8xl font-normal">404</h1>

@@ -1,10 +1,10 @@
-import type { PostData } from "@developomp-site/content/src/types/types"
 import {
     faBook,
     faCalendar,
     faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { PostData } from "@pompydev/content/src/types/types"
 import Link from "next/link"
 
 import Card from "@/components/Card"

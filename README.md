@@ -1,16 +1,16 @@
-# developomp-site
+# pompy.dev
 
 [![contributing](https://img.shields.io/badge/contributing-yellow?style=for-the-badge)](./CONTRIBUTING.md)
-[![license](https://img.shields.io/github/license/developomp/developomp-site?style=for-the-badge&color=yellow)](./LICENSE)
+[![license](https://img.shields.io/github/license/pompydev/pompy.dev?style=for-the-badge&color=yellow)](./LICENSE)
 
 A collection of "pomp-branded" websites.
 
-![example website screenshot](./.github/img/developomp-site.avif)
+![example website screenshot](./.github/img/pompydev.avif)
 
 ## Sites
 
-[![developomp.com](https://img.shields.io/badge/developomp.com-gray?style=for-the-badge)](https://developomp.com)
-[![blog.developomp.com](https://img.shields.io/badge/blog.developomp.com-gray?style=for-the-badge)](https://blog.developomp.com)
+[![pompy.dev](https://img.shields.io/badge/pompy.dev-gray?style=for-the-badge)](https://pompy.dev)
+[![blog.pompy.dev](https://img.shields.io/badge/blog.pompy.dev-gray?style=for-the-badge)](https://blog.pompy.dev)
 
 ## Tech Stack
 

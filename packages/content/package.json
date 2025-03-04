@@ -1,5 +1,5 @@
 {
-    "name": "@developomp-site/content",
+    "name": "@pompydev/content",
     "version": "0.0.0",
     "type": "module",
     "scripts": {
@@ -9,8 +9,8 @@
         "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .turbo build dist node_modules"
     },
     "dependencies": {
-        "@developomp-site/eslint-config": "workspace:*",
-        "@developomp-site/prettier-config": "workspace:*",
+        "@pompydev/eslint-config": "workspace:*",
+        "@pompydev/prettier-config": "workspace:*",
         "@microflash/remark-callout-directives": "^4.1.0",
         "@types/dompurify": "^3.0.5",
         "@types/elasticlunr": "^0.9.9",

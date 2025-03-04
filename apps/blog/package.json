@@ -1,5 +1,5 @@
 {
-    "name": "@developomp-site/blog",
+    "name": "@pompydev/blog",
     "version": "0.0.0",
     "private": true,
     "scripts": {
@@ -12,11 +12,11 @@
         "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .next .turbo build node_modules test-results"
     },
     "devDependencies": {
-        "@developomp-site/content": "workspace:*",
-        "@developomp-site/eslint-config": "workspace:*",
-        "@developomp-site/playwright-config": "workspace:*",
-        "@developomp-site/prettier-config": "workspace:*",
-        "@developomp-site/tailwind-config": "workspace:*",
+        "@pompydev/content": "workspace:*",
+        "@pompydev/eslint-config": "workspace:*",
+        "@pompydev/playwright-config": "workspace:*",
+        "@pompydev/prettier-config": "workspace:*",
+        "@pompydev/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@fontsource/source-code-pro": "^5.0.18",
         "@fortawesome/free-brands-svg-icons": "^6.5.2",

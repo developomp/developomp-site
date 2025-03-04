@@ -4,7 +4,7 @@
     import { discordInviteLink } from "$/constants"
     import { browser } from "$app/environment"
 
-    // redirect to developomp's discord server
+    // redirect to pomp's discord server
     if (browser) {
         window.location.replace(discordInviteLink)
     }

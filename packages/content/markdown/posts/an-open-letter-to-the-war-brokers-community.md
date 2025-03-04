@@ -12,7 +12,7 @@ date: 2023-09-17
 
 ## Introduction
 
-Hi. I am `developomp`. I go by the nickname `[LP] POMP` within the community. You may recognize me as the creator of the [War Brokers Mods][wbm] (pomp's mod) and the [War Brokers Projects][wbp].
+Hi. I am `pomp`. I go by the nickname `[LP] POMP` within the community. You may recognize me as the creator of the [War Brokers Mods][wbm] (pomp's mod) and the [War Brokers Projects][wbp].
 
 <br />
 

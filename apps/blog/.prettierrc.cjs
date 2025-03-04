@@ -1,5 +1,5 @@
 /** @type {import("prettier").Options} */
 module.exports = {
-    ...require("@developomp-site/prettier-config"),
+    ...require("@pompydev/prettier-config"),
     plugins: ["prettier-plugin-tailwindcss"],
 }

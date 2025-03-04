@@ -22,7 +22,7 @@
 </script>
 
 <img
-    class="mx-auto mb-14 mt-20 aspect-square rounded-full shadow-[0_0_40px_20px] shadow-dark-text-gray"
+    class="shadow-dark-text-gray mx-auto mb-14 mt-20 aspect-square rounded-full shadow-[0_0_40px_20px]"
     src="/favicon.svg"
     alt="logo"
     width="200"
@@ -45,7 +45,7 @@ October 2023 ~ April 2025
     <a
         class="social-profile"
         target="_blank"
-        href="https://github.com/developomp"
+        href="https://github.com/pompydev"
         aria-label="GitHub link"
     >
         <GitHub />
@@ -61,7 +61,7 @@ October 2023 ~ April 2025
     <a
         class="social-profile"
         target="_blank"
-        href="mailto: developomp@protonmail.com"
+        href="mailto: pompydev@proton.me"
         aria-label="Email link (ProtonMail)"
     >
         <ProtonMail />

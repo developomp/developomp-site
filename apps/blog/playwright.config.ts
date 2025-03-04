@@ -1,4 +1,4 @@
-import { createConfig } from "@developomp-site/playwright-config"
+import { createConfig } from "@pompydev/playwright-config"
 
 // https://playwright.dev/docs/test-configuration
 export default createConfig({

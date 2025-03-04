@@ -1,4 +1,3 @@
-import type { PageData } from "@developomp-site/content/src/types/types"
 import {
     faBook,
     faCalendar,
@@ -6,6 +5,7 @@ import {
     faHourglass,
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import type { PageData } from "@pompydev/content/src/types/types"
 
 export default function Meta(props: { fetchedPage: PageData }) {
     return (

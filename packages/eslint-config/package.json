@@ -1,5 +1,5 @@
 {
-    "name": "@developomp-site/eslint-config",
+    "name": "@pompydev/eslint-config",
     "version": "0.0.0",
     "type": "module",
     "main": ".eslintrc.cjs",
@@ -8,7 +8,7 @@
         "i_am_sure_i_want_to_nuke_gitignored_files": "rm -rf .turbo node_modules"
     },
     "devDependencies": {
-        "@developomp-site/prettier-config": "workspace:*",
+        "@pompydev/prettier-config": "workspace:*",
         "@typescript-eslint/eslint-plugin": "^6.15.0",
         "@typescript-eslint/parser": "^6.15.0",
         "eslint": "^8.56.0",

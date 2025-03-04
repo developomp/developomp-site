@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import Home from "./Home"
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://blog.developomp.com"),
+    metadataBase: new URL("https://blog.pompy.dev"),
     title: "pomp's blog | Home",
 }
 

@@ -1,5 +1,5 @@
 {
-    "name": "@developomp-site/main",
+    "name": "@pompydev/main",
     "version": "0.0.0",
     "type": "module",
     "private": true,
@@ -13,10 +13,10 @@
         "lint": "eslint ."
     },
     "devDependencies": {
-        "@developomp-site/eslint-config": "workspace:*",
-        "@developomp-site/playwright-config": "workspace:*",
-        "@developomp-site/prettier-config": "workspace:*",
-        "@developomp-site/tailwind-config": "workspace:*",
+        "@pompydev/eslint-config": "workspace:*",
+        "@pompydev/playwright-config": "workspace:*",
+        "@pompydev/prettier-config": "workspace:*",
+        "@pompydev/tailwind-config": "workspace:*",
         "@fontsource/noto-sans-kr": "^5.0.5",
         "@inqling/svelte-icons": "^3.5.0",
         "@playwright/test": "1.47.0",

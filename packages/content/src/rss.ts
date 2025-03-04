@@ -6,10 +6,10 @@ export function buildFeed(contentMap: ContentMap): string {
     /* lets create an rss feed */
     const feed = new RSS({
         title: "pomp's blog",
-        description: "developomp's blog",
-        feed_url: "https://blog.developomp.com/rss.xml",
-        site_url: "https://blog.developomp.com",
-        image_url: "https://blog.developomp.com/favicon.svg",
+        description: "pomp's blog",
+        feed_url: "https://blog.pompy.dev/rss.xml",
+        site_url: "https://blog.pompy.dev",
+        image_url: "https://blog.pompy.dev/favicon.svg",
         language: "en",
         pubDate: "May 20, 2012 04:00:00 GMT",
     })
@@ -18,7 +18,7 @@ export function buildFeed(contentMap: ContentMap): string {
         feed.item({
             title: contentMap.posts[key].title,
             description: contentMap.posts[key].title,
-            url: `https://blog.developomp.com${key}`,
+            url: `https://blog.pompy.dev${key}`,
             date: contentMap.posts[key].date,
         })
 

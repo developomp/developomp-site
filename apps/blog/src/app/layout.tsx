@@ -32,19 +32,19 @@ import Header from "@/components/Header"
 import titlePrefix from "@/titlePrefix"
 
 export const metadata: Metadata = {
-    metadataBase: new URL("https://blog.developomp.com"),
+    metadataBase: new URL("https://blog.pompy.dev"),
     title: {
         template: titlePrefix + "%s",
         default: "",
     },
-    description: "developomp's Blog",
+    description: "pomp's Blog",
     openGraph: {
         title: "pomp's blog",
-        siteName: "developomp's Blog",
-        description: "developomp's Blog",
+        siteName: "pomp's Blog",
+        description: "pomp's Blog",
         type: "website",
-        url: "https://blog.developomp.com",
-        images: "https://blog.developomp.com/favicon.svg",
+        url: "https://blog.pompy.dev",
+        images: "https://blog.pompy.dev/favicon.svg",
     },
 }
 
@@ -64,7 +64,7 @@ export default function RootLayout({
                 <meta name="theme-color" content="#000000" />
                 <script
                     defer
-                    src="https://umami.developomp.com/script.js"
+                    src="https://umami.pompy.dev/script.js"
                     data-website-id="361a9f07-a09b-49a0-b7e4-f1fc7caff9e2"
                 ></script>
             </head>

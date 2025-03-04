@@ -1,4 +1,4 @@
-const sharedConfig = require("@developomp-site/prettier-config")
+const sharedConfig = require("@pompydev/prettier-config")
 
 /** @type {import("prettier").Options} */
 module.exports = {
